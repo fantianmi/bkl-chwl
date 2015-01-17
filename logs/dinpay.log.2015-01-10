@@ -1,0 +1,54 @@
+2015-01-10 00:18:20  [ main:1 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 00:18:20  [ main:4 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 00:18:38  [ main:0 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 00:18:38  [ main:2 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:05  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:28:05  [ main:2 ] - [ INFO ]  reload weixin data
+2015-01-10 01:28:07  [ main:2367 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:07  [ main:2367 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:20  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:28:20  [ main:3 ] - [ INFO ]  reload weixin data
+2015-01-10 01:28:23  [ main:2256 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:23  [ main:2257 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:41  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:28:41  [ main:2 ] - [ INFO ]  reload weixin data
+2015-01-10 01:28:43  [ main:2001 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:43  [ main:2001 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:28:58  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:28:58  [ main:2 ] - [ INFO ]  reload weixin data
+2015-01-10 01:29:00  [ main:2096 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:29:00  [ main:2097 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:29:36  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:29:36  [ main:3 ] - [ INFO ]  reload weixin data
+2015-01-10 01:29:38  [ main:2013 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:29:38  [ main:2013 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:29:53  [ main:0 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:29:53  [ main:2 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:32:17  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:32:17  [ main:2 ] - [ INFO ]  reload weixin data
+2015-01-10 01:32:18  [ main:1418 ] - [ WARN ]  Tried to assign property errcode:java.lang.Integer to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:32:18  [ main:1418 ] - [ WARN ]  Tried to assign property errmsg:java.lang.String to bean of class com.bkl.chwl.entity.Weixin
+2015-01-10 01:42:39  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:42:39  [ main:96 ] - [ INFO ]  jetty-6.1.26
+2015-01-10 01:42:40  [ main:729 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-10 01:43:31  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 01:43:31  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2015-01-10 01:43:31  [ main:630 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-10 02:00:15  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 02:00:15  [ main:95 ] - [ INFO ]  jetty-6.1.26
+2015-01-10 02:00:16  [ main:602 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-10 02:00:43  [ 859307143@qtp-1679397066-0:27726 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 02:46:50  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-10 02:46:50  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2015-01-10 02:46:51  [ main:587 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-10 02:48:17  [ 547626326@qtp-1871593525-1:86833 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 02:49:00  [ 547626326@qtp-1871593525-1:129399 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 02:49:29  [ 547626326@qtp-1871593525-1:158607 ] - [ WARN ]  Cookie rejected [BAIDUID="90C3A81DE95D39085B6C2D6070CB4A9A:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sun Jan 10 02:49:29 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-10 02:49:29  [ 547626326@qtp-1871593525-1:158608 ] - [ WARN ]  Cookie rejected [BAIDUID="D4161F5573C122D68EB9EAD2C9AF0383:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sun Jan 10 02:49:27 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-10 02:49:29  [ 547626326@qtp-1871593525-1:158613 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-10 02:49:54  [ 1406957329@qtp-1871593525-4:184054 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 03:01:07  [ 1212402249@qtp-1871593525-6:856587 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 03:01:34  [ 658771892@qtp-1871593525-5:883846 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
+2015-01-10 03:03:36  [ 658771892@qtp-1871593525-5:1005356 ] - [ WARN ]  Cookie rejected [BAIDUID="474B8462C4425D5B8ED71DC87DD84183:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sun Jan 10 03:03:36 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-10 03:03:36  [ 658771892@qtp-1871593525-5:1005357 ] - [ WARN ]  Cookie rejected [BAIDUID="B2535EA2F308A08FC359D44A8E66BE7A:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sun Jan 10 03:03:34 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-10 03:03:36  [ 658771892@qtp-1871593525-5:1005358 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes

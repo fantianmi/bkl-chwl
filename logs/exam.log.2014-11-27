@@ -1,0 +1,4 @@
+2014-11-27 11:06:50  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-11-27 11:06:51  [ main:653 ] - [ INFO ]  jetty-6.1.26
+2014-11-27 11:06:52  [ main:2361 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12001
+2014-11-27 11:09:25  [ 12059672@qtp-24266462-2:154638 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\backend\arctype.jsp" not found

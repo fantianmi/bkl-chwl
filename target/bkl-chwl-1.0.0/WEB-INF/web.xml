@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>examine</display-name>
+	<listener>
+		<listener-class>com.bkl.chwl.listener.ServicesListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>collection</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.CollectionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>collection</servlet-name>
+		<url-pattern>/collection/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>area</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.AreaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>area</servlet-name>
+		<url-pattern>/area/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>bouns</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.BounsServlet</servlet-class>
+	</servlet>
+		<servlet-mapping>
+		<servlet-name>bouns</servlet-name>
+		<url-pattern>/bouns/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>cash</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.CashServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cash</servlet-name>
+		<url-pattern>/api/cash/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>comment</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.CommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>comment</servlet-name>
+		<url-pattern>/comment/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>order</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>order</servlet-name>
+		<url-pattern>/order/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>shop</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.ShopServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>shop</servlet-name>
+		<url-pattern>/shop/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>type</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.TypeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>type</servlet-name>
+		<url-pattern>/type/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>version</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.VersionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>version</servlet-name>
+		<url-pattern>/version/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>open</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.OpenServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>open</servlet-name>
+		<url-pattern>/open/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>fans</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.FansServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fans</servlet-name>
+		<url-pattern>/fans/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>lotto</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.LottoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lotto</servlet-name>
+		<url-pattern>/lotto/*</url-pattern>
+	</servlet-mapping>
+	<!-- upload file -->
+	<servlet>
+		<servlet-name>uploadFile</servlet-name>
+		<servlet-class>com.km.common.servlet.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadFile</servlet-name>
+		<url-pattern>/uploadFile</url-pattern>
+	</servlet-mapping>
+	<!-- upload file -->
+	
+	<servlet>
+		<servlet-name>oauth</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.login.OauthServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>oauth</servlet-name>
+		<url-pattern>/oauth/*</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>charsetFilter</filter-name>
+		<filter-class>com.km.common.filter.CharsetFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>charsetFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>admin_filter</filter-name>
+		<filter-class>com.km.common.servlet.ApiFilter</filter-class>
+		<init-param>
+			<param-name>session_name</param-name>
+			<param-value>adminusername</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>admin_filter</filter-name>
+		<url-pattern>/admin_api/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>backend_filter</filter-name>
+		<filter-class>com.km.common.filter.BackendFilter</filter-class>
+		<init-param>
+			<param-name>session_name</param-name>
+			<param-value>adminusername</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>backend_filter</filter-name>
+		<url-pattern>/backend/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>root_filter</filter-name>
+		<filter-class>com.bkl.chwl.servlet.RootFilter</filter-class>
+		<init-param>
+			<param-name>session_name</param-name>
+			<param-value>username</param-value>
+		</init-param>
+		<init-param>
+			<param-name>urls</param-name>
+			<param-value>/bindcardsuccess.jsp,/scanQR.jsp,/user_index.jsp,/add_shop_info.jsp,/shop_info.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/shop_info.jsp,/doLottery.jsp,/shop_data_add.jsp,/shop_index.jsp,/shop_data.jsp,/shop_deal_list.jsp,/user_card_list.jsp,/user_profile.jsp./info_update.jsp</param-value>
+		</init-param>
+		<init-param>
+			<param-name>userUrls</param-name>
+			<param-value>/scanQR.jsp,/user_index.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/doLottery.jsp,/user_profile.jsp./info_update.jsp</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>root_filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+
+	
+
+	<servlet>
+		<servlet-name>user</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.UserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>user</servlet-name>
+		<url-pattern>/api/user/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>bind</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.BindCardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>bind</servlet-name>
+		<url-pattern>/api/bind/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>com.bkl.chwl.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>/admin_api/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- <error-page> <error-code>404</error-code> <location>/404.jsp</location> 
+		</error-page> <error-page> <error-code>500</error-code> <location>/500.jsp</location> 
+		</error-page> -->
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

@@ -1,0 +1,886 @@
+2014-12-29 01:04:45  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 01:04:45  [ main:113 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 01:04:46  [ main:849 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 02:08:23  [ 91351754@qtp-1679397066-28:3818351 ] - [ WARN ]  Tried to assign property local2:java.lang.Integer to bean of class com.baiyi.data.model.User
+2014-12-29 02:08:23  [ 91351754@qtp-1679397066-28:3818353 ] - [ WARN ]  Tried to assign property recommendProxy3TotalSurplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 02:08:23  [ 91351754@qtp-1679397066-28:3818353 ] - [ WARN ]  Tried to assign property recommendProxy3Surplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 02:10:57  [ 627334416@qtp-1679397066-32:3972174 ] - [ WARN ]  Tried to assign property local2:java.lang.Integer to bean of class com.baiyi.data.model.User
+2014-12-29 02:10:57  [ 627334416@qtp-1679397066-32:3972175 ] - [ WARN ]  Tried to assign property recommendProxy3TotalSurplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 02:10:57  [ 627334416@qtp-1679397066-32:3972175 ] - [ WARN ]  Tried to assign property recommendProxy3Surplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 02:23:00  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 02:23:01  [ main:111 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 02:23:01  [ main:659 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 02:32:19  [ 2063330336@qtp-1248915741-10:559016 ] - [ INFO ]  user: 18688164055 login, ip address: 0:0:0:0:0:0:0:1
+2014-12-29 02:38:41  [ 547626326@qtp-1248915741-0:940308 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\backend\shops.jsp" not found
+2014-12-29 02:43:03  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 02:43:03  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 02:43:03  [ main:611 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 02:51:31  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 02:51:31  [ main:98 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 02:51:31  [ main:596 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 10:23:47  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 10:23:47  [ main:98 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 10:23:47  [ main:596 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 10:36:53  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 10:36:53  [ main:105 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 10:36:54  [ main:581 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 10:36:57  [ 547626326@qtp-1248915741-0:3283 ] - [ ERROR ]  /backend/proxy.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy0.getPage(Unknown Source)
+	at com.bkl.chwl.service.impl.ProxyServiceImpl.getProxyList(ProxyServiceImpl.java:22)
+	at org.apache.jsp.backend.proxy_jsp._jspService(org.apache.jsp.backend.proxy_jsp:70)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where  a.id=u.local2 where a.reid in (Select id from area where reid=0) order by' at line 1 Query: SELECT count(*) FROM (SELECT * from (Select a.*,u.mobile, u.name from area a left join user u where  a.id=u.local2 where a.reid in (Select id from area where reid=0) order by a.reid desc)a )a Parameters: []
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:403)
+	at com.km.common.utils.DbUtil.queryLong(DbUtil.java:408)
+	at com.km.common.utils.DbUtil.queryPageObject(DbUtil.java:163)
+	at com.km.common.utils.DbUtil.queryPageObject(DbUtil.java:154)
+	at com.km.common.dao.GeneralDaoImpl.getPage(GeneralDaoImpl.java:147)
+	... 34 more
+Caused by: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where  a.id=u.local2 where a.reid in (Select id from area where reid=0) order by' at line 1 Query: SELECT count(*) FROM (SELECT * from (Select a.*,u.mobile, u.name from area a left join user u where  a.id=u.local2 where a.reid in (Select id from area where reid=0) order by a.reid desc)a )a Parameters: []
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:400)
+	... 38 more
+2014-12-29 10:37:14  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 10:37:15  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 10:37:15  [ main:618 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:40:45  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:40:45  [ main:94 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:40:45  [ main:571 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:44:06  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:44:06  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:44:06  [ main:581 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:48:48  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:48:48  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:48:49  [ main:590 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:49:48  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:49:48  [ main:114 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:49:49  [ main:631 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:50:16  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:50:16  [ main:98 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:50:16  [ main:578 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:50:52  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:50:53  [ main:92 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:50:53  [ main:608 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:52:02  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:52:02  [ main:96 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:52:03  [ main:571 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:53:48  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:53:48  [ main:96 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:53:49  [ main:585 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:54:21  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:54:21  [ main:106 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:54:22  [ main:657 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:55:22  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:55:22  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:55:23  [ main:611 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:55:52  [ main:1 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:55:52  [ main:106 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:55:53  [ main:605 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:58:03  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:58:03  [ main:98 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:58:03  [ main:587 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 13:58:35  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 13:58:35  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 13:58:36  [ main:567 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:01:01  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:01:01  [ main:91 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:01:02  [ main:581 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:03:55  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:03:55  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:03:56  [ main:568 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:05:46  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:05:46  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:05:46  [ main:576 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:06:02  [ main:1 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:06:02  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:06:03  [ main:596 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:06:12  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:06:13  [ main:111 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:06:13  [ main:590 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:07:23  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:07:23  [ main:96 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:07:24  [ main:585 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:10:52  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:10:53  [ main:95 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:10:53  [ main:577 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:12:20  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:12:20  [ main:94 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:12:21  [ main:572 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:13:21  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:13:21  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:13:21  [ main:584 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:13:39  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:13:39  [ main:92 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:13:40  [ main:578 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:17:42  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:17:43  [ main:102 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:17:43  [ main:586 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:19:07  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:19:07  [ main:102 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:19:08  [ main:592 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:19:29  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:19:29  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:19:30  [ main:584 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:20:25  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:20:25  [ main:113 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:20:26  [ main:600 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:21:20  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:21:20  [ main:97 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:21:21  [ main:597 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:21:32  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:21:32  [ main:106 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:21:33  [ main:591 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:21:59  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:21:59  [ main:98 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:21:59  [ main:588 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:24:47  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:24:48  [ main:108 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:24:48  [ main:609 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:50:58  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:50:58  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:50:59  [ main:629 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:52:00  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:52:00  [ main:110 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:52:01  [ main:589 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 14:53:04  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 14:53:04  [ main:94 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 14:53:04  [ main:587 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 16:07:07  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 16:07:07  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 16:07:08  [ main:595 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 16:07:31  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 16:07:31  [ main:112 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 16:07:32  [ main:636 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 16:11:21  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 16:11:21  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 16:11:22  [ main:598 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 17:03:55  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 17:03:55  [ main:105 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 17:03:56  [ main:600 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 17:04:33  [ 2109588399@qtp-1871593525-2:37743 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2014-12-29 17:04:41  [ 2109588399@qtp-1871593525-2:46036 ] - [ ERROR ]  /shop_info.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.shop_005finfo_jsp._jspService(org.apache.jsp.shop_005finfo_jsp:68)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:57)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 17:08:45  [ 2109588399@qtp-1871593525-2:289741 ] - [ WARN ]  /backend/user.jsp: java.net.ConnectException: Connection timed out: connect
+2014-12-29 17:09:16  [ 2109588399@qtp-1871593525-2:321126 ] - [ WARN ]  /backend/user.jsp: java.net.ConnectException: Connection timed out: connect
+2014-12-29 17:09:52  [ 2109588399@qtp-1871593525-2:356650 ] - [ WARN ]  /backend/user.jsp: java.net.ConnectException: Connection timed out: connect
+2014-12-29 17:10:41  [ 1117569389@qtp-1871593525-10:406008 ] - [ ERROR ]  /backend/user.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.backend.user_jsp._jspService(org.apache.jsp.backend.user_jsp:259)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 17:11:38  [ 2109588399@qtp-1871593525-2:462877 ] - [ ERROR ]  /backend/user.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.backend.user_jsp._jspService(org.apache.jsp.backend.user_jsp:259)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 17:20:52  [ 1117569389@qtp-1871593525-10:1016703 ] - [ WARN ]  Error compiling file: C:\Users\mao\AppData\Local\Temp\Jetty_0_0_0_0_80_webapp____.8p7k2g\jsp\org\apache\jsp\backend\user_jsp.java
+2014-12-29 17:20:52  [ 1117569389@qtp-1871593525-10:1016704 ] - [ WARN ]  /backend/user.jsp
+org.apache.jasper.JasperException: PWC6033: Unable to compile class for JSP
+
+PWC6199: Generated servlet error:
+Syntax error, insert "}" to complete Block
+
+PWC6199: Generated servlet error:
+Syntax error on token "}", delete this token
+
+PWC6199: Generated servlet error:
+Syntax error, insert "}" to complete ClassBody
+
+
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:107)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:280)
+	at org.apache.jasper.compiler.Compiler.generateClass(Compiler.java:350)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:411)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:592)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:344)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 17:28:22  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 17:28:22  [ main:106 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 17:28:23  [ main:616 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 17:38:32  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 17:38:32  [ main:108 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 17:38:33  [ main:599 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 17:39:28  [ 547626326@qtp-1248915741-0:56149 ] - [ WARN ]  Tried to assign property local2:java.lang.Integer to bean of class com.baiyi.data.model.User
+2014-12-29 17:39:28  [ 547626326@qtp-1248915741-0:56151 ] - [ WARN ]  Tried to assign property recommendProxy3TotalSurplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 17:39:28  [ 547626326@qtp-1248915741-0:56151 ] - [ WARN ]  Tried to assign property recommendProxy3Surplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2014-12-29 17:39:32  [ 547626326@qtp-1248915741-0:59957 ] - [ ERROR ]  /shop_info.jsp
+java.lang.IllegalStateException: Committed
+	at org.mortbay.jetty.Response.resetBuffer(Response.java:1023)
+	at org.mortbay.jetty.Response.sendRedirect(Response.java:428)
+	at org.apache.jsp.shop_005finfo_jsp._jspService(org.apache.jsp.shop_005finfo_jsp:69)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:57)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 18:10:10  [ 1208191694@qtp-1248915741-6:1898364 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:78)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 18:10:19  [ 411126555@qtp-1248915741-11:1907144 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:78)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 18:10:57  [ 808801305@qtp-1248915741-8:1944931 ] - [ INFO ]  user: 18688164100 login, ip address: 192.168.0.177
+2014-12-29 21:13:54  [ 1454132121@qtp-1248915741-30:12921570 ] - [ ERROR ]  /shop_info.jsp
+java.lang.IllegalStateException: Committed
+	at org.mortbay.jetty.Response.resetBuffer(Response.java:1023)
+	at org.mortbay.jetty.Response.sendRedirect(Response.java:428)
+	at org.apache.jsp.shop_005finfo_jsp._jspService(org.apache.jsp.shop_005finfo_jsp:69)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:57)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 21:21:01  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 21:21:01  [ main:95 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 21:21:02  [ main:693 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 21:55:38  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 21:55:38  [ main:97 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 21:55:38  [ main:579 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 21:59:51  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 21:59:51  [ main:102 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 21:59:51  [ main:601 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:00:45  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:00:45  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:00:45  [ main:603 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:01:39  [ 446107260@qtp-1871593525-0:54097 ] - [ INFO ]  I/O exception (java.net.SocketException) caught when processing request to {}->http://123.57.67.98:8081: Connection reset
+2014-12-29 22:01:39  [ 446107260@qtp-1871593525-0:54097 ] - [ INFO ]  Retrying request to {}->http://123.57.67.98:8081
+2014-12-29 22:04:24  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:04:24  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:04:24  [ main:590 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:04:49  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:04:49  [ main:116 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:04:50  [ main:596 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:05:11  [ 859307143@qtp-1679397066-0:22108 ] - [ INFO ]  query remote userinfo data error, uid=1004
+2014-12-29 22:05:20  [ 609437331@qtp-1679397066-2:31097 ] - [ INFO ]  query remote userinfo data error, uid=1004
+2014-12-29 22:05:50  [ 859307143@qtp-1679397066-0:61080 ] - [ INFO ]  query remote userinfo data error, uid=1004
+2014-12-29 22:07:54  [ 1400024422@qtp-1679397066-5:185128 ] - [ ERROR ]  /shop_info.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.shop_005finfo_jsp._jspService(org.apache.jsp.shop_005finfo_jsp:71)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:57)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 22:10:46  [ 1400024422@qtp-1679397066-5:356898 ] - [ INFO ]  user: 18688164055 login, ip address: 127.0.0.1
+2014-12-29 22:12:44  [ 420730924@qtp-1679397066-8:475309 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:13:33  [ 1400024422@qtp-1679397066-5:523664 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:15:02  [ 1400024422@qtp-1679397066-5:612911 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:15:32  [ 1400024422@qtp-1679397066-5:642923 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:15:42  [ 420730924@qtp-1679397066-8:652921 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:15:52  [ 187050034@qtp-1679397066-15:662921 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:16:12  [ 2071101884@qtp-1679397066-14:682706 ] - [ INFO ]  user: 18688164055 login, ip address: 0:0:0:0:0:0:0:1
+2014-12-29 22:16:32  [ 420730924@qtp-1679397066-8:702925 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:17:12  [ 1400024422@qtp-1679397066-5:742946 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:17:42  [ 1400024422@qtp-1679397066-5:772927 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:18:02  [ 2071101884@qtp-1679397066-14:792930 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:18:52  [ 1400024422@qtp-1679397066-5:842942 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:19:01  [ 1412713456@qtp-1679397066-13:851936 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:19:34  [ 348661926@qtp-1679397066-16:885284 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:20:14  [ 348661926@qtp-1679397066-16:925274 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:20:23  [ 2071101884@qtp-1679397066-14:934224 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:20:49  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:20:49  [ main:103 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:20:50  [ main:611 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:21:15  [ 1240192567@qtp-1248915741-3:25556 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:21:33  [ 687005768@qtp-1248915741-2:44004 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:21:35  [ 2032260052@qtp-1248915741-4:45542 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:22:03  [ 2032260052@qtp-1248915741-4:73873 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:22:33  [ 2032260052@qtp-1248915741-4:104007 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:23:03  [ 2032260052@qtp-1248915741-4:133864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:24:38  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:24:38  [ main:103 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:24:38  [ main:636 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:25:53  [ 547626326@qtp-1248915741-0:75583 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:26:13  [ 935941079@qtp-1248915741-3:95721 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:26:33  [ 547626326@qtp-1248915741-0:115576 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:26:33  [ 1997085743@qtp-1248915741-5:115719 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:26:53  [ 1395957145@qtp-1248915741-6:135722 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:27:23  [ 1395957145@qtp-1248915741-6:165582 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:27:23  [ 1997085743@qtp-1248915741-5:165725 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:28:15  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:28:15  [ main:123 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:28:16  [ main:717 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:28:53  [ 1085613483@qtp-1248915741-2:38059 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:29:23  [ 1085613483@qtp-1248915741-2:67914 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:30:03  [ 696479026@qtp-1248915741-4:108056 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:30:23  [ 1085613483@qtp-1248915741-2:127912 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:30:43  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:30:43  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:30:44  [ main:584 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:31:23  [ 907956871@qtp-1679397066-2:40124 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:31:33  [ 566059899@qtp-1679397066-3:50273 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:31:54  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:31:54  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:31:54  [ main:599 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:32:43  [ 547626326@qtp-1248915741-0:49684 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:33:43  [ 1966246782@qtp-1248915741-3:109832 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:34:13  [ 1966246782@qtp-1248915741-3:139821 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:34:28  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:34:28  [ main:108 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:34:29  [ main:627 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:34:44  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:34:44  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:34:45  [ main:600 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:35:13  [ 859307143@qtp-1679397066-0:29316 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:35:44  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 22:35:44  [ main:117 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 22:35:45  [ main:646 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 22:36:13  [ 359271714@qtp-1248915741-2:29165 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:36:43  [ 359271714@qtp-1248915741-2:59174 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:36:53  [ 40096780@qtp-1248915741-3:69172 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:37:13  [ 1151954284@qtp-1248915741-4:89167 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:37:53  [ 1151954284@qtp-1248915741-4:129180 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:38:03  [ 40096780@qtp-1248915741-3:139169 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:38:13  [ 1297758647@qtp-1248915741-5:149171 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:40:13  [ 1151954284@qtp-1248915741-4:269165 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:41:43  [ 2116184013@qtp-1248915741-6:359157 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:42:13  [ 671965469@qtp-1248915741-7:389173 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:42:33  [ 1037598303@qtp-1248915741-8:409174 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:44:03  [ 671965469@qtp-1248915741-7:499158 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:44:13  [ 618914694@qtp-1248915741-9:509162 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:44:23  [ 1090819176@qtp-1248915741-10:519172 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:45:33  [ 1090819176@qtp-1248915741-10:589156 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:49:13  [ 671965469@qtp-1248915741-7:809179 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:49:43  [ 1781286978@qtp-1248915741-11:839156 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:50:03  [ 584536607@qtp-1248915741-12:859173 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:53:03  [ 1781286978@qtp-1248915741-11:1039164 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:53:23  [ 955757820@qtp-1248915741-13:1059160 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:53:33  [ 1781286978@qtp-1248915741-11:1069174 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:56:33  [ 460983663@qtp-1248915741-14:1249170 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 22:57:33  [ 456508664@qtp-1248915741-15:1309155 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:00:13  [ 810189756@qtp-1248915741-16:1469158 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:01:23  [ 1853555884@qtp-1248915741-17:1539156 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:02:53  [ 942397329@qtp-1248915741-18:1629177 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:04:53  [ 564349542@qtp-1248915741-19:1749155 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:05:33  [ 1834440308@qtp-1248915741-20:1789163 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:08:03  [ 105735681@qtp-1248915741-21:1939164 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:08:43  [ 957685074@qtp-1248915741-22:1979159 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:09:03  [ 763088267@qtp-1248915741-23:1999165 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:09:13  [ 957685074@qtp-1248915741-22:2009162 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:09:53  [ 957685074@qtp-1248915741-22:2049158 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:10:03  [ 408969435@qtp-1248915741-24:2059155 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:11:13  [ 957685074@qtp-1248915741-22:2129156 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:12:13  [ 1392156763@qtp-1248915741-25:2189155 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:12:33  [ 666274791@qtp-1248915741-26:2209174 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:15:03  [ 1392156763@qtp-1248915741-25:2359154 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:15:43  [ 121804931@qtp-1248915741-27:2399155 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:16:43  [ 849969242@qtp-1248915741-28:2459160 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:17:23  [ 849969242@qtp-1248915741-28:2499160 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:21:53  [ 826740449@qtp-1248915741-29:2769160 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:22:03  [ 1217128405@qtp-1248915741-30:2779170 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:23:23  [ 113201680@qtp-1248915741-31:2859159 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:23:33  [ 1217216768@qtp-1248915741-32:2869159 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:24:03  [ 1217216768@qtp-1248915741-32:2899157 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:25:03  [ 1217216768@qtp-1248915741-32:2959163 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:25:33  [ 1236285452@qtp-1248915741-33:2989158 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:26:17  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 23:26:17  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 23:26:18  [ main:602 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 23:26:25  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="BEEFD7D9CB6A60F6ECDC507F35106F5F:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:26:25 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:26:25  [ main:3 ] - [ WARN ]  Cookie rejected [BAIDUID="9C4E35082B579F64A082943CC4AC12E8:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:26:19 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:26:25  [ main:110 ] - [ WARN ]  Tried to assign property address:java.lang.String to bean of class com.baiyi.data.model.User
+2014-12-29 23:26:46  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="EE7872302812F9C25251684C7CE678B5:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:26:46 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:26:46  [ main:3 ] - [ WARN ]  Cookie rejected [BAIDUID="B55658EAF36B28F0FA403B0DE5D3EA3E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:26:40 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:27:19  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 23:27:19  [ main:103 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 23:27:19  [ main:587 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 23:27:28  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="42CA701E9C6FD09DC3317F42D5FB4091:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:27:28 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:27:28  [ main:3 ] - [ WARN ]  Cookie rejected [BAIDUID="5BF8BE09F9A76BCC23858AF73ACEED28:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:27:21 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:27:36  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="57BCB8BB1A37ABEC27BC6DD1B9F158D2:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:27:36 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:27:36  [ main:3 ] - [ WARN ]  Cookie rejected [BAIDUID="5D8E033D03E07A3D0B3F04192E9F1524:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:27:30 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:28:03  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="B8493DCBC0E420985D2A55AFDF353358:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:28:03 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:28:03  [ main:8 ] - [ WARN ]  Cookie rejected [BAIDUID="C014B7A8B1733E5C161B3F62841EB212:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:27:57 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:28:43  [ 859307143@qtp-1679397066-0:84872 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:28:46  [ main:0 ] - [ WARN ]  Cookie rejected [BAIDUID="A2525B9AAF23643DDA93AAF369192930:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:28:46 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:28:47  [ main:7 ] - [ WARN ]  Cookie rejected [BAIDUID="F55AB364B61AD14878A19E64748FF5D9:FG=1", version:1, domain:.baidu.com, path:/, expiry:Tue Dec 29 23:28:40 CST 2015] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2014-12-29 23:28:53  [ 1655338994@qtp-1679397066-2:94869 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:29:03  [ 1012656572@qtp-1679397066-3:104871 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:29:23  [ 859307143@qtp-1679397066-0:124875 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:29:53  [ 859307143@qtp-1679397066-0:154875 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:31:03  [ 1012656572@qtp-1679397066-3:224869 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:31:13  [ 1065960595@qtp-1679397066-4:234870 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:31:23  [ 2033573785@qtp-1679397066-5:244870 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:31:53  [ 2033573785@qtp-1679397066-5:274868 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:32:33  [ 2033573785@qtp-1679397066-5:314864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:33:23  [ 1012656572@qtp-1679397066-3:364875 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:33:43  [ 511709259@qtp-1679397066-6:384864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:35:03  [ 511709259@qtp-1679397066-6:464870 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:35:33  [ 1241112667@qtp-1679397066-7:494860 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:36:43  [ 540320335@qtp-1679397066-8:564864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:37:53  [ 704084247@qtp-1679397066-9:634864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:39:23  [ 240234440@qtp-1679397066-10:724867 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:39:43  [ 102609292@qtp-1679397066-11:744864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:40:13  [ 240234440@qtp-1679397066-10:774864 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:45:03  [ 463671345@qtp-1679397066-12:1064866 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:47:03  [ 1699593206@qtp-1679397066-13:1184865 ] - [ INFO ]  query remote userinfo data error, uid=1002
+2014-12-29 23:47:14  [ 1699593206@qtp-1679397066-13:1195014 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:47:16  [ 1699593206@qtp-1679397066-13:1197600 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:47:44  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-29 23:47:44  [ main:118 ] - [ INFO ]  jetty-6.1.26
+2014-12-29 23:47:45  [ main:659 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2014-12-29 23:47:48  [ 547626326@qtp-1248915741-0:4291 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:48:54  [ 547626326@qtp-1248915741-0:69775 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:48:55  [ 547626326@qtp-1248915741-0:70714 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:49:00  [ 1358918713@qtp-1248915741-6:76201 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2014-12-29 23:50:00  [ 1358918713@qtp-1248915741-6:135892 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NumberFormatException: null
+	at java.lang.Long.parseLong(Long.java:404)
+	at java.lang.Long.valueOf(Long.java:540)
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:98)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:41)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)

@@ -1,0 +1,60 @@
+2015-01-01 12:05:24  [ 218267038@qtp-1229091713-99:79166072 ] - [ INFO ]  user: 18688164111 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-01 12:05:28  [ 218267038@qtp-1229091713-99:79169816 ] - [ ERROR ]  /shop_info.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.shop_005finfo_jsp._jspService(org.apache.jsp.shop_005finfo_jsp:71)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:57)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-01 15:10:38  [ 10203012@qtp-1229091713-105:90279971 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-01 15:16:28  [ 804919226@qtp-1229091713-111:90629794 ] - [ INFO ]  user: 18688164055 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-01 15:18:28  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-01 15:18:29  [ main:233 ] - [ INFO ]  jetty-6.1.26
+2015-01-01 15:18:30  [ main:1236 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2015-01-01 15:41:43  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-01 15:41:43  [ main:127 ] - [ INFO ]  jetty-6.1.26
+2015-01-01 15:41:44  [ main:697 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2015-01-01 15:42:01  [ 602676808@qtp-699219898-5:17444 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-01 15:43:37  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-01 15:43:37  [ main:128 ] - [ INFO ]  jetty-6.1.26
+2015-01-01 15:43:37  [ main:707 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2015-01-01 15:43:45  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-01 15:43:45  [ main:110 ] - [ INFO ]  jetty-6.1.26
+2015-01-01 15:43:45  [ main:661 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2015-01-01 15:44:48  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-01 15:44:49  [ main:120 ] - [ INFO ]  jetty-6.1.26
+2015-01-01 15:44:49  [ main:688 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:80
+2015-01-01 15:48:05  [ 1165571571@qtp-1857676680-4:196796 ] - [ WARN ]  Cookie rejected [BAIDUID="EE4BA5AABB3B5ABFDA3294B687E2EB8C:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 15:48:05 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 15:48:05  [ 1165571571@qtp-1857676680-4:196796 ] - [ WARN ]  Cookie rejected [BAIDUID="C069F0C09AB4FA0DDBB700B294DE9497:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 15:47:56 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 15:48:05  [ 1165571571@qtp-1857676680-4:196800 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-01 15:48:47  [ 292012660@qtp-1857676680-7:238523 ] - [ WARN ]  Cookie rejected [BAIDUID="4FD6BAA4AB9AD158A9D6B57A297A067A:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 15:48:47 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 15:48:47  [ 292012660@qtp-1857676680-7:238524 ] - [ WARN ]  Cookie rejected [BAIDUID="3148F6D0AD2523978A16B74B24D3EC52:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 15:48:38 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 15:48:47  [ 292012660@qtp-1857676680-7:238525 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-01 16:18:57  [ 1996115371@qtp-1857676680-1 - Acceptor0 SelectChannelConnector@0.0.0.0:80:2048881 ] - [ INFO ]  org.mortbay.io.nio.SelectorManager$SelectSet@42cb1213 JVM BUG(s) - injecting delay4 times
+2015-01-01 16:18:57  [ 1996115371@qtp-1857676680-1 - Acceptor0 SelectChannelConnector@0.0.0.0:80:2048881 ] - [ INFO ]  org.mortbay.io.nio.SelectorManager$SelectSet@42cb1213 JVM BUG(s) - recreating selector 4 times, canceled keys 41 times
+2015-01-01 16:18:58  [ 651568319@qtp-1857676680-15:2049352 ] - [ WARN ]  Cookie rejected [BAIDUID="0A35CB23ACF69AF1841605F922D932ED:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 16:18:58 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 16:18:58  [ 651568319@qtp-1857676680-15:2049353 ] - [ WARN ]  Cookie rejected [BAIDUID="8E1BA22BFE5BD51538937AF109CCD608:FG=1", version:1, domain:.baidu.com, path:/, expiry:Fri Jan 01 16:18:49 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-01 16:18:58  [ 651568319@qtp-1857676680-15:2049355 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-01 16:19:32  [ 651568319@qtp-1857676680-15:2083575 ] - [ INFO ]  user: 18688164055 login, ip address: 192.168.1.100

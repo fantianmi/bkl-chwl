@@ -1,0 +1,220 @@
+2014-12-22 10:42:18  [ 497648@qtp-14460214-47:58330156 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 10:42:36  [ 497648@qtp-14460214-47:58348308 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 10:43:06  [ 22208059@qtp-14460214-48:58377708 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 11:08:32  [ 497648@qtp-14460214-47:59904000 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 11:11:29  [ 497648@qtp-14460214-47:60080904 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 11:21:11  [ 497648@qtp-14460214-47:60662809 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 11:29:46  [ 21267715@qtp-14460214-58:61178236 ] - [ WARN ]  PWC6117: File "D:\bkltech.workspace\bkl-chwl\src\main\webapp\confirm_order.jsp" not found
+2014-12-22 17:26:28  [ 12319422@qtp-14460214-86:82579593 ] - [ ERROR ]  /reg.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy2.findList(Unknown Source)
+	at com.bkl.chwl.service.impl.AreaServiceImpl.getList(AreaServiceImpl.java:27)
+	at org.apache.jsp.reg_jsp._jspService(org.apache.jsp.reg_jsp:62)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:40)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:381)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:352)
+	at com.km.common.dao.GeneralDaoImpl.findList(GeneralDaoImpl.java:68)
+	... 34 more
+Caused by: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:377)
+	... 36 more
+2014-12-22 17:26:50  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-22 17:26:50  [ main:91 ] - [ INFO ]  jetty-6.1.26
+2014-12-22 17:26:50  [ main:606 ] - [ WARN ]  failed SelectChannelConnector@0.0.0.0:12001: java.net.BindException: Address already in use: bind
+2014-12-22 17:26:50  [ main:607 ] - [ WARN ]  failed Server@1bb089b: java.net.BindException: Address already in use: bind
+2014-12-22 17:27:01  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-22 17:27:01  [ main:92 ] - [ INFO ]  jetty-6.1.26
+2014-12-22 17:27:01  [ main:446 ] - [ WARN ]  failed SelectChannelConnector@0.0.0.0:12001: java.net.BindException: Address already in use: bind
+2014-12-22 17:27:01  [ main:447 ] - [ WARN ]  failed Server@1bb089b: java.net.BindException: Address already in use: bind
+2014-12-22 17:27:22  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-22 17:27:22  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2014-12-22 17:27:22  [ main:457 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12001
+2014-12-22 17:27:26  [ 10126450@qtp-14460214-0:4740 ] - [ ERROR ]  /reg.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy2.findList(Unknown Source)
+	at com.bkl.chwl.service.impl.AreaServiceImpl.getList(AreaServiceImpl.java:27)
+	at org.apache.jsp.reg_jsp._jspService(org.apache.jsp.reg_jsp:62)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:40)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:381)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:352)
+	at com.km.common.dao.GeneralDaoImpl.findList(GeneralDaoImpl.java:68)
+	... 34 more
+Caused by: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:377)
+	... 36 more
+2014-12-22 17:27:28  [ 10126450@qtp-14460214-0:6253 ] - [ ERROR ]  /reg.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy2.findList(Unknown Source)
+	at com.bkl.chwl.service.impl.AreaServiceImpl.getList(AreaServiceImpl.java:27)
+	at org.apache.jsp.reg_jsp._jspService(org.apache.jsp.reg_jsp:62)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:40)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:381)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:352)
+	at com.km.common.dao.GeneralDaoImpl.findList(GeneralDaoImpl.java:68)
+	... 34 more
+Caused by: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by name desc Parameters: [0]
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:377)
+	... 36 more
+2014-12-22 17:27:53  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-22 17:27:53  [ main:97 ] - [ INFO ]  jetty-6.1.26
+2014-12-22 17:27:53  [ main:449 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12001
+2014-12-22 17:27:58  [ 10126450@qtp-14460214-0:5241 ] - [ ERROR ]  /reg.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy2.findList(Unknown Source)
+	at com.bkl.chwl.service.impl.AreaServiceImpl.getList(AreaServiceImpl.java:27)
+	at org.apache.jsp.reg_jsp._jspService(org.apache.jsp.reg_jsp:62)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:40)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by title desc Parameters: [0]
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:381)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:352)
+	at com.km.common.dao.GeneralDaoImpl.findList(GeneralDaoImpl.java:68)
+	... 34 more
+Caused by: java.sql.SQLException: Unknown column 'reid' in 'where clause' Query: SELECT * FROM area where reid=? order by title desc Parameters: [0]
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:377)
+	... 36 more
+2014-12-22 21:12:53  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2014-12-22 21:12:53  [ main:365 ] - [ INFO ]  jetty-6.1.26
+2014-12-22 21:12:54  [ main:1114 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12001

@@ -1,0 +1,652 @@
+2015-01-09 00:00:13  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:00:14  [ main:107 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:00:14  [ main:655 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:00:47  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:00:47  [ main:100 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:00:47  [ main:577 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:33:09  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:33:09  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:33:09  [ main:599 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:33:13  [ 859307143@qtp-1679397066-0:4858 ] - [ ERROR ]  /shop_index.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy0.queryDouble(Unknown Source)
+	at com.bkl.chwl.service.impl.ShopServiceImpl.getProfileTotal(ShopServiceImpl.java:233)
+	at org.apache.jsp.shop_005findex_jsp._jspService(org.apache.jsp.shop_005findex_jsp:65)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:403)
+	at com.km.common.utils.DbUtil.queryDouble(DbUtil.java:432)
+	at com.km.common.dao.GeneralDaoImpl.queryDouble(GeneralDaoImpl.java:212)
+	... 34 more
+Caused by: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:400)
+	... 36 more
+2015-01-09 00:34:05  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:34:06  [ main:95 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:34:06  [ main:563 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:34:08  [ 446107260@qtp-1871593525-0:2642 ] - [ ERROR ]  /shop_index.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy0.queryDouble(Unknown Source)
+	at com.bkl.chwl.service.impl.ShopServiceImpl.getProfileTotal(ShopServiceImpl.java:233)
+	at org.apache.jsp.shop_005findex_jsp._jspService(org.apache.jsp.shop_005findex_jsp:65)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:403)
+	at com.km.common.utils.DbUtil.queryDouble(DbUtil.java:432)
+	at com.km.common.dao.GeneralDaoImpl.queryDouble(GeneralDaoImpl.java:212)
+	... 34 more
+Caused by: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:400)
+	... 36 more
+2015-01-09 00:34:42  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:34:42  [ main:112 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:34:43  [ main:648 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:34:49  [ 1739824625@qtp-1857676680-0:6175 ] - [ ERROR ]  /shop_index.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy0.queryDouble(Unknown Source)
+	at com.bkl.chwl.service.impl.ShopServiceImpl.getProfileTotal(ShopServiceImpl.java:233)
+	at org.apache.jsp.shop_005findex_jsp._jspService(org.apache.jsp.shop_005findex_jsp:65)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:403)
+	at com.km.common.utils.DbUtil.queryDouble(DbUtil.java:432)
+	at com.km.common.dao.GeneralDaoImpl.queryDouble(GeneralDaoImpl.java:212)
+	... 34 more
+Caused by: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where seller=1002 and status=1' at line 1 Query: select sum(price) where seller=1002 and status=1 Parameters: []
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryFirstColumnValue(DbUtil.java:400)
+	... 36 more
+2015-01-09 00:37:04  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:37:04  [ main:97 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:37:04  [ main:586 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 00:48:05  [ 1958951184@qtp-1679397066-8:661277 ] - [ WARN ]  Error compiling file: C:\Users\mao\AppData\Local\Temp\Jetty_0_0_0_0_12000_webapp____8uq22t\jsp\org\apache\jsp\shop_005fdeal_005flist_jsp.java
+2015-01-09 00:48:05  [ 1958951184@qtp-1679397066-8:661288 ] - [ WARN ]  /shop_deal_list.jsp
+org.apache.jasper.JasperException: PWC6033: Unable to compile class for JSP
+
+PWC6197: An error occurred at line: 11 in the jsp file: /shop_deal_list.jsp
+PWC6199: Generated servlet error:
+user cannot be resolved
+
+PWC6197: An error occurred at line: 11 in the jsp file: /shop_deal_list.jsp
+PWC6199: Generated servlet error:
+user.VERTIFY_FALSE cannot be resolved to a type
+
+
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:107)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:280)
+	at org.apache.jasper.compiler.Compiler.generateClass(Compiler.java:350)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:411)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:592)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:344)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 00:48:20  [ 1958951184@qtp-1679397066-8:676851 ] - [ WARN ]  Error compiling file: C:\Users\mao\AppData\Local\Temp\Jetty_0_0_0_0_12000_webapp____8uq22t\jsp\org\apache\jsp\shop_005fdeal_005flist_jsp.java
+2015-01-09 00:48:20  [ 1958951184@qtp-1679397066-8:676852 ] - [ WARN ]  /shop_deal_list.jsp
+org.apache.jasper.JasperException: PWC6033: Unable to compile class for JSP
+
+PWC6197: An error occurred at line: 11 in the jsp file: /shop_deal_list.jsp
+PWC6199: Generated servlet error:
+user cannot be resolved
+
+PWC6197: An error occurred at line: 11 in the jsp file: /shop_deal_list.jsp
+PWC6199: Generated servlet error:
+user.VERTIFY_FALSE cannot be resolved to a type
+
+
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:107)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:280)
+	at org.apache.jasper.compiler.Compiler.generateClass(Compiler.java:350)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:411)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:592)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:344)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 00:58:33  [ 988092248@qtp-1679397066-19:1289415 ] - [ WARN ]  Error compiling file: C:\Users\mao\AppData\Local\Temp\Jetty_0_0_0_0_12000_webapp____8uq22t\jsp\org\apache\jsp\shop_005fdata_jsp.java
+2015-01-09 00:58:33  [ 988092248@qtp-1679397066-19:1289415 ] - [ WARN ]  /shop_data.jsp
+org.apache.jasper.JasperException: PWC6033: Unable to compile class for JSP
+
+PWC6197: An error occurred at line: 11 in the jsp file: /shop_data.jsp
+PWC6199: Generated servlet error:
+Syntax error on token "||", Expression expected after this token
+
+
+	at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:107)
+	at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:280)
+	at org.apache.jasper.compiler.Compiler.generateClass(Compiler.java:350)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:411)
+	at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:592)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:344)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 00:59:52  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 00:59:52  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 00:59:53  [ main:619 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 01:35:21  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 01:35:21  [ main:102 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 01:35:22  [ main:600 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 01:38:12  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 01:38:12  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 01:38:12  [ main:574 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:22:56  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:22:56  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:22:57  [ main:695 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:23:11  [ 859307143@qtp-1679397066-0:14896 ] - [ WARN ]  Cookie rejected [BAIDUID="86B3D8BA23F16CD86E94A9FAF71F33C9:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:23:11 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:23:11  [ 859307143@qtp-1679397066-0:14896 ] - [ WARN ]  Cookie rejected [BAIDUID="B3E5A607A6388D251A001B6AC69EB3CC:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:23:10 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:23:11  [ 859307143@qtp-1679397066-0:14902 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 02:24:01  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:24:01  [ main:105 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:24:02  [ main:597 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:24:19  [ 547626326@qtp-1248915741-0:17550 ] - [ WARN ]  Cookie rejected [BAIDUID="31105E31791B8A248E0A6E22EABC5F2D:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:24:19 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:24:19  [ 547626326@qtp-1248915741-0:17551 ] - [ WARN ]  Cookie rejected [BAIDUID="A407A880BC59F73E17EF9E456A7D177E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:24:18 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:24:19  [ 547626326@qtp-1248915741-0:17625 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 02:25:19  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:25:19  [ main:102 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:25:20  [ main:684 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:25:42  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:25:42  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:25:42  [ main:634 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:26:00  [ 934846515@qtp-1857676680-3:18052 ] - [ WARN ]  Cookie rejected [BAIDUID="DBD565985594C1AADE361FE77938D462:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:26:00 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:26:00  [ 934846515@qtp-1857676680-3:18052 ] - [ WARN ]  Cookie rejected [BAIDUID="317B8CEF826B28B0B080817C16DAFA47:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 02:25:59 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 02:26:00  [ 934846515@qtp-1857676680-3:18131 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 02:26:57  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:26:57  [ main:111 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:26:57  [ main:646 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 02:44:32  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 02:44:32  [ main:97 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 02:44:32  [ main:615 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 03:13:44  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 03:13:44  [ main:108 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 03:13:44  [ main:600 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 03:37:28  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 03:37:28  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 03:37:28  [ main:620 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 03:45:06  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 03:45:06  [ main:108 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 03:45:07  [ main:578 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 03:45:15  [ 547626326@qtp-1248915741-0:9183 ] - [ ERROR ]  /user_card_list.jsp
+java.lang.reflect.UndeclaredThrowableException
+	at com.sun.proxy.$Proxy0.findList(Unknown Source)
+	at com.bkl.chwl.service.impl.BindCardServiceImpl.getUser2Cards(BindCardServiceImpl.java:37)
+	at org.apache.jsp.user_005fcard_005flist_jsp._jspService(org.apache.jsp.user_005fcard_005flist_jsp:65)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:73)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.km.common.dao.BaseDaoHandler.invoke(BaseDaoHandler.java:36)
+	... 29 more
+Caused by: java.lang.RuntimeException: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.u' at line 1 Query: SELECT * from (select u*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid from userbindcard b left join user u on b.uid=u.id where b.uid=1002)a  Parameters: []
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:381)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:129)
+	at com.km.common.dao.GeneralDaoImpl.findList(GeneralDaoImpl.java:152)
+	... 34 more
+Caused by: java.sql.SQLException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.u' at line 1 Query: SELECT * from (select u*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid from userbindcard b left join user u on b.uid=u.id where b.uid=1002)a  Parameters: []
+	at org.apache.commons.dbutils.AbstractQueryRunner.rethrow(AbstractQueryRunner.java:363)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:350)
+	at org.apache.commons.dbutils.QueryRunner.query(QueryRunner.java:211)
+	at com.km.common.utils.DbUtil.queryListObject(DbUtil.java:377)
+	... 36 more
+2015-01-09 03:49:43  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 03:49:43  [ main:96 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 03:49:43  [ main:584 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 04:40:16  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 04:40:16  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 04:40:17  [ main:636 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 04:42:12  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 04:42:12  [ main:95 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 04:42:13  [ main:642 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 04:43:16  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 04:43:16  [ main:92 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 04:43:16  [ main:567 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 04:46:57  [ 20762969@qtp-1679397066-8:221206 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-09 05:28:45  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:28:45  [ main:93 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:28:46  [ main:680 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 05:30:05  [ 2095653162@qtp-1248915741-5:79919 ] - [ ERROR ]  /update_card_info.jsp
+java.lang.ClassCastException: java.util.ArrayList cannot be cast to com.bkl.chwl.entity.User2BindCard
+	at com.bkl.chwl.service.impl.BindCardServiceImpl.getUser2Card(BindCardServiceImpl.java:43)
+	at org.apache.jsp.update_005fcard_005finfo_jsp._jspService(org.apache.jsp.update_005fcard_005finfo_jsp:67)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 05:30:37  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:30:37  [ main:104 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:30:38  [ main:586 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 05:32:01  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:32:01  [ main:103 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:32:02  [ main:628 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 05:33:16  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:33:16  [ main:99 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:33:17  [ main:635 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 05:40:16  [ 586880147@qtp-1857676680-7:419155 ] - [ WARN ]  Tried to assign property local2:java.lang.Integer to bean of class com.baiyi.data.model.User
+2015-01-09 05:40:16  [ 586880147@qtp-1857676680-7:419156 ] - [ WARN ]  Tried to assign property recommendProxy3TotalSurplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2015-01-09 05:40:16  [ 586880147@qtp-1857676680-7:419158 ] - [ WARN ]  Tried to assign property recommendProxy3Surplus:java.lang.Float to bean of class com.baiyi.data.model.User
+2015-01-09 05:58:00  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:58:00  [ main:114 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:58:01  [ main:667 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 05:59:13  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 05:59:13  [ main:114 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 05:59:13  [ main:676 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 06:02:06  [ 316294153@qtp-1229091713-7:172875 ] - [ INFO ]  user: 18688164055 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-09 15:13:20  [ 1297575450@qtp-1229091713-17:33247039 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-09 15:14:58  [ 346076922@qtp-1229091713-20:33345102 ] - [ INFO ]  user: 18688164100 login, ip address: 0:0:0:0:0:0:0:1
+2015-01-09 15:15:25  [ 944934680@qtp-1229091713-22:33372516 ] - [ ERROR ]  /backend/user.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.backend.user_jsp._jspService(org.apache.jsp.backend.user_jsp:258)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.BackendFilter.doFilter(BackendFilter.java:39)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 15:15:29  [ 944934680@qtp-1229091713-22:33375862 ] - [ ERROR ]  /backend/user.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.backend.user_jsp._jspService(org.apache.jsp.backend.user_jsp:258)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.BackendFilter.doFilter(BackendFilter.java:39)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 15:16:14  [ 2141590029@qtp-1229091713-23:33421341 ] - [ ERROR ]  /backend/user.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.backend.user_jsp._jspService(org.apache.jsp.backend.user_jsp:258)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.BackendFilter.doFilter(BackendFilter.java:39)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 15:21:14  [ 364435625@qtp-1229091713-29:33721123 ] - [ INFO ]  user: 18688164100 login, ip address: 192.168.0.191
+2015-01-09 15:33:24  [ 1674856179@qtp-1229091713-1 - Acceptor0 SelectChannelConnector@0.0.0.0:12000:34450983 ] - [ INFO ]  org.mortbay.io.nio.SelectorManager$SelectSet@5cec2c45 JVM BUG(s) - injecting delay2 times
+2015-01-09 15:33:24  [ 1674856179@qtp-1229091713-1 - Acceptor0 SelectChannelConnector@0.0.0.0:12000:34450983 ] - [ INFO ]  org.mortbay.io.nio.SelectorManager$SelectSet@5cec2c45 JVM BUG(s) - recreating selector 2 times, canceled keys 24 times
+2015-01-09 15:41:58  [ 1421725651@qtp-1229091713-30:34964962 ] - [ INFO ]  user: 18688164100 login, ip address: 192.168.0.145
+2015-01-09 16:15:21  [ 1996085543@qtp-1229091713-57:36967814 ] - [ WARN ]  Cookie rejected [BAIDUID="422BB675BB94C2558132379571565E7A:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:15:21 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:15:21  [ 1996085543@qtp-1229091713-57:36967815 ] - [ WARN ]  Cookie rejected [BAIDUID="94246C7D29DBE150BF8FEC326323330E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:15:19 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:15:21  [ 1996085543@qtp-1229091713-57:36967835 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:15:24  [ 317205577@qtp-1229091713-56:36971070 ] - [ WARN ]  Cookie rejected [BAIDUID="D7680813D57428822D0993C095486543:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:15:24 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:15:24  [ 317205577@qtp-1229091713-56:36971070 ] - [ WARN ]  Cookie rejected [BAIDUID="00687D45AC406B308C049600C24028A8:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:15:23 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:15:24  [ 317205577@qtp-1229091713-56:36971071 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:16:57  [ 1996085543@qtp-1229091713-57:37063943 ] - [ WARN ]  Cookie rejected [BAIDUID="192C5CB67DD8A284613BF281682AAE2E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:16:57 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:16:57  [ 1996085543@qtp-1229091713-57:37063943 ] - [ WARN ]  Cookie rejected [BAIDUID="2BD1B3FBFFF52C7DE0ED7E570517A983:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:16:55 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:16:57  [ 1996085543@qtp-1229091713-57:37063944 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:17:30  [ 1996085543@qtp-1229091713-57:37097551 ] - [ WARN ]  Cookie rejected [BAIDUID="36FE11726212E98C1B99FD17657FC019:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:30 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:30  [ 1996085543@qtp-1229091713-57:37097552 ] - [ WARN ]  Cookie rejected [BAIDUID="B802FC14DA3758B5E706651DD934C40E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:29 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:30  [ 1996085543@qtp-1229091713-57:37097552 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:17:34  [ 682974531@qtp-1229091713-58:37101297 ] - [ WARN ]  Cookie rejected [BAIDUID="C6CBEB99A79B6D1FB0B689EC65187E08:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:34 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:34  [ 682974531@qtp-1229091713-58:37101297 ] - [ WARN ]  Cookie rejected [BAIDUID="1B0797C70FFBAF47379FE74573265968:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:33 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:34  [ 682974531@qtp-1229091713-58:37101298 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:17:38  [ 682974531@qtp-1229091713-58:37105637 ] - [ WARN ]  Cookie rejected [BAIDUID="2569DD7FB21E45A2F60756B9DED2BD84:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:38 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:38  [ 682974531@qtp-1229091713-58:37105638 ] - [ WARN ]  Cookie rejected [BAIDUID="0A05F06D4E00450FA3DF3F3279E4CFD4:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:17:37 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:17:38  [ 682974531@qtp-1229091713-58:37105638 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:18:12  [ 549149020@qtp-1229091713-60:37138754 ] - [ WARN ]  Cookie rejected [BAIDUID="9B6FA844404F5B3766FF313CE255F1A3:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:18:12 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:18:12  [ 549149020@qtp-1229091713-60:37138755 ] - [ WARN ]  Cookie rejected [BAIDUID="B90E4E2045E1EB889CD5398EE4656B14:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:18:10 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:18:12  [ 549149020@qtp-1229091713-60:37138756 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:18:32  [ 549149020@qtp-1229091713-60:37159297 ] - [ WARN ]  Cookie rejected [BAIDUID="90940D1F26F8C7D45811B6950D2C9D52:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:18:32 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:18:32  [ 549149020@qtp-1229091713-60:37159297 ] - [ WARN ]  Cookie rejected [BAIDUID="CC5593F1552EACD207626C05C1CCF41D:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:18:31 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:18:32  [ 549149020@qtp-1229091713-60:37159298 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:21:56  [ 1478362820@qtp-1229091713-64:37362896 ] - [ WARN ]  Cookie rejected [BAIDUID="14E0BADBD987D22BEDE7520B2A31A330:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:21:56 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:21:56  [ 1478362820@qtp-1229091713-64:37362896 ] - [ WARN ]  Cookie rejected [BAIDUID="F179C7050937ED578F89D247BBD309C5:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 16:21:54 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 16:21:56  [ 1478362820@qtp-1229091713-64:37362897 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 16:27:15  [ 963005268@qtp-1229091713-65:37682436 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:238)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 16:27:27  [ 17938531@qtp-1229091713-67:37694090 ] - [ ERROR ]  /shop_list.jsp
+java.lang.NullPointerException
+	at org.apache.jsp.shop_005flist_jsp._jspService(org.apache.jsp.shop_005flist_jsp:238)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:93)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:373)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:470)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:511)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1221)
+	at com.bkl.chwl.servlet.RootFilter.doFilter(RootFilter.java:50)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at com.km.common.filter.CharsetFilter.doFilter(CharsetFilter.java:27)
+	at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1212)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:399)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:182)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:766)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:450)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:326)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:542)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:928)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:549)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:212)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:404)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:410)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:582)
+2015-01-09 16:29:40  [ 1486042851@qtp-1229091713-70:37827263 ] - [ INFO ]  user: 18688164055 login, ip address: 192.168.0.191
+2015-01-09 16:32:20  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 16:32:20  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 16:32:20  [ main:670 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 17:05:32  [ main:0 ] - [ INFO ]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2015-01-09 17:05:32  [ main:101 ] - [ INFO ]  jetty-6.1.26
+2015-01-09 17:05:32  [ main:632 ] - [ INFO ]  Started SelectChannelConnector@0.0.0.0:12000
+2015-01-09 17:09:00  [ 1095134823@qtp-1854700674-0:208384 ] - [ WARN ]  Cookie rejected [BAIDUID="8848CCE54AD6F3DB2C9838B2B1917F6C:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:09:00 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:09:00  [ 1095134823@qtp-1854700674-0:208385 ] - [ WARN ]  Cookie rejected [BAIDUID="49357600D743746589824A1EEDC54FD0:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:08:59 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:09:00  [ 1095134823@qtp-1854700674-0:208389 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 17:32:02  [ 1616062986@qtp-1854700674-23:1590617 ] - [ WARN ]  Cookie rejected [BAIDUID="8A3C2D214DC0F1276941D9F8C8895878:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:02 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:02  [ 1616062986@qtp-1854700674-23:1590618 ] - [ WARN ]  Cookie rejected [BAIDUID="901536764DDB227EB27B5D02E6928754:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:01 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:02  [ 1616062986@qtp-1854700674-23:1590619 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 17:32:12  [ 1616062986@qtp-1854700674-23:1600089 ] - [ WARN ]  Cookie rejected [BAIDUID="8D78EF5C5A3CE9AAE50786C9182088C3:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:12 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:12  [ 1616062986@qtp-1854700674-23:1600089 ] - [ WARN ]  Cookie rejected [BAIDUID="C769EEF3C26F247C43C65D9F4AD8C4BE:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:10 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:12  [ 1616062986@qtp-1854700674-23:1600090 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 17:32:30  [ 835832470@qtp-1854700674-21:1618468 ] - [ WARN ]  Cookie rejected [BAIDUID="60529368C8C14CCD8032F928FB26784E:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:30 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:30  [ 835832470@qtp-1854700674-21:1618469 ] - [ WARN ]  Cookie rejected [BAIDUID="8E57FBCDCA035E28EF7D5FC6986B9F04:FG=1", version:1, domain:.baidu.com, path:/, expiry:Sat Jan 09 17:32:29 CST 2016] Domain attribute ".baidu.com" violates RFC 2109: host minus domain may not contain any dots
+2015-01-09 17:32:30  [ 835832470@qtp-1854700674-21:1618470 ] - [ WARN ]  Tried to assign property message:java.lang.String to bean of class com.bkl.chwl.vo.BdMapRes
+2015-01-09 17:36:20  [ 2034371055@qtp-1854700674-25:1848734 ] - [ INFO ]  user: 18688164055 login, ip address: 192.168.0.191
+2015-01-09 23:17:00  [ 789436166@qtp-1854700674-28:22288189 ] - [ INFO ]  user: 18688164055 login, ip address: 192.168.1.104
+2015-01-09 23:23:16  [ 2073751280@qtp-1854700674-30:22664676 ] - [ WARN ]  /: java.net.ConnectException: Connection timed out: connect
