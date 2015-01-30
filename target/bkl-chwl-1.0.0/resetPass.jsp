@@ -19,6 +19,11 @@
 	<div class="container nomargin" style="padding: .5rem !important;">
     <input type="hidden" class="form-control" id="userId" value="<%=u.getId()%>">
   <div class="form-group">
+    <label for="newPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;原密码</label>
+    <input type="password" class="form-control" id="oldPassword" placeholder="原密码">
+  </div>
+  <p id="msg0"></p>
+  <div class="form-group">
     <label for="newPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;新密码</label>
     <input type="password" class="form-control" id="newPassword" placeholder="新密码">
   </div>

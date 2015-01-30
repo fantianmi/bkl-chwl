@@ -34,7 +34,7 @@ public class Tradeorder {
 	//是否需要返利
 	private int type;
 	//返利金币数
-	private int coin;
+	private double coin;
 	//创建订单时间
 	private long ctime;
 	//结算订单时间
@@ -62,6 +62,9 @@ public class Tradeorder {
 	}
 	public String getCtimeString(){
 		return TimeUtil.fromUnixTime(ctime);
+	}
+	public String getCtimeStringDate(){
+		return TimeUtil.fromUnixTimeToDate(ctime);
 	}
 	public void setCtime(long ctime) {
 		this.ctime = ctime;
@@ -100,10 +103,10 @@ public class Tradeorder {
 		return status;
 	}
 	public String getStatusString(){
-		if(status==this.STATUS_FAIL) return "支付失败";
-		if(status==this.STATUS_SUCCESS) return "支付成功";
-		if(status==this.STATUS_WAIT) return "等待支付";
-		return "未知状态";
+		if(status==this.STATUS_FAIL) return "<span class=\"label label-danger\">失败</span>";
+		if(status==this.STATUS_SUCCESS) return "<span class=\"label label-info\">成功</span>";
+		if(status==this.STATUS_WAIT) return "<span class=\"label label-danger\">待付</span>";
+		return "未知";
 	}
 	public void setStatus(int status) {
 		this.status = status;
@@ -124,10 +127,10 @@ public class Tradeorder {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public int getCoin() {
+	public double getCoin() {
 		return coin;
 	}
-	public void setCoin(int coin) {
+	public void setCoin(double coin) {
 		this.coin = coin;
 	}
 	

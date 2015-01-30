@@ -8,7 +8,6 @@
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="content nopadding" style="margin-top:6.1rem " id="content1">
 <jsp:include page="user_panel_menu.jsp"></jsp:include>
 <div class="container nomargin" style="background-color: #DC3C00;color:#fff;padding:2rem !important;margin-bottom: 0px !important;">

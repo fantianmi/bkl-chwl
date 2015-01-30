@@ -18,10 +18,9 @@
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top_nobutton.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="content" style="margin-top:8.2rem;padding: 0rem 1rem 1rem 1rem !important; ">
-<div class="alert alert-info" role="alert">输入商家编号确认商家，或者输入商家名称找到商家进行支付<br>
-<span class="label label-danger">小提示</span>如果您是以公众号形式打开，您也可以关闭微网站，点击公众平台下方扫码扫描商家二维码进行支付</div>
+<div class="alert alert-info" role="alert">输入商家编号确认商家，或者输入商家名称找到商家进行结账<br>
+<span class="label label-danger">小提示</span>如果您是以公众号形式打开，您也可以关闭微网站，点击公众平台下方扫码扫描商家二维码进行结账</div>
 <div class="row">
   <div class="col-lg-12">
     <div class="input-group  input-group-lg">
@@ -34,7 +33,7 @@
 </div><!-- /.row -->
 </div>
 <div class="space"></div>
-<div class="tableList downborder" id="msg" style="display:none;"><div class="detail" style="padding-left:1rem">请选择商家进行支付</div></div>
+<div class="tableList downborder" id="msg" style="display:none;"><div class="detail" style="padding-left:1rem">请选择商家进行结账</div></div>
 <span id="searchShopList">
 </span>
 <button type="button" class="btn btn-lg btn-default btn-block noradius" id="searchShowmoreBtn" onclick="searchShowMore()" style="display: none">显示更多...</button>

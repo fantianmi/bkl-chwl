@@ -9,8 +9,6 @@
 <%@page import="java.util.*"%>
 <%
 UserService userServ=new UserServiceImpl();
-int userNum=userServ.countUser(1);
-int shopNum=userServ.countUser(2);
 User u = UserUtil.getCurrentUser(request);
 double consume=0;
 double profile=0;
@@ -19,14 +17,12 @@ if(u!=null){
 		response.sendRedirect("shop_index.jsp");
 		return;
 	}
-	UserListEntity userListEntity=ApiCommon.getRecommendUserList(u.getId(), 1, 1, 100);
-	userNum=userListEntity.getTotal();
-	UserListEntity userListEntity2=ApiCommon.getRecommendUserList(u.getId(), 1, 2, 100);
-	shopNum=userListEntity.getTotal();
 	OrderService orderServ=new OrderServiceImpl();
 	consume=orderServ.getSUM(u.getId());
 	UserProfile userProfile=ApiCommon.getUserProfile(u.getId());
-	profile=userProfile.getCoin();
+	if(userProfile!=null){
+		profile=userProfile.getCoin();
+	}
 }
 
 %>
@@ -46,12 +42,12 @@ if(u!=null){
 .logo-home{margin: 0 10px 0 0}
 .topfont{color:#3B4043; font-size: 14px;}
 .circle{border-radius:50px;padding: 3px 10px}
-.back{border:1px solid #000;color:#000 !important;padding:1px 1rem;margin:.6rem 1rem;height:3rem !important;line-height: 3rem;border-radius:5px;
+.back{border:1px solid #fff;color:#fff !important;padding:1px 1rem;margin:.6rem 1rem;height:3rem !important;line-height: 3rem;border-radius:5px;
 }
 .back:hover{
-color: #fff !important;
-background-color: #222222;
-border: 1px solid #222222;}
+color: #ED6A00 !important;
+background-color: #fff;
+border: 1px solid #fff;}
 
 .left_menu_title {
 color: #000 !important;
@@ -63,7 +59,7 @@ color: #fff !important;
 }
 </style>
 <!-- Fixed navbar -->
-  <div class="container" style="margin-bottom: 0px;background-color: #fff;box-shadow: 0 0 0 rgba(0,0,0,.7) !important; border-color: #fff !important">
+  <div class="container" style="margin-bottom: 0px;background-color: #ED6A00;box-shadow: 0 0 0 rgba(0,0,0,.7) !important; border-color: #fff !important">
     <div class="navbar-header" style="margin:0;width:100%">
     	<div class="nav-wrap-left">
             <%=u!=null?"<a class=\"react back\" href=\"user_index.jsp\">账本</a>":"<a class=\"react back\" href=\"login.jsp\">登录</a>"%>
@@ -73,37 +69,39 @@ color: #fff !important;
         </div>
     </div>
   </div>
-<div class="content" style="margin:0px 0px 15px 0px">
-	<div class="index_headicon"><img src="<%=u!=null?"assets/images/headicon.jpg":"assets/images/index_pic.jpg" %>"></div>
+<div class="content" style="margin:0px 0px 15px 0px;">
+	<div class="mainColorBg">
+	<div class="index_headicon" onclick="window.location.href='user_index.jsp'"><img src="<%=u!=null?"assets/images/Head.png":"assets/images/index_pic.png" %>"></div>
 	<%if(u!=null){ %>
-	<div class="index_user_info" style="text-align: center;"><h5><%=u.getNick_name()!=null&&u.getNick_name()!=""?u.getNick_name():u.getMobile() %><br>编号:<%=u.getId() %></h5></div>
-    <div class="index_user_info" style="text-align: center;font-size: 1.4rem">
- 	 <div class="left">花了：</div><div class="right">￥<%=FrontUtil.formatRmbDouble(consume) %></div>
-   	 <div class="left"> 赚了：</div><div class="right">￥<%=FrontUtil.formatRmbDouble(profile) %></div>
+	<div class="index_user_info" style="text-align: center;" onclick="window.location.href='user_index.jsp'"><h5><%=u.getNick_name()!=null&&u.getNick_name()!=""?u.getNick_name():u.getMobile() %><br>编号:<%=u.getId() %></h5></div>
+    <div class="index_user_info" style="text-align: center;font-size: 1.4rem" onclick="window.location.href='user_index.jsp'">
+ 	 <div class="left">金币数：</div><div class="right">￥<%=FrontUtil.formatRmbDouble(profile) %></div>
+   	 <div class="left"> 结账额：</div><div class="right">￥<%=FrontUtil.formatRmbDouble(consume) %></div>
 	</div>
 	<%}else{ %>
 		<div class="index_user_info" style="text-align: center;height:120px !Important"><h5>请点头财神入手机<br>一旦使用，一生爱用<br><br>More Shopping, More Money</h5></div>
 	<%} %>   
+	</div>
 	<div class="row index_icon">
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=86">丽人</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=4">娱乐</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=24">电影</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=6">酒店</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=9">景点</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=31">购物</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp?shop_type=3">美食</a></div>
-   	<div class="icon-list"><a href="shop_list.jsp">全部</a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=3"><img src="assets/images/index_icon/food.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=6"><img src="assets/images/index_icon/Hotel.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=4"><img src="assets/images/index_icon/Entertainment.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=86"><img src="assets/images/index_icon/Beauty.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=9"><img src="assets/images/index_icon/Scenic Spot.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=31"><img src="assets/images/index_icon/Shopping.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp?shop_type=90"><img src="assets/images/index_icon/Other.png"/></a></div>
+   	<div class="icon-list"><a href="shop_list.jsp"><img src="assets/images/index_icon/all.png"/></a></div>
    	</div>
 </div>
 <div class="container">
-<a class="btn btn-success btn-block btn-lg" onclick="scanQR()" href="javascript:void(0);">扫码支付</a>
+<a class="btn btn-success btn-block btn-lg" onclick="scanQR()" href="javascript:void(0);"><i class="iconfont" style="font-size: 20px;">&#xe6fb;</i>&nbsp;扫码结账</a>
 </div>
 <jsp:include page="foot.jsp"></jsp:include>
 <jsp:include page="common_source_foot.jsp"/>
 <jsp:include page="list_nav.jsp"></jsp:include>
 
 <style>
-.index_headicon{width:100px;height:100px;margin: 0 auto;overflow: hidden;}
+.index_headicon{width:120px;height:90px;margin: 0 auto;overflow: hidden;}
 .index_headicon img{width:100%;}
 .index_icon{margin:0 auto;width:320px;}
 .icon-list{
@@ -114,17 +112,15 @@ padding:5px;
 .icon-list a{
 text-align: center;
 color:#fff;
-background-color: #4D545C !important;
 width:70px;
 height:70px;
 font-size: 16px;
-padding:27px 10px;
 }
 .icon-list a:hover{
-border-radius:0px;
+border-radius:40px;
 text-align: center;
 color:#fff;
-background-color:#000 !important;
+background-color:#ececec;
 width:70px;
 height:70px;
 }
@@ -165,7 +161,7 @@ if(u!=null){
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 wx.config({
-    debug: true,
+    debug: false,
     appId: '<%=MainConfig.getWechatappid()%>', // 必填，公众号的唯一标识
     timestamp: <%=timestamp%>, // 必填，生成签名的时间戳
     nonceStr: '<%=nonceStr%>', // 必填，生成签名的随机串
@@ -175,6 +171,7 @@ wx.config({
                 'onMenuShareTimeline',
                 'onMenuShareQQ',
                 'onMenuShareWeibo',
+                'onMenuShareAppMessage',
                 'scanQRCode',
               ]
 	});

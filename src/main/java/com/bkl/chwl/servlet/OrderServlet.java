@@ -12,10 +12,14 @@ import com.bkl.chwl.entity.Tradeorder2Shop;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.service.OrderService;
 import com.bkl.chwl.service.ShopService;
+import com.bkl.chwl.service.UserService;
 import com.bkl.chwl.service.impl.OrderServiceImpl;
 import com.bkl.chwl.service.impl.ShopServiceImpl;
+import com.bkl.chwl.service.impl.UserServiceImpl;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.FrontUtil;
+import com.bkl.chwl.utils.SendMsgInWeixin;
+import com.bkl.chwl.utils.StringUtil;
 import com.bkl.chwl.utils.UserUtil;
 import com.km.common.servlet.CommonServlet;
 import com.km.common.utils.RandomCode;
@@ -35,16 +39,16 @@ public class OrderServlet extends CommonServlet {
 			return;
 		}
 		order.setBankprice(order.getPrice());
-		order.setOrderId(String.valueOf(TimeUtil.getUnixTime())+RandomCode.random());
+		order.setOrderId(TimeUtil.getNowDateTime4NotSplit());
 		double coinRate=Double.valueOf(request.getParameter("coinRate"));
 		//计算让利金币数
 		double paybackCoin=order.getPrice()*coinRate;
-		order.setCoin((int)paybackCoin);
+		order.setCoin(paybackCoin);
 		int payway=Integer.valueOf(request.getParameter("payway"));
 		order.setUid(user.getId());
 		double userCoin=ApiCommon.getUserCoin(user.getId());
 		//如果是余额支付则先用余额支付，在提交订单到银联支付
-		if(payway==order.PAYWAY_YUE){
+		/*if(payway==order.PAYWAY_YUE){
 			if(userCoin>=order.getPrice()){
 				if(!ApiCommon.translate(user.getId(), order.getSeller(), (int)order.getPrice())){
 					ServletUtil.writeCommonReply(null, RetCode.ROMOTE_ERROR, response);
@@ -66,9 +70,10 @@ public class OrderServlet extends CommonServlet {
 				}
 				order.setBankprice(order.getPrice()-userCoin);
 			}
-		}
+		}*/
 		order.setCtime(TimeUtil.getUnixTime());
 		order.setStatus(order.STATUS_WAIT); 
+		order.setType(order.TYPE_PAYBACK);
 		orderServ.save(order);
 		ServletUtil.writeCommonReply(order, RetCode.NEED_REDIRECT_BANK, response);
 		return;
@@ -87,10 +92,18 @@ public class OrderServlet extends CommonServlet {
 			ShopService shopServ=new ShopServiceImpl();
 			shopServ.addSellNun(o.getSeller());
 		}
+		UserService userServ=new UserServiceImpl();
+		
+		User u=userServ.get(o.getUid());
+		int res=0;
+		/*if(u!=null){
+			res=SendMsgInWeixin.sendOrderMessage(u, o,);
+		}*/
+		ServletUtil.writeOkCommonReply(res, response);
 	}
 	
 	public void getOrderListHTML(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		int status=Tradeorder.STATUS_ALL;
+		int status=Tradeorder.STATUS_SUCCESS;
 		if(request.getParameter("status")!=null){
 			status=Integer.parseInt(request.getParameter("status"));
 		}
@@ -107,11 +120,11 @@ public class OrderServlet extends CommonServlet {
 		}
 		String result="";
 		if(orders.getPagedatas() == null || orders.getPagedatas().length == 0) { 
-			result="";
+			result="<div class=\"alert alert-info\" role=\"alert\">暂无结账记录</div>";
 		}else{
 			for (int i = 0; i < orders.getPagedatas().length; i++) {
 				Tradeorder2Shop s = orders.getPagedatas()[i];
-				result+="<a href=\"user_order_detail.jsp?orderId="+s.getOrderId()+"\"><div class='tableList downborder'><div class='list_left'>"+s.getStimeStringDate()+"</div><div class='list_middle'>"+s.getShop_title()+"</div><div class='list_right'>"+FrontUtil.formatRmbDouble(s.getPrice())+"元<i class=\"iconfont\">&#xe6a3;</i></div></div></a>";
+				result+="<a href=\"user_order_detail.jsp?orderId="+s.getOrderId()+"\"><div class='tableList downborder'><div class='list_left'>"+s.getCtimeStringDate()+"</div><div class='list_middle'>"+StringUtil.subString(s.getShop_title(), 10)+"</div><div class='list_right'>"+FrontUtil.formatRmbDouble(s.getPrice())+"元"+s.getStatusString()+"</div></div></a>";
 			}
 		}
 		Map map=new HashMap();

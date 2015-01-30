@@ -31,7 +31,27 @@ public class Shop {
 	private double price;
 	private double oprice;
 	private double coinRate;
+	//商户资料填写情况 默认为0，填写完成为1
+	private int regstatus;
+	//商户是否允许展示审核
+	private int vertifystatus;
+	public static int REGSTATUS_TRUE=1;
+	public static int REGSTATUS_FALSE=0;
+	public static int VERTIFYSTATUS_TRUE=1;
+	public static int VERTIFYSTATUS_FALSE=0;
 	
+	public int getVertifystatus() {
+		return vertifystatus;
+	}
+	public void setVertifystatus(int vertifystatus) {
+		this.vertifystatus = vertifystatus;
+	}
+	public int getRegstatus() {
+		return regstatus;
+	}
+	public void setRegstatus(int regstatus) {
+		this.regstatus = regstatus;
+	}
 	public double getPrice() {
 		return price;
 	}

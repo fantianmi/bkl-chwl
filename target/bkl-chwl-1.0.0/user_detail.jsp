@@ -10,19 +10,19 @@
  <%
  User u=UserUtil.getCurrentUser(request);
  String url = MainConfig.getContextPath();
+ String ossBaseurl=MainConfig.getOssBaseurl();
  String recomendURL=url+"reg.jsp?r="+u.getId();
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>资料管理</title>
 	<jsp:include page="common_source_head.jsp"/>
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<div class="content nopadding" style="margin-top:5rem" id="content1">
+<div class="content nopadding" style="margin-top:5rem;" id="content1">
 <div class="tableList downborder" style="height:7rem !important;">
-<div class="detail" style="padding-left: 1rem"><div class="menu_list_user" style="margin-top:0rem"><%=u.getMobile() %><br>&nbsp;编号<%=u.getId() %></div></div><div class="status" style="height:7rem;padding:0rem;"><div class="menu_list_headicon" style="float:right"><img src="assets/images/headicon.jpg"></div></div>
+<div class="detail" style="padding-left: 1rem;"><div class="menu_list_user" style="margin-top:0rem;"><span style="width:100%;float:left"><%=u.getMobile() %></span><span style="width:100%;float:left">ID <%=u.getId() %></span></div></div><div class="status" style="height:7rem;padding:0rem;"><div class="menu_list_headicon" style="float:right"><img src="assets/images/headicon.png"></div></div>
 </div>
 <div class="space"></div>
 <div class="tableList downborder">
@@ -39,7 +39,7 @@
 </div>
 <div class="space"></div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">注册时间</div><div class="status"><%=u.getCtimeString() %></div>
+<div class="detail" style="padding-left: 1rem;width:50% !important;">注册时间</div><div class="status" style="width:50% !important;"><span><%=u.getCtimeString() %></span></div>
 </div>
 </div>
 <jsp:include page="foot.jsp"/>
@@ -63,7 +63,7 @@
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="个人资料";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <script src="assets/scripts/chwl/user/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
@@ -100,6 +100,8 @@ function initClipboard() {
 	float:left;
 	height:6rem;
 	width:6rem;
+	border-radius:50px;
+	overflow: hidden;
 }
 .menu_list_user{height:6rem;padding:1rem;float:left;}
 .menu_list_headicon img{width:100% !important;}

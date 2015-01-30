@@ -20,6 +20,7 @@ OrderService orderServ=new OrderServiceImpl();
 <div class="content nopadding" style="margin-top:4.5rem " id="content1">
 	<div class="container nomargin" style="background-color: #DC3C00;color:#fff;padding:2rem !important;margin-bottom: 0px !important;">
     <p><i class="iconfont">&#xe628;</i>金币(￥)<br><br><span class="bigFont" style="color: #fff" id="coin_left"></span></p>
+    <div class="coin_right_pic"><img src="assets/images/Mascot.png"/></div>
 	</div>
 </div>
 
@@ -37,7 +38,7 @@ OrderService orderServ=new OrderServiceImpl();
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="结账总额";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <script type="text/javascript">
 var pageNow=1;
@@ -107,6 +108,24 @@ function showMore(){
 </script>
 <style>
 #user_order_list a{color:#000;}
+.list_left {
+width: 30%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
+.list_middle {
+width: 35%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
+.list_right {
+width: 25%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
 </style>
 <jsp:include page="updateProfileTimes.jsp"/>
 </body>

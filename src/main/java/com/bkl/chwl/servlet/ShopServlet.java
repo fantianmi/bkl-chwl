@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Shop;
 import com.bkl.chwl.entity.Tradeorder;
+import com.bkl.chwl.entity.Tradeorder2Shop;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.service.OrderService;
 import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.impl.OrderServiceImpl;
 import com.bkl.chwl.service.impl.ShopServiceImpl;
 import com.bkl.chwl.utils.ApiCommon;
+import com.bkl.chwl.utils.FrontUtil;
 import com.bkl.chwl.utils.StringUtil;
 import com.bkl.chwl.utils.UserUtil;
 import com.bkl.chwl.vo.SellLog;
@@ -48,13 +50,15 @@ public class ShopServlet extends CommonServlet {
 			shop.setShop_collect(tempShop.getShop_collect());
 			shop.setShop_sellnum(tempShop.getShop_sellnum());
 		}
+		shop.setRegstatus(shop.REGSTATUS_TRUE);
+		shop.setVertifystatus(shop.VERTIFYSTATUS_TRUE);
 		long id=shopServ.save(shop);
 		shop.setId(id);
 		ServletUtil.writeOkCommonReply(shop, response);
 	}
 	public void getShopPageHTML(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ShopService shopServ=new ShopServiceImpl();
-		int local=MainConfig.defaultProvinceId();
+		int local=0;
 		int local2=0;
 		int local3=0;
 		int type=0;
@@ -76,14 +80,18 @@ public class ShopServlet extends CommonServlet {
 				return;
 			}
 		}
+		String ossBaseurl=MainConfig.getOssBaseurl();
 		String result="";
 		if(shops.getPagedatas() == null || shops.getPagedatas().length == 0) { 
 			result="";
 		}else{
 			for (int i = 0; i < shops.getPagedatas().length; i++) {
 				Shop s = shops.getPagedatas()[i];
+				if(s.getImage().equals("")){
+					s.setImage("uploads/default.jpg@");
+				}
 				String images[]=s.getImage().split("@");
-				result+="<div class='container no-bottom list_style' onclick=\"javascript:location.href='shop_detail.jsp?id="+s.getId()+"'\"><div class='recent-post'><div class='dealcard-img'><img src='"+images[1]+"'></div><div class='dealcard-block-right'><div class='title'><strong>"+s.getTitle()+"</strong></div><div class='detail'>地址："+s.getShop_loc()+"</div><div class='pricepanel'><span class='strong-color'>立省</span><strong>"+StringUtil.payBackDoubleToRate(s.getCoinRate())+"</strong><span class='line-right'></span></div></div></div></div><br><div class='decoration'></div>";
+				result+="<div class='container no-bottom list_style' onclick=\"javascript:location.href='shop_detail.jsp?id="+s.getId()+"'\"><div class='recent-post'><div class='dealcard-img'><img src='"+ossBaseurl+images[0]+"'></div><div class='dealcard-block-right'><div class='title'><strong>"+StringUtil.subString(s.getTitle(), 13)+"</strong></div><div class='detail_shop_list'>地址："+StringUtil.subString(s.getShop_loc(),16)+"</div><div class='pricepanel'><span class='strong-color'>立省</span><strong>"+StringUtil.payBackDoubleToRate(s.getCoinRate())+"</strong><span class='line-right'><i class=\"iconfont\">&#xe6a3;</i></span></div></div></div></div><br><div class='decoration'></div>";
 			}
 		}
 		ServletUtil.writeOkCommonReply(result, response);
@@ -92,21 +100,27 @@ public class ShopServlet extends CommonServlet {
 	public void getOrderListHTML(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		User u = UserUtil.getCurrentUser(request);
 		Page page=ServletUtil.getPage(request);
-		SellLogEntity sle=ApiCommon.getSellLog(u.getId(), page);
-		List<SellLog> sellLogs=sle.getList();
-		
 		OrderService orderServ=new OrderServiceImpl();
-		Map<String,Tradeorder> ordersMap=orderServ.getListBySeller(u.getId());
-		
-		String res="";
-		for(SellLog sellLog:sellLogs){
-			Tradeorder order=ordersMap.get(sellLog.getId());
-			if(order==null) continue;
-			res+="<div class='tableList downborder list-lg'><div class='detail'>"+sellLog.getBuyerName()+"消费"+order.getPrice()+"元<br>订单金币量："+sellLog.getCoin()+"<br>订单返回金币量："+sellLog.getRcoin()+"<br>"+TimeUtil.fromUnixTime(sellLog.getOrderTime())+"</div><div class='status'>"+order.getStatusString()+"</div></div>";
+		PageReply<Tradeorder> orders=orderServ.getListShoperPage(u.getId(),Tradeorder.STATUS_SUCCESS,page);
+		if(request.getParameter("pagenum")!=null){
+			if(Integer.parseInt(request.getParameter("pagenum"))>orders.getTotalpage()){
+				ServletUtil.writeOkCommonReply("", response);
+				return;
+			}
 		}
+		String res="";
+		if(orders.getPagedatas() == null || orders.getPagedatas().length == 0) { 
+			res="<div class=\"alert alert-info\" role=\"alert\">暂无结账记录</div>";
+		}else{
+			for (int i = 0; i < orders.getPagedatas().length; i++) {
+				Tradeorder order = orders.getPagedatas()[i];
+				res+="<div class='tableList downborder'><div class='list_left'>"+order.getCtimeStringDate()+"</div><div class='list_middle'>用户"+order.getUid()+"消费</div><div class='list_right'>"+FrontUtil.formatRmbDouble(order.getPrice())+"元"+order.getStatusString()+"</div></div>";
+			}
+		}
+		
 		Map map=new HashMap<String, Object>();
 		map.put("resStr", res);
-		map.put("hasNext", sle.isHasNext());
+		map.put("hasNext", orders.isHasNextPage());
 		ServletUtil.writeOkCommonReply(map, response);
 	}
 	

@@ -48,6 +48,12 @@ public interface UserService{
      * @return
      */
     public User findByMobile(String mobile);
+    /**
+     * 根据营业执照号码查询用户
+     * @param licenceNumber
+     * @return
+     */
+    public User findByLicence(String licenceNumber);
     
     /**
      * 根据比特币充值地址查找用户对象
@@ -83,6 +89,18 @@ public interface UserService{
      * @return
      */
     public boolean existMobile(String mobile);
+    /**
+     * 验证营业执照号码是否重复
+     * @param licence
+     * @return
+     */
+    public boolean existLicence(String licence);
+    /**
+     * 验证手机mobile2是否重复，只校验role=商铺的数据项
+     * @param mobile
+     * @return
+     */
+    public boolean existMobile2(String mobile);
  
     /***
      * 分页查询用户

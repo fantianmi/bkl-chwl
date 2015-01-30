@@ -1,7 +1,6 @@
 package com.bkl.chwl.utils;
 
 import org.junit.Test;
-import org.mortbay.log.Log;
 
 import com.baiyi.data.model.ProxyUser;
 import com.baiyi.domain.AddCoinEntity;
@@ -34,7 +33,6 @@ public class ApiCommon {
 			UserInfoEntity info=WebApi.getUser((int)uid);
 			return info;
 		}catch(Exception e){
-			Log.info("remote server connect time out");
 			return null;
 		}
 	}
@@ -46,12 +44,11 @@ public class ApiCommon {
 			UserInfoEntity info=WebApi.getUser((int)uid);
 			profile.setCoin(info.getCoin().doubleValue());
 			profile.setBigbouns(info.getBigBouns().size());
-			profile.setMediumbouns(info.getMiddelBouns().size());
+			profile.setMediumbouns(info.getMiddleBouns().size());
 			profile.setSmallbouns(info.getSmallBouns().size());
 			profile.setLottoTime(info.getLotteryTime());
 			return profile;
 		}catch(Exception e){
-			Log.info("query remote userinfo data error, uid="+uid);
 			return null;
 		}
 	}
@@ -66,20 +63,35 @@ public class ApiCommon {
 		}
 	}
 	
-	public static boolean createOrder(long fromUid, long toUid, int coin,String orderId,int type){
+	public static boolean createOrder(long fromUid, long toUid, double coin,String orderId,int type){
 		WebApi.init(MainConfig.dxwServerURL(), MainConfig.dxwAuthKey(), MainConfig.dxwAuthPass());
 		try{
-			WebApi.order((int)fromUid, type, coin, (int)toUid, orderId);
+			WebApi.order((int)fromUid, type, (float)coin, (int)toUid, orderId);
 			return true;
 		}catch(Exception e){
 			return false;
 		}
 	}
 	//pagenum begin with 0
+	/**
+	 * 
+	 * @param uid 用户UID
+	 * @param pagenum
+	 * @param type 推荐类型 1普通用户 2商家
+	 * @param pagesize
+	 * @return
+	 * @throws Exception
+	 */
 	public static UserListEntity getRecommendUserList(long uid,int pagenum,int type,int pagesize) throws Exception{
 		pagenum=(pagenum-1)*pagesize;
 		WebApi.init(MainConfig.dxwServerURL(), MainConfig.dxwAuthKey(), MainConfig.dxwAuthPass());
 		UserListEntity users=WebApi.getRecommendUserList((int)uid, pagenum, type, pagesize);
+		return users;
+	}
+	public static UserListEntity getSellerRecommendUserList(long uid,int pagenum,int pagesize) throws Exception{
+		pagenum=(pagenum-1)*pagesize;
+		WebApi.init(MainConfig.dxwServerURL(), MainConfig.dxwAuthKey(), MainConfig.dxwAuthPass());
+		UserListEntity users=WebApi.getSellerRecommendUserList((int)uid, pagenum, pagesize);
 		return users;
 	}
 	public static BounsEntity openBouns(int type,int id) throws Exception{

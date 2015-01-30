@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,7 +8,7 @@
 </head>
 <body class="drawer drawer-right" style="background-image: url('assets/images/back.jpg');background-repeat: no-repeat;">
 <jsp:include page="top.jsp"/>
-<div class="content" style="width:80%;margin:10.2rem auto;padding: 4rem 2rem !important;background: rgba(251,143,15,0.9);border: 1rem solid #e42828;box-shadow: 0 1px 20px rgba(0,0,0,.5);-moz-user-select: none;">
+<div class="content" style="width:80%;margin:10.2rem auto;padding: 4rem 2rem !important;background: rgba(251,143,15,0.9);border-left: 1rem solid #e42828;border-right: 1rem solid #e42828;box-shadow: 0 1px 20px rgba(0,0,0,.5);-moz-user-select: none;">
 <h4 style="color:#fff;text-align: center">您还有<span id="lotto_left"></span>次抽奖机会</h1>
 <p style="text-align: center;margin: 1rem 0rem 1rem 0rem"><button class="btn btn-danger btn-lg" onclick="doLotto()" id="lottoBtn">立即抽奖</button></p>
 </div>
@@ -53,7 +53,7 @@ function doLotto(){
 		if(res){
 			if(res.ret==0){
 				var coin=res.data["coin"];
-				var isWin=res.data["isWin"];
+				var isWin=res.data["win"];
 				var lotteryTime=res.data["lotteryTime"];
 				var text="谢谢参与，您没有中奖，剩余次数："+lotteryTime;
 				if(isWin){
@@ -84,7 +84,9 @@ function doLotto(){
 </script>
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="抽奖";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
+$("#foot_space").hide();
+$(".copyright").hide();
 </script>
 <style>
 #lotto_left{font-size: 1.8rem;font-weight: 800;color: #fff}

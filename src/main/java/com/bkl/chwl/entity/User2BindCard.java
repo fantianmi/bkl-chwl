@@ -20,10 +20,18 @@ public class User2BindCard extends User{
 	private int isdefault;
 	//用户id
 	private long uid;
+	//开户行号
+	private String bank_number_o;
 	public static final int DEFAULT_TRUE=1;
 	public static final int DEFAULT_FALSE=0;
 	
 	
+	public String getBank_number_o() {
+		return bank_number_o;
+	}
+	public void setBank_number_o(String bank_number_o) {
+		this.bank_number_o = bank_number_o;
+	}
 	public long getBid() {
 		return bid;
 	}

@@ -125,6 +125,15 @@ public class ShopServiceImpl implements ShopService {
 			conditions=Arrays.copyOf(conditions, conditions.length+1);
 			conditions[conditions.length-1]=type2Con;
 		}
+		Condition regCon=DbUtil.generalEqualWhere("regstatus", Shop.REGSTATUS_TRUE);
+		conditions=Arrays.copyOf(conditions, conditions.length+1);
+		conditions[conditions.length-1]=regCon;
+		
+		Condition verCon=DbUtil.generalEqualWhere("vertifystatus", Shop.VERTIFYSTATUS_TRUE);
+		conditions=Arrays.copyOf(conditions, conditions.length+1);
+		conditions[conditions.length-1]=verCon;
+		
+		
 		
 		String sorts="";
 		if(sort==Shop.SORT_TIME){

@@ -9,7 +9,7 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<title>点头</title>
+<title>点头财神</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--Declare page as mobile friendly --> 
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>

@@ -22,7 +22,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>订单详情</title>
+	<title>结账详情</title>
 	<jsp:include page="common_source_head.jsp"/>
 </head>
 <body class="drawer drawer-right">
@@ -34,9 +34,9 @@
     <div class="container no-bottom">
         <div class="container no-bottom list_style" onclick="javascript:location.href='shop_detail.jsp?id=<%=t2s.getShop_id()%>'">
         <div class="recent-post">
-                <div class="dealcard-img"><img src="<%=images[1] %>" alt="img"></div>
+                <div class="dealcard-img"><img src="<%=images[0] %>" alt="img"></div>
                 <div class="dealcard-block-right">
-                <div class="title"><strong><%=t2s.getShop_title() %></strong></div>
+                <div class="title"><strong><%=StringUtil.subString(t2s.getShop_title(),10) %></strong></div>
                 <div class="detail"><%=t2s.getShop_detail() %></div>
                 <div class="pricepanel">
 			            <strong><%=t2s.getShop_price() %></strong><span class="strong-color">元</span>
@@ -61,7 +61,7 @@
  <!-- content -->
 <div class="content" style="padding: 10px 0px">
 <dl class="list"><dd><dl>
-    <dt>订单详情</dt>
+    <dt>结账详情</dt>
     <ul>
         <li>订单编号：<%=t2s.getOrderId() %></li>
         <li>下单时间：<%=t2s.getCtimeString() %></li>
@@ -78,8 +78,8 @@
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="订单详情";
-$("#top_back_button").html("<a class=\"react\" href=\"user_order.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+document.getElementById("head_title").innerHTML="结账详情";
+$("#top_back_button").html("<a class=\"react\" href=\"user_order.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 </body>
 </html>

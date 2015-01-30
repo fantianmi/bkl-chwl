@@ -195,7 +195,7 @@ function getAbsoluteLeft(ob){
 	}
 
 
-function stopBubble(e) { //阻止冒泡
+function stopBubble(e) { // 阻止冒泡
     if ( e && e.stopPropagation )
      e.stopPropagation();
     else
@@ -269,7 +269,7 @@ function removeEV(C,B,A){
 }
 
 
-//dynamic include another js file
+// dynamic include another js file
 function include_js(path,reload)
 {
 	var scripts = document.getElementsByTagName("script");
@@ -285,7 +285,7 @@ function include_js(path,reload)
 	headobj.appendChild(sobj);
 }
 
-//----------动态加载-------------//
+// ----------动态加载-------------//
 function LoadJS(fileUrl,type)
 { 
     var oHead = document.getElementsByTagName('HEAD').item(0); 
@@ -298,17 +298,17 @@ function LoadJS(fileUrl,type)
     oHead.appendChild(oScript); 
 } 
 
-function MM_swapImgRestore() { //v3.0
+function MM_swapImgRestore() { // v3.0
   var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
 }
 
-function MM_preloadImages() { //v3.0
+function MM_preloadImages() { // v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
 	 var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
 	 if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
 }
 
-function MM_findObj(n, d) { //v4.01
+function MM_findObj(n, d) { // v4.01
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
 	 d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
   if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
@@ -316,7 +316,7 @@ function MM_findObj(n, d) { //v4.01
   if(!x && d.getElementById) x=d.getElementById(n); return x;
 }
 
-function MM_swapImage() { //v3.0
+function MM_swapImage() { // v3.0
   var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
 	if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
@@ -485,7 +485,7 @@ function addMoveEvent(titleobj,contentobj){
 
 }
 
-//-----------------弹出层定位--------------------//
+// -----------------弹出层定位--------------------//
 function skillsPosition(obj,x){
 var o=$(obj),h,oh,w,oc;
 if(!o) return false;
@@ -497,7 +497,7 @@ o.style.cssText=!x?oh:(oh+";left:50%;margin-left:"+(-w/2)+"px");
 }
 
 
-/*弹出层绝对居中定位*/
+/* 弹出层绝对居中定位 */
 function setObjCenter(id){
 	var d=document;
 	var obj = d.getElementById(id);
@@ -520,7 +520,7 @@ function setObjCenter(id){
 		})(),
 		st:(d.body.scrollTop||d.documentElement.scrollTop)
 	};
-	//obj.style.display="block";
+	// obj.style.display="block";
 	obj.style.left=(data.vw-data.ow)/2+"px";
 	obj.style.margin=0;			
 	if(!!window.XMLHttpRequest){
@@ -534,7 +534,7 @@ function setObjCenter(id){
 		window.onscroll=function(){obj.style.top=(d.body.scrollTop||d.documentElement.scrollTop)+(data.vh-data.oh)/2+'px';};
 	}						
 }
-//id 0:登录层 1:注册层
+// id 0:登录层 1:注册层
 function showlogin(id){
 	document.getElementById("okcoinPop").style.display="block";
 	var r = document.getElementById("recommended_user_id").value;
@@ -549,7 +549,7 @@ function closelogin(){
 	document.getElementById("okcoinPop").innerHTML="";
 }
 
-/*gobacktop*/
+/* gobacktop */
 
 if(document.body !=null && document.body.scrollHeight>1200){
 	goBackTop("goBackTop");
@@ -565,7 +565,8 @@ addEV(window,"scroll",function(){
 	var sH=document.documentElement.clientHeight;
 	if(sT>180){
 		oBtn.style.display="block";
-		if(-1!=window.navigator.userAgent.indexOf('MSIE 6.0') && -1==window.navigator.userAgent.indexOf('MSIE 7.0') && -1==window.navigator.userAgent.indexOf('MSIE 8.0'))// for ie6 
+		if(-1!=window.navigator.userAgent.indexOf('MSIE 6.0') && -1==window.navigator.userAgent.indexOf('MSIE 7.0') && -1==window.navigator.userAgent.indexOf('MSIE 8.0'))// for
+																																											// ie6
 	{
 		oBtn.style.bottom="auto";
 		oBtn.style.top=sT+sH-oBtn.offsetHeight+"px";
@@ -580,10 +581,8 @@ addEV(window,"scroll",function(){
 
 function okcoinAlert(str,pro,callback,btnTitle) {
 	/*
-	*@str 传入提示内容
-	*@pro 可选，取消按钮
-	*返回值，确定为true，取消和关闭都为false
-	*/
+	 * @str 传入提示内容 @pro 可选，取消按钮 返回值，确定为true，取消和关闭都为false
+	 */
 		if(btnTitle == "" || btnTitle == "undefined" || btnTitle==null){
 			btnTitle = "确定";
 		}
@@ -599,7 +598,8 @@ function okcoinAlert(str,pro,callback,btnTitle) {
 		
 		
 
-		//tempStr.push('<iframe id="alertIframe" scrolling="no" style="border:0;height:100%;_height:255px;width:100%;left:0;top:0;z-index:-1;position:absolute;"></iframe>');
+		// tempStr.push('<iframe id="alertIframe" scrolling="no"
+		// style="border:0;height:100%;_height:255px;width:100%;left:0;top:0;z-index:-1;position:absolute;"></iframe>');
 		tempStr.push('<div class="small_content" id="alertBody">');
 		tempStr.push('<div class="orderFloorTitle"><span style="float:left;">&nbsp;&nbsp;提示</span><span style="float:right;"><a id="alertClose" href="javascript:void(0);" class="dialog_closed" title="关闭"></a></span></div>');
 		tempStr.push('<div class="smallFloor">'+str+'</div>');
@@ -626,10 +626,10 @@ function okcoinAlert(str,pro,callback,btnTitle) {
 			os.top=(dEle.clientHeight-obj.clientHeight)/2+dEle.scrollTop+d.body.scrollTop+"px";			
 		}		
 		if(ieSix){
-//			gid("alertIframe").style.height=gid("alertBody").offsetHeight+"px";
-//			gid("alertIframe").style.width=gid("alertBody").offsetWidth+"px";			
-//			gid("alertIframe").style.top = gid("alertBody").style.top+"px";	
-//			gid("alertIframe").style.left = gid("alertBody").style.left+"px";	
+// gid("alertIframe").style.height=gid("alertBody").offsetHeight+"px";
+// gid("alertIframe").style.width=gid("alertBody").offsetWidth+"px";
+// gid("alertIframe").style.top = gid("alertBody").style.top+"px";
+// gid("alertIframe").style.left = gid("alertBody").style.left+"px";
 			
 			addEV(window,"scroll",fixed);
 		}else{
@@ -671,46 +671,42 @@ function okcoinAlert(str,pro,callback,btnTitle) {
 
 
 
-//----------------uuid file ------------------------//
+// ----------------uuid file ------------------------//
 /*
-http://www.af-design.com/services/javascript/uuid/
-
-uuid.js - Version 0.3
-JavaScript Class to create a UUID like identifier
-
-Copyright (C) 2006-2008, Erik Giberti (AF-Design), All rights reserved.
-
-This program is free software; you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software 
-Foundation; either version 2 of the License, or (at your option) any later 
-version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY 
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with 
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple 
-Place, Suite 330, Boston, MA 02111-1307 USA
-
-The latest version of this file can be downloaded from
-http://www.af-design.com/resources/javascript_uuid.php
-
-HISTORY:
-6/5/06 	- Initial Release
-5/22/08 - Updated code to run faster, removed randrange(min,max) in favor of
-          a simpler rand(max) function. Reduced overhead by using getTime() 
-          method of date class (suggestion by James Hall).
-9/5/08	- Fixed a bug with rand(max) and additional efficiencies pointed out 
-	  by Robert Kieffer http://broofa.com/
-
-KNOWN ISSUES:
-- Still no way to get MAC address in JavaScript
-- Research into other versions of UUID show promising possibilities 
-  (more research needed)
-- Documentation needs improvement
-
-*/
+ * http://www.af-design.com/services/javascript/uuid/
+ * 
+ * uuid.js - Version 0.3 JavaScript Class to create a UUID like identifier
+ * 
+ * Copyright (C) 2006-2008, Erik Giberti (AF-Design), All rights reserved.
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+ * Place, Suite 330, Boston, MA 02111-1307 USA
+ * 
+ * The latest version of this file can be downloaded from
+ * http://www.af-design.com/resources/javascript_uuid.php
+ * 
+ * HISTORY: 6/5/06 - Initial Release 5/22/08 - Updated code to run faster,
+ * removed randrange(min,max) in favor of a simpler rand(max) function. Reduced
+ * overhead by using getTime() method of date class (suggestion by James Hall).
+ * 9/5/08 - Fixed a bug with rand(max) and additional efficiencies pointed out
+ * by Robert Kieffer http://broofa.com/
+ * 
+ * KNOWN ISSUES: - Still no way to get MAC address in JavaScript - Research into
+ * other versions of UUID show promising possibilities (more research needed) -
+ * Documentation needs improvement
+ * 
+ */
 
 // On creation of a UUID object, set it's initial value
 function UUID(){
@@ -728,9 +724,12 @@ UUID.prototype.toString = function(){ return this.id; };
 UUID.prototype.createUUID = function(){
 	//
 	// Loose interpretation of the specification DCE 1.1: Remote Procedure Call
-	// described at http://www.opengroup.org/onlinepubs/009629399/apdxa.htm#tagtcjh_37
-	// since JavaScript doesn't allow access to internal systems, the last 48 bits 
-	// of the node section is made up using a series of random numbers (6 octets long).
+	// described at
+	// http://www.opengroup.org/onlinepubs/009629399/apdxa.htm#tagtcjh_37
+	// since JavaScript doesn't allow access to internal systems, the last 48
+	// bits
+	// of the node section is made up using a series of random numbers (6 octets
+	// long).
 	//  
 	var dg = new Date(1582, 10, 15, 0, 0, 0, 0);
 	var dc = new Date();
@@ -738,11 +737,12 @@ UUID.prototype.createUUID = function(){
 	var h = '';
 	var tl = UUID.getIntegerBits(t,0,31);
 	var tm = UUID.getIntegerBits(t,32,47);
-	var thv = UUID.getIntegerBits(t,48,59) + '1'; // version 1, security version is 2
+	var thv = UUID.getIntegerBits(t,48,59) + '1'; // version 1, security
+													// version is 2
 	var csar = UUID.getIntegerBits(UUID.rand(4095),0,7);
 	var csl = UUID.getIntegerBits(UUID.rand(4095),0,7);
 
-	// since detection of anything about the machine/browser is far to buggy, 
+	// since detection of anything about the machine/browser is far to buggy,
 	// include some more random numbers here
 	// if NIC or an IP can be obtained reliably, that should be put in
 	// here instead.
@@ -750,7 +750,8 @@ UUID.prototype.createUUID = function(){
 			UUID.getIntegerBits(UUID.rand(8191),8,15) + 
 			UUID.getIntegerBits(UUID.rand(8191),0,7) + 
 			UUID.getIntegerBits(UUID.rand(8191),8,15) + 
-			UUID.getIntegerBits(UUID.rand(8191),0,15); // this last number is two octets long
+			UUID.getIntegerBits(UUID.rand(8191),0,15); // this last number is
+														// two octets long
 	return tl + h + tm + h + thv + h + csar + csl + h + n; 
 };
 
@@ -761,7 +762,7 @@ UUID.prototype.createUUID = function(){
 
 
 // Pull out only certain bits from a very large integer, used to get the time
-// code information for the first part of a UUID. Will return zero's if there 
+// code information for the first part of a UUID. Will return zero's if there
 // aren't enough bits to shift where it needs to.
 UUID.getIntegerBits = function(val,start,end){
 	var base16 = UUID.returnBase(val,16);
@@ -792,42 +793,42 @@ UUID.rand = function(max){
 
 // end of UUID class file
 
-//----------------uuid file end-----------------------//
+// ----------------uuid file end-----------------------//
 
-//-----------------cookies file -----------------------//
+// -----------------cookies file -----------------------//
 function CookieClass()
 {
-	this.expires = 60*24*7 ; //有效时间,以分钟为单位 
-	this.path = ""; //设置访问路径 
-	this.domain = ""; //设置访问主机 
-	this.secure = false; //设置安全性
+	this.expires = 60*24*7 ; // 有效时间,以分钟为单位
+	this.path = ""; // 设置访问路径
+	this.domain = ""; // 设置访问主机
+	this.secure = false; // 设置安全性
 
 	this.setCookie = function(name,value)
 	{ 
 	   var str = name+"="+escape(value); 
 	   if (this.expires>0)
 	   { 
-	    //如果设置了过期时间 
+	    // 如果设置了过期时间
 	    var date=new Date(); 
-	    var ms=this.expires * 60 * 1000; //每分钟有60秒，每秒1000毫秒 
+	    var ms=this.expires * 60 * 1000; // 每分钟有60秒，每秒1000毫秒
 	    date.setTime(date.getTime()+ms); 
 	    str+="; expires="+date.toGMTString(); 
 	   } 
 	   str+="; path=/";
-	   //if(this.path!="")str+="; path=/";//+this.path; //设置访问路径 
-	   if(this.domain!="")str+="; domain="+this.domain; //设置访问主机 
-	   if(this.secure!="")str+="; true"; //设置安全性
+	   // if(this.path!="")str+="; path=/";//+this.path; //设置访问路径
+	   if(this.domain!="")str+="; domain="+this.domain; // 设置访问主机
+	   if(this.secure!="")str+="; true"; // 设置安全性
 	   document.cookie=str; 
 	};
 
 	this.getCookie=function(name)
 	{ 
-	   var cookieArray=document.cookie.split("; "); //得到分割的cookie名值对 
-	   //var cookie=new Object(); 
+	   var cookieArray=document.cookie.split("; "); // 得到分割的cookie名值对
+	   // var cookie=new Object();
 	   for(var i=0;i<cookieArray.length;i++)
 	   { 
-	    var arr=cookieArray[i].split("="); //将名和值分开 
-	    if(arr[0]==name)return unescape(arr[1]); //如果是指定的cookie，则返回它的值 
+	    var arr=cookieArray[i].split("="); // 将名和值分开
+	    if(arr[0]==name)return unescape(arr[1]); // 如果是指定的cookie，则返回它的值
 	   } 
 	   return ""; 
 	};
@@ -837,7 +838,7 @@ function CookieClass()
 	   var date=new Date(); 
 	   var ms= 1 * 1000; 
 	   date.setTime(date.getTime() - ms); 
-	   var str = name+"=no; expires=" + date.toGMTString(); //将过期时间设置为过去来删除一个cookie 
+	   var str = name+"=no; expires=" + date.toGMTString(); // 将过期时间设置为过去来删除一个cookie
 	   document.cookie=str; 
 	};
 
@@ -847,28 +848,24 @@ function CookieClass()
 	};
 }
 
-//使用例子 
-//var cook = new CookieClass(); 
-//cook.expires =1;//一分钟有效 
-//cook.setCookie("01","5556666666666555");//写 
-//alert(cook.getCookie("01"));//读 
-//cook.showCookie();
+// 使用例子
+// var cook = new CookieClass();
+// cook.expires =1;//一分钟有效
+// cook.setCookie("01","5556666666666555");//写
+// alert(cook.getCookie("01"));//读
+// cook.showCookie();
 
-//-----------------cookies file end-----------------------//
+// -----------------cookies file end-----------------------//
 
 
 
 
 /*
-//imgLoad("imgLoad");
-//imgLoad("windowImg","li",1);
-参数1为图片所在模块
-参数2为图片所在循环元素；不写默认为“li”
-参数3为window滚动触发事件，这个参数存在时必须填写参数2；不写默认为模块滚动触发事件
-//鼠标滚轮事件
-*/
+ * //imgLoad("imgLoad"); //imgLoad("windowImg","li",1); 参数1为图片所在模块
+ * 参数2为图片所在循环元素；不写默认为“li” 参数3为window滚动触发事件，这个参数存在时必须填写参数2；不写默认为模块滚动触发事件 //鼠标滚轮事件
+ */
 
-  //----------图片延时加载-------------//
+  // ----------图片延时加载-------------//
 function imgLoad(o,tags,f){
  var d=document,
  doc = d[d.compatMode == "CSS1Compat"?'documentElement':'body'],
@@ -893,12 +890,12 @@ function imgLoad(o,tags,f){
   j = f?Math.ceil((maxWindow - sObj.showT)/autoHeight)*Math.ceil(maxWidth/autoWidth)*autoLength:Math.ceil(maxHeight/autoHeight)*Math.ceil(maxWidth/autoWidth)*autoLength;
   j = (j < 0) ? 0 : j;
   j = (j < s.length) ? j : s.length;
-  /*默认显示图片*/
+  /* 默认显示图片 */
   for(var i=0;i<j;i++){
   s[i].src = s[i].getAttribute("docsrc");
   }
  };
- /*滚动显示*/
+ /* 滚动显示 */
  var scrollLoad = function(){
   var activeHeight = f?topnum.scrollTop:o.scrollTop,
   activeWidth = f?topnum.scrollLeft:o.scrollLeft,
@@ -914,7 +911,7 @@ function imgLoad(o,tags,f){
  (f?window:o).onscroll = function(){
   scrollLoad();
  };
- /*重新计算*/
+ /* 重新计算 */
  window.onresize = function(){
   autoLoad();
   scrollLoad();
@@ -975,10 +972,11 @@ function loginSubmit(){
 		var uName = document.getElementById("loginUserName").value;
 		var pWord = document.getElementById("loginPassword").value;
 		var longLogin = 0;
-//		if(document.getElementById("longLogin")!=null && document.getElementById("longLogin").checked){
-//			longLogin = 1;
-//		}
-//		var param={email:uName,password:pWord,longLogin:longLogin};
+// if(document.getElementById("longLogin")!=null &&
+// document.getElementById("longLogin").checked){
+// longLogin = 1;
+// }
+// var param={email:uName,password:pWord,longLogin:longLogin};
 		var param={mobile:uName,password:pWord};
 		jQuery.post(url,param,function(data){
 			if(data) {
@@ -988,11 +986,11 @@ function loginSubmit(){
 						forward = decodeURI(forward);
 						window.location.href=forward;
 					} else {
-						//if(data.data) {
+						// if(data.data) {
 						window.location.href="/index.jsp";
-//						} else {
-//							window.location.href="/userinfo.jsp";
-//						}
+// } else {
+// window.location.href="/userinfo.jsp";
+// }
 					}
 				} else if(data.ret == 601) {
 					document.getElementById("loginTips").style.display="block";
@@ -1011,54 +1009,43 @@ function loginSubmit(){
 				
 			}
 			/**
-				var result = eval('(' + data + ')');
-				if(result!=null){
-					if(result.resultCode == 0){
-						if(document.getElementById("forwardUrl")!=null && document.getElementById("forwardUrl").value != ""){
-							var forward = document.getElementById("forwardUrl").value;
-							forward = decodeURI(forward);
-							window.location.href=forward;
-						}else{
-							var whref = document.location.href;
-							if(whref.indexOf("#") != -1){
-								whref = whref.substring(0,whref.indexOf("#"));
-							}
-							if(whref.length < 30){
-								whref = document.getElementById("coinMainUrl").value+"/btc.jsp";
-							}
-							window.location.href=whref;
-						}
-					}else if(result.resultCode == -1){
-						document.getElementById("loginTips").style.display="block";
-						document.getElementById("loginTips").innerHTML="";
-						document.getElementById("loginTips").innerHTML="用户名或密码错误";
-					}else if(result.resultCode == -2){
-						document.getElementById("loginTips").style.display="block";
-						document.getElementById("loginTips").innerHTML="";
-						document.getElementById("loginTips").innerHTML="此ip登录频繁，请2小时后再试";
-					}else if(result.resultCode == -3){
-						document.getElementById("loginTips").style.display="block";
-						document.getElementById("loginTips").innerHTML="";
-						if(result.errorNum == 0){
-							document.getElementById("loginTips").innerHTML="此ip登录频繁，请2小时后再试";
-						}else{
-							document.getElementById("loginTips").innerHTML="用户名或密码错误，您还有"+result.errorNum+"次机会";
-						}
-						document.getElementById("loginPassword").value="";
-					}else if(result.resultCode == -4){
-						document.getElementById("loginTips").style.display="block";
-						document.getElementById("loginTips").innerHTML="";
-						document.getElementById("loginTips").innerHTML="您的浏览器还未开启COOKIE,请设置启用COOKIE功能";
-					}else if(result.resultCode == 1){
-						window.location.href = document.getElementById("coinMainUrl").value;
-					}else if(result.resultCode == 2){
-						document.getElementById("loginTips").style.display="block";
-						document.getElementById("loginTips").innerHTML="";
-						document.getElementById("loginTips").innerHTML="账户出现安全隐患被冻结，请尽快联系客服。";
-					}
-				 
-				}
-				*/
+			 * var result = eval('(' + data + ')'); if(result!=null){
+			 * if(result.resultCode == 0){
+			 * if(document.getElementById("forwardUrl")!=null &&
+			 * document.getElementById("forwardUrl").value != ""){ var forward =
+			 * document.getElementById("forwardUrl").value; forward =
+			 * decodeURI(forward); window.location.href=forward; }else{ var
+			 * whref = document.location.href; if(whref.indexOf("#") != -1){
+			 * whref = whref.substring(0,whref.indexOf("#")); } if(whref.length <
+			 * 30){ whref =
+			 * document.getElementById("coinMainUrl").value+"/btc.jsp"; }
+			 * window.location.href=whref; } }else if(result.resultCode == -1){
+			 * document.getElementById("loginTips").style.display="block";
+			 * document.getElementById("loginTips").innerHTML="";
+			 * document.getElementById("loginTips").innerHTML="用户名或密码错误"; }else
+			 * if(result.resultCode == -2){
+			 * document.getElementById("loginTips").style.display="block";
+			 * document.getElementById("loginTips").innerHTML="";
+			 * document.getElementById("loginTips").innerHTML="此ip登录频繁，请2小时后再试";
+			 * }else if(result.resultCode == -3){
+			 * document.getElementById("loginTips").style.display="block";
+			 * document.getElementById("loginTips").innerHTML="";
+			 * if(result.errorNum == 0){
+			 * document.getElementById("loginTips").innerHTML="此ip登录频繁，请2小时后再试";
+			 * }else{
+			 * document.getElementById("loginTips").innerHTML="用户名或密码错误，您还有"+result.errorNum+"次机会"; }
+			 * document.getElementById("loginPassword").value=""; }else
+			 * if(result.resultCode == -4){
+			 * document.getElementById("loginTips").style.display="block";
+			 * document.getElementById("loginTips").innerHTML="";
+			 * document.getElementById("loginTips").innerHTML="您的浏览器还未开启COOKIE,请设置启用COOKIE功能";
+			 * }else if(result.resultCode == 1){ window.location.href =
+			 * document.getElementById("coinMainUrl").value; }else
+			 * if(result.resultCode == 2){
+			 * document.getElementById("loginTips").style.display="block";
+			 * document.getElementById("loginTips").innerHTML="";
+			 * document.getElementById("loginTips").innerHTML="账户出现安全隐患被冻结，请尽快联系客服。"; } }
+			 */
 		});	
 	}
 }
@@ -1092,13 +1079,14 @@ function checkLoginUserName(){
 	if(uName == ""){
 		document.getElementById("loginTips").style.display="";
 		document.getElementById("loginTips").innerHTML="";
-		document.getElementById("loginTips").innerHTML="手机号不能为空";
-		return false;
-	}else if(! checkMobile(uName)){
-		document.getElementById("loginTips").style.display="";
-		document.getElementById("loginTips").innerHTML="号码格式不正确";
+		document.getElementById("loginTips").innerHTML="用户名不能为空";
 		return false;
 	}
+	/*
+	 * else if(! checkMobile(uName)){
+	 * document.getElementById("loginTips").style.display="";
+	 * document.getElementById("loginTips").innerHTML="号码格式不正确"; return false; }
+	 */
 	document.getElementById("loginTips").innerHTML="";
 	return true;
 }
@@ -1152,13 +1140,13 @@ function useRegType(id){
 	document.getElementById("regNameResult").innerHTML=tipsInfo;
 	document.getElementById("regNameResult").className="";
 }
-//验证注册名
+// 验证注册名
 function checkRegUserName(){
 	var regType = document.getElementById("regType").value;
 	var regUserName = trim(document.getElementById("regUserName").value);
 	var desc='';
 	if(regType == 0){
-		//验证手机号
+		// 验证手机号
 		if(regUserName.indexOf(" ")>-1){
 			desc='手机号包含空格!';
 		}else {
@@ -1170,7 +1158,7 @@ function checkRegUserName(){
 			}
 		}
 	}else{
-		//验证邮箱
+		// 验证邮箱
 		if(regUserName.indexOf(" ")>-1){
 			desc='邮箱不能包含空格!';
 		}else {
@@ -1221,15 +1209,9 @@ function checkPassword(){
 		desc="密码长度不能大于16！";
 	}
 	if(desc!=""){
-		document.getElementById("regPwdResult").style.display="";
-		document.getElementById("regPwdResult").className="bg-danger";
-		document.getElementById("regPwdResult").innerHTML="";
-		document.getElementById("regPwdResult").innerHTML=desc;
+		swal("错误",desc, "error");
 		return false;
 	}else{
-		document.getElementById("regPwdResult").style.display="none";
-		document.getElementById("regPwdResult").className="bg-success";
-		document.getElementById("regPwdResult").innerHTML="";
 	}
 	return true;
 }
@@ -1247,15 +1229,9 @@ function checkPassword(){
 			desc="输入的密码不一致！";
 		}
 		if(desc!=""){
-			document.getElementById("regRePwdResult").style.display="";
-			document.getElementById("regRePwdResult").className="bg-warning";
-			document.getElementById("regRePwdResult").innerHTML="";
-			document.getElementById("regRePwdResult").innerHTML=desc;
+			swal("错误",desc, "error");
 			return false;
 		}else{
-			document.getElementById("regRePwdResult").style.display="none";
-			document.getElementById("regRePwdResult").className="bg-success";
-			document.getElementById("regRePwdResult").innerHTML="";
 		}
 		return true;
 	}
@@ -1264,26 +1240,34 @@ function checkPassword(){
 		var regUserName = trim(document.getElementById("regUserName").value);
 		var desc='';
 		if(regType == 0){
-			//验证手机号
+			// 验证手机号
 			if(regUserName.indexOf(" ")>-1){
-				desc='手机号包含空格!';
+				swal("错误", "手机号包含空格!", "error");
+				return;
 			}else {
 				if(regUserName==''){
-						desc='请您输入手机号!'; 	
+					swal("错误", "请您输入手机号!", "error");
+					return;
 					}
 				else if(!checkMobile(regUserName)){ 
-						desc='手机号格式不正确';	
+						swal("错误", "手机号格式不正确", "error");
+						return;
 				}
 			}
 		}else{
-			//验证邮箱
+			// 验证邮箱
 			if(regUserName.indexOf(" ")>-1){
-				desc='邮箱不能包含空格!';
+				swal("错误", "邮箱不能包含空格!", "error");
+				return;
 			}else {
-				if(regUserName==''){	desc='请您输入邮箱!'; 	}
-				else if(!checkEmail(regUserName)){ desc='邮箱格式不正确,请重新输入';	}
-				else if (new RegExp("[,]","g").test(regUserName)){ desc='含有非法字符'; }
-				else if(regUserName.length>100){	desc='邮箱长度应小于100个字符';	}
+				if(regUserName==''){swal("错误", "请您输入邮箱!", "error");
+				return;}
+				else if(!checkEmail(regUserName)){swal("错误", "邮箱格式不正确,请重新输入", "error");
+				return;}
+				else if (new RegExp("[,]","g").test(regUserName)){swal("错误", "含有非法字符", "error");
+				return;}
+				else if(regUserName.length>100){swal("错误", "邮箱长度应小于100个字符", "error");
+				return;}
 			}
 		}
 		if(desc!=""){
@@ -1296,78 +1280,175 @@ function checkPassword(){
 			return true;
 		}
 	}
-//	var wait=60;
-//	function time(o) {
-//		if (wait == 0) {
-//		o.removeAttribute("disabled");
-//		o.innerHTML="发送验证码";
-//		wait = 60;
-//		} else {
-//		o.setAttribute("disabled", true);
-//		o.innerHTML=wait+"秒后重新发送";
-//		wait--;
-//		setTimeout(function() {
-//			time(o)
-//		},
-//		1000)
-//		}
-//	}
-//	function sendVCode(self){
-//		var regUserName = trim(document.getElementById("regUserName").value);
-//		$("#sendValidate").html("成功发送");
-//		if(checkRegUserNameNoJquery()){
-//			var urlName = "/open/chcekregname?mobile=" + encodeURI(regUserName) +"&type="+regType+"&random="+Math.round(Math.random()*100);
-//			jQuery.get(urlName,null,function(data){
-//				if(data.ret == 606){
-//					if(regType == 0){
-//						desc = "您的手机号已存在，如果这是您自己的手机号，请<a target='_blank' href='http://wpa.qq.com/msgrd?v=3&uin=888888888&site=qq&menu=yes' title='联系QQ:888888888'>联系客服</a>";
-//					}else{
-//						desc = "邮箱已存在";
-//					}
-//					document.getElementById("regNameResult").style.display="";
-//					document.getElementById("regNameResult").className="bg-danger";
-//					document.getElementById("regNameResult").innerHTML="";
-//					document.getElementById("regNameResult").innerHTML=desc;
-//					return ;
-//				}
-//			});
-//		}
-//	}
+// var wait=60;
+// function time(o) {
+// if (wait == 0) {
+// o.removeAttribute("disabled");
+// o.innerHTML="发送验证码";
+// wait = 60;
+// } else {
+// o.setAttribute("disabled", true);
+// o.innerHTML=wait+"秒后重新发送";
+// wait--;
+// setTimeout(function() {
+// time(o)
+// },
+// 1000)
+// }
+// }
+// function sendVCode(self){
+// var regUserName = trim(document.getElementById("regUserName").value);
+// $("#sendValidate").html("成功发送");
+// if(checkRegUserNameNoJquery()){
+// var urlName = "/open/chcekregname?mobile=" + encodeURI(regUserName)
+// +"&type="+regType+"&random="+Math.round(Math.random()*100);
+// jQuery.get(urlName,null,function(data){
+// if(data.ret == 606){
+// if(regType == 0){
+// desc = "您的手机号已存在，如果这是您自己的手机号，请<a target='_blank'
+// href='http://wpa.qq.com/msgrd?v=3&uin=888888888&site=qq&menu=yes'
+// title='联系QQ:888888888'>联系客服</a>";
+// }else{
+// desc = "邮箱已存在";
+// }
+// document.getElementById("regNameResult").style.display="";
+// document.getElementById("regNameResult").className="bg-danger";
+// document.getElementById("regNameResult").innerHTML="";
+// document.getElementById("regNameResult").innerHTML=desc;
+// return ;
+// }
+// });
+// }
+// }
 //	
-//	//***************************************************************************************************************//
+// //***************************************************************************************************************//
 //	
-//	var count = 0;
-//	document.getElementById("btn").onclick=function(){
-//		if(count<3){
-//			sendmsg();
-//			count++;
-//			time(this);
-//		}else{
-//			this.setAttribute("disabled", true);
-//			this.value="对不起，您发送太频繁";
-//		}
-//	}
-//	var msg = null;
-//	function sendmsg() {
-//		if (window.XMLHttpRequest) {
-//			msg = new XMLHttpRequest();
-//		} else if (window.ActiveXObject) {
-//			msg = new ActiveXObject("Microsoft.XMLHTTP");
-//		}
-//		if (msg != null) {
-//			var tel = document.getElementById('uphone').value;
-//			if(tel==''||tel==null){alert('请输入手机号码');return false;}
-//			var url = 'msg.htm?send2&tel='+tel+'&n=' + Math.random();
-//			msg.onreadystatechange = showmsg;
-//			msg.open("GET", url, true);
-//			msg.send(null);
-//		}
-//	}
-	//***************************************************************************************************************//
-	
-	function regSubmit(){
-		var roleType=document.getElementById("roleType").value;
+// var count = 0;
+// document.getElementById("btn").onclick=function(){
+// if(count<3){
+// sendmsg();
+// count++;
+// time(this);
+// }else{
+// this.setAttribute("disabled", true);
+// this.value="对不起，您发送太频繁";
+// }
+// }
+// var msg = null;
+// function sendmsg() {
+// if (window.XMLHttpRequest) {
+// msg = new XMLHttpRequest();
+// } else if (window.ActiveXObject) {
+// msg = new ActiveXObject("Microsoft.XMLHTTP");
+// }
+// if (msg != null) {
+// var tel = document.getElementById('uphone').value;
+// if(tel==''||tel==null){alert('请输入手机号码');return false;}
+// var url = 'msg.htm?send2&tel='+tel+'&n=' + Math.random();
+// msg.onreadystatechange = showmsg;
+// msg.open("GET", url, true);
+// msg.send(null);
+// }
+// }
+	// ***************************************************************************************************************//
+	function checkUserNameExist(){
+		var regType = document.getElementById("regType").value;
+		var regUserName = trim(document.getElementById("regUserName").value);
+		var roleType=$("#roleType").val();
+		if(roleType==2){
+			var regUname=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
+			if(!regUname.test(regUserName)){
+			   document.getElementById("regUserName").value="";
+			   swal("错误", "商家用户名必须为数字和字母的组合", "error");
+			   return;
+			}
+		}
+		var urlName = "/open/chcekregname?mobile=" + encodeURI(regUserName) +"&type="+regType+"&random="+Math.round(Math.random()*100);
+		jQuery.get(urlName,null,function(data){
+			if(data.ret == 606){
+				if(regType == 0){
+					var desc="";
+					if(roleType==1){
+						desc="您的手机号已存在，如果这是您自己的手机号，请联系客服";
+					}else{
+						desc="该商户名存在，请重新输入";
+					}
+					swal("错误", desc, "error");
+					$("#regUserName").val("");
+					 $("#regUserName").focus();
+					return;
+				}else{
+					swal("错误", "邮箱已存在", "error");
+					return;
+				}
+				return ;
+			}else{
+				return;
+			}
+		});
+	}
+	var mobile2Exist=false;
+	function checkMobile2Exist(){
+		var mobile2 = trim(document.getElementById("mobile2").value);
+		var urlName = "/open/chcekmobile2?mobile2=" + encodeURI(mobile2) +"&random="+Math.round(Math.random()*100);
+		jQuery.get(urlName,null,function(data){
+			if(data.ret == 606){
+				var desc="该手机号已使用";
+				swal("错误", desc, "error");
+				$("#mobile2").val("");
+				 $("#mobile2").focus();
+				 mobile2Exist=true;
+			}else{
+				mobile2Exist=false;
+			}
+		});
+	}
+	var LicenceNumberExist=false;
+	function chcekLicenceNumber(){
+		document.getElementById("oid").value=document.getElementById("oid").value.replace(/\D/g,'');
+		var oid = trim(document.getElementById("oid").value);
+		if(oid.length<15){
+			desc="请输入正确的营业执照注册号";
+			swal("错误", desc, "error");
+			LicenceNumberExist=true;
+			return;
+		}
+		var urlName = "/open/chcekLicenceNumber?licenceNumber=" + encodeURI(oid) +"&random="+Math.round(Math.random()*100);
+		jQuery.get(urlName,null,function(data){
+			if(data.ret == 606){
+				var desc="";
+				desc="该营业执照已存在，请重新输入";
+				swal("错误", desc, "error");
+				$("#oid").val("");
+				$("#oid").focus();
+				LicenceNumberExist=true;
+			}else{
+				LicenceNumberExist=false;
+			}
+		});
 		
+	}
+	/**
+	 * 用户注册
+	 */
+	function regSubmit(){
+		// 普通用户注册
+		var vcode=$("#vcode").val();
+		var roleType=$("#roleType").val();
+		var phone_validate_code=$("#phone_validate_code").val();
+		
+		if(phone_validate_code!=vcode){
+			swal("错误", "验证码输入错误", "error");
+			return;
+		}
+		if(!$(".icheckbox_square").hasClass("checked")){
+			swal("错误", "请同意注册协议", "error");
+			return;
+		}
+		if($("#phone_validate_code").val().length<5){
+			swal("错误", "请输入正确的验证码", "error");
+			return;
+		}
 		if(checkRegUserNameNoJquery() && checkPassword() && checkRePassword() ){
 			var regUserName = trim(document.getElementById("regUserName").value);
 			var index = regUserName.lastIndexOf(".", 0);
@@ -1383,85 +1464,193 @@ function checkPassword(){
 				r = document.getElementById("recommended_user_id").value;
 			}
 			var pwd = trim(document.getElementById("regPassword").value);
-			//检查用户名
+			// 检查用户名
 			var urlName = "/open/chcekregname?mobile=" + encodeURI(regUserName) +"&type="+regType+"&random="+Math.round(Math.random()*100);
 			jQuery.get(urlName,null,function(data){
 				if(data.ret == 606){
 					if(regType == 0){
-						desc = "您的手机号已存在，如果这是您自己的手机号，请<a target='_blank' href='http://wpa.qq.com/msgrd?v=3&uin=888888888&site=qq&menu=yes' title='联系QQ:888888888'>联系客服</a>";
+						var desc="";
+						if(roleType==1){
+							desc="您的手机号已存在，如果这是您自己的手机号，请联系客服";
+						}else{
+							desc="该商户名存在，请重新输入";
+						}
+						swal("错误", desc, "error");
+						return;
 					}else{
-						desc = "邮箱已存在";
+						swal("错误", "邮箱已存在", "error");
+						return;
 					}
-					document.getElementById("regNameResult").style.display="";
-					document.getElementById("regNameResult").className="bg-danger";
-					document.getElementById("regNameResult").innerHTML="";
-					document.getElementById("regNameResult").innerHTML=desc;
 					return ;
 				}
 				else{
-					//如果roleType==2则需要校验商家字段：local local2 licenceFileName licenceFileURL   (not null)
-					var local=0;
-					var local2=0;
-					var licenceFileName="";
-					var licenceFileURL="";
-//					if(roleType==2){
-//						local=$("#local").val();
-//						local2=$("#local2").val();
-//						licenceFileName=$("#licenceFileName").val();
-//						licenceFileURL=$("#licenceFileURL").val();
-//						if(!checkNotNull(local)||!checkNotNull(local2)||!checkNotNull(licenceFileName)||!checkNotNull(licenceFileURL)){
-//							desc="请确认是否上传营业执照和选择所在地区";
-//							document.getElementById("regNameResult").style.display="";
-//							document.getElementById("regNameResult").className="bg-danger";
-//							document.getElementById("regNameResult").innerHTML="";
-//							document.getElementById("regNameResult").innerHTML=desc;
-//							return ;
-//						}
-//					}
-
+					// 如果roleType==2则需要校验商家字段：local local2 licenceFileName
+					// licenceFileURL (not null)
 					var url = "/open/reg?random="+Math.round(Math.random()*100);
-//					if(roleType==2){
-//						var param={mobile:regUserName,password:pwd,regType:regType,r:r,role:roleType,local:local,local2:local2,licenceFileName:licenceFileName,licenceFileURL:licenceFileURL};
-//					}else{
-					var param={mobile:regUserName,password:pwd,regType:regType,r:r,role:roleType,local:0,local2:0,licenceFileName:licenceFileName,licenceFileURL:licenceFileURL};
-//					}
+					 var param={mobile:regUserName,password:pwd,regType:regType,r:r,role:roleType,local:0,local2:0,local3:0,phone_validate_code:phone_validate_code};
 					jQuery.post(url,param,function(data2){
 						if(data2.ret != 0){
 							var desc = "";
-							//注册失败
+							// 注册失败
 							if(data2.ret == 606){
 								if(regType == 0){
-									desc = "您的手机号已存在，如果这是您自己的手机号，请<a target='_blank' href='http://wpa.qq.com/msgrd?v=3&uin=357565252&site=qq&menu=yes' title='联系客服'>联系客服</a>";
+									var desc="";
+									if(roleType==1){
+										desc="您的手机号已存在，如果这是您自己的手机号，请联系客服";
+									}else{
+										desc="该商户名存在，请重新输入";
+									}
+									swal("错误", desc, "error");
+									return;
 								}else{
-									desc = "邮箱已存在";
+									swal("错误", "邮箱已存在", "error");
+									return;
 								}
 							}else if(data2.ret == 612){
-								desc = "请填写真实邮箱";
+								swal("错误", "请填写真实邮箱", "error");
+								return;
 							}else if(data2.ret == 618){
-								desc = "远程服务器请求失败";
+								swal("错误", "远程服务器请求失败", "error");
+								return;
 							}
-							
-							/*else if(data2.ret == -5){
-								document.getElementById("regTips").style.display="block";
-								document.getElementById("regTips").innerHTML="";
-								document.getElementById("regTips").innerHTML="您的浏览器还未开启COOKIE,请设置启用COOKIE功能";
-							}*/
-							document.getElementById("regNameResult").style.display="";
-							document.getElementById("regNameResult").className="bg-danger";
-							document.getElementById("regNameResult").innerHTML="";
-							document.getElementById("regNameResult").innerHTML=desc;
-						}else{
+						}else if(data2.ret==620){
+							swal("错误", "验证码输入错误", "error");
+							return;
+						}
+						else{
 							window.location.href="index.jsp";
-//							document.getElementById("conten").style.display = "none";
-//							document.getElementById("emailSucess").style.display = "";
-//							document.getElementById("emailSpan").innerHTML = regUserName;
 						}
 					});	
 				}
 			});
-			
 		}
-		
+	}
+	/**
+	 * 商户注册
+	 */
+	function shoperRegSubmit(){
+		var vcode=$("#vcode").val();
+		var roleType=$("#roleType").val();
+		var phone_validate_code2=$("#phone_validate_code2").val();
+		var mobile2=$("#mobile2").val();
+		if(!checkMobile(mobile2)){
+			swal("错误", "请输入正确的手机号", "error");
+			return;
+		}
+		if(phone_validate_code2!=vcode){
+			swal("错误", "验证码输入错误", "error");
+			return;
+		}
+		if(LicenceNumberExist){swal("错误", "营业执照错误", "error");return}
+		if(!$(".icheckbox_square").hasClass("checked")){
+			swal("错误", "请同意注册协议", "error");
+			return;
+		}
+		var regUserName = trim(document.getElementById("regUserName").value);
+		var regUname=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
+		if(!regUname.test(regUserName)){
+		   document.getElementById("regUserName").value="";
+		   swal("错误", "商家用户名必须为数字和字母的组合", "error");
+		   return;
+		}
+		if(regUserName==""||regUserName==null){
+			swal("错误", "请填写正确的用户名", "error");
+			return;
+		}
+		if(checkPassword() && checkRePassword() ){
+			var regUserName = trim(document.getElementById("regUserName").value);
+			var regType = document.getElementById("regType").value;
+			var r=0;
+			if(document.getElementById("recommended_user_id")){
+				r = document.getElementById("recommended_user_id").value;
+			}
+			var pwd = trim(document.getElementById("regPassword").value);
+			// 检查用户名
+			var urlName = "/open/chcekregname?mobile=" + encodeURI(regUserName) +"&type="+regType+"&random="+Math.round(Math.random()*100);
+			jQuery.get(urlName,null,function(data){
+				if(data.ret == 606){
+					if(regType == 0){
+						swal("错误", "用户名已存在，请重新输入", "error");
+						return;
+					}else{
+						swal("错误", "邮箱已存在", "error");
+						return;
+					}
+					return ;
+				}
+				else{
+					var oid = trim(document.getElementById("oid").value);
+					// 如果roleType==2则需要校验商家字段：local local2 licenceFileName
+					// licenceFileURL (not null)
+					var local=0;
+					var local2=0;
+					var local3=0;
+					var licenceFileName="";
+					var licenceFileURL="";
+					var licenceNumber="";
+					var shopName="";
+					
+					local=$("#local").val();
+				    local2=$("#local2").val();
+				    local3=$("#local3").val();
+			   	    licenceFileName=$("#licenceFileName").val();
+					licenceFileURL=$("#licenceFileURL").val();
+				    licenceNumber=$("#oid").val();
+					shopName=$("#shopName").val();
+					 if(local==0||local2==0||local3==0){
+						 desc="请确认选择所在地区";
+				    	swal("错误", desc, "error");
+				        return ;
+					 }
+				    if(!checkNotNull(local)||!checkNotNull(local2)||!checkNotNull(local3)||!checkNotNull(licenceFileName)||!checkNotNull(licenceFileURL)||!checkNotNull(licenceNumber)||!checkNotNull(shopName)){
+				    	desc="请确认是否上传营业执照和选择所在地区";
+				    	swal("错误", desc, "error");
+				        return ;
+				    }
+					var url = "/open/reg?random="+Math.round(Math.random()*100);
+					var param={mobile:regUserName,password:pwd,regType:regType,r:r,role:roleType,local:local,local2:local2,local3:local3,licenceFileName:licenceFileName,licenceFileURL:licenceFileURL,licenceNumber:licenceNumber,shopName:shopName,mobile2:mobile2,phone_validate_code2:phone_validate_code2};
+					jQuery.post(url,param,function(data2){
+						if(data2.ret != 0){
+							var desc = "";
+							// 注册失败
+							if(data2.ret == 606){
+								if(regType == 0){
+									swal("错误", "您的手机号已存在，如果这是您自己的手机号，请联系客服", "error");
+									return;
+								}else{
+									swal("错误", "邮箱已存在", "error");
+									return;
+								}
+							}else if(data2.ret == 612){
+								swal("错误", "请填写真实邮箱", "error");
+								return;
+							}else if(data2.ret == 618){
+								swal("错误", "远程服务器请求失败", "error");
+								return;
+							}else if(data2.ret==614){
+								desc="商家注册手机号已存在";
+								swal("错误", "远程服务器请求失败", "error");
+								return;
+							}else if(data2.ret==620){
+								swal("错误", "验证码输入错误", "error");
+								return;
+							}
+						}else{
+							swal({
+		                         title: "注册成功",  
+		                         text: "请关注我们的公众号【点头财神】",  
+		                         type: "success",  
+		                         showCancelButton: false,  
+		                         confirmButtonColor: "#A7D5EA",  
+		                         confirmButtonText: "确认" },
+		                         function(){  
+		                              window.location.href="index.jsp";
+	                         });
+						}
+					});	
+				}
+			});
+		}
 	}
 	
 	function cart_add_animate(b){
@@ -1469,8 +1658,8 @@ function checkPassword(){
 		if(typeof b!="undefined"){
 			var a=jQuery(window).height()-(jQuery(b).offset().top-jQuery(window).scrollTop())-100;
 			if(a<200){a=200;}
-			//alert(jQuery(b).offset().left);
-			//alert(a);
+			// alert(jQuery(b).offset().left);
+			// alert(a);
 			jQuery("#cart-add-effect").css({left:jQuery(b).offset().left,bottom:a});
 			jQuery("#cart-add-effect").show().animate(
 					{bottom:"10px",opacity:0},
@@ -1483,7 +1672,7 @@ function checkPassword(){
 		}
 	}
 	
-/*********微博登录**********************/
+/** *******微博登录********************* */
 	function openss(url){
 		if(url==null || url==''){
 			url=window.location.href;
@@ -1491,7 +1680,7 @@ function checkPassword(){
 		var host = window.location.host;
 	    window.open('https://api.weibo.com/oauth2/authorize?client_id=123456&redirect_uri=http://' + host + '/woauth&response_type=code','new','height='+450+',,innerHeight='+450+',width='+550+',innerWidth='+550+',top='+200+',left='+200+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
 	}
-/*********QQ登录*******************************/	
+/** *******QQ登录****************************** */	
 	function openqq(url){
 		if(url==null||url==""){
 			url=window.location.href;
@@ -1505,50 +1694,34 @@ function checkPassword(){
 	 */
 	function handleTicker(){
 		/*
-		var url = "/ticker.jsp?random="+Math.round(Math.random()*100);
-		jQuery.post(url,null,function(data){
-			if(data != null){
-				var ticker = eval('(' + data + ')');
-				if(ticker!=null){
-					var btcLast = ticker.btcLast;
-					var ltcLast = ticker.ltcLast;
-					var btcVol = ticker.btcVolume;
-					var ltcVol = ticker.ltcVolume;
-					document.getElementById("bannerBtcLast").innerHTML=btcLast;
-					document.getElementById("bannerLtcLast").innerHTML=ltcLast;
-					document.getElementById("bannerBtcVol").innerHTML=btcVol;
-					document.getElementById("bannerLtcVol").innerHTML=ltcVol;
-					//更新首页大图成交量
-					if(document.getElementById("indexVol")!=null){
-						document.getElementById("indexVol").innerHTML=btcVol;
-					}
-					if(document.getElementById("indexLtcVol")!=null){
-						document.getElementById("indexLtcVol").innerHTML=ltcVol;
-					}
-					//更新行情页最新价格
-					if(document.getElementById("marketLast")!=null){
-						var last = ticker.last+"";
-						document.getElementById("marketLast").innerHTML=last;
-						document.getElementById("marketBuy").innerHTML=ticker.buy;
-						document.getElementById("marketSell").innerHTML=ticker.sell;
-						document.getElementById("marketHigh").innerHTML=ticker.high;
-						document.getElementById("marketLow").innerHTML=ticker.low;
-						document.getElementById("marketVol").innerHTML=ticker.vol;
-						//取整数和小数
-						var firstPrice = last;
-						var secondPrice = ".00";
-						var lastPrice = last.split(".");
-				  		if(lastPrice!=null && lastPrice.length==2){
-				  			firstPrice = lastPrice[0];
-				  			secondPrice = "."+lastPrice[1];
-				  		}
-				  		document.getElementById("marketLastInteger").innerHTML="最新价格：<font class='red'>￥"+firstPrice+"</font>";
-						document.getElementById("marketLastPoint").innerHTML=secondPrice;
-					}
-				}
-			}
-		});
-		*/
+		 * var url = "/ticker.jsp?random="+Math.round(Math.random()*100);
+		 * jQuery.post(url,null,function(data){ if(data != null){ var ticker =
+		 * eval('(' + data + ')'); if(ticker!=null){ var btcLast =
+		 * ticker.btcLast; var ltcLast = ticker.ltcLast; var btcVol =
+		 * ticker.btcVolume; var ltcVol = ticker.ltcVolume;
+		 * document.getElementById("bannerBtcLast").innerHTML=btcLast;
+		 * document.getElementById("bannerLtcLast").innerHTML=ltcLast;
+		 * document.getElementById("bannerBtcVol").innerHTML=btcVol;
+		 * document.getElementById("bannerLtcVol").innerHTML=ltcVol; //更新首页大图成交量
+		 * if(document.getElementById("indexVol")!=null){
+		 * document.getElementById("indexVol").innerHTML=btcVol; }
+		 * if(document.getElementById("indexLtcVol")!=null){
+		 * document.getElementById("indexLtcVol").innerHTML=ltcVol; }
+		 * //更新行情页最新价格 if(document.getElementById("marketLast")!=null){ var last =
+		 * ticker.last+""; document.getElementById("marketLast").innerHTML=last;
+		 * document.getElementById("marketBuy").innerHTML=ticker.buy;
+		 * document.getElementById("marketSell").innerHTML=ticker.sell;
+		 * document.getElementById("marketHigh").innerHTML=ticker.high;
+		 * document.getElementById("marketLow").innerHTML=ticker.low;
+		 * document.getElementById("marketVol").innerHTML=ticker.vol; //取整数和小数
+		 * var firstPrice = last; var secondPrice = ".00"; var lastPrice =
+		 * last.split("."); if(lastPrice!=null && lastPrice.length==2){
+		 * firstPrice = lastPrice[0]; secondPrice = "."+lastPrice[1]; }
+		 * document.getElementById("marketLastInteger").innerHTML="最新价格：<font
+		 * class='red'>￥"+firstPrice+"</font>";
+		 * document.getElementById("marketLastPoint").innerHTML=secondPrice; } } }
+		 * });
+		 */
 	}
 	/**
 	 * 刷新买一卖五
@@ -1563,6 +1736,7 @@ function checkPassword(){
 	}
 	/**
 	 * 发送验证码
+	 * 
 	 * @param type
 	 */
 	var secs = 121;
@@ -1746,7 +1920,7 @@ function showPhoneNotOpen(){
 }
 
 function callbackEnter(callfun){
-	document.onkeydown=function(event){//回车
+	document.onkeydown=function(event){// 回车
     	var e = event || window.event || arguments.callee.caller.arguments[0];
         if(e && e.keyCode==13){  
         	return callfun();
@@ -1755,7 +1929,7 @@ function callbackEnter(callfun){
 }
 /**
  * new
- * */
+ */
 function handleChart(){
 	if(-1!=window.navigator.userAgent.indexOf('MSIE 6.0') || -1!=window.navigator.userAgent.indexOf('MSIE 7.0') ||-1!=window.navigator.userAgent.indexOf('MSIE 8.0')) {
 		if(document.getElementById("handleChart").style.display=="none"){
@@ -1780,15 +1954,15 @@ function handleChart(){
 	}
 }
 function showKLineType(type){
-	if(type==1){//5分钟
+	if(type==1){// 5分钟
 		document.getElementById("minuteTitle").className ="cur";
 		document.getElementById("dayTitle").className ="";
 		document.getElementById("weekTitle").className ="";
-	}else if(type==3){//日
+	}else if(type==3){// 日
 		document.getElementById("minuteTitle").className ="";
 		document.getElementById("dayTitle").className ="cur";
 		document.getElementById("weekTitle").className ="";
-	}else if(type==4){//周
+	}else if(type==4){// 周
 		document.getElementById("minuteTitle").className ="";
 		document.getElementById("dayTitle").className ="";
 		document.getElementById("weekTitle").className ="cur";
@@ -1861,54 +2035,42 @@ function loginIndexSubmit(){
 			document.getElementById("indexLoginTips").innerHTML="用户未激活,请登录邮箱进行激活!";
 		}
 		/**
-			var result = eval('(' + data + ')');
-			if(result!=null){
-				if(result.resultCode == 0){
-					if(document.getElementById("forwardUrl")!=null && document.getElementById("forwardUrl").value != ""){
-						var forward = document.getElementById("forwardUrl").value;
-						forward = decodeURI(forward);
-						window.location.href=forward;
-					}else{
-						var whref = document.location.href;
-						if(whref.indexOf("#") != -1){
-							whref = whref.substring(0,whref.indexOf("#"));
-						}
-						if(whref.length < 30){
-							whref = document.getElementById("coinMainUrl").value+"/btc.jsp";
-						}
-						window.location.href=whref;
-					}
-				}else if(result.resultCode == -1){
-					document.getElementById("indexLoginTips").style.display="block";
-					document.getElementById("indexLoginTips").innerHTML="";
-					document.getElementById("indexLoginTips").innerHTML="用户名或密码错误";
-				}else if(result.resultCode == -2){
-					document.getElementById("indexLoginTips").style.display="block";
-					document.getElementById("indexLoginTips").innerHTML="";
-					document.getElementById("indexLoginTips").innerHTML="此ip登录频繁，请2小时后再试";
-				}else if(result.resultCode == -3){
-					document.getElementById("indexLoginTips").style.display="block";
-					document.getElementById("indexLoginTips").innerHTML="";
-					if(result.errorNum == 0){
-						document.getElementById("indexLoginTips").innerHTML="此ip登录频繁，请2小时后再试";
-					}else{
-						document.getElementById("indexLoginTips").innerHTML="用户名或密码错误，您还有"+result.errorNum+"次机会";
-					}
-					document.getElementById("indexLoginPwd").value="";
-				}else if(result.resultCode == -4){
-					document.getElementById("indexLoginTips").style.display="block";
-					document.getElementById("indexLoginTips").innerHTML="";
-					document.getElementById("indexLoginTips").innerHTML="请设置启用COOKIE功能";
-				}else if(result.resultCode == 1){
-					window.location.href = document.getElementById("coinMainUrl").value;
-				}else if(result.resultCode == 2){
-					document.getElementById("indexLoginTips").style.display="block";
-					document.getElementById("indexLoginTips").innerHTML="";
-					document.getElementById("indexLoginTips").innerHTML="账户出现安全隐患被冻结，请尽快联系客服。";
-				}
-			 
-			}
-			*/
+		 * var result = eval('(' + data + ')'); if(result!=null){
+		 * if(result.resultCode == 0){
+		 * if(document.getElementById("forwardUrl")!=null &&
+		 * document.getElementById("forwardUrl").value != ""){ var forward =
+		 * document.getElementById("forwardUrl").value; forward =
+		 * decodeURI(forward); window.location.href=forward; }else{ var whref =
+		 * document.location.href; if(whref.indexOf("#") != -1){ whref =
+		 * whref.substring(0,whref.indexOf("#")); } if(whref.length < 30){ whref =
+		 * document.getElementById("coinMainUrl").value+"/btc.jsp"; }
+		 * window.location.href=whref; } }else if(result.resultCode == -1){
+		 * document.getElementById("indexLoginTips").style.display="block";
+		 * document.getElementById("indexLoginTips").innerHTML="";
+		 * document.getElementById("indexLoginTips").innerHTML="用户名或密码错误"; }else
+		 * if(result.resultCode == -2){
+		 * document.getElementById("indexLoginTips").style.display="block";
+		 * document.getElementById("indexLoginTips").innerHTML="";
+		 * document.getElementById("indexLoginTips").innerHTML="此ip登录频繁，请2小时后再试";
+		 * }else if(result.resultCode == -3){
+		 * document.getElementById("indexLoginTips").style.display="block";
+		 * document.getElementById("indexLoginTips").innerHTML="";
+		 * if(result.errorNum == 0){
+		 * document.getElementById("indexLoginTips").innerHTML="此ip登录频繁，请2小时后再试";
+		 * }else{
+		 * document.getElementById("indexLoginTips").innerHTML="用户名或密码错误，您还有"+result.errorNum+"次机会"; }
+		 * document.getElementById("indexLoginPwd").value=""; }else
+		 * if(result.resultCode == -4){
+		 * document.getElementById("indexLoginTips").style.display="block";
+		 * document.getElementById("indexLoginTips").innerHTML="";
+		 * document.getElementById("indexLoginTips").innerHTML="请设置启用COOKIE功能";
+		 * }else if(result.resultCode == 1){ window.location.href =
+		 * document.getElementById("coinMainUrl").value; }else
+		 * if(result.resultCode == 2){
+		 * document.getElementById("indexLoginTips").style.display="block";
+		 * document.getElementById("indexLoginTips").innerHTML="";
+		 * document.getElementById("indexLoginTips").innerHTML="账户出现安全隐患被冻结，请尽快联系客服。"; } }
+		 */
 	});	
 }
 function indexDepthDiv(type){
@@ -1998,7 +2160,7 @@ function showBackRight(){
 	document.getElementById('okRight').style.display="none";
 	document.getElementById('okLeft').style.display="block";
 }
-//顶部k线  根据k线版本切换时使用
+// 顶部k线 根据k线版本切换时使用
 function changeSymbol(type){
 	if(type=="1"){
 		document.getElementById("okcoinTitle").className ="cur";
@@ -2110,7 +2272,7 @@ function changeBtn(id,isInter){
 function hiddenTitle(id){
 	document.getElementById(id+"Title").style.display="none";
 }
-//过滤输入的数字
+// 过滤输入的数字
 function checkNumberByName(name){
 	var number = document.getElementById(name).value.split('.');
 	if(number.length > 1){
@@ -2127,20 +2289,21 @@ function checkNumberByObj(obj,lenth){
 		return number[0].replace(/\D/g,'');
 	}
 }
-//获得光标位置
+// 获得光标位置
 function getPositionForInput(ctrl){ 
 	var CaretPos = 0; 
-	if (document.selection) { // IE Support 
+	if (document.selection) { // IE Support
 	ctrl.focus(); 
 	var Sel = document.selection.createRange(); 
 	Sel.moveStart('character', -ctrl.value.length); 
 	CaretPos = Sel.text.length; 
-	}else if(ctrl.selectionStart || ctrl.selectionStart == '0'){// Firefox support 
+	}else if(ctrl.selectionStart || ctrl.selectionStart == '0'){// Firefox
+																// support
 	CaretPos = ctrl.selectionStart; 
 	} 
 	return (CaretPos); 
 } 
-//设置光标位置
+// 设置光标位置
 function setCursorPosition(ctrl, pos){ 
 	if(ctrl.setSelectionRange){ 
 	ctrl.focus(); 
@@ -2154,7 +2317,7 @@ function setCursorPosition(ctrl, pos){
 	range.select(); 
 	} 
 } 
-//加法
+// 加法
 function accAdd(arg1,arg2){
     var r1,r2,m;
     try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
@@ -2162,14 +2325,14 @@ function accAdd(arg1,arg2){
     m=Math.pow(10,Math.max(r1,r2));
     return (arg1*m+arg2*m)/m;
 }
-//乘法
+// 乘法
 function accMul(arg1,arg2) { 
 	var m=0,s1=arg1.toString(),s2=arg2.toString(); 
 	try{m+=s1.split(".")[1].length;}catch(e){} 
 	try{m+=s2.split(".")[1].length;}catch(e){} 
 	return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);
 }
-//除法
+// 除法
 function accDiv(arg1,arg2){  
     var t1=0,t2=0,r1,r2;  
     try{t1=arg1.toString().split(".")[1].length;}catch(e){}  
@@ -2194,7 +2357,7 @@ function getNumberByDecimalPrecision(precision) {
 			value = accMul(value , 0.1);
 		}
 	}
-	//value = value.setScale(DEFAULT_SCALE,BigDecimal.ROUND_HALF_UP);
+	// value = value.setScale(DEFAULT_SCALE,BigDecimal.ROUND_HALF_UP);
 	return value;
 }
 
@@ -2210,7 +2373,7 @@ function isExceedPrecision(number, precision) {
 }
 
 
-//兼容ctrlA组合键和tab键
+// 兼容ctrlA组合键和tab键
 function ctrlAorTab(event){
 	if(event !=null && (event.keyCode==9 || event.keyCode==17)){
 		return true;
@@ -2261,7 +2424,7 @@ function loadArea(){
 		}
 	});
 }
-//查询用户的财产
+// 查询用户的财产
 function queryUserProfile(){
 	var url="/api/user/getProfile?random="+Math.round(Math.random()*100);
 	$.get(url,function(res){
@@ -2283,8 +2446,14 @@ function queryUserProfile(){
 		}
 	});
 }
-
+/**
+ * 不包含银行行号提交的方法
+ */
 function bindCardSubmit(){
+	if(!$(".icheckbox_square").hasClass("checked")){
+		swal("错误", "请同意用户协议", "error");
+		return;
+	}
 	var bank_account_o=$("#bank_account_o").val();
 	if(trim(bank_account_o).length<16){
 		swal("错误", "请确认填入正确的卡号", "error");
@@ -2295,11 +2464,11 @@ function bindCardSubmit(){
 		swal("错误", "请选择银行", "error");
 		return;
 	}
-	var bank_deposit_o=$("#bank_deposit_o").val();
+	/*var bank_deposit_o=$("#bank_deposit_o").val();
 	if(bank_deposit_o==""||bank_deposit_o==null){
 		swal("错误", "请填写开户行", "error");
 		return;
-	}
+	}*/
 	var name=$("#name").val();
 	var identity_type=$("#identity_type").val();
 	if(identity_type==0){
@@ -2307,15 +2476,17 @@ function bindCardSubmit(){
 		return;
 	}
 	var identity_no=$("#identity_no").val();
-	if(!IdentityCodeValid(identity_no)) return;
-	
+	if(identity_no.length<15){
+		swal("错误", "请输入有效的身份证号", "error");
+		return;
+	}
 	var phone_o=$("#phone_o").val();
 	if(!checkMobile(phone_o)){
 		swal("错误", "请输入正确的手机号", "error");
 		return;
 	}
 	var url="/api/bind/addCard?random="+Math.round(Math.random()*100);
-	var params={bank_account_o:bank_account_o,bank_o:bank_o,bank_deposit_o:bank_deposit_o,name:name,identity_type:identity_type,identity_no:identity_no,phone_o:phone_o};
+	var params={bank_account_o:bank_account_o,bank_o:bank_o,name:name,identity_type:identity_type,identity_no:identity_no,phone_o:phone_o};
 	$.post(url,params,function(res){
 		if(res){
 			if(res.ret==0){
@@ -2330,10 +2501,86 @@ function bindCardSubmit(){
 	                     window.location.href="/user_card_list.jsp";
 	                });
 				return;
+			}else if(res.ret==802){
+				swal("错误", "银行信息不存在", "error");
+				return;
 			}
 		}
 	});
 }
+/**
+ * 包含开户行行号的银行卡绑定
+ */
+function bindCardFullSubmit(){
+	if(!$(".icheckbox_square").hasClass("checked")){
+		swal("错误", "请同意用户协议", "error");
+		return;
+	}
+	var bank_account_o=$("#bank_account_o").val();
+	if(trim(bank_account_o).length<16){
+		swal("错误", "请确认填入正确的卡号", "error");
+		return;
+	}
+	var bank_o=$("#bank_o").val();
+	if(bank_o=="0"){
+		swal("错误", "请选择银行", "error");
+		return;
+	}
+	/*var bank_deposit_o=$("#bank_deposit_o").val();
+	if(bank_deposit_o==""||bank_deposit_o==null){
+		swal("错误", "请填写开户行", "error");
+		return;
+	}*/
+	var name=$("#name").val();
+	var identity_type=$("#identity_type").val();
+	if(identity_type==0){
+		swal("错误", "请选择有效证件", "error");
+		return;
+	}
+	var identity_no=$("#identity_no").val();
+	if(identity_no.length<15){
+		swal("错误", "请输入有效的身份证号", "error");
+		return;
+	}
+	
+	var phone_o=$("#phone_o").val();
+	if(!checkMobile(phone_o)){
+		swal("错误", "请输入正确的手机号", "error");
+		return;
+	}
+	/*document.getElementById("withdrawAccountAddr_bankNumber").value=document.getElementById("withdrawAccountAddr_bankNumber").value.replace(/\D/g,'');
+	
+	var bank_number_o=$("#withdrawAccountAddr_bankNumber").val();
+	if(bank_number_o==""||bank_number_o==null||bank_number_o.length!=12){
+		swal("错误", "请填写正确的开户行行号", "error");
+		return;
+	}*/
+	var url="/api/bind/addCard?random="+Math.round(Math.random()*100);
+	var params={bank_account_o:bank_account_o,bank_o:bank_o,name:name,identity_type:identity_type,identity_no:identity_no,phone_o:phone_o};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				swal({
+	                title: "操作成功",  
+	                text: "添加成功",  
+	                type: "success",  
+	                showCancelButton: false,  
+	                confirmButtonColor: "#A7D5EA",  
+	                confirmButtonText: "确认" },
+	                function(){  
+	                     window.location.href="/shop_card_list.jsp";
+	                });
+				return;
+			}else if(res.ret==802){
+				swal("错误", "银行信息不存在", "error");
+				return;
+			}
+		}
+	});
+}
+/**
+ * 不带开户行行号的表单修改提交
+ */
 function bindCardUpdateSubmit(){
 	var bid=$("#bid").val();
 	var bank_account_o=$("#bank_account_o").val();
@@ -2376,7 +2623,61 @@ function bindCardUpdateSubmit(){
 		}
 	});
 }
-function cardDelete(){
+/**
+ * 带开户行行号的表单提交(商户提交绑定卡，涉及到民生银行分账，所以需要提交行号)
+ */
+function bindCardFullUpdateSubmit(){
+	var bid=$("#bid").val();
+	var bank_account_o=$("#bank_account_o").val();
+	if(trim(bank_account_o).length<16){
+		swal("错误", "请确认填入正确的卡号", "error");
+		return;
+	}
+	var bank_o=$("#bank_o").val();
+	if(bank_o=="0"){
+		swal("错误", "请选择银行", "error");
+		return;
+	}
+	var bank_deposit_o=$("#bank_deposit_o").val();
+	if(bank_deposit_o==""||bank_deposit_o==null){
+		swal("错误", "请填写开户行", "error");
+		return;
+	}
+	var phone_o=$("#phone_o").val();
+	if(!checkMobile(phone_o)){
+		swal("错误", "请输入正确的手机号", "error");
+		return;
+	}
+	
+	document.getElementById("withdrawAccountAddr_bankNumber").value=document.getElementById("withdrawAccountAddr_bankNumber").value.replace(/\D/g,'');
+	
+	var bank_number_o=$("#withdrawAccountAddr_bankNumber").val();
+	if(bank_number_o==""||bank_number_o==null||bank_number_o.length!=12){
+		swal("错误", "请填写正确的开户行行号", "error");
+		return;
+	}
+	
+	var url="/api/bind/modifyCard?random="+Math.round(Math.random()*100);
+	var params={bank_account_o:bank_account_o,bank_o:bank_o,bank_deposit_o:bank_deposit_o,phone_o:phone_o,bid:bid,bank_number_o:bank_number_o};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				swal({
+					title: "操作成功",  
+					text: "添加成功",  
+					type: "success",  
+					showCancelButton: false,  
+					confirmButtonColor: "#A7D5EA",  
+					confirmButtonText: "确认" },
+					function(){  
+						window.location.href="/shop_card_list.jsp";
+					});
+				return;
+			}
+		}
+	});
+}
+function cardDelete(role){
 	if(!confirm("真的删除?")){return}
 	var uid=$("#uid").val();
 	var bid=$("#bid").val();
@@ -2393,7 +2694,11 @@ function cardDelete(){
                     confirmButtonColor: "#A7D5EA",  
                     confirmButtonText: "确认" },
                     function(){  
-                         window.location.href="user_card_list.jsp";
+                    	if(role==1){
+                    		window.location.href="user_card_list.jsp";
+                    	}else if(role==2){
+                    		window.location.href="shop_card_list.jsp";
+                    	}
                     });
 			}
 		}
@@ -2414,13 +2719,13 @@ function IdentityCodeValid(code) {
         pass = false;
     }
     else{
-        //18位身份证需要验证最后一位校验位
+        // 18位身份证需要验证最后一位校验位
         if(code.length == 18){
             code = code.split('');
-            //∑(ai×Wi)(mod 11)
-            //加权因子
+            // ∑(ai×Wi)(mod 11)
+            // 加权因子
             var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
-            //校验位
+            // 校验位
             var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
             var sum = 0;
             var ai = 0;
@@ -2432,10 +2737,10 @@ function IdentityCodeValid(code) {
                 sum += ai * wi;
             }
             var last = parity[sum % 11];
-            if(parity[sum % 11] != code[17]){
+            /*if(parity[sum % 11] != code[17]){
                 tip = "校验位错误";
                 pass =false;
-            }
+            }*/
         }
     }
     if(!pass) swal("错误", tip, "error");
@@ -2443,4 +2748,125 @@ function IdentityCodeValid(code) {
 }
 function scanQR(){
 	$("#scanQRCode").click()
+}
+
+var wait=120;
+function time(o) {
+	if (wait == 0) {
+		o.removeAttribute("disabled");
+		o.innerHTML="发送验证码";
+		wait = 120;
+	} else {
+		o.setAttribute("disabled", true);
+		o.innerHTML=wait+"秒后重新发送";
+		wait--;
+		setTimeout(function(){time(o)},1000);
+	}
+}
+/**
+ * 
+ * @param self
+ * @param type
+ *            发送类别 1-注册（需先验证手机号是否已注册） 2-找回密码
+ */
+function sendMsg(self,type){
+	var regType=0;
+	var roleType=$("#roleType").val();
+	if(roleType==1){
+		var m=$("#regUserName").val();
+	}else{
+		var m=$("#mobile2").val();
+	}
+	if(type==1){
+		if(!checkMobile(m)){
+			swal("错误", "手机号格式不正确", "error");
+			return;
+		}
+		if(roleType==1){
+			var urlName = "/open/chcekregname?mobile=" + encodeURI(m) +"&type="+regType+"&random="+Math.round(Math.random()*100);
+			jQuery.get(urlName,null,function(data){
+				if(data.ret == 606){
+					if(regType == 0){
+						desc="您的手机号已存在，如果这是您自己的手机号，请联系客服";
+					}else{
+						desc="邮箱已存在";
+					}
+					swal("错误", desc, "error");
+					return ;
+				}else{
+					sendMsg4ValidateMobile(m);
+					time(self);
+				}
+			});
+		}else{
+			if(!mobile2Exist){
+				sendMsg4ValidateMobile(m);
+				time(self);
+			}else{
+				swal("错误", "手机号已存在", "error");
+				return;
+			}
+		}
+	}
+	// if type==找回密码
+	else if(type==2){
+		m=$("#regUserName").val();
+		if(m==null||m==""){
+			swal("错误", "请输入用户名", "error");
+			return;
+		}
+		sendMsg4ResetPass(m);
+		time(self);
+	}
+}
+/**
+ * 发送验证码
+ */
+function sendMsg4ValidateMobile(m){
+	var url="/open/sendMsg4ValidateMobile?random="+Math.round(Math.random()*100);
+	var params={m:m};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				var desc="发送成功";
+				swal("成功", desc, "success");
+				$("#vcode").val(res.data);
+				return;
+			}
+			if(res.ret==500){
+				var desc="请勿频繁发送，2分钟后再发";
+				swal("失败", desc, "error");
+				return;
+			}
+		}
+	});
+}
+function sendMsg4ResetPass(m){
+	var url="/open/resetPassword?random="+Math.round(Math.random()*100);
+	var params={userName:m};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				var desc="发送成功，请在输入框中输入验证码";
+				swal("成功", desc, "success");
+				$("#vcode").val(res.data);
+				return;
+			}
+			if(res.ret==609){
+				var desc="用户名不存在";
+				swal("失败", desc, "error");
+				return;
+			}
+			if(res.ret==621){
+				var desc="该账户没有绑定手机号";
+				swal("失败", desc, "error");
+				return;
+			}
+			if(res.ret==500){
+				var desc="请勿频繁发送，2分钟后再发";
+				swal("失败", desc, "error");
+				return;
+			}
+		}
+	});
 }

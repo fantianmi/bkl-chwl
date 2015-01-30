@@ -1,8 +1,11 @@
 package com.bkl.chwl.service.impl;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.client.ClientProtocolException;
 
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Bill;
@@ -16,6 +19,7 @@ import com.bkl.chwl.task.PayRecommendTask;
 import com.bkl.chwl.task.SystemTaskPool;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.DoubleUtil;
+import com.bkl.chwl.vo.WebApi;
 import com.km.common.config.Config;
 import com.km.common.dao.DaoFactory;
 import com.km.common.dao.GeneralDao;
@@ -176,6 +180,10 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 			Config.setRetCode(RetCode.ORDER_AMOUNT_LESS_THAN_LIMIT);
 			return 0;
 		}
+		if(cash.getAmount()>MainConfig.getCashMaxWithdrawAmount()){
+			Config.setRetCode(RetCode.ORDER_AMOUNT_MORE_THAN_LIMIT);
+			return 0;
+		}
 		if (DoubleUtil.exceedPrecision(cash.getAmount(), MainConfig.getCashAmountMinDecimalPrecision())) {
 			Config.setRetCode(RetCode.ORDER_AMOUNT_DECIMAL_PRECISION_EXCEED);
 			return 0;
@@ -210,10 +218,20 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 			Config.setRetCode(RetCode.ROMOTE_ERROR);
 		}
 		cash.setCtime(TimeUtil.getUnixTime());
-		cash.setStatus(Cash.STATUS_UNCONFIRM);
+		cash.setStatus(Cash.STATUS_CONFIRM);
 		cash.setType(Cash.TYPE_RMB_WITHDRAW);
 //		userDao.save(user);
 		long ret = cashDao.save(cash);
+		cash.setId((int)ret);
+		try {
+			WebApi.payOrder(cash.getUser_id(),cash.getId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+		} catch (ClientProtocolException e) {
+			cash.setStatus(Cash.STATUS_UNCONFIRM);
+			cashDao.save(cash);
+		} catch (IOException e) {
+			cash.setStatus(Cash.STATUS_UNCONFIRM);
+			cashDao.save(cash);
+		}
 //		systemBillServ.saveWithdraw(cash, user);
 //		userDao.unLockTable();
 //		userDao.commit();
@@ -247,7 +265,6 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 			GeneralDao<Cash> cashDao = DaoFactory.createGeneralDao(Cash.class,conn);
 //			SystemBillService systemBillServ = new SystemBillServiceImpl(conn);
 //			UserBillService userBillServ = new UserBillServiceImpl(conn);
-			
 			Cash cash = cashDao.find(withdrawId);
 			if (cash == null  || cash.getType() != Cash.TYPE_RMB_WITHDRAW) {
 				return RetCode.ORDER_NOTALLOW_ID_NULL;
@@ -258,6 +275,9 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 			if (cash.getStatus() == Cash.STATUS_CANCEL){
 				return RetCode.ORDER_CONFIRM_CANCEL;
 			}
+			User u=userDao.find(cash.getUser_id());
+			WebApi.payOrder(cash.getUser_id(),cash.getId(), 2, cash.getAmount(), cash.getCard(), u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			
 			userDao.beginTransaction();
 			userDao.lockTable(userDao.getTableName(User.class), userDao.getTableName(Cash.class), userDao.getTableName(Bill.class), userDao.getTableName(BillDetail.class));
 			

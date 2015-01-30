@@ -19,7 +19,6 @@
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="content nopadding" style="margin-top:6.1rem " id="content1">
 <div class="container">
 <span style="color:red;" id="addrMsgSpan">&nbsp;</span>

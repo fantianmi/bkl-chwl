@@ -36,6 +36,21 @@
 		    <scope>system</scope>  
 		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/dxw.jar</systemPath>  
 		</dependency>
+		<!-- union pay -->
+		<dependency>  
+		    <groupId>upacp_sdk</groupId>  
+		    <artifactId>upacp_sdk</artifactId>  
+		    <version>1.0.0</version>  
+		    <scope>system</scope>  
+		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/upacp_sdk-1.0.0.jar</systemPath>  
+		</dependency>
+		<!-- alibaba oss -->
+		<dependency>  
+		    <groupId>com.aliyun.oss</groupId>  
+		    <artifactId>aliyun-sdk-oss</artifactId>  
+		    <version>2.0.1</version>  
+		</dependency>
+		<!-- union pay end -->
 		<dependency>  
 		    <groupId>ezmorph</groupId>  
 		    <artifactId>ezmorph</artifactId>  

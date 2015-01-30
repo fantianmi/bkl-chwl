@@ -8,7 +8,6 @@
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="content nopadding" style="margin-top:4.5rem " id="content1">
 	<div class="container nomargin" style="background-color: #DC3C00;color:#fff;padding:2rem !important;margin-bottom: 0px !important;">
 	  <p><i class="iconfont">&#xe628;</i>金币(￥)<br><br><span class="bigFont" style="color: #fff">10,352.03</span></p>

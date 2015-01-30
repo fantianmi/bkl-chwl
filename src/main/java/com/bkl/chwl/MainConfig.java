@@ -11,6 +11,7 @@ public class MainConfig {
 	private static double recommendedPaidAmout;
 	private static double cashMinRechargeAmount;
 	private static double cashMinWithdrawAmount;
+	private static double cashMaxWithdrawAmount;
 	private static double recommendedPaidUserLimit;
 	private static double recommendedPaidTotalLimit;
 	private static String frontSimpleName;
@@ -25,6 +26,14 @@ public class MainConfig {
 	private static String wechatappid;
 	private static String wechatappsecret;
 	private static String wechaturl;
+	
+	private static String sendmsgUsr;
+	private static String sendmsgPwd;
+	
+	private static String unionpayMerid;
+	private static int needpayOrder;
+	
+	private static String ossBaseurl;
 	
 	static {
 		try {
@@ -51,6 +60,7 @@ public class MainConfig {
 		recommendedPaidTotalLimit = Config.getDouble("coin.recommended.paid.total.amount.limit");
 		
 		cashMinWithdrawAmount = Config.getDouble("cash.minimum.withdraw.amount");
+		cashMaxWithdrawAmount = Config.getDouble("cash.maximum.withdraw.amount");
 		cashAmountMinDecimalPrecision = Config.getInt("cash.amount.decimal.precision.number");
 		version = Config.getString("config.system.version");
 		dxwServerURL=Config.getString("dxw.serverUrl");
@@ -61,9 +71,16 @@ public class MainConfig {
 		wechaturl=Config.getString("wechat.url");
 		wechatappid=Config.getString("wechat.appid");
 		wechatappsecret=Config.getString("wechat.appsecret");
+		
+		sendmsgUsr=Config.getString("sendMsg.usr");
+		sendmsgPwd=Config.getString("sendMsg.pwd");
+		unionpayMerid=Config.getString("unionpay.merid");
+		needpayOrder=Config.getInt("need.payorder");
+		ossBaseurl=Config.getString("oss.baseurl");
+		
 	}
 	
-	public static String getFrontSimpleName() {
+	public static String getFrontSimpleName(){
 		return frontSimpleName;
 	}
 	
@@ -73,7 +90,6 @@ public class MainConfig {
 	public static boolean enableEmailActive() {
 		return enableEmailActive;
 	}
-	
 	public static double getCashMinRechargeAmount() {
 		return cashMinRechargeAmount;
 	}
@@ -82,6 +98,9 @@ public class MainConfig {
 	}
 	public static double getCashMinWithdrawAmount() {
 		return cashMinWithdrawAmount;
+	}
+	public static double getCashMaxWithdrawAmount() {
+		return cashMaxWithdrawAmount;
 	}
 	public static double getRecommendedPaidUserLimit() {
 		return recommendedPaidUserLimit;
@@ -113,4 +132,20 @@ public class MainConfig {
 	public static String getWechatappsecret() {
 		return wechatappsecret;
 	}
+	public static String getSendmsgPwd(){
+		return sendmsgPwd;
+	}
+	public static String getSendmsgUsr(){
+		return sendmsgUsr;
+	}
+	public static String getUnionpayMerid(){
+		return unionpayMerid;
+	}
+	public static int getNeedpayOrder(){
+		return needpayOrder;
+	}
+	public static String getOssBaseurl(){
+		return ossBaseurl;
+	}
+	
 }

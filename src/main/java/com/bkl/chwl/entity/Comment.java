@@ -1,5 +1,7 @@
 package com.bkl.chwl.entity;
 
+import org.junit.Test;
+
 import com.km.common.dao.TableAonn;
 
 @TableAonn(tableName="comment")

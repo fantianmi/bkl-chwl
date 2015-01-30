@@ -268,11 +268,12 @@ function submitWithdrawCnyForm(){
 	var withdrawBalance = trim(document.getElementById("withdrawBalance").value);
 	var cnyOutType = parseFloat(document.getElementById("cnyOutType").value);
 	var min_withdraw_amount = document.getElementById("min_withdraw_amount").value;
+	var max_withdraw_amount = document.getElementById("max_withdraw_amount").value;
 	var cash_amount_decimal_precision = document.getElementById("cash_amount_decimal_precision").value;
 	cash_amount_unit = getNumberByDecimalPrecision(cash_amount_decimal_precision);
 	var  totpCode = 0;
 	var  phoneCode = 0;
-	if(document.getElementById("userBalance")!=null && document.getElementById("userBalance").value==0){
+	if(document.getElementById("coin_left")!=null && document.getElementById("coin_left").value==0){
 		swal("错误", "您的余额不足！", "error");
 		return;
 	}
@@ -281,9 +282,20 @@ function submitWithdrawCnyForm(){
     	swal("错误", "请输入提现金额", "error");
 		return;
     }
-    
+    if(withdrawBalance>document.getElementById("coin_left").value){
+    	swal("错误", "余额不足", "error");
+		return;
+    }
+    if(withdrawBalance<0){
+    	swal("错误", "请输入大于0的数字", "error");
+    	return;
+    }
 	if(withdrawBalance - min_withdraw_amount < 0){
 		swal("错误", " 最小提现金额为：￥" + min_withdraw_amount, "error");
+		return;
+	}
+	if(max_withdraw_amount-withdrawBalance< 0){
+		swal("错误", " 最大提现金额为：￥" + max_withdraw_amount, "error");
 		return;
 	}
 	

@@ -59,14 +59,6 @@ public class CashServlet extends CommonServlet {
 	 */
 	public void saveWithdraw(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-//		if (!UserUtil.isExistSecretPassword(request)) {
-//			ServletUtil.writeCommonReply(null,RetCode.USER_TRADE_PASSWORD_NOT_SET, response);
-//			return;
-//		}
-//		if (!UserUtil.checkSecretPassword(request)) {
-//			ServletUtil.writeCommonReply(null,RetCode.USER_SECRET_ERROR, response);
-//			return;
-//		}
 		User user = UserUtil.getCurrentUser(request);
 		Cash withdraw = ServletUtil.readObjectServletQuery(request,Cash.class);
 		
@@ -82,11 +74,12 @@ public class CashServlet extends CommonServlet {
 			withdraw.setCard(card.getBank_account_o());
 		}
 		if (StringUtils.isBlank(withdraw.getBank_number())) {
-			withdraw.setBank_number(card.getBank_deposit_o());
+			withdraw.setBank_number(card.getBank_number_o());
 		}
 		if (StringUtils.isBlank(withdraw.getMobile())) {
 			withdraw.setMobile(card.getPhone_o());
 		}
+		withdraw.setOrderId(TimeUtil.getNowDateTime4NotSplit());
 		CashService cashSer = new CashServiceImpl();
 		withdraw.setUser_id(user.getId());
 		long retid = cashSer.saveWithdraw(withdraw);

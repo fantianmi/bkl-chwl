@@ -56,7 +56,7 @@ public class RootFilter implements Filter {
 			res.sendRedirect("/login.jsp?forward=" + URLEncoder.encode(forwardurl));
 			return;
 		}
-		String usernameSplit[]=username.split("r");
+		String usernameSplit[]=username.split("\\*");
 		int role=Integer.parseInt(usernameSplit[1]);
 		if(isUserFilter&&role==User.ROLE_SHOPER){
 			res.sendRedirect("/shop_index.jsp");

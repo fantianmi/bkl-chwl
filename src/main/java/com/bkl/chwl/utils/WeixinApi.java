@@ -12,7 +12,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.mortbay.log.Log;
 
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Weixin;
@@ -21,6 +20,11 @@ import com.bkl.chwl.service.impl.WeixinServiceImpl;
 import com.km.common.utils.TimeUtil;
 
 public class WeixinApi {
+	/**
+	 * 获取accessToken
+	 * @return
+	 * @throws Exception
+	 */
 	public static Weixin getAccess_token() throws Exception{
 		HttpClient httpClient = new DefaultHttpClient();
 		String uri="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+MainConfig.getWechatappid()+"&secret="+MainConfig.getWechatappsecret();
@@ -60,7 +64,11 @@ public class WeixinApi {
 			
 		}
 	}
-	
+	/**
+	 * 获取Ticket
+	 * @return
+	 * @throws Exception
+	 */
 	public static Weixin getTicket() throws Exception{
 		long now=TimeUtil.getUnixTime();
 		WeixinService weixinServ=new WeixinServiceImpl();
@@ -105,6 +113,10 @@ public class WeixinApi {
 		return weixinDB;
 	}
 	
+	/**
+	 * 获取Ticket以及access_token
+	 * @return
+	 */
 	public static Weixin getWeixin(){
 		WeixinService weixinServ=new WeixinServiceImpl();
 		Weixin weixinTemp=weixinServ.getWeixin();

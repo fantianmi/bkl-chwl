@@ -15,6 +15,8 @@ public class UserBindCard {
 	private String bank_account_o;
 	//开户行
 	private String bank_deposit_o;
+	//开户行行号（民生银行清算系统需要）
+	private String bank_number_o;
 	//银行预留手机
 	private String phone_o;
 	//默认卡
@@ -66,6 +68,12 @@ public class UserBindCard {
 	}
 	public void setIsdefault(int isdefault) {
 		this.isdefault = isdefault;
+	}
+	public String getBank_number_o() {
+		return bank_number_o;
+	}
+	public void setBank_number_o(String bank_number_o) {
+		this.bank_number_o = bank_number_o;
 	}
 	
 }

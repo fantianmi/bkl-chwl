@@ -13,7 +13,7 @@
 <%
 	UserService userSrv = new UserServiceImpl();
 	Page p =  ServletUtil.getPage(request);
-	PageReply<User> users = userSrv.findUser(0,ServletUtil.getSearchMap(request), p);
+	PageReply<User> users = userSrv.findUser(1,ServletUtil.getSearchMap(request), p);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -78,7 +78,7 @@
 										User u = users.getPagedatas()[i];
 								%>
 								<tr>
-									<td><%=i+1 %></td>
+									<td><%=u.getId()%></td>
 									<td>
 										<% if (StringUtils.isEmpty(u.getName())) { %> 
 											- 

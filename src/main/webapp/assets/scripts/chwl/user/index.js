@@ -21,11 +21,18 @@ function resetPassword(){
 	var validateCodeType = 0;
 	var  phoneCode = 0;
 	var totpCode = 0;
-	
+	var oldPassword=$("#oldPassword").val();
 	var newPassword = document.getElementById("newPassword").value;
 	var newPassword2 = document.getElementById("newPassword2").value;
 	var userId = document.getElementById("userId").value;
-	var msg = isPassword(newPassword);
+	var msg = isPassword(oldPassword);
+	if(msg != ""){
+		document.getElementById("msg0").innerHTML=msg;
+		return ;
+	}else{
+		document.getElementById("msg0").innerHTML="";
+	}
+	msg = isPassword(newPassword);
 	if(msg != ""){
 		document.getElementById("msg1").innerHTML=msg;
 		return ;
@@ -39,8 +46,8 @@ function resetPassword(){
 	}else{
 		document.getElementById("msg2").innerHTML="";
 	}
-	var url = "/open/doResetPassword?random="+Math.round(Math.random()*100);
-	var param={newPassword:newPassword,newPassword2:newPassword2,userId:userId};
+	var url = "/api/user/modifyPwd?random="+Math.round(Math.random()*100);
+	var param={originPwd:oldPassword,newPwd:newPassword,newPassword2:newPassword2,uid:userId};
 	jQuery.post(url,param,function(result){
 		if(result.ret == 0){
 			swal({
@@ -53,8 +60,6 @@ function resetPassword(){
                 function(){  
                      window.location.href="/user_detail.jsp";
                 });
-		} else if(result.ret == 903){
-			document.getElementById("msg1").innerHTML="密码格式不合法";
 		} else if(result.ret == 904){
 			document.getElementById("msg2").innerHTML="两次密码输入不一致";
 			document.getElementById("newPassword2").value = "";
@@ -62,7 +67,15 @@ function resetPassword(){
 			document.getElementById("msg1").innerHTML="登录密码不允许与交易密码一致";
 			document.getElementById("newPassword").value = "";
 			document.getElementById("newPassword2").value = "";
-		} 
+		} else if(result.ret == 611){
+			document.getElementById("msg0").innerHTML="密码没有设置";
+		}else if(result.ret == 901){
+			document.getElementById("msg0").innerHTML="原密码没有输入";
+		}else if(result.ret == 902){
+			document.getElementById("msg0").innerHTML="原密码输入错误";
+		}else if(result.ret == 903){
+			document.getElementById("msg0").innerHTML="新密码需不小于6位";
+		}
 	});
 }
 

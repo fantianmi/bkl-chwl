@@ -10,17 +10,18 @@
 <div class="content nopadding" style="margin-top:4.5rem " id="content1">
 <div class="container nomargin" style="background-color: #DC3C00;color:#fff;padding:2rem !important;margin-bottom: 0px !important;">
   <p><i class="iconfont">&#xe628;</i>金币(￥)<br><br><span class="bigFont" style="color: #fff" id="coin_left"></span></p>
+  <div class="coin_right_pic"><img src="assets/images/Mascot.png"/></div>
 </div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">普通粉丝（<span id="ruser_num"></span>）</div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #52BCEE">&#xf00d8;</i>&nbsp;普通粉丝（<span id="ruser_num"></span>）</div>
 </div>
 
 <div class="space"></div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">商家粉丝（<span id="rshoper_num"></span>）</div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #52BCEE">&#xf00d8;</i>&nbsp;商家粉丝（<span id="rshoper_num"></span>）</div>
 </div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">总盈利:<span id="shoperProfileTotal"></span>元</div>
+<div class="detail" style="padding-left: 1rem;width:100% !important;"><i class="iconfont menuicon" style="color: #00AE69">&#xe662;</i>&nbsp;推荐商家的总结账额:<span id="shoperProfileTotal"></span>元</div>
 </div>
 <div class="container nomargin" style="color:#666;padding:2rem;margin-top: 0px !important;">
 <!-- order list -->

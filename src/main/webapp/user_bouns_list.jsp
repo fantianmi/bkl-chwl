@@ -10,9 +10,9 @@
 <div class="content nopadding" style="margin-top:5.5rem " id="content1">
 <div class="container nomargin nopadding">
 <ul class="menu-list">
-<li><button id="sbounsBtn" onclick="showbounsList(this,0)" class="bounsBtn btn btn-default active" onclick="javascript:location.href='user_bouns_list.jsp?b=small'" style="border-bottom-left-radius:8px !important;border-top-left-radius:8px !important;">快乐钱袋</button></li>
-<li><button id="mbounsBtn" onclick="showbounsList(this,1)" class="bounsBtn btn btn-default" onclick="javascript:location.href='user_bouns_list.jsp?b=middle'">健康钱袋</button></li>
-<li><button id="bbounsBtn" onclick="showbounsList(this,2)" class="bounsBtn btn btn-default" onclick="javascript:location.href='user_bouns_list.jsp?b=big'" style="border-bottom-right-radius:8px !important;border-top-right-radius:8px !important;">幸福钱袋</button></li>
+<li onclick="showbounsList(this,0)" class="bounsBtn active"><img src="assets/images/Happy bags.png"></li>
+<li onclick="showbounsList(this,1)" class="bounsBtn"><img src="assets/images/Health bag.png"></li>
+<li onclick="showbounsList(this,2)"class="bounsBtn"><img src="assets/images/Happy bags1.png"></li>
 </ul>
 </div>
 <div class="container nomargin" style="color:#666;padding:2rem;margin-top: 0px !important;">
@@ -39,6 +39,7 @@
 document.getElementById("head_title").innerHTML="点头钱袋";
 $("document").ready(function(){
 	 loadBounsData();
+	 $(self).addClass("active");
 });
 function loadBounsData(){
 	var bounsURL="/bouns/getBounsListHTML?random="+Math.round(Math.random()*100);

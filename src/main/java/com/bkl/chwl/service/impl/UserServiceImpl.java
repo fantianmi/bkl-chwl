@@ -56,6 +56,18 @@ public class UserServiceImpl implements UserService {
 		return dao.find(new Condition[]{mobileCon}, null);
 	}
 	
+	public User findByLicence(String licenceNumber){
+		Condition licenceNumberCon = DbUtil.generalEqualWhere("licenceNumber", licenceNumber);
+		return dao.find(new Condition[]{licenceNumberCon}, null);
+	}
+	
+	public User findByMobile2(String mobile2){
+		Condition mobile2Con = DbUtil.generalEqualWhere("mobile2", mobile2);
+		Condition roleCon = DbUtil.generalEqualWhere("role", User.ROLE_SHOPER);
+		return dao.find(new Condition[]{roleCon,mobile2Con}, null);
+	}
+	
+	
 	@Override
 	public User findByBtcAddr(String btcAddr) {
 		return dao.find("btc_in_addr", btcAddr);
@@ -88,6 +100,16 @@ public class UserServiceImpl implements UserService {
 	
 	public boolean existMobile(String mobile){
 		User user = this.findByMobile(mobile);
+		return user!=null;
+	}
+	
+	public boolean existLicence(String licenceNumber) {
+		User user=this.findByLicence(licenceNumber);
+		return user!=null;
+	}
+	
+	public boolean existMobile2(String mobile) {
+		User user=this.findByMobile2(mobile);
 		return user!=null;
 	}
 	
@@ -147,6 +169,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return dao.queryIngeger(sql,null);
 	}
+
+
+	
 	
 
 

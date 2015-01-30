@@ -85,6 +85,15 @@ public class Cash {
 	private String bank_number;
 	
 	private String mobile;
+	
+	private String orderId;
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
 
 	public int getType() {
 		return type;
@@ -125,6 +134,14 @@ public class Cash {
 	public String getCtimeString() {
 		if (ctime != null) {
 			return TimeUtil.fromUnixTime(ctime);
+		} else {
+			return "";
+		}
+	}
+	
+	public String getCtimeDateString(){
+		if (ctime != null) {
+			return TimeUtil.fromUnixTimeToDate(ctime);
 		} else {
 			return "";
 		}

@@ -14,7 +14,13 @@ function addShopSubmit(){
 	var uid=$("#uid").val();
 	var price=$("#price").val();
 	var oprice=$("#oprice").val();
+	document.getElementById("coinRate").value=document.getElementById("coinRate").value.replace(/[^\0-9\.]/g,'');
 	var coinRate=$("#coinRate").val();
+	if(coinRate>50||coinRate<10){
+		swal("错误", "返利请输入10`50之间的数字", "error");
+		return;
+	}
+	coinRate=coinRate/100;
 	if(uid==0||uid==""||uid==null){
 		swal("非法操作", "请确认是否登录", "error");
 		window.location.href="login.jsp";

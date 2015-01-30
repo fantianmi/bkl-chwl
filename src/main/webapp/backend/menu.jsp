@@ -8,8 +8,8 @@ boolean type=false;
 boolean version=false;
 boolean shops=false;
 boolean users=false;
-boolean proxy_province=false;
 boolean proxy_city=false;
+boolean proxy_area=false;
 boolean rmb_withdraw=false;
 if (page_url.indexOf("/index.jsp") != -1) {
 	home = true;
@@ -23,8 +23,8 @@ if (page_url.indexOf("/index.jsp") != -1) {
 	shops=true;
 }else if(page_url.indexOf("/users.jsp")!=-1){
 	users=true;
-}else if(page_url.indexOf("/proxy_province.jsp")!=-1){
-	proxy_province=true;
+}else if(page_url.indexOf("/proxy_area.jsp")!=-1){
+	proxy_area=true;
 }else if(page_url.indexOf("/proxy_city.jsp")!=-1){
 	proxy_city=true;
 }else if(page_url.indexOf("/rmb_withdraw.jsp")!=-1){
@@ -42,21 +42,21 @@ if (page_url.indexOf("/index.jsp") != -1) {
 		<li class="<%=users?"active":""%>"><a href="users.jsp"><i class="icon-group"></i><span class="menu-text">用户管理</span></a></li>
 		<li class="<%=shops?"active":""%>"><a href="shops.jsp"><i class="icon-bar-chart"></i><span class="menu-text">商铺管理</span></a></li>
 		<li>
-		<a href="#" class="dropdown-toggle <%=proxy_province||proxy_city?"active":""%>">
+		<a href="#" class="dropdown-toggle <%=proxy_area||proxy_city?"active":""%>">
 			<i class=" icon-globe"></i>
 			<span class="menu-text">代理设置 </span>
 			<b class="arrow icon-angle-down"></b>
 		</a>
 			<ul class="submenu">
 				<li>
-					<a href="proxy_province.jsp">
+					<a href="proxy_city.jsp">
 						<i class="icon-cloud-upload"></i>
 						城市代理
 					</a>
 				</li>
 	
 				<li>
-					<a href="proxy_city.jsp">
+					<a href="proxy_area.jsp">
 						<i class="icon-cloud-upload"></i>
 						区域代理
 					</a>

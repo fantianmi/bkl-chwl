@@ -1,6 +1,9 @@
 package com.bkl.chwl.entity;
 
+import org.junit.Test;
+
 import com.km.common.dao.TableAonn;
+import com.km.common.utils.OSSObjectSample;
 
 @TableAonn(tableName="weixin")
 public class Weixin {

@@ -23,7 +23,7 @@ public class FansServlet extends CommonServlet {
 		User u=UserUtil.getCurrentUser(request);
 		int type=u.ROLE_NORMAL;
 		if(request.getParameter("type")!=null){
-			type=Integer.parseInt(request.getParameter("type"));
+			type=Integer.parseInt(request.getParameter("type"));//1普通用户 2商家
 		}
 		int pagenum=1;
 		int pagesize=20;
@@ -46,7 +46,7 @@ public class FansServlet extends CommonServlet {
 				profile=fans.getProfile();
 			}
 			profileTotal+=profile;
-			result+="<div class='container no-bottom list_style_user'><div class='recent-post'><div class='dealcard-img-user'><img src='assets/images/ui/avatar.png' alt='img' class='img-circle'></div><div class='dealcard-block-right-user'><div class='detail'><strong>"+user.getUsername()+"</strong><br>总收入："+FrontUtil.formatRmbDouble(profile)+"</div></div></div></div>";
+			result+="<div class='container no-bottom list_style_user'><div class='recent-post'><div class='dealcard-img-user'><img src='assets/images/ui/avatar.png' alt='img' class='img-circle'></div><div class='dealcard-block-right-user'><div class='detail'><strong>"+user.getUsername()+"</strong><br>结账额："+FrontUtil.formatRmbDouble(profile)+"</div></div></div></div>";
 		}
 		Fans fans=new Fans();
 		fans.setResHTML(result);
@@ -55,5 +55,31 @@ public class FansServlet extends CommonServlet {
 		fans.setTotalProfile(FrontUtil.formatRmbDouble(profileTotal));
 		ServletUtil.writeOkCommonReply(fans, response);
 	}
+	public void getFansNum(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		User u=UserUtil.getCurrentUser(request);
+		int type=u.ROLE_NORMAL;
+		if(request.getParameter("type")!=null){
+			type=Integer.parseInt(request.getParameter("type"));//1普通用户 2商家
+		}
+		int pagenum=1;
+		int pagesize=20;
+		UserListEntity ule=ApiCommon.getRecommendUserList(u.getId(), pagenum, type, pagesize);
+		Fans fans=new Fans();
+		fans.setTotal(ule.getTotal());
+		ServletUtil.writeOkCommonReply(fans, response);
+	}
 	
+	public void getSellerFansNum(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		User u=UserUtil.getCurrentUser(request);
+		int type=u.ROLE_NORMAL;
+		if(request.getParameter("type")!=null){
+			type=Integer.parseInt(request.getParameter("type"));//1普通用户 2商家
+		}
+		int pagenum=1;
+		int pagesize=20;
+		UserListEntity ule=ApiCommon.getSellerRecommendUserList(u.getId(), pagenum, pagesize);
+		Fans fans=new Fans();
+		fans.setTotal(ule.getTotal());
+		ServletUtil.writeOkCommonReply(fans, response);
+	}
 }

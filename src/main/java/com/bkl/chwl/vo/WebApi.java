@@ -4,8 +4,9 @@ import com.baiyi.data.model.BigBouns;
 import com.baiyi.data.model.CoinLog;
 import com.baiyi.data.model.MiddleBouns;
 import com.baiyi.data.model.OrderLog;
+import com.baiyi.data.model.PayOrder;
 import com.baiyi.data.model.ProxyUser;
-import com.bkl.chwl.vo.SellLog;
+import com.baiyi.data.model.SellLog;
 import com.baiyi.data.model.SmallBouns;
 import com.baiyi.data.model.User;
 import com.baiyi.data.model.User2;
@@ -14,16 +15,18 @@ import com.baiyi.domain.BounsEntity;
 import com.baiyi.domain.CoinLogEntity;
 import com.baiyi.domain.LotteryEntity;
 import com.baiyi.domain.OrderLogEntity;
+import com.baiyi.domain.PayOrderListEntity;
 import com.bkl.chwl.vo.SellLogEntity;
 import com.baiyi.domain.UserInfoEntity;
-import com.bkl.chwl.vo.UserListEntity;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.http.client.ClientProtocolException;
+import com.bkl.chwl.vo.UserListEntity;
 
 public class WebApi
 {
@@ -37,7 +40,9 @@ public class WebApi
   {
     String result = HttpUtil.get("/user/get/" + uid + ".json");
     JSONObject jsonObject = JSONObject.fromObject(result.toString());
+
     Map classMap = new HashMap();
+
     classMap.put("smallBouns", SmallBouns.class);
 
     classMap.put("middleBouns", MiddleBouns.class);
@@ -68,7 +73,7 @@ public class WebApi
     return user;
   }
 
-  public static AddCoinEntity order(int uid, int type, int coin, int seller, String orderid)
+  public static AddCoinEntity order(int uid, int type, float coin, int seller, String orderid)
     throws ClientProtocolException, IOException
   {
     String result = HttpUtil.post("/coin/add/" + type + "/" + uid + ".json", "coin=" + coin + "&seller=" + seller + "&orderid=" + orderid);
@@ -147,7 +152,7 @@ public class WebApi
 
     Map classMap = new HashMap();
 
-    classMap.put("list", com.bkl.chwl.vo.SellLog.class);
+    classMap.put("list", SellLog.class);
     SellLogEntity entity = (SellLogEntity)JSONObject.toBean(jsonObject, SellLogEntity.class, classMap);
 
     return entity;
@@ -195,5 +200,80 @@ public class WebApi
     UserListEntity entity = (UserListEntity)JSONObject.toBean(jsonObject, UserListEntity.class, classMap);
 
     return entity;
+  }
+
+  public static int getRecommendUserCount(int uid, int type)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.get("/user/recommendCount/" + uid + "/" + type + ".json");
+    return Integer.parseInt(result);
+  }
+
+  public static UserListEntity getSellerRecommendUserList(int uid, int from, int pageNum)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.get("/user/recommendSellerlist/" + from + "/" + pageNum + "/" + uid + ".json");
+    JSONObject jsonObject = JSONObject.fromObject(result.toString());
+
+    Map classMap = new HashMap();
+    classMap.put("list", User2.class);
+    UserListEntity entity = (UserListEntity)JSONObject.toBean(jsonObject, UserListEntity.class, classMap);
+
+    return entity;
+  }
+
+  public static int getSellerRecommendUserCount(int uid)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.get("/user/recommendSellerCount/" + uid + ".json");
+
+    return Integer.parseInt(result);
+  }
+
+  public static void updateArea(int uid, int local, int local2)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.post("/proxy/updateUser/" + uid + ".json", "local=" + local + "&local2=" + local2);
+  }
+
+  public static String payOrder(long uid, int orderId, int type, Double amount, String cardId, String name, String bankName, String bankId, String phone, String sellerName)
+    throws ClientProtocolException, IOException
+  {
+	  String bank_name=URLEncoder.encode(bankName, "utf-8");
+	  name=URLEncoder.encode(name, "utf-8");
+	  String seller_name=URLEncoder.encode(sellerName, "utf-8");
+	  String uidStr=String.valueOf(uid);
+	  String typeStr=String.valueOf(type);
+	  String amountStr=String.valueOf(amount);
+	  String result = HttpUtil.post("/payorder/add.json", "uid="+uidStr+"&type="+typeStr+"&order_id="+orderId+ 
+      "&amount=" + amountStr + 
+      "&card_id=" + cardId + 
+      "&bank_name=" + bank_name + 
+      "&bank_id=" + bankId + 
+      "&phone=" + phone + 
+      "&name=" +name  + 
+      "&seller_name=" + seller_name);
+    return result;
+  }
+
+  public static PayOrderListEntity getErrorPayOrderList(int from, int pageNum)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.get("/payorder/errorlist/" + from + "/" + pageNum + ".json");
+    JSONObject jsonObject = JSONObject.fromObject(result.toString());
+
+    Map classMap = new HashMap();
+
+    classMap.put("list", PayOrder.class);
+    PayOrderListEntity entity = (PayOrderListEntity)JSONObject.toBean(jsonObject, PayOrderListEntity.class, classMap);
+
+    return entity;
+  }
+
+  public static int payOrderToCoin(int payId)
+    throws ClientProtocolException, IOException
+  {
+    String result = HttpUtil.post("/payorder/trantocoin/" + payId + ".json", "");
+    return Integer.parseInt(result);
   }
 }

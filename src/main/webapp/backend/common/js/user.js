@@ -50,6 +50,17 @@ function vertifyUser(id){
 		}
 	});
 }
+function unVertifyUser(id){
+	var url="/admin_api/unvertify?random="+Math.round(Math.random()*100);
+	var params={id:id};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				window.location.href = window.location.href;
+			}
+		}
+	});
+}
 function confirmRealName(id, status) {
 	if(!confirm(status == 1 ? "是否确认当前用户实名认证?" : "是否否决当前用户实名认证?")) return;
 	$.ajax({

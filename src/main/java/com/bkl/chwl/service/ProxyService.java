@@ -2,6 +2,7 @@ package com.bkl.chwl.service;
 
 import java.util.Map;
 
+import com.bkl.chwl.entity.Proxy;
 import com.bkl.chwl.entity.Proxy2User;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
@@ -20,4 +21,10 @@ public interface ProxyService {
 	 * @return
 	 */
 	public boolean setProxy(long uid,int local,int local2,int type,long ruid);
+	
+	public PageReply<Proxy2User> getProxyList(int proxytype,Map searchMap,Page page);
+	public long saveProxy(Proxy proxy);
+	public boolean HaveProxy(long aid);
+	
+	public Proxy getProxy(long aid);
 }

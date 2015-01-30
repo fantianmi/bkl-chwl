@@ -4,6 +4,7 @@
 <%@page import="com.bkl.chwl.utils.*"%>
 <%@page import="com.bkl.chwl.entity.*"%>
 <%@page import="com.bkl.chwl.*"%>   
+<%@page import="com.bkl.chwl.vo.*"%>   
 <%@page import="java.util.*"%>
 <%
 UserService userServ=new UserServiceImpl();

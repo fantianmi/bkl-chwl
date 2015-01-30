@@ -21,14 +21,13 @@ String orderId=request.getParameter("orderId");
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="content nopadding" style="margin-top:5.5rem " id="content1">
 <div class="info">
 <img src="assets/images/ui/paysuccess.png">
 </div>
 </div>
 <div class="content" style="text-align: center;padding: 2rem;margin-bottom: 2rem;">
-<a href="user_order_detail.jsp?orderId=<%=orderId %>" class="btn btn-danger">查看订单详情</a>&nbsp;&nbsp;<a href="shop_list.jsp" class="btn btn-info">返回继续购买</a>&nbsp;&nbsp;
+<a href="user_order_detail.jsp?orderId=<%=orderId %>" class="btn btn-danger">查看结账详情</a>&nbsp;&nbsp;<a href="shop_list.jsp" class="btn btn-info">返回继续购买</a>&nbsp;&nbsp;
 <a href="doLottery.jsp" class="btn btn-danger">进入抽奖</a>
 </div>
 <jsp:include page="foot.jsp"/>

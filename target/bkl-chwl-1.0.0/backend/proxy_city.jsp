@@ -12,11 +12,13 @@
 <%
 	ProxyService proxyServ=new ProxyServiceImpl();
 	AreaService areaServ=new AreaServiceImpl();
-
+	
+	Map<Long,Area> areaMap=areaServ.areaMap();
+	List<Area> provinces=areaServ.getList(0);
 	Page p =  ServletUtil.getPage(request);
-	p.setPagesize(500);
-	PageReply<Proxy2User> proxys = proxyServ.getProxyList(ServletUtil.getSearchMap(request), p);
-	Map<Long,Area> areaMap=areaServ.areaMap(0);
+	PageReply<Proxy2User> proxys = proxyServ.getProxyList(Proxy.PROXYTYPE_CITY, ServletUtil.getSearchMap(request),p);
+	
+	UserService userServ=new UserServiceImpl();
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,14 +51,56 @@
 			<div class="nav-search" id="nav-search">
 				<form class="form-search">
 					<span class="input-icon">
-						<input type="text" placeholder="搜索..." class="nav-search-input" autocomplete="off" data-keys="mobile,name" value="<%=StringUtils.defaultIfEmpty(request.getParameter("searchText"),"")%>">
+						<input type="text" placeholder="搜索..." class="nav-search-input" autocomplete="off" data-keys="title,id,reid,mobile,name" value="<%=StringUtils.defaultIfEmpty(request.getParameter("searchText"),"")%>">
 						<i class="icon-search nav-search-icon"></i>
 					</span>
 				</form>
 			</div>
 		</div>
 		<div class="page-content">
-			<div class="row">
+				<div class="row">
+				<div class="col-xs-12">
+				<div class="widget-box">
+				<div class="widget-header">
+					<h4>添加/修改城市代理</h4>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main">
+					<!-- select body -->
+					<div class="row">
+					<div class="col-md-5">
+						<select class="width-40" id="province" data-placeholder="Choose a Country..." onchange="changeArea(this,this.value)" onclick="changeArea(this,this.value)">
+							<option value="0">选择省份</option>
+							<%for(Area province:provinces){ %>
+							<option value="<%=province.getId()%>"><%=province.getTitle() %></option>
+							<%} %>
+						</select>
+						<select class="width-40" id="city" data-placeholder="Choose a Country..." ">
+						<option value="0">选择城市</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<input type="text" id="parent" placeholder="推荐人id" onpaste="value=value.replace(/[^\0-9\.]/g,'')" class="form-control input-mask-product" >
+					</div>
+					<div class="col-md-3">
+					<div class="input-group">
+						<input class="form-control input-mask-product" placeholder="代理人id"  class="block" type="text" id="uid" onpaste="value=value.replace(/[^\0-9\.]/g,'')"  >
+						<span class="input-group-addon">
+							<a href="javascript:void(0);" onClick="doSetProxy()">选择代理人</a>
+						</span>
+					</div>
+					</div>
+					<div class="col-md-2">
+					<button onclick="setProxySubmit()" class="btn btn-success btn-block btn-sm">确认提交</button>
+					</div>
+					</div>
+					<!-- select body -->
+					</div>
+				</div>
+				<!-- add proxy -->
+				<!-- add proxy -->
+				</div>
+				</div>
 				<div class="col-xs-12">
 					<div class="table-responsive">
 					<input type="hidden" id="local"/>
@@ -65,11 +109,11 @@
 							<thead>
 								<tr>
 									<th class="center"><label>#</label></th>
-									<th class="center">省份</th>
-									<th class="center">城市</th>
+									<th class="center">区域</th>
+									<th class="center">推荐人id</th>
+									<th class="center">代理商id</th>
 									<th class="center">代理商手机</th>
 									<th class="center">代理商真实姓名</th>
-									<th class="center">操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -88,13 +132,11 @@
 								%>
 								<tr>
 									<td><%=i+1 %></td>
-									<td><%=areaMap.get(proxy.getReid()).getTitle()%></td>
-									<td><%=proxy.getTitle()%></td>
-									<td><%=StringUtils.defaultIfEmpty(proxy.getMobile(),"未设置代理")%></td>
-									<td><%=StringUtils.defaultIfEmpty(proxy.getName(),"未设置代理")%></td>
-									<td>
-										<a href="javascript:void(0);" onClick="doSetProxy(<%=proxy.getReid()%>,<%=proxy.getId()%>)">[设置代理]</a>
-									</td>
+									<td><%=areaMap.get(proxy.getReid()).getTitle()+"-"+proxy.getTitle()%></td>
+									<td><%=proxy.getParent()%></td>
+									<td><%=proxy.getUid()%></td>
+									<td><%=StringUtils.defaultIfEmpty(proxy.getMobile(),"未设置")%></td>
+									<td><%=StringUtils.defaultIfEmpty(proxy.getName(),"未设置")%></td>
 								</tr>
 								<%}%>
 							</tbody>
@@ -114,18 +156,32 @@
 </div>
 <!-- content -->
 <div class="ui-widget-overlay ui-front" id="bg-area" style="display: none"></div>
-<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" id="dialog-message" style="position: fixed; height: auto; width: 640px; height:500px;display: none;">
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" id="dialog-message" style="position: fixed; height: auto; width: 640px; height:555px;display: none;">
 	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
 	<span id="ui-id-1" class="ui-dialog-title">选择代理人</span>
+<!-- 		<div class="input-group">
+		<input type="text" class="form-control" id="searchUser" placeholder="搜索...用户id，用户名，用户姓名，手机号">
+		<span class="input-group-addon">
+        <button class="btn btn-danger" onclick="setSearchText();">过滤</button>
+      	</span>
+      	</div> -->
+      	<div class="row">
+      	<div class="col-xs-12">
+      	<div class="input-group">
+			<input class="form-control input-mask-product" type="text" id="searchUser" placeholder="输入用户id，用户名，手机号，真实姓名...">
+			<span class="input-group-addon">
+				<button class="btn btn-danger btn-xs" onclick="setSearchText();">筛选</button>
+			</span>
+		</div>
+		</div>
+	    </div><!-- /input-group -->
 		<div class="dialog-content">
 			<table class="table table-striped table-bordered table-hover dataTable">
 				<thead>
 					<tr>
-						<th class="center"><label>#</label></th>
+						<th class="center">uid</th>
 						<th class="center">手机号</th>
 						<th class="center">真实姓名</th>
-						<th class="center">所属省份</th>
-						<th class="center">所属地区</th>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -163,16 +219,24 @@
 
 </style>
 <script type="text/javascript">
-function doSetProxy(local1,local2){
-	$("#local").val(local1);
-	$("#local2").val(local2);
-	showProxy();
+var searchText="";
+var pagenum=1;
+var url="/api/user/getUserListHTML?random="+Math.round(Math.random()*100);
+function setSearchText(){
+	pagenum=1;
+	searchText=$("#searchUser").val();
+	showProxy(searchText);
+}
+function doSetProxy(){
+	searchText=$("#searchUser").val();
+	showProxy(searchText);
 }
 function unShowProxy(){
 	$("#bg-area").hide();
 	$("#dialog-message").hide();
 }
-function showProxy(){
+
+function showProxy(searchText){
 	$("#bg-area").show();
 	$("#dialog-message").show();
 	var windowHeight=$(window).height();
@@ -187,12 +251,11 @@ function showProxy(){
 	}else{
 		$("#dialog-message").css({"top":(windowHeight-500)/2});
 	}
-	var pagenum=1;
-	var url="/api/user/getUserListHTML?random="+Math.round(Math.random()*100);
-	var local=$("#local").val();
-	var local2=$("#local2").val();
-	url=url+"&local="+local+"&local2="+local2;
-	$.get(url,function(res){
+	var newurl=url;
+	if(searchText!=null&&searchText!=""){
+		newurl+="&searchKey=id,name,mobile&searchText="+searchText;
+	}
+	$.get(newurl,function(res){
 		if(res){
 			if(res.ret==0){
 				$("#userHTML").html(res.data["html"]);
@@ -205,9 +268,12 @@ function showProxy(){
 	});
 }
 function showMore(){
+	searchText=$("#searchUser").val();
 	pagenum++;
 	var newurl=url+"&pagesize=20&pagenum="+pagenum;
-	newurl=newurl+"&local="+local+"&local2="+local2;
+	if(searchText!=null&&searchText!=""){
+		newurl+="&searchKey=id,name,mobile&searchText="+serachVar;
+	}
 	$.get(newurl,function(res){
 		if(res){
 			if(res.ret==0){
@@ -220,14 +286,35 @@ function showMore(){
 		}
 	});
 }
-function setProxy(uid,local,local2){
+function setProxy(uid){
+	$("#uid").val(uid);
+	unShowProxy();
+}
+function setProxySubmit(){
+	var uid=$("#uid").val();
+	var province=$("#province").val();
+	var city=$("#city").val();
+	var parent=$("#parent").val();
+	if(province==0||city==0){
+		alert("请确认选择城市区域");
+		return;
+	}
+	if(parent==null||parent==""){
+		alert("请填写推荐人");
+		return;
+	}
+	if(uid==null||uid==""){
+		alert("请填写代理人");
+		return;
+	}
 	var proxyURL="/api/user/setProxy?random="+Math.round(Math.random()*100);
-	var params={uid:uid,local:local,local2:local2,type:2};
+	var params={uid:uid,city:city,area:0,type:0,parent:parent};
 	$.post(proxyURL,params,function(res){
 		if(res){
 			if(res.ret==0){
 				if(res.data==true){
 					alert("添加成功");
+					window.location.href=window.location.href;
 				}else{
 					alert("添加失败");
 				}
@@ -235,7 +322,43 @@ function setProxy(uid,local,local2){
 		}
 	});
 }
-
+</script>
+<!--[if lte IE 8]>
+  <script src="assets/js/excanvas.min.js"></script>
+<![endif]-->
+<link href="assets/css/chosen.css"	 rel="stylesheet" type="text/css">
+<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/chosen.jquery.min.js"></script>
+<script src="assets/js/fuelux/fuelux.spinner.min.js"></script>
+<script src="assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="assets/js/date-time/bootstrap-timepicker.min.js"></script>
+<script src="assets/js/date-time/moment.min.js"></script>
+<script src="assets/js/date-time/daterangepicker.min.js"></script>
+<script src="assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="assets/js/jquery.knob.min.js"></script>
+<script src="assets/js/jquery.autosize.min.js"></script>
+<script src="assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="assets/js/jquery.maskedinput.min.js"></script>
+<script src="assets/js/bootstrap-tag.min.js"></script>
+<!-- ace scripts -->
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+jQuery(function($) {
+	$(".chosen-select").chosen(); 
+	$( "#eq > span" ).css({width:'90%', 'float':'left', margin:'15px'}).each(function() {
+		// read initial values from markup and remove that
+		var value = parseInt( $( this ).text(), 10 );
+		$( this ).empty().slider({
+			value: value,
+			range: "min",
+			animate: true
+			
+		});
+	});
+});
 </script>
 </body>
 </html>

@@ -14,6 +14,7 @@ User user = UserUtil.getCurrentUser(request);
 
 AreaService areaServ = new AreaServiceImpl(); 
 List<Area> provinces=areaServ.getList(0);
+String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <html>
 <head>
@@ -27,7 +28,7 @@ List<Area> provinces=areaServ.getList(0);
 <input type="hidden" id="id" value="<%=user.getId()!=0?user.getId():0%>"/>
 <input type="hidden" id="licenceFileName" value="<%=user.getLicenceFileName()!=null?user.getLicenceFileName():""%>"/>
 <input type="hidden" id="licenceFileURL" value="<%=user.getLicenceFileURL()!=null?user.getLicenceFileURL():""%>"/>
-<div class="fullImage" <%=user.getLicenceFileURL()==null?"style=\"display:none\"":"" %> id="previewuploadImg"><img src="<%=user.getLicenceFileURL()%>"></div>
+<div class="fullImage" <%=user.getLicenceFileURL()==null?"style=\"display:none\"":"" %> id="previewuploadImg"><img src="<%=ossBaseurl+user.getLicenceFileURL()%>"></div>
 <form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
 </form>
 <div class="form-group">
@@ -50,6 +51,9 @@ List<Area> provinces=areaServ.getList(0);
 	  <select  id="local2" onchange="changeArea(this,this.value)" onclick="changeArea(this,this.value)">
 	  <%=user.getLocal2()!=0?"<option value="+user.getLocal2()+">默认不动</option>":"<option value=\"0\">请选择城市</option>"%>
 	  </select>
+	  <select  id="local3">
+	  <%=user.getLocal3()!=0?"<option value="+user.getLocal3()+">默认不动</option>":"<option value=\"0\">请选择城市</option>"%>
+	  </select>
   </div>
   <button class="btn btn-success btn-block btn-lg" onclick="shopDataSubmit()">提交资料</button>
   </div>
@@ -59,7 +63,7 @@ List<Area> provinces=areaServ.getList(0);
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="审核资料管理";
-$("#top_back_button").html("<a class=\"react\" href=\"shop_data.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"shop_data.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 $("#top_qr_button").hide();
 $("#top_search_button").hide();
 </script>
@@ -106,12 +110,13 @@ function shopDataSubmit(){
 	var licenceNumber=$("#licenceNumber").val();
 	var local=$("#local").val();
 	var local2=$("#local2").val();
-	if(licenceFileName==null||licenceFileName==""||licenceFileURL==null||licenceFileURL==""||licenceNumber==null||licenceNumber==""||local==0||local2==0){
+	var local3=$("#local3").val();
+	if(licenceFileName==null||licenceFileName==""||licenceFileURL==null||licenceFileURL==""||licenceNumber==null||licenceNumber==""||local==0||local2==0||local3==0){
 		swal("错误", "请确认表单是否填写完全", "error");
 		return;
 	}
 	var url="/api/user/updateShopData?random="+Math.round(Math.random()*100);
-	var params={id:id,licenceFileName:licenceFileName,licenceFileURL:licenceFileURL,licenceNumber:licenceNumber,local:local,local2:local2};
+	var params={id:id,licenceFileName:licenceFileName,licenceFileURL:licenceFileURL,licenceNumber:licenceNumber,local:local,local2:local2,local3:local3};
 	$.post(url,params,function(res){
 		if(res){
 			if(res.ret==0){

@@ -1,9 +1,11 @@
 package com.bkl.chwl.servlet;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -14,6 +16,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -21,10 +25,16 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.baiyi.domain.UserInfoEntity;
+import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Area;
 import com.bkl.chwl.entity.Cash;
+import com.bkl.chwl.entity.Proxy;
 import com.bkl.chwl.entity.RecommendDetail;
 import com.bkl.chwl.entity.Shop;
 import com.bkl.chwl.entity.ShopCollect;
@@ -32,16 +42,20 @@ import com.bkl.chwl.entity.ShopLike;
 import com.bkl.chwl.entity.Tradeorder;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.entity.UserBindCard;
+import com.bkl.chwl.entity.Weixin;
 import com.bkl.chwl.service.AreaService;
 import com.bkl.chwl.service.ProxyService;
 import com.bkl.chwl.service.RecommendDetailService;
 import com.bkl.chwl.service.UserService;
+import com.bkl.chwl.service.WeixinService;
 import com.bkl.chwl.service.impl.AreaServiceImpl;
 import com.bkl.chwl.service.impl.ProxyServiceImpl;
 import com.bkl.chwl.service.impl.RecommendDetailServiceImpl;
 import com.bkl.chwl.service.impl.UserServiceImpl;
+import com.bkl.chwl.service.impl.WeixinServiceImpl;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.FrontUtil;
+import com.bkl.chwl.utils.HttpUtils;
 import com.bkl.chwl.utils.UserUtil;
 import com.bkl.chwl.vo.UserProfile;
 import com.km.common.dao.DaoFactory;
@@ -49,6 +63,7 @@ import com.km.common.dao.GeneralDao;
 import com.km.common.servlet.CommonServlet;
 import com.km.common.utils.DbUtil;
 import com.km.common.utils.ServletUtil;
+import com.km.common.utils.TimeUtil;
 import com.km.common.utils.ValidUtils;
 import com.km.common.vo.Condition;
 import com.km.common.vo.Page;
@@ -142,6 +157,17 @@ public class UserServlet extends CommonServlet {
 		ServletUtil.writeOkCommonReply(user, response);
 	}
 	
+	public void modifyMobile2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		User u=UserUtil.getCurrentUser(request);
+		String bindMobile = request.getParameter("bindMobile");
+		
+		// 参数错误
+		u.setMobile2(bindMobile);
+		UserService userSrv = new UserServiceImpl();
+		userSrv.save(u);
+		ServletUtil.writeOkCommonReply(u, response);
+	}
+	
 	/**
 	 * 修改交易密码
 	 */
@@ -149,7 +175,6 @@ public class UserServlet extends CommonServlet {
 		UserService userServ = new UserServiceImpl();
 		int uid=Integer.parseInt(request.getParameter("uid"));
 		User user = userServ.get(uid);
-		//如果不包含密码说明是用QQ和微博登录注册，则可以绑定邮箱，然后设置密码
 		if(user.getPassword()==null){
 			ServletUtil.writeCommonReply(null, RetCode.USER_PASSWORD_NOT_SET, response);
 		}
@@ -358,8 +383,7 @@ public class UserServlet extends CommonServlet {
 					local2=Integer.parseInt(request.getParameter("local2"));
 				}
 				res+="<tr><td>"+u.getId()+"</td><td>"+u.getMobile()+"</td><td>"+StringUtils.defaultIfEmpty(u.getName(),"-")+"</td>"
-						+ "<td>"+areaMap.get(Long.valueOf(u.getLocal())).getTitle()+"</td><td>"+areaMap.get(Long.valueOf(u.getLocal2())).getTitle()+"</td>"
-								+ "<td><a href=\"javascript:setProxy("+u.getId()+","+local+","+local2+")\">[设置代理]</a></td></tr>";
+								+ "<td><a href=\"javascript:setProxy("+u.getId()+")\">[设置代理]</a></td></tr>";
 			}
 		}else{
 			res="<tr><td colspan='100'><div class='alert alert-block alert-info'><strong class='green'>提示：没有数据。</strong></div></td></tr>";
@@ -375,22 +399,42 @@ public class UserServlet extends CommonServlet {
 	
 	public void setProxy(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long uid=0;
-		int local=0;
-		int local2=0;
+		int city=0;
+		int area=0;
+		int parent=0;
 		int type=0;
 		RecommendDetailService rdServ=new RecommendDetailServiceImpl();
 		if(request.getParameter("uid")!=null) uid=Integer.parseInt(request.getParameter("uid"));
-		if(request.getParameter("local")!=null) local=Integer.parseInt(request.getParameter("local"));
-		if(request.getParameter("local2")!=null) local2=Integer.parseInt(request.getParameter("local2"));
+		if(request.getParameter("city")!=null) city=Integer.parseInt(request.getParameter("city"));
+		if(request.getParameter("area")!=null) area=Integer.parseInt(request.getParameter("area"));
+		if(request.getParameter("parent")!=null) parent=Integer.parseInt(request.getParameter("parent"));
 		if(request.getParameter("type")!=null) type=Integer.parseInt(request.getParameter("type"));
 		ProxyService proxyServ=new ProxyServiceImpl();
 		
-		RecommendDetail rdDetail=rdServ.getRecommendDetail(uid);
-		long ruid=0;
-		if(rdDetail!=null){
-			ruid=rdDetail.getRecommended_id();
+		boolean flag=proxyServ.setProxy(uid, city, area,type,parent);
+		if(flag){
+			Proxy proxy=new Proxy();
+			Proxy tempProxy=new Proxy();
+			if(type==proxy.PROXYTYPE_AREA){
+				tempProxy=proxyServ.getProxy(area);
+			}else if(type==proxy.PROXYTYPE_CITY){
+				tempProxy=proxyServ.getProxy(city);
+			}
+			if(tempProxy!=null){
+				proxy=tempProxy;
+			}
+			proxy.setParent(parent);
+			proxy.setCtime(TimeUtil.getUnixTime());
+			if(type==proxy.PROXYTYPE_AREA){
+				proxy.setAid(area);
+				proxy.setProxytype(proxy.PROXYTYPE_AREA);
+			}else{
+				proxy.setAid(city);
+				proxy.setProxytype(proxy.PROXYTYPE_CITY);
+			}
+			proxy.setUid(uid);
+			proxyServ.saveProxy(proxy);
 		}
-		boolean flag=proxyServ.setProxy(uid, local, local2,type,ruid);
 		ServletUtil.writeOkCommonReply(flag, response);
 	}
 	/**
@@ -406,9 +450,12 @@ public class UserServlet extends CommonServlet {
 		map.put("discount_get",FrontUtil.formatRmbDouble(userInfo.getTotalConsumeSurplus().doubleValue()));
 		map.put("rshoper_get",FrontUtil.formatRmbDouble(userInfo.getTotalSellerSurplus().doubleValue()));
 		map.put("ruser_get",FrontUtil.formatRmbDouble(userInfo.getTotalUserSurplus().doubleValue()));
-		map.put("other_get",FrontUtil.formatRmbDouble(userInfo.getTotalOtherSurplus().doubleValue()));
 		map.put("proxy2_get",FrontUtil.formatRmbDouble(userInfo.getTotalProxySurplus().doubleValue()));
+		map.put("proxy3_get",FrontUtil.formatRmbDouble(userInfo.getTotalProxy2Surplus().doubleValue()));
 		map.put("proxy_get",FrontUtil.formatRmbDouble(userInfo.getTotalProxyRecommedSurplus().doubleValue()));
+		map.put("lottery_get", FrontUtil.formatRmbDouble(userInfo.getTotalLotterySurplus().doubleValue()));
+		map.put("bonus_get", FrontUtil.formatRmbDouble(userInfo.getTotalBonusSurplus().doubleValue()));
+		map.put("other_get", FrontUtil.formatRmbDouble(userInfo.getTotalOtherSurplus().doubleValue()));
 		ServletUtil.writeOkCommonReply(map, response);
 	}
 	/**
@@ -425,8 +472,28 @@ public class UserServlet extends CommonServlet {
 		u.setLicenceNumber(user.getLicenceNumber());
 		u.setLocal(user.getLocal());
 		u.setLocal2(user.getLocal2());
+		u.setLocal3(user.getLocal3());
 		UserService userServ=new UserServiceImpl();
 		userServ.save(u);
 		ServletUtil.writeOkCommonReply(u, response);
+	}
+	
+	public void bindWeixinOpenId(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String code="";
+		String baseUrl=MainConfig.getContextPath();
+		if(request.getParameter("code")==null){
+			response.sendRedirect(baseUrl+"pleaseOpenInWeixin.jsp");
+		}
+		code=request.getParameter("code");
+		String uri="https://api.weixin.qq.com/sns/oauth2/access_token?appid="+MainConfig.getWechatappid()+"&secret="+MainConfig.getWechatappsecret()+"&code="+code+"&grant_type=authorization_code";
+		JSONObject jsonObject =HttpUtils.httpGet(uri);
+		String access_token=jsonObject.get("access_token").toString();
+		String refresh_token=jsonObject.get("refresh_token").toString();
+		String openid=jsonObject.get("openid").toString();
+		User user=UserUtil.getCurrentUser(request);
+		user.setOpenid(openid);
+		UserService userServ=new UserServiceImpl();
+		userServ.save(user);
+		response.sendRedirect(baseUrl+"user_index.jsp");
 	}
 }

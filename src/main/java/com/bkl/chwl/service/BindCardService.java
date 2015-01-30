@@ -16,5 +16,18 @@ public interface BindCardService {
 	public User2BindCard getUser2Card(long id);
 	//删除银行卡 uid id
 	public long deleteCard(long uid,long id);
+	/**
+	 * 设置默认收款卡
+	 * @param id
+	 * @param uid
+	 * @return
+	 */
+	public boolean setDefault(long id,long uid);
+	/**
+	 * 获得默认卡片
+	 * @param uid
+	 * @return
+	 */
+	public User2BindCard getDefult(long uid);
 	
 }

@@ -1,17 +1,14 @@
 package com.bkl.chwl.servlet;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Connection;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,23 +20,26 @@ import org.apache.commons.dbutils.handlers.KeyedHandler;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.mail.EmailException;
-import org.apache.http.client.ClientProtocolException;
+import org.junit.Test;
 
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.AdminUser;
 import com.bkl.chwl.entity.Cash;
 import com.bkl.chwl.entity.RecommendDetail;
+import com.bkl.chwl.entity.Shop;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.service.AdminService;
+import com.bkl.chwl.service.AreaService;
 import com.bkl.chwl.service.CashService;
+import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.UserService;
 import com.bkl.chwl.service.impl.AdminServiceImpl;
+import com.bkl.chwl.service.impl.AreaServiceImpl;
 import com.bkl.chwl.service.impl.CashServiceImpl;
+import com.bkl.chwl.service.impl.ShopServiceImpl;
 import com.bkl.chwl.service.impl.UserServiceImpl;
-import com.bkl.chwl.utils.EmailUtil;
 import com.bkl.chwl.utils.RequestUtil;
-import com.bkl.chwl.utils.UserUtil;
+import com.bkl.chwl.utils.SendMsg;
 import com.bkl.chwl.vo.WebApi;
 import com.km.common.config.Config;
 import com.km.common.dao.DaoFactory;
@@ -50,9 +50,6 @@ import com.km.common.utils.MD5Util;
 import com.km.common.utils.RandomCode;
 import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
-import com.km.common.utils.ValidUtils;
-import com.km.common.vo.Page;
-import com.km.common.vo.PageReply;
 import com.km.common.vo.RetCode;
 
 public class OpenServlet extends CommonServlet {
@@ -89,7 +86,7 @@ public class OpenServlet extends CommonServlet {
 			return;
 		}
 //		request.getSession(true).setAttribute("username", user.getMobile());
-		CookieUtil.addCookie("username", userFound.getMobile()+"r"+userFound.getRole(), response);
+		CookieUtil.addCookie("username", userFound.getMobile()+"*"+userFound.getRole(), response);
 		log.info("user: " + user.getMobile() + " login, ip address: "
 				+ RequestUtil.getRemoteAddress(request));
 		// 返回是否实名认证
@@ -103,8 +100,34 @@ public class OpenServlet extends CommonServlet {
 	public void reg(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		User user = ServletUtil.readObjectServletQuery(request, User.class);
+		if(user.getLicenceFileURL()!=null){
+			
+		}
 		UserService userServ = new UserServiceImpl();
 		RetCode ret = RetCode.OK;
+		HttpSession session=request.getSession();
+		String msgValidateCode=session.getAttribute("msgValidateCode").toString();
+		
+		if(user.getRole()==user.ROLE_NORMAL){
+			String requestValidateCode=request.getParameter("phone_validate_code");
+			if(!msgValidateCode.equals(requestValidateCode)){
+				ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+				return;
+			}
+		}
+		//shop need to vertify mobile2
+		if(user.getRole()==user.ROLE_SHOPER){
+			String requestValidateCode2=request.getParameter("phone_validate_code2");
+			if(!msgValidateCode.equals(requestValidateCode2)){
+				ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+				return;
+			}
+//			if(userServ.existMobile2(user.getMobile2())){
+//				ret = RetCode.MOBILE_EXIST;
+//				ServletUtil.writeCommonReply(null, ret, response);
+//				return;
+//			}
+		}
 		if(userServ.exist(user.getMobile())){
 			ret = RetCode.USER_EXIST;
 			ServletUtil.writeCommonReply(null, ret, response);
@@ -130,16 +153,23 @@ public class OpenServlet extends CommonServlet {
 		long userId=userServ.maxUserID()+1;
 		int local=user.getLocal();
 		int local2=user.getLocal2();
+		int local3=user.getLocal3();
 		int role=user.getRole();
 		try {
 			WebApi.init(MainConfig.dxwServerURL(), MainConfig.dxwAuthKey(), MainConfig.dxwAuthPass());
-			WebApi.register((int)userId, user.getMobile(), recommended_user_id, role, local, local2);
+			WebApi.register((int)userId, user.getMobile(), recommended_user_id, role, local2, local3);
 			
 		} catch (Exception e1) {
 			ServletUtil.writeCommonReply(null, RetCode.ROMOTE_ERROR, response);
 			return;
 		} 
 		user.setId(userId);
+		user.setVertify(user.VERTIFY_TRUE);
+		//保存用户信息__
+		//如果注册人为普通用户则更新mobile2, 商家后面再更新
+		if(user.getRole()==user.ROLE_NORMAL){
+			user.setMobile2(user.getMobile());
+		}
 		userServ.createUser(user);
 		//执行注册
 		// 保存推荐人信息
@@ -152,6 +182,24 @@ public class OpenServlet extends CommonServlet {
 			recommendDetail.setUser_id(userId);
 			rdDao.save(recommendDetail);
 		}
+		
+		//商户注册则需要创建一个shop
+		if(user.getRole()==user.ROLE_SHOPER){
+			AreaService areaServ=new AreaServiceImpl();
+			String shopName=request.getParameter("shopName");
+			Shop shop=new Shop();
+			shop.setUid(userId);
+			shop.setTitle(shopName);
+			shop.setLocal(user.getLocal());
+			shop.setLocal2(user.getLocal2());
+			shop.setLocal3(user.getLocal3());
+			shop.setShop_tel(user.getMobile2());
+			shop.setRegstatus(shop.REGSTATUS_FALSE);
+			shop.setVertifystatus(shop.VERTIFYSTATUS_TRUE);
+			ShopService shopServ=new ShopServiceImpl();
+			shopServ.save(shop);
+		}
+		
 //		//普通用户注册
 //		final User userTemp = user;
 //		Thread thread = new Thread(new Runnable() {
@@ -162,7 +210,7 @@ public class OpenServlet extends CommonServlet {
 //		});
 //		thread.start();
 //		request.getSession(true).setAttribute("username", user.getMobile());
-		CookieUtil.addCookie("username", user.getMobile()+"r"+user.getRole(), response);
+		CookieUtil.addCookie("username", user.getMobile()+"*"+user.getRole(), response);
 		ServletUtil.writeCommonReply(null, ret, response);
 	}
 
@@ -198,55 +246,82 @@ public class OpenServlet extends CommonServlet {
 		}
 		ServletUtil.writeCommonReply(null, ret, response);
 	}
+	
+	public void chcekLicenceNumber(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = ServletUtil.readObjectServletQuery(request, User.class);
+		UserService userServ = new UserServiceImpl();
+		boolean isUserExisted = userServ.existLicence(user.getLicenceNumber());
+		RetCode ret = RetCode.OK;
+		if (isUserExisted) {
+			ret = RetCode.USER_EXIST;
+		}
+		ServletUtil.writeCommonReply(null, ret, response);
+	}
+	public void chcekmobile2(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		User user = ServletUtil.readObjectServletQuery(request, User.class);
+		UserService userServ = new UserServiceImpl();
+		boolean isMobile2Existed = userServ.existMobile2(user.getMobile2());
+		RetCode ret = RetCode.OK;
+		if (isMobile2Existed) {
+			ret = RetCode.USER_EXIST;
+		}
+		ServletUtil.writeCommonReply(null, ret, response);
+	}
 
 	public void resetPassword(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		String userName=request.getParameter("userName");
+		UserService userServ=new UserServiceImpl();
 		GeneralDao<User> dao = DaoFactory.createGeneralDao(User.class);
-		String email = StringUtils.defaultString(request.getParameter("email"),
-				"");
-		String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
-		Pattern regex = Pattern.compile(check);
-		Matcher matcher = regex.matcher(email);
-		boolean isMatched = matcher.matches();
-		if (!isMatched) {
-			ServletUtil.writeCommonReply(null, RetCode.EMAIL_ERROR, response);
+		User u=userServ.findByMobile(userName);
+		if(u==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_NOT_EXIST, response);
 			return;
-		}
-		UserService userSrv = new UserServiceImpl();
-		User user = userSrv.find(email);
-		if (user == null) {
-			ServletUtil
-					.writeCommonReply(null, RetCode.USER_NOT_EXIST, response);
-			return;
-		}
-		// try {
-		Timestamp overTime = new Timestamp(
-				System.currentTimeMillis() + 15 * 60 * 1000);
-		user.setPasswd_modify_overtime(overTime.getTime() / 1000);
-		dao.update(user);
-		final User tempUser = user;
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					EmailUtil.sendResetPasswordMail(tempUser);
-				} catch (EmailException e) {
-					e.printStackTrace();
-				}
+		}else{
+			String mobile=u.getMobile2();
+			if(mobile==""||mobile==null){
+				ServletUtil.writeCommonReply(null, RetCode.MOBILE_NOT_EXIST, response);
+				return;
 			}
-		});
-		thread.start();
-		ServletUtil.writeCommonReply(null, RetCode.OK, response);
-		// } catch(EmailException e) {
-		// e.printStackTrace();
-		// ServletUtil.writeCommonReply(null, RetCode.EMAIL_SEND_ERROR,
-		// response);
-		// }
+			String vcode=RandomCode.random();
+			String content="您正在使用找回密码，您的验证码是"+vcode+",有效期10分钟，大小王科技。【点头财神】";
+			content=URLEncoder.encode(content, "utf-8");
+			HttpSession session=request.getSession();
+			session.setMaxInactiveInterval(10 * 60);  
+			session.setAttribute("msgValidateCode", vcode);
+			boolean flag=SendMsg.sendMsg(mobile, content,request);
+			RetCode ret=RetCode.OK;
+			if(!flag){
+				ret=RetCode.ERROR;
+			}
+			ServletUtil.writeCommonReply(vcode, ret, response);
+			return;
+		}
 	}
 
 	public void doResetPassword(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		HttpSession session=request.getSession();
+		String vcode=session.getAttribute("msgValidateCode").toString();
+		String vcodeInput=request.getParameter("vcode");
+		if(vcode==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_NOT_SEND, response);
+			return;
+		}
+		if(vcodeInput==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
+		if(!vcodeInput.equals(vcode)){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
 		GeneralDao<User> dao = DaoFactory.createGeneralDao(User.class);
+		UserService userSrv = new UserServiceImpl();
+		String userName=request.getParameter("userName");
+		User user=userSrv.findByMobile(userName);
+		
 		String newPassword = StringUtils.defaultString(
 				request.getParameter("newPassword"), "");
 		String newPassword2 = StringUtils.defaultString(
@@ -262,21 +337,11 @@ public class OpenServlet extends CommonServlet {
 					response);
 			return;
 		}
-
-		UserService userSrv = new UserServiceImpl();
-		User user = null;
-		long userId = Long.parseLong(StringUtils.defaultString(
-				request.getParameter("userId"), "0"));
-		if (userId > 0) {
-			user = userSrv.get(userId);
-			String key = user.getEmail() + "$$"
-					+ (user.getPasswd_modify_overtime());
-			user.saveMD5Password(newPassword);
-			dao.update(user);
-			ServletUtil.writeCommonReply(null, RetCode.OK, response);
-			return;
-		}
-		ServletUtil.writeCommonReply(null, RetCode.ERROR, response);
+		
+		user.saveMD5Password(newPassword);
+		dao.update(user);
+		ServletUtil.writeCommonReply(null, RetCode.OK, response);
+		return;
 	}
 
 	public void loginandredirect(HttpServletRequest request,
@@ -768,10 +833,32 @@ public class OpenServlet extends CommonServlet {
 			return;
 		}
 	}
-	
-//	public void sendCode(HttpServletRequest request,
-//			HttpServletResponse response) throws Exception {
-//		String code=RandomCode.random();
-//		
-//	}
+	/**
+	 * 注册时发送验证码
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	public void sendMsg4ValidateMobile(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String mobile=request.getParameter("m");
+		String vcode=RandomCode.random();
+		String content="欢迎使用点头财神，您的验证码是"+vcode+",有效期10分钟，大小王科技。【点头财神】";
+		content=URLEncoder.encode(content, "utf-8");
+		HttpSession session=request.getSession();
+		session.setMaxInactiveInterval(10 * 60);  
+		session.setAttribute("msgValidateCode", vcode);
+		boolean flag=SendMsg.sendMsg(mobile, content,request);
+		RetCode ret=RetCode.OK;
+		if(!flag){
+			ret=RetCode.ERROR;
+		}
+		ServletUtil.writeCommonReply(vcode, ret, response);
+		return;
+	}
+	public void test(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String absoluteUploadDir = request.getServletContext().getRealPath("");
+		ServletUtil.writeCommonReply(absoluteUploadDir, RetCode.OK, response);
+	}
 }

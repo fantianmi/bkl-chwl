@@ -62,7 +62,7 @@ AreaService areaServ=new AreaServiceImpl();
 List<Area> areas=areaServ.getList(citySelect);
 List<Type> types=typeServ.getList(0);
 
-String cityName=java.net.URLDecoder.decode(CookieUtil.getCookie("citySelectName", request));
+String cityName=java.net.URLDecoder.decode(CookieUtil.getCookie("citySelectName", request),"UTF-8");
 cityName=StringUtil.subString(cityName, 4);
 %>
 </head>
@@ -110,9 +110,9 @@ cityName=StringUtil.subString(cityName, 4);
  </nav>
  <!-- nav -->
 <!-- nav -->
-<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation" id="cate_nav_bar_foot" style="z-index:999 !important" >
-<div class="left-area"><a href="user_detail.jsp" class="btn btn-danger noradius">推广粉丝</a></div>
-<div class="right-area"><span class="btn btn-default noradius" style="background: rgba(0,0,0,0.8);color:#fff"><%=cityName%></span>&nbsp;&nbsp;<a href="citySelect.jsp" class="btn btn-default bg-touming noradius">切换城市</a></div>
+<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation" id="cate_nav_bar_foot" style="z-index:999 !important;background: rgba(237, 106, 0,0.8);" >
+<div class="left-area"><a href="user_detail.jsp" class="btn btn-default noradius">推广粉丝</a></div>
+<div class="right-area"><span class="btn btn-default noradius" style="background-color:#ED6A00;color:#fff"><%=cityName%></span>&nbsp;&nbsp;<a href="citySelect.jsp" class="btn btn-default bg-touming noradius">切换城市</a></div>
  </nav>
  <!-- nav -->
 <div class="content" style="margin-top:9.2rem ">
@@ -126,6 +126,7 @@ cityName=StringUtil.subString(cityName, 4);
 <jsp:include page="list_nav.jsp"></jsp:include>
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="店铺列表";
+$("#top_back_button").html("<a class=\"react\" href=\"index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <!-- page special -->
 <script type="text/javascript">

@@ -23,9 +23,6 @@ if(user.getVertify()==user.VERTIFY_FALSE){
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
 <div class="content nopadding" style="margin-top:5rem " id="content1">
-<div class="tableList downborder">
-<div class="detail">客服电话：<span>400-1568-848</span></div>
-</div>
 <span id="order_list_area">
 
 </span>
@@ -36,8 +33,8 @@ if(user.getVertify()==user.VERTIFY_FALSE){
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="订单查看";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+document.getElementById("head_title").innerHTML="结账详情";
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 $("#top_qr_button").hide();
 $("#top_search_button").hide();
 </script>
@@ -50,6 +47,7 @@ $.get(rqurl,function(res){
 			$("#order_list_area").append(res.data["resStr"]);
 		}
 		if(!res.data["hasNext"]){
+			$("#order_list_area").append("<div class=\"alert alert-info\" role=\"alert\">暂无结账记录</div>");
 			$("#showmoreBtn").html("没有更多内容了..");
 			$("#showmoreBtn").attr("disabled","true"); 
 		}
@@ -75,6 +73,25 @@ function showMore(){
 	});
 }
 </script>
-
+<style>
+.list_left {
+width: 30%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
+.list_middle {
+width: 35%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
+.list_right {
+width: 25%;
+float: left;
+padding: 1rem 0rem 1rem 0rem;
+font-size: 12px !important;
+}
+</style>
 </body>
 </html>

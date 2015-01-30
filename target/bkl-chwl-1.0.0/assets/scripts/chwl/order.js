@@ -32,7 +32,8 @@ function orderSubmit(){
 				
 			}else if(res.ret==714){
 				var orderId=res.data["orderId"];
-				window.location.href="payprocess.jsp?orderId="+orderId;
+				var redirectURI="payprocess.jsp?orderId="+orderId;
+				window.location.href=redirectURI;
 			}else if(res.ret==715){
 				swal({
                     title: "错误",  
@@ -41,8 +42,8 @@ function orderSubmit(){
                     showCancelButton: false,  
                     confirmButtonColor: "#A7D5EA",  
                     confirmButtonText: "确认" },
-                    function(){  
-                         window.location.href="/shop_list.jsp";
+                    function(){
+                        window.location.href="/shop_list.jsp";
                     });
 			}
 		}

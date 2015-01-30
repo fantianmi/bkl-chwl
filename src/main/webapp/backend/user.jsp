@@ -14,7 +14,7 @@
 	long id = Long.parseLong(StringUtils.defaultIfEmpty(request.getParameter("id"), "0"));
 	UserService userSrv = new UserServiceImpl();
 	User user = userSrv.get(id);
-	
+	String ossBaseurl=MainConfig.getOssBaseurl();	
 	String statusString = request.getParameter("recordType");
 	int status = 0;
 	if (statusString != null) {
@@ -22,6 +22,14 @@
 	}
 	boolean isShop=false;
 	boolean createShop=false;
+	
+	
+	int local1=0;
+	int local2=0;
+	int local3=0;
+	int type1=0;
+	int type2=0;
+	
 	if(user.getRole()==user.ROLE_SHOPER) isShop=true;
 	
 	Shop shop=new Shop();
@@ -33,12 +41,16 @@
 		shop=shopServ.getByUid(user.getId());
 		if(shop!=null){
 			createShop=true;
-			TypeService typeServ=new TypeServiceImpl();
-			AreaService areaServ=new AreaServiceImpl();
-			areaMap=areaServ.areaMap();
-			typeMap=typeServ.typeMap();
-			
+			local1=shop.getLocal()!=0?shop.getLocal():0;
+			local2=shop.getLocal2()!=0?shop.getLocal():0;
+			local3=shop.getLocal3()!=0?shop.getLocal():0;
+			type1=shop.getShop_type()!=0?shop.getShop_type():0;
+			type2=shop.getShop_type2()!=0?shop.getShop_type2():0;
 		}
+		TypeService typeServ=new TypeServiceImpl();
+		AreaService areaServ=new AreaServiceImpl();
+		areaMap=areaServ.areaMap();
+		typeMap=typeServ.typeMap();
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -115,7 +127,7 @@
 							<div class="profile-info-row">
 								<div class="profile-info-name">金币</div>
 								<div class="profile-info-value">
-									<input name="rmb" id="rmb" value="<%=ApiCommon.getUserCoin(id)%>">
+									<input name="rmb" id="rmb" value="<%=ApiCommon.getUserCoin(id)%>" readonly="readonly">
 								</div>
 							</div>	
 						</div>
@@ -153,9 +165,19 @@
 								<div class="profile-info-name">营业执照 </div>
 								<div class="profile-info-value">
 									<span>
-									<a  id="single_image" class="grouped_elements"  href="../<%=user.getLicenceFileURL()%>">
-										<img src="../<%=user.getLicenceFileURL()%>" width=220px>
+									<a  id="single_image" class="grouped_elements"  href="../<%=StringUtils.defaultIfEmpty(user.getLicenceFileURL(),"-")%>">
+										<img src="../<%=StringUtils.defaultIfEmpty(user.getLicenceFileURL(),"-")%>" width=220px>
 									</a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="profile-user-info profile-user-info-striped">
+							<div class="profile-info-row">
+								<div class="profile-info-name">营业执照编号 </div>
+								<div class="profile-info-value">
+									<span>
+										<%=ossBaseurl+StringUtils.defaultIfEmpty(user.getLicenceNumber(),"-")%>
 									</span>
 								</div>
 							</div>
@@ -165,44 +187,52 @@
 							<div class="profile-info-row">
 								<div class="profile-info-name">店铺名 </div>
 								<div class="profile-info-value">
-									<span><%=shop.getTitle() %></span>
+									<span><%=StringUtils.defaultIfEmpty(shop.getTitle(),"-") %></span>
 								</div>
 							</div>
 						</div>
+						<%if(shop.getShop_type()!=0){ 
+							
+						
+						%>
 						<div class="profile-user-info profile-user-info-striped">
 							<div class="profile-info-row">
 								<div class="profile-info-name">类别 </div>
 								<div class="profile-info-value">
 									<span>
-									<span><%=typeMap.get(Long.valueOf(shop.getShop_type())).getName()%></span>&nbsp;&nbsp;<span><%=typeMap.get(Long.valueOf(shop.getShop_type2())).getName() %></span>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="profile-user-info profile-user-info-striped">
-							<div class="profile-info-row">
-								<div class="profile-info-name">地区 </div>
-								<div class="profile-info-value">
-									<span>
-									<span><%=areaMap.get(Long.valueOf(shop.getLocal())).getTitle() %></span>&nbsp;&nbsp;<span><%=areaMap.get(Long.valueOf(shop.getLocal2())).getTitle() %></span>&nbsp;&nbsp;<span><%=areaMap.get(Long.valueOf(shop.getLocal3())).getTitle() %></span>
-									</span>
-								</div>
-							</div>
-						</div>
-						<%String image[]=shop.getImage().split("@"); %>
-						<div class="profile-user-info profile-user-info-striped">
-							<div class="profile-info-row">
-								<div class="profile-info-name">店铺概览 </div>
-								<div class="profile-info-value">
-									<span>
-									<a  id="single_image" class="grouped_elements"  href="../<%=image[1]%>">
-										<img src="../<%=image[1]%>" width=220px>
-									</a>
+									<span><%=typeMap.get(type1)!=null?typeMap.get(type1).getName():"-"%></span>&nbsp;&nbsp;<span><%=typeMap.get(type2)!=null?typeMap.get(type2).getName():"-"%></span>
 									</span>
 								</div>
 							</div>
 						</div>
 						<%} %>
+						<div class="profile-user-info profile-user-info-striped">
+							<div class="profile-info-row">
+								<div class="profile-info-name">地区 </div>
+								<div class="profile-info-value">
+									<span>
+									<span><%=areaMap.get(Long.valueOf(local1))!=null?areaMap.get(Long.valueOf(local1)).getTitle():"-"%></span>&nbsp;&nbsp;<span><%=areaMap.get(Long.valueOf(local2))!=null?areaMap.get(Long.valueOf(local2)).getTitle():"-" %></span>&nbsp;&nbsp;
+									<span><%=areaMap.get(Long.valueOf(local3))!=null?areaMap.get(Long.valueOf(local3)).getTitle():"-"%></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<%
+						if(shop.getImage()!=null&&!shop.getImage().equals("")){
+						String image[]=shop.getImage().split("@"); %>
+						<div class="profile-user-info profile-user-info-striped">
+							<div class="profile-info-row">
+								<div class="profile-info-name">店铺概览 </div>
+								<div class="profile-info-value">
+									<span>
+									<a  id="single_image" class="grouped_elements"  href="../<%=image[0]%>">
+										<img src="../<%=ossBaseurl+image[0]%>" width=220px>
+									</a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<%}} %>
 						<%} %>
 						<p />
 						<div class="col-xs-12">
@@ -215,7 +245,7 @@
 								<%if(user.getVertify()==user.VERTIFY_FALSE){ %>
 									<button class="btn btn-success" onclick="vertifyUser(<%=user.getId()%>)">通过审核</button>
 							    <%}else{ %>
-							    	<button class="btn btn-success" disabled="disabled">已通过审核</button>
+							    	<button class="btn btn-success" onclick="unVertifyUser(<%=user.getId()%>)">取消店铺资格</button>
 							    <%} %>
 							</div>
 							<p />

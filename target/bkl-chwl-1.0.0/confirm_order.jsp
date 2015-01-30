@@ -7,9 +7,18 @@
 <%@page import="com.bkl.chwl.vo.*"%>   
 <%@page import="java.math.BigDecimal"%>   
 <%@page import="java.util.*"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+com.bkl.chwl.entity.User user=UserUtil.getCurrentUser(request);
+if(user.getOpenid()==null||user.getOpenid()==""){
+	String uri=MainConfig.getContextPath()+"/api/user/bindWeixinOpenId";
+	 uri=URLEncoder.encode(uri, "utf-8");
+	 String oath="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2a306c8179ab786&redirect_uri="+uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+	 response.sendRedirect("uri");
+	 return;
+}
 if(request.getParameter("result")==null){
 	response.sendRedirect("scanQR.jsp");
 	return;
@@ -50,16 +59,16 @@ double coinRate=shop.getCoinRate();
     <input type="text" class="form-control" id="shopName" readonly="readonly">
   </div>
   <div class="form-group">
-    <label for="price"><i class="iconfont">&#xe63a;</i>&nbsp;&nbsp;支付金额</label>
+    <label for="price"><i class="iconfont">&#xe63a;</i>&nbsp;&nbsp;结账金额</label>
     <input type="text" class="form-control" id="price" placeholder="输入金额" onkeyup="value=value.replace(/[^0-9]/g,'')" onpaste="value=value.replace(/[^0-9]/g,'')" oncontextmenu = "value=value.replace(/[^0-9]/g,'')">
   </div>
-  <div class="form-group">
-    <label for="price"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;支付方式</label>
-    <button id="yinlianBtn" class="btn btn-default active btn-xs" onclick="changePayWay(1)">银联支付</button>
-    <%-- <button id="yueBtn" class="btn btn-default btn-xs" onclick="changePayWay(2)">余额支付（金币：<%=coin%>）</button> --%>
-  </div>
+ <%--  <div class="form-group">
+    <label for="price"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;结账方式</label>
+    <button id="yinlianBtn" class="btn btn-default active btn-xs" onclick="changePayWay(1)">银联结账</button>
+    <button id="yueBtn" class="btn btn-default btn-xs" onclick="changePayWay(2)">余额结账（金币：<%=coin%>）</button>
+  </div> --%>
   <p class="bg-danger" style="display: none" id="payNote"></p>
-  <button onclick="orderSubmit()" class="btn btn-danger btn-block">付款</button><br>
+  	<button onclick="orderSubmit()" class="btn btn-danger btn-block">付款</button><br>
 	</div>
 </div>
 <jsp:include page="foot.jsp"/>

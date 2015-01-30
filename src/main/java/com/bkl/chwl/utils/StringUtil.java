@@ -18,7 +18,7 @@ public class StringUtil {
 	//返利的特殊显示 立省=（(商家设置返利数*40)/100）%
 	public static String payBackDoubleToRate(double doubleValue){
 		double temp=doubleValue*40/100*100;
-		return String.valueOf(temp)+"%";
+		return String.valueOf((int)temp)+"%";
 	}
 	public static String clearAllWhiteSpace(String str) {
 		if (str == null) {

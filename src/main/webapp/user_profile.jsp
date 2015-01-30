@@ -24,28 +24,35 @@
 <div class="content nopadding" style="margin-top:4.5rem " id="content1">
 <div class="container nomargin" style="background-color: #DC3C00;color:#fff;padding:2rem !important;margin-bottom: 0px !important;">
   <p><i class="iconfont">&#xe628;</i>金币(￥)<br><br><span class="bigFont" style="color: #fff" id="coin_left"></span></p>
+  <div class="coin_right_pic"><img src="assets/images/Mascot.png"/></div>
 </div>
 <div class="space"></div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">立省所得</div><div class="status"  id="discount_get"></div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #FDB300">&#xe628;</i>&nbsp;立省所得</div><div class="status"  id="discount_get"></div>
 </div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">推荐商家</div><div class="status" ><span style="color:#666" id="rshoper_get"></span></div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EA434B">&#xf0139;</i>&nbsp;推荐商家</div><div class="status" ><span style="color:#666" id="rshoper_get"></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">推荐粉丝</div><div class="status"><span  style="color:#666" id="ruser_get"></span></div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #52BCEE">&#xf00d8;</i>&nbsp;推荐粉丝</div><div class="status"><span  style="color:#666" id="ruser_get"></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem">钱袋/抽奖</div><div class="status"  id="other_get"></div>
-</div>
-<div class="tableList downborder" style="<%=user.getProxy()!=1?"display:none":""%>">
-<div class="detail" style="padding-left: 1rem">代理所得</div><div class="status" id="proxy2_get"></div>
-</div>
-<div class="tableList downborder" style="<%=user.getProxy2()!=1?"display:none":""%>">
-<div class="detail" style="padding-left: 1rem">猎头所得</div><div class="status" id="proxy_get"></div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #D39145">&#xe61a;</i>&nbsp;抽奖收益</div><div class="status"  id="lottery_get"></div>
 </div>
 <div class="tableList downborder">
-<a href="user_withdraw.jsp"><div class="detail" style="padding-left: 1rem">提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #D39145">&#xe61a;</i>&nbsp;钱袋收益</div><div class="status"  id="bonus_get"></div>
+</div>
+<div class="tableList downborder">
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #565455">&#xe611;</i>&nbsp;城市代理</div><div class="status" id="proxy2_get"></div>
+</div>
+<div class="tableList downborder">
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #565455">&#xe611;</i>&nbsp;区域代理</div><div class="status" id="proxy3_get"></div>
+</div>
+<div class="tableList downborder">
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #00AE69">&#xe611;</i>&nbsp;猎头所得</div><div class="status" id="proxy_get"></div>
+</div>
+<div class="tableList downborder">
+<a href="user_withdraw.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EE8100">&#xe6b3;</i>&nbsp;提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="space"></div>
 <a class="btn btn-success btn-block" href="user_withdraw.jsp">我要提现</a>
@@ -59,7 +66,7 @@
 </style>
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="我的金币";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 var url="/api/user/getUserProfile?random="+Math.round(Math.random()*100);
 $.get(url,function(res){
 	if(res){
@@ -67,8 +74,10 @@ $.get(url,function(res){
 			 $("#discount_get").html(res.data["discount_get"]);
 			 $("#rshoper_get").html(res.data["rshoper_get"]);
 			 $("#ruser_get").html(res.data["ruser_get"]);
-			 $("#other_get").html(res.data["other_get"]);
+			 $("#bonus_get").html(res.data["bonus_get"]);
+			 $("#lottery_get").html(res.data["lottery_get"]);
 			 $("#proxy2_get").html(res.data["proxy2_get"]);
+			 $("#proxy3_get").html(res.data["proxy3_get"]);
 			 $("#proxy_get").html(res.data["proxy_get"]);
 		}
 	}

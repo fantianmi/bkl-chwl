@@ -42,13 +42,13 @@ for(User2BindCard card:cards){
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="我的银行卡";
-$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <style>
 .card_list{color:#fff}
 .card_list .status{color:ccc}
-.card_list_div{background-color: #E34E47;border-radius:4px;margin:0px 1px;}
-.card_list_div:hover{background-color: #eb706a;}
+.card_list_div{background-color: #5DB755;border-radius:4px;margin:0px 1px;}
+.card_list_div:hover{background-color: #70d268;}
 </style>
 <jsp:include page="updateProfileTimes.jsp"/>
 </body>

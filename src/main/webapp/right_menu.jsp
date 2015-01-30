@@ -23,7 +23,7 @@ if (forwardUrl == null) {
     <div class="drawer-brand">
       <a href="#">欢迎，<%=user.getName()!=""?user.getName():user.getMobile() %></a>
     </div>
-    <p class="btn btn-info " style="width:80%; margin-left: 10%;margin-bottom: 10px;font-size: 30px" onclick="scanQR()"><i class="iconfont lg" style="color:#fff">&#xe6fb;</i>支付</p>
+    <p class="btn btn-info " style="width:80%; margin-left: 10%;margin-bottom: 10px;font-size: 30px" onclick="scanQR()"><i class="iconfont lg" style="color:#fff">&#xe6fb;</i>结账</p>
     
     <p class="drawer-nav-title">引导</p>
     <ul class="drawer-nav-list">

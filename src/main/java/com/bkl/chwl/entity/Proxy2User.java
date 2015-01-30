@@ -7,11 +7,21 @@ import com.km.common.utils.TimeUtil;
 public class Proxy2User extends Area{
 	private String mobile;
 	private long uid;
+	private long parent;
 	private String name;
 	private long ctime;
 	public String getMobile() {
 		return mobile;
 	}
+	
+	public long getParent() {
+		return parent;
+	}
+
+	public void setParent(long parent) {
+		this.parent = parent;
+	}
+
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}

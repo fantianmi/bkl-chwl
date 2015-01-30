@@ -18,6 +18,7 @@ Shop shop=shopServ.getByUid(user.getId());
 AreaService areaServ = new AreaServiceImpl(); 
 TypeService typeServ=new TypeServiceImpl();
 List<Area> provinces=areaServ.getList(0);
+Map<Long,Area> areaMap=areaServ.areaMap();
 if(user.getRole()!=user.ROLE_SHOPER){
 	response.sendRedirect("index.jsp");
 	return;
@@ -30,13 +31,14 @@ if(shop!=null){
 if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 	zuobiao=request.getParameter("x")+","+request.getParameter("y");
 }
+String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<jsp:include page="common_source_head.jsp"/>
 	<!-- page special -->
-	<script type="text/javascript" src="assets/scripts/chwl/shop.js"></script>
+	<script type="text/javascript" src="assets/scripts/chwl/shop.js?v=10.0"></script>
 	<!-- page special -->
 </head>
 <body class="drawer drawer-right">
@@ -44,93 +46,51 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 <div class="content nopadding" style="margin-top:5.5rem " id="content1">
 <input type="hidden" id="id" value="<%=shop!=null?shop.getId():0%>"/>
 <input type="hidden" id="uid" value="<%=shop!=null?shop.getUid():user.getId()%>"/>
-<input type="hidden" id="image" value="<%=shop!=null?shop.getImage():"@"%>"/>
-<div class="content">
-	<div id="tab-one">
-	<ul class="gallery">
-			<span id="uploadImgList">
-			<%
-			if(shop!=null){
-				String image[]=shop.getImage().split("@");
-				for(int i=1;i<image.length;i++){
-					%>
-					<li><img class='image-decoration' src="<%=image[i]%>"></li>
-					<%
-				}
-			}
-			%>
-            </span>
-        </ul>
-	</div>
+<input type="hidden" id="image" value="<%=shop!=null?shop.getImage():""%>"/>
 </div>
-<%if(shop!=null){ %>
-<button onclick="resetImage()" class="btn btn-danger btn-block" id="resetImgBtn">重新上传</button>
-<span id="dropzoneArea" style="display: none">
-<form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
-</form>
-</span>
-<%}else{ %>
-<form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
-</form>
-<%} %>
-</div>
-<div class="space"></div>
 <div class="container nomargin" style="margin: 0rem !important; padding: 0rem 1rem !important">
-<div class="tableList downborder">
-<div class="detail">客服电话：<span>400-1568-848</span></div>
-</div>
 <!-- form area -->
 <div class="form-group">
-    <label for="title">店铺名</label>
+    <label for="title">商户全称</label>
     <input type="text" class="form-control" id="title" value="<%=shop!=null?shop.getTitle():""%>">
   </div>
 <div class="form-group">
-    <label for="detail">详细介绍（200字以内）</label>
-    <textarea class="form-control" rows="3" id="detail"><%=shop!=null?shop.getDetail():""%></textarea>
+    <label for="detail">商家介绍（200字以内） 还可以输入<span id="validNum" style="color:red">200</span>字</td></label>
+    <textarea class="form-control" rows="3" id="detail" maxlength='140' onKeyDown="checkLength()" onKeyUp="checkLength()" onPaste="checkLength()"><%=shop!=null?shop.getDetail():""%></textarea>
   </div>
   <div class="form-group">
-    <label for="shop_map">百度坐标</label><span id="map_status" style="color:red"></span><span id="reDoLBS"><button class="btn btn-danger btn-xs" onclick="doLBS()">定位</button></span>
+    <label for="shop_map">百度坐标 （请在商铺实际经营地点定位，以便消费者精准导航）</label><span id="map_status" style="color:red"></span><span id="reDoLBS"><button class="btn btn-danger btn-xs" onclick="doLBS()">定位</button></span>
     <input type="text" class="form-control" id="shop_map"  value="<%=zuobiao%>" readonly>
   </div>
+  <%
+  Long local1=Long.valueOf(user.getLocal());
+  Long local2=Long.valueOf(user.getLocal2());
+  Long local3=Long.valueOf(user.getLocal3());
+  
+  String local1Name=areaMap.get(local1)!=null?areaMap.get(local1).getTitle():"";
+  String local2Name=areaMap.get(local2)!=null?areaMap.get(local2).getTitle():"";
+  String local3Name=areaMap.get(local3)!=null?areaMap.get(local3).getTitle():"";
+  String locString=local1Name+local2Name+local3Name;
+  %>
   <div class="form-group">
     <label for="shop_loc">详细地址</label>
-    <input type="text" class="form-control" id="shop_loc"  value="<%=shop!=null?shop.getShop_loc():""%>">
+    <input type="text" class="form-control" id="shop_loc"  value="<%=shop.getShop_loc()!=null&&shop.getShop_loc()!=""?shop.getShop_loc():locString%>">
   </div>
   <div class="form-group">
     <label for="shop_tel">联系电话</label>
-    <input type="text" class="form-control" id="shop_tel"  value="<%=shop!=null?shop.getShop_tel():""%>" onkeyup="value=value.replace(/[^0-9]/g,'')" onpaste="value=value.replace(/[^0-9]/g,'')" oncontextmenu = "value=value.replace(/[^0-9]/g,'')">
+    <input type="text" class="form-control" id="shop_tel"  value="<%=shop.getShop_tel()!=null&&shop.getShop_tel()!=""?shop.getShop_tel():user.getMobile2()%>" onkeyup="value=value.replace(/[^0-9]/g,'')" onpaste="value=value.replace(/[^0-9]/g,'')" oncontextmenu = "value=value.replace(/[^0-9]/g,'')">
   </div>
    <input type="hidden" class="form-control" id="price" value="<%=shop!=null?shop.getPrice():1%>" onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')">
    <input type="hidden" class="form-control" id="oprice" value="<%=shop!=null?shop.getOprice():1%>" onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')">
-  <div class="form-group">
-    <label for="coinRate">消费返利（如0.3表示消费收入的30%让利）</label><br>
-    <select  id="coinRate" >
-    <%=shop!=null?"<option value="+shop.getCoinRate()+">"+shop.getCoinRate()+"</option>":""%>
-    <option value="0.1">0.1</option>
-    <option value="0.15">0.15</option>
-    <option value="0.2">0.2</option>
-    <option value="0.25">0.25</option>
-    <option value="0.3">0.3</option>
-    <option value="0.35">0.35</option>
-    <option value="0.4">0.4</option>
-    <option value="0.45">0.45</option>
-    <option value="0.5">0.5</option>
-    <option value="0.55">0.55</option>
-    <option value="0.6">0.6</option>
-    <option value="0.65">0.65</option>
-    <option value="0.7">0.7</option>
-    <option value="0.75">0.75</option>
-    <option value="0.8">0.8</option>
-    <option value="0.85">0.85</option>
-    <option value="0.9">0.9</option>
-    <option value="0.95">0.95</option>
-    <option value="1">1</option>
-    </select>
-  </div>
+    <label for="coinRate">消费返利（50%≥输入数字（必须为整数)≥10%）</label>
+  <div class="input-group">
+    <input type="text" class="form-control" id="coinRate"  value="<%=shop.getCoinRate()!=0?(int)(shop.getCoinRate()*100):10%>" onkeyup="checkfanli()" onpaste="checkfanli()" oncontextmenu = "checkfanli()">
+    <span class="input-group-addon">%</span>
+  </div><br>
   <div class="form-group">
   <label for="recommended_user_id">城市选择</label><br>
     <select id="local" onchange="changeArea(this,this.value)">
-    <%=shop!=null?"<option value="+shop.getLocal()+">默认不动</option>":"<option value=\"0\">请选择省份</option>"%>
+    <%=shop.getLocal()!=0?"<option value="+shop.getLocal()+">默认不动</option>":"<option value=\"0\">请选择省份</option>"%>
 	    <%
 	    Area province=new Area();
 	    for(int i=0;i<provinces.size();i++) {
@@ -140,16 +100,16 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 		<%} %>
 		  </select>
 		  <select  id="local2" onchange="changeArea(this,this.value)" onclick="changeArea(this,this.value)">
-		  <%=shop!=null?"<option value="+shop.getLocal2()+">默认不动</option>":"<option value=\"0\">请选择城市</option>"%>
+		  <%=shop.getLocal2()!=0?"<option value="+shop.getLocal2()+">默认不动</option>":"<option value=\"0\">请选择城市</option>"%>
 		  </select>
 		  <select  id="local3">
-		  <%=shop!=null?"<option value="+shop.getLocal3()+">默认不动</option>":"<option value=\"0\">请选择地区</option>"%>
+		  <%=shop.getLocal3()!=0?"<option value="+shop.getLocal3()+">默认不动</option>":"<option value=\"0\">请选择地区</option>"%>
 		  </select>
 	  </div>
 	  <div class="form-group">
 	    <label for="recommended_user_id">类别选择</label><br>
 	    <select id="shop_type" onchange="changeType(this,this.value)">
-	    <%=shop!=null?"<option value="+shop.getLocal3()+">默认不动</option>":"<option value=\"0\">请选择类别</option>"%>
+	    <%=shop.getShop_type()!=0?"<option value="+shop.getShop_type()+">默认不动</option>":"<option value=\"0\">请选择类别</option>"%>
 		    <%
 		    Type shop_type=new Type();
 		    for(int i=0;i<types.size();i++) {
@@ -159,13 +119,44 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 			<%} %>
 			  </select>
 			  <select  id="shop_type2" >
-			  <%=shop!=null?"<option value="+shop.getLocal3()+">默认不动</option>":"<option value=\"0\">请选择子类别</option>"%>
+			  <%=shop.getShop_type2()!=0?"<option value="+shop.getShop_type2()+">默认不动</option>":"<option value=\"0\">请选择子类别</option>"%>
 			  </select>
 	  </div>
 	   <div class="form-group">
-	    <button onclick="addShopSubmit()" class="btn btn-success btn-block">确认提交</button>
 	  </div>
 	  </div>
+<div class="space"></div>
+<div class="content">
+	<div id="tab-one">
+	<ul class="gallery">
+			<span id="uploadImgList">
+			<%
+			if(shop!=null){
+				String image[]=shop.getImage().split("@");
+				for(int i=0;i<image.length;i++){
+					%>
+					<li><img class='image-decoration' src="<%=ossBaseurl+image[i]%>"></li>
+					<%
+				}
+			}
+			%>
+            </span>
+        </ul>
+	</div>
+</div>
+<%if(shop.getImage()!=null&&!shop.getImage().equals("")){ %>
+<button onclick="resetImage()" class="btn btn-danger btn-block" id="resetImgBtn">重新上传</button>
+<span id="dropzoneArea" style="display: none">
+<form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+</form>
+</span>
+<%}else{ %>
+仅限3张（商铺门头、店内实景、主打商品）；每张不超过5M
+<form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
+</form>
+<%} %>
+<div class="space"></div>
+<button onclick="addShopSubmit()" class="btn btn-success btn-block">确认提交</button>
 <!-- form area -->
  <jsp:include page="foot.jsp"/>
 <jsp:include page="common_source_foot.jsp"/>
@@ -173,8 +164,8 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 <!-- page special -->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wGG6mbDmPutcOrlNIcFxNeAU"></script>
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="管理店铺";
-$("#top_back_button").html("<a class=\"react\" href=\"shop_info.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+document.getElementById("head_title").innerHTML="完整资料";
+$("#top_back_button").html("<a class=\"react\" href=\"shop_index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 $("#top_qr_button").hide();
 $("#top_search_button").hide();
 </script>
@@ -185,13 +176,16 @@ jQuery(function($){
 	try {
 	  $(".dropzone").dropzone({
 	    paramName: "file", // The name that will be used to transfer the file
-	    maxFilesize: 100, // MB
-	  
+	    acceptedFiles:"image/*",
+	    maxFilesize: 5, // MB
 		addRemoveLinks : false,
+		dictMaxFilesExceeded:"请上传小于5M的图片",
+		dictInvalidFileType:"请上传格式为jpg的图片",
+		dictFileTooBig:"请上传小于5M的图片",
 		dictDefaultMessage :"<a class='btn btn-danger btn-block' id='uploadBtn'>上传图片</a>'",
 		dictResponseError: "<p class='bg-danger absolutePostion'>上传失败，格式错误</p>",
 		//change the previewTemplate to use Bootstrap progress bars
-		previewTemplate: "<p class='bg-success absolutePostion'>上传成功</p>"
+		previewTemplate: "<div class=\"bg-danger absolutePostion\"><span data-dz-errormessage></span></div>"
 	  });
 	} catch(e) {
 	  alert('Dropzone.js does not support older browsers!');
@@ -209,9 +203,9 @@ Dropzone.options.dropzoneForm = {
             var uploadFileName=data[0]["uploadFileName"];
             var imageValue=$("#image").val();
             imageValue+=uploadFileURL+"@";
-            $("#image").val(imageValue);
+            $("#image").val(imageValue);	
             uploadImageNum++;
-            if(uploadImageNum==9){
+            if(uploadImageNum==3){
             	$("#uploadBtn").hide();
             }
             $("#uploadImgList").append("<li><img class='image-decoration' src='"+uploadFileURL+"'></li>");
@@ -219,7 +213,7 @@ Dropzone.options.dropzoneForm = {
     }
 };
 function resetImage(){
-	$("#image").val("@");
+	$("#image").val("");
 	$("#resetImgBtn").hide();
 	$("#dropzoneArea").show();
 	$("#uploadImgList").html("");
@@ -246,7 +240,28 @@ function doLBS(){
 		}        
 	},{enableHighAccuracy: true})
 }
+function checkfanli(){
+	document.getElementById("coinRate").value=document.getElementById("coinRate").value.replace(/[^0-9]/g,'');
+	if(document.getElementById("coinRate").value>50){
+		swal("错误", "返利请输入10`50之间的数字", "error");
+		document.getElementById("coinRate").value=50;
+		return
+	}
+}
+
+function checkLength(){
+    var value = document.getElementById("detail").value;
+    if(value.length>200){
+        document.getElementById("detail").value=document.getElementById("detail").value.substr(0, 200);
+    }else{
+        document.getElementById("validNum").innerHTML = 200 - value.length;
+    }
+}
 </script>
+<style>
+.bg-danger{background-color: #000;color:#fff;}
+.bg-danger span{color:#fff}
+</style>
 <!-- drop box -->
 </body>
 </html>

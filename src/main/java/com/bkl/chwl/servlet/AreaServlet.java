@@ -54,7 +54,7 @@ public class AreaServlet extends CommonServlet {
 		AreaService areaServ=new AreaServiceImpl();
 		List<Area> areas=areaServ.getList(reid);
 		
-		String res="";
+		String res="<option value='0'>请选择</option>";
 		for(Area a:areas){
 			res+="<option value='"+a.getId()+"'>"+a.getTitle()+"</option>";
 		}

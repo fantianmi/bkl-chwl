@@ -24,6 +24,10 @@ public class User {
 	 */
 	private String pin = "";
 	/**
+	 * 微信的Openid
+	 */
+	private String openid="";
+	/**
 	 * 用户姓名
 	 */
 	private String name = "";
@@ -45,6 +49,10 @@ public class User {
 	 * 手机号码
 	 */
 	private String mobile;
+	/**
+	 * 大小王临时加上_用于找回密码
+	 */
+	private String mobile2;
 	
 	/**
 	 * 证件号
@@ -70,8 +78,11 @@ public class User {
 	private int role;
 	private String licenceFileURL;
 	private String licenceFileName;
+	//所属地区 一级城市 二级城市 三级城市
 	private int local;
 	private int local2;
+	private int local3;
+	
 	//营业执照编号
 	private String licenceNumber;
 	//城市代理
@@ -122,6 +133,12 @@ public class User {
 		return "未知";
 	}
 
+	public int getLocal3() {
+		return local3;
+	}
+	public void setLocal3(int local3) {
+		this.local3 = local3;
+	}
 	public void setProxy(int proxy) {
 		this.proxy = proxy;
 	}
@@ -169,7 +186,13 @@ public class User {
 	public void setLocal(int local) {
 		this.local = local;
 	}
-
+	
+	public String getMobile2() {
+		return mobile2;
+	}
+	public void setMobile2(String mobile2) {
+		this.mobile2 = mobile2;
+	}
 	public int getLocal2() {
 		return local2;
 	}
@@ -214,6 +237,12 @@ public class User {
 		return "未知";
 	}
 	
+	public String getOpenid() {
+		return openid;
+	}
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
 	public void setProxy2(int proxy2) {
 		this.proxy2 = proxy2;
 	}

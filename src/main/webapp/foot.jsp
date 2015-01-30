@@ -12,7 +12,8 @@
  <%
  boolean flag=UserUtil.islogin(request);
  %>
-<div class="space"></div>
+ <a id="redirectURI" style="display: none" target="_blank"></a>
+<div class="space" id="foot_space"></div>
 <div class="footer">
 	<%-- <%if(flag){ %><div class="divleft"><a href="javascript:loginout()" class="btn btn-danger hollow">退出登录</a></div><%} %>
 	<%if(!flag){ %><div class="divleft"><a href="login.jsp" class="btn btn-danger hollow">登录</a></div><%} %> --%>
@@ -25,7 +26,7 @@
     <p class="copyright">大小王科技@版权所有 4001568848（热线）</p>
 </div>
 <div class="searchBarArea" style="display: none" id="searchBarArea">
-	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" style="padding:.5rem;">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" style="padding:.5rem;border-color: #ED6A00;background-color: #ED6A00">
 	  <div class="input-group">
 	  <span class="input-group-btn">
         <button class="btn btn-danger" type="button" onclick="searchBarHide()">关闭</button>
@@ -37,7 +38,7 @@
     </div><!-- /input-group -->
 	</nav>
 	<!-- res area -->
-	<div class="container2" style="margin-top: 3rem;">
+	<div class="container2" style="margin-top: 4rem;">
       <div class="decoration"></div>
 	      <span id="searchShopList">
 	      </span>
@@ -124,13 +125,17 @@ function searchShowMore(){
 </script>
 <!-- wechat -->
 <%
-String url=MainConfig.getContextPath()+request.getServletPath().substring(1, request.getServletPath().length());
+String weixinurl=MainConfig.getContextPath()+request.getServletPath().substring(1, request.getServletPath().length());
+if(request.getQueryString()!=null&&!request.getQueryString().equals("")&&!request.getQueryString().equals("null")){
+	weixinurl=weixinurl+"?"+request.getQueryString();
+}
+System.out.println(weixinurl);
 Weixin weixin=WeixinApi.getWeixin();
 String timestamp="";
 String nonceStr="";
 String signatuure="";
 if(weixin!=null){
-	Map<String,String> sign=Sign.sign(weixin.getTicket(), url);
+	Map<String,String> sign=Sign.sign(weixin.getTicket(), weixinurl);
 	timestamp=sign.get("timestamp");
 	nonceStr=sign.get("nonceStr");
 	signatuure=sign.get("signature");
@@ -156,6 +161,7 @@ wx.config({
                 'onMenuShareTimeline',
                 'onMenuShareQQ',
                 'onMenuShareWeibo',
+                'onMenuShareAppMessage',
                 'scanQRCode',
               ]
 	});
@@ -176,8 +182,10 @@ wx.config({
 			    link: '<%=recommendURL%>',
 			    imgUrl: 'http://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRt8Qia4lv7k3M9J1SKqKCImxJCt7j9rHYicKDI45jRPBxdzdyREWnk0ia0N5TMnMfth7SdxtzMvVgXg/0'
 			  };
-		  wx.onMenuShareAppMessage(shareData);
-		  wx.onMenuShareTimeline(shareData);
+			wx.onMenuShareQQ(shareData);
+			wx.onMenuShareWeibo(shareData);
+		    wx.onMenuShareAppMessage(shareData);
+		    wx.onMenuShareTimeline(shareData);
 	});
 
 	

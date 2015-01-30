@@ -18,7 +18,7 @@ public class FrontUtil {
 	}
 	
 	public static String formatRmbDouble(double value) {
-		java.text.DecimalFormat df = new java.text.DecimalFormat("0.0");
+		java.text.DecimalFormat df = new java.text.DecimalFormat("0.00");
 		return addComma(df.format(value));
 	}
 	

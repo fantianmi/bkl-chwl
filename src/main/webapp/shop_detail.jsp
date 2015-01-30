@@ -35,6 +35,7 @@ if(u!=null){
 	}
 		
 }
+String ossBaseurl=MainConfig.getOssBaseurl();
 String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId();
 %>
 <html>
@@ -51,24 +52,24 @@ String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId
 <div class="fullwidthbanner-container" style="margin-top:5.1rem">
 		<div id="revolution-slider">
 			<ul>
-			<%for(int i=1;i<images.length;i++){
+			<%for(int i=0;i<images.length;i++){
 			String imageURL=images[i];		
 		%>
             	<li data-transition="fade" data-slotamount="10" data-masterspeed="300">
 					<!--  BACKGROUND IMAGE -->
-					<img src="<%=imageURL%>" alt="" />
+					<img src="<%=ossBaseurl+imageURL%>" alt="" />
 				</li>
       <%} %>
 			</ul>
 		</div>
 </div>
-<ul class="shop_detail_list">
-    <li><a href="javascript:addCollect(<%=shop.getId()%>)" id="addCollectLink"  <%=isCollect?"onclick='return false'":"" %>><span id="collect_text"><%=isCollect?"已":"" %>收藏</span>(<span id="collectNum"><%=shop.getShop_collect()%></span>)</a></li>
-    <li><a href="shop_map.jsp?id=<%=shop.getId() %>">点击导航</a></li>
-    <li>立省<%=StringUtil.payBackDoubleToRate(shop.getCoinRate()) %></li>
-    <li><a href="tel:<%=shop.getShop_tel()%>">拨打电话</a></li>
+<ul class="shop_detail_list" style="margin-bottom: 0px;">
+    <li><a href="javascript:addCollect(<%=shop.getId()%>)" id="addCollectLink"  <%=isCollect?"onclick='return false'":"" %>><i class="iconfont" style="color:#EA4647 ">&#xe611;</i><span id="collect_text"><%=isCollect?"已":"" %>收藏</span>(<span id="collectNum"><%=shop.getShop_collect()%></span>)</a></li>
+    <li><a href="shop_map.jsp?id=<%=shop.getId() %>"><i class="iconfont" style="color:#4FB2EB">&#xe67f;</i>点击导航</a></li>
+    <li><i class="iconfont" style="color:#D79632">&#xe628;</i>立省<%=StringUtil.payBackDoubleToRate(shop.getCoinRate()) %></li>
+    <li><a href="tel:<%=shop.getShop_tel()%>" ><i class="iconfont" style="color:#04A768">&#xe652;</i>拨打电话</a></li>
 </ul>  
-<div class="container">
+<div class="container" style="background-color: #F0EFED">
      <div class="blog-post">
          <div class="post-content">
              <h3><%=shop.getTitle()%></h3>     
@@ -79,11 +80,10 @@ String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId
          </div>
      </div>
  </div>
-<div class="decoration"></div>
 <div class="container">
      <div class="blog-post">
          <div class="post-content" style="font-size: 14px">
-         <p><i class="iconfont" style="font-size:20px">&#xe67f;</i>&nbsp;&nbsp;<%=shop.getShop_loc() %></p>
+         <p><i class="iconfont" style="font-size:20px;color:#ED6A00">&#xe67f;</i><span style="font-size: 16px;font-weight: 800;color:#666;">地址</span>&nbsp;&nbsp;<%=shop.getShop_loc() %></p>
          </div>
      </div>
  </div>
@@ -91,7 +91,7 @@ String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId
  <div class="space_noborder"></div>
  <!-- nav -->
 <nav class="navbar navbar-fixed-bottom" role="navigation" id="cate_nav_bar_foot" style="z-index:999 !important;background: rgba(255,255,255,0.8);box-shadow: 0 1px 10px rgba(0,0,0,.5);-moz-user-select: none;">
-<button type="button" class="btn btn-lg btn-danger btn-block noradius" onclick="window.location.href='confirm_order.jsp?result=<%=shop.getId()%>'">支付</button>
+<button type="button" class="btn btn-lg btn-danger btn-block noradius" onclick="window.location.href='confirm_order.jsp?result=<%=shop.getId()%>'"><i class="iconfont" style="font-size: 20px;">&#x344c;</i>	结账</button>
  </nav>
  <!-- nav -->
  <div class="space"></div>

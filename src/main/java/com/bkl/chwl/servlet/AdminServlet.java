@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bkl.chwl.entity.AdminUser;
 import com.bkl.chwl.entity.Cash;
+import com.bkl.chwl.entity.Shop;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.service.CashService;
+import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.UserService;
 import com.bkl.chwl.service.impl.CashServiceImpl;
+import com.bkl.chwl.service.impl.ShopServiceImpl;
 import com.bkl.chwl.service.impl.UserServiceImpl;
 import com.bkl.chwl.utils.AdminUserUtil;
 import com.km.common.dao.DaoFactory;
@@ -20,6 +23,7 @@ import com.km.common.utils.ServletUtil;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
 import com.km.common.vo.RetCode;
+import com.unionpay.acp.payanother.Form10_6_2;
 
 public class AdminServlet extends CommonServlet {
 	
@@ -72,6 +76,25 @@ public class AdminServlet extends CommonServlet {
 			user.setVertify(user.VERTIFY_TRUE);
 			userDao.update(user);
 		}
+		ShopService shopServ=new ShopServiceImpl();
+		Shop shop=shopServ.getByUid(userId);
+		shop.setVertifystatus(shop.VERTIFYSTATUS_TRUE);
+		shopServ.save(shop);
+		ServletUtil.writeOkCommonReply("", response);
+	}
+	
+	public void unvertify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		long userId = Long.parseLong(request.getParameter("id"));
+		GeneralDao<User> userDao = DaoFactory.createGeneralDao(User.class);
+		User user = userDao.find(userId);
+		if (user != null) {
+			user.setVertify(user.VERTIFY_FALSE);
+			userDao.update(user);
+		}
+		ShopService shopServ=new ShopServiceImpl();
+		Shop shop=shopServ.getByUid(userId);
+		shop.setVertifystatus(shop.VERTIFYSTATUS_FALSE);
+		shopServ.save(shop);
 		ServletUtil.writeOkCommonReply("", response);
 	}
 	
@@ -118,9 +141,8 @@ public class AdminServlet extends CommonServlet {
 		Cash cash = ServletUtil.readObjectServletQuery(request,Cash.class);
 		CashService cashServ = new CashServiceImpl();
 		AdminUser adminUser = AdminUserUtil.getCurrentUser(request);
-		System.out.println(cash.getId());
-		System.out.println(adminUser.getId());
 		RetCode ret = cashServ.doWithdraw(cash.getId(), adminUser.getId());
+		/*Form10_6_2.doSubmitWithdraw(cash);*/
 		ServletUtil.writeCommonReply(null,ret, response);
 	}
 	

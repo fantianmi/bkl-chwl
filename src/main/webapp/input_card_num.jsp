@@ -7,6 +7,9 @@
 <%@page import="com.bkl.chwl.entity.*"%>
 <%@page import="com.bkl.chwl.*"%>   
 <%@page import="java.util.*"%>
+<%
+User u=UserUtil.getCurrentUser(request);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,10 +18,10 @@
 <body class="drawer drawer-right">
 <jsp:include page="top_nobutton.jsp"/>
 <div class="content" style="margin-top:5.5rem;padding:0rem 1rem 1rem 1rem !important">
-<form action="input_card_info.jsp" method="post" id="submitCardNum">
+<form action="<%=u.getRole()==u.ROLE_NORMAL?"input_card_info.jsp":"input_card_info_full.jsp" %>" method="post" id="submitCardNum">
   <div class="form-group">
     <label for="regUserName">卡号</label>
-    <input type="text" class="form-control" id="bankCardNum" name="bankCardNum"  placeholder="无需网银/免手续费" >
+    <input type="text" class="form-control" id="bankCardNum" name="bankCardNum"  placeholder="无需网银/免手续费"  onpaste="return false" >
   </div>
   </form>
   <p style="display: none" id="regNameResult"></p>
@@ -33,12 +36,15 @@
 document.getElementById("head_title").innerHTML="添加银行卡";
 
 var onkeyupboxFun2 = function (e){
+	document.getElementById("bankCardNum").value=document.getElementById("bankCardNum").value.replace(/\D/g,'');
 	onkeyupbox2(e);
 };
 var onclickboxFun2 = function (e){
+	document.getElementById("bankCardNum").value=document.getElementById("bankCardNum").value.replace(/\D/g,'');
 	onclickbox2(e);
 };
 var moveclickboxFun2 = function (e){
+	document.getElementById("bankCardNum").value=document.getElementById("bankCardNum").value.replace(/\D/g,'');
 	moveclickbox2(e);
 };
 document.getElementById("bankCardNum").onkeyup=onkeyupboxFun2;

@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.io.UnsupportedEncodingException;  
 
 import com.bkl.chwl.entity.Weixin;
+import com.km.common.utils.TimeUtil;
 
 public class Sign {
     public static void main(String[] args) throws Exception {
@@ -25,7 +26,7 @@ public class Sign {
         //String nonce_str = create_nonce_str();
         //String timestamp = create_timestamp();
         String nonce_str = "82693e11-b9bc-448e-892f-f5289f46cd0f";
-        String timestamp = "1419835025";
+        String timestamp = String.valueOf(TimeUtil.getUnixTime());
         String string1;
         String signature = "";
 

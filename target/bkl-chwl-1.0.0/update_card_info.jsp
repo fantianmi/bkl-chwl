@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@page import="com.km.common.config.Config"%>
  <%@page import="com.bkl.chwl.constants.Constants"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
@@ -25,12 +26,18 @@ User2BindCard card=bindCardServ.getUser2Card(id);
 <jsp:include page="top_nobutton.jsp"/>
 <div class="content" style="margin-top:5.5rem;padding:0rem 1rem 1rem 1rem !important">
   <div class="form-group">
+    <% 
+		List banks = Config.getList("config.cny.withdraw.bank");
+	%>
     <label for="bank_o" >卡类型</label><br>
     <select id="bank_o">
-    <option value="<%=card.getBank_o()%>"><%=card.getBank_o()%></option>
     <option value="0">请选择银行</option>
-    <option value="建设银行 储蓄卡">建设银行 储蓄卡</option>
-    <option value="农业银行 储蓄卡">农业银行 储蓄卡</option>
+    <%
+		for(Object bank:banks) {
+			String bankName = new String(bank.toString().getBytes("ISO-8859-1"),"UTF-8");
+	%>
+		<option value="<%=bankName%>" <%=bankName.equals(card.getBank_o())?"selected=\"selected\"":""%>><%=bankName%></option>
+	<%	} %>
     </select>
   </div>
 </div>
@@ -52,7 +59,7 @@ User2BindCard card=bindCardServ.getUser2Card(id);
   </div>
 <div class="space_noborder"></div>
   <button  class="btn btn-default  btn-block" onclick="bindCardUpdateSubmit()">提交修改</button><br>
-  <button  class="btn btn-danger  btn-block" onclick="cardDelete()">删除该卡</button><br>
+  <button  class="btn btn-danger  btn-block" onclick="cardDelete(1)">删除该卡</button><br>
 </div>
  <jsp:include page="foot.jsp"/>
 <jsp:include page="common_source_foot.jsp"/>

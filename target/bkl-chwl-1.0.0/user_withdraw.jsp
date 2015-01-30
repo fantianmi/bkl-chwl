@@ -16,7 +16,7 @@
  BindCardService cardServ=new BindCardServiceImpl();
  List<User2BindCard> cards=cardServ.getUser2Cards(user.getId());
  if(cards.size()==0) {
-	 response.sendRedirect("bind_card.jsp");
+	 response.sendRedirect("user_card_list.jsp");
 	 return;
  }
  %>
@@ -42,7 +42,7 @@
 <div class="container" style="margin: 10px 0">
 <div class="input-group">
   <span class="input-group-addon">提现金额</span>
-  <input type="text" class="form-control"  id="withdrawBalance" name="withdrawBalance"  placeholder="请输入提现金额"/>
+  <input type="text" class="form-control"  id="withdrawBalance" name="withdrawBalance"  placeholder="请输入提现金额" onkeyup="value=value.replace(/[^0-9]/g,'')" onpaste="value=value.replace(/[^0-9]/g,'')" oncontextmenu = "value=value.replace(/[^0-9]/g,'')"/>
 </div>
 <div class="space_noborder"></div>
 <div class="input-group" >
@@ -56,6 +56,7 @@
 </div>
 <div class="space_noborder"></div>
   <input type="hidden" id="cnyOutType" name="cnyOutType" value="1"> 
+  <input type="hidden" id="max_withdraw_amount" value="<%=MainConfig.getCashMaxWithdrawAmount() %>" />
   <input type="hidden" id="min_withdraw_amount" value="<%=MainConfig.getCashMinWithdrawAmount() %>" />
   <input type="hidden" id="cash_amount_decimal_precision" value="<%=MainConfig.getCashAmountMinDecimalPrecision() %>" />
   <input type="hidden" id="userBalance" value="0"/>
@@ -69,7 +70,7 @@
 </div>
 <%for (Cash withdraw : withdraws) { %>
 <div class="tableList downborder">
-<div class="detail"><%=withdraw.getCtimeString() %>提现<%=FrontUtil.formatDouble(withdraw.getAmount()) %>元</div><div class="status">
+<div class="detail" style="width:80% !important"><%=withdraw.getCtimeDateString() %>提现<%=FrontUtil.formatDouble(withdraw.getAmount()) %>元</div><div class="status" style="width:20% !important">
 <%if (withdraw.getStatus() == 0) {%>
 正在处理
 <% }%>
@@ -91,12 +92,13 @@
 <jsp:include page="common_source_foot.jsp"/>
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
+<script src="assets/scripts/chwl/account/index.js"		type="text/javascript"></script>
 <style>
 .downborder .detail{padding-left:5px;}
 </style>
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="金币提现";
-$("#top_back_button").html("<a class=\"react\" href=\"user_profile.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>返回</a>");
+$("#top_back_button").html("<a class=\"react\" href=\"user_profile.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <jsp:include page="updateProfileTimes.jsp"/>
 </body>

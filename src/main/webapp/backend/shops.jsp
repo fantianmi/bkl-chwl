@@ -79,7 +79,7 @@
 										User u = users.getPagedatas()[i];
 								%>
 								<tr id="row_<%=u.getId()%>">
-									<td><%=i+1 %></td>
+									<td><%=u.getId() %></td>
 									<td>
 										<% if (StringUtils.isEmpty(u.getName())) { %> 
 											- 

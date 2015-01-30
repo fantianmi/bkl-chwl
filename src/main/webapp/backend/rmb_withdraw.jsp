@@ -94,8 +94,7 @@
 									<td><%="'" + com.km.common.utils.StringUtil.clearAllWhiteSpace(c.getBank_number()) %></td>
 									<td><%=FrontUtil.formatDouble(c.getAmount()) %></td>
 									<td>
-									<%=FrontUtil.formatDouble(DoubleUtil.subtract(c.getAmount(), DoubleUtil.multiply(c.getAmount(),0.03)>3 ? DoubleUtil.multiply(c.getAmount(),0.03):3))  %>
-									
+									<%=FrontUtil.formatDouble(c.getAmount()) %>
 									</td>
 									<td><%="'"+StringUtils.defaultIfEmpty(c.getMobile(),"") %></td>
 									<td><%=FrontUtil.getCashStatusString(c) %></td>

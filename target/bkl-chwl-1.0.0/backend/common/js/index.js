@@ -500,4 +500,15 @@ function deleteUser(uid){
 	});
 }
 
+function changeArea(self,reid){
+	var url="/area/getAreaHTMLOption?reid="+reid+"&random="+Math.round(Math.random()*100);
+	jQuery.get(url,function(res){
+		if(res){
+			if(res.ret==0){
+				$(self).next().html(res.data);
+			}
+		}
+	});
+}
+
 

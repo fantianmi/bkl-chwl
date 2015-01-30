@@ -31,7 +31,6 @@ String zuobiao="106.558231,29.572504";
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
-<jsp:include page="right_menu.jsp"/>
 <div class="space"></div>
 <div class="container nomargin" style="margin: 0rem !important; padding: 0rem 1rem !important">
 <div class="tableList downborder">

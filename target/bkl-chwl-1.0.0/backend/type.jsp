@@ -76,7 +76,7 @@
 								%>
 								<div class="tree-folder" style="display: block;" id="folder<%=t.getId()%>">
 									<div class="tree-folder-header">
-									<i class="icon-plus" onclick="loadTypeChildData(<%=t.getId()%>)" id="iconCheck<%=t.getId()%>"></i><div class="tree-folder-name"><%=t.getName()%></div>&nbsp;&nbsp;[<a href="javascript:showOperationPanel(<%=t.getId()%>);">增加子类别</a>]&nbsp;&nbsp;[<a href="javascript:deleteArcType(this,<%=t.getId()%>);">删除</a>]
+									<i class="icon-plus" onclick="loadTypeChildData(<%=t.getId()%>)" id="iconCheck<%=t.getId()%>"></i><div class="tree-folder-name"><%=t.getName()%></div>&nbsp;&nbsp;[<a href="javascript:showOperationPanel(<%=t.getId()%>);">增加子类别</a>]&nbsp;&nbsp;[<a href="javascript:deleteType(this,<%=t.getId()%>);">删除</a>]
 									</div>			
 								</div>
 								<%}%>
