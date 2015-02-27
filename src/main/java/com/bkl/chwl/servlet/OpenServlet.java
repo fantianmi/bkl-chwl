@@ -38,6 +38,7 @@ import com.bkl.chwl.service.impl.AreaServiceImpl;
 import com.bkl.chwl.service.impl.CashServiceImpl;
 import com.bkl.chwl.service.impl.ShopServiceImpl;
 import com.bkl.chwl.service.impl.UserServiceImpl;
+import com.bkl.chwl.utils.KaptchaCheck;
 import com.bkl.chwl.utils.RequestUtil;
 import com.bkl.chwl.utils.SendMsg;
 import com.bkl.chwl.vo.WebApi;
@@ -106,27 +107,9 @@ public class OpenServlet extends CommonServlet {
 		UserService userServ = new UserServiceImpl();
 		RetCode ret = RetCode.OK;
 		HttpSession session=request.getSession();
-		String msgValidateCode=session.getAttribute("msgValidateCode").toString();
-		
-		if(user.getRole()==user.ROLE_NORMAL){
-			String requestValidateCode=request.getParameter("phone_validate_code");
-			if(!msgValidateCode.equals(requestValidateCode)){
-				ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
-				return;
-			}
-		}
-		//shop need to vertify mobile2
-		if(user.getRole()==user.ROLE_SHOPER){
-			String requestValidateCode2=request.getParameter("phone_validate_code2");
-			if(!msgValidateCode.equals(requestValidateCode2)){
-				ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
-				return;
-			}
-//			if(userServ.existMobile2(user.getMobile2())){
-//				ret = RetCode.MOBILE_EXIST;
-//				ServletUtil.writeCommonReply(null, ret, response);
-//				return;
-//			}
+		if(!KaptchaCheck.check(request)){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
 		}
 		if(userServ.exist(user.getMobile())){
 			ret = RetCode.USER_EXIST;
@@ -158,7 +141,6 @@ public class OpenServlet extends CommonServlet {
 		try {
 			WebApi.init(MainConfig.dxwServerURL(), MainConfig.dxwAuthKey(), MainConfig.dxwAuthPass());
 			WebApi.register((int)userId, user.getMobile(), recommended_user_id, role, local2, local3);
-			
 		} catch (Exception e1) {
 			ServletUtil.writeCommonReply(null, RetCode.ROMOTE_ERROR, response);
 			return;
@@ -166,10 +148,6 @@ public class OpenServlet extends CommonServlet {
 		user.setId(userId);
 		user.setVertify(user.VERTIFY_TRUE);
 		//保存用户信息__
-		//如果注册人为普通用户则更新mobile2, 商家后面再更新
-		if(user.getRole()==user.ROLE_NORMAL){
-			user.setMobile2(user.getMobile());
-		}
 		userServ.createUser(user);
 		//执行注册
 		// 保存推荐人信息
@@ -184,7 +162,8 @@ public class OpenServlet extends CommonServlet {
 		}
 		
 		//商户注册则需要创建一个shop
-		if(user.getRole()==user.ROLE_SHOPER){
+		ShopService shopServ=new ShopServiceImpl();
+		if(user.getRole()==user.ROLE_SHOPER&&!shopServ.existUid(user.getId())){
 			AreaService areaServ=new AreaServiceImpl();
 			String shopName=request.getParameter("shopName");
 			Shop shop=new Shop();
@@ -194,9 +173,10 @@ public class OpenServlet extends CommonServlet {
 			shop.setLocal2(user.getLocal2());
 			shop.setLocal3(user.getLocal3());
 			shop.setShop_tel(user.getMobile2());
-			shop.setRegstatus(shop.REGSTATUS_FALSE);
+			shop.setRegstatus(shop.REGSTATUS_TRUE);
 			shop.setVertifystatus(shop.VERTIFYSTATUS_TRUE);
-			ShopService shopServ=new ShopServiceImpl();
+			shop.setCoinRate(0.1);
+			shop.setShopstatus(shop.SHOPSTATUS_SHOW);
 			shopServ.save(shop);
 		}
 		
@@ -258,6 +238,23 @@ public class OpenServlet extends CommonServlet {
 		}
 		ServletUtil.writeCommonReply(null, ret, response);
 	}
+	/**
+	 * 校验身份证不重复
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	public void chcekIdentity_no(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		User user = ServletUtil.readObjectServletQuery(request, User.class);
+		UserService userServ = new UserServiceImpl();
+		boolean isUserExisted = userServ.exisetIdentity_no(user.getIdentity_no());
+		RetCode ret = RetCode.OK;
+		if (isUserExisted) {
+			ret = RetCode.USER_EXIST;
+		}
+		ServletUtil.writeCommonReply(null, ret, response);
+	}
 	public void chcekmobile2(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		User user = ServletUtil.readObjectServletQuery(request, User.class);
 		UserService userServ = new UserServiceImpl();
@@ -287,14 +284,17 @@ public class OpenServlet extends CommonServlet {
 			String vcode=RandomCode.random();
 			String content="您正在使用找回密码，您的验证码是"+vcode+",有效期10分钟，大小王科技。【点头财神】";
 			content=URLEncoder.encode(content, "utf-8");
-			HttpSession session=request.getSession();
-			session.setMaxInactiveInterval(10 * 60);  
-			session.setAttribute("msgValidateCode", vcode);
 			boolean flag=SendMsg.sendMsg(mobile, content,request);
 			RetCode ret=RetCode.OK;
 			if(!flag){
 				ret=RetCode.ERROR;
+				ServletUtil.writeCommonReply(vcode, ret, response);
+				return;
 			}
+			vcode+="#"+userName;
+			HttpSession session=request.getSession();
+			session.setMaxInactiveInterval(10 * 60);  
+			session.setAttribute("msgValidateCodeFP", vcode);
 			ServletUtil.writeCommonReply(vcode, ret, response);
 			return;
 		}
@@ -303,7 +303,15 @@ public class OpenServlet extends CommonServlet {
 	public void doResetPassword(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession();
-		String vcode=session.getAttribute("msgValidateCode").toString();
+		if(session.getAttribute("msgValidateCodeFP")==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_NOT_SEND, response);
+			return;
+		}
+		String msgValidateCodeFP=session.getAttribute("msgValidateCodeFP").toString();
+		String vcodeSplit[]=msgValidateCodeFP.split("\\#");
+		String vcode=vcodeSplit[0];
+		String userReg=vcodeSplit[1];
+		
 		String vcodeInput=request.getParameter("vcode");
 		if(vcode==null){
 			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_NOT_SEND, response);
@@ -320,8 +328,11 @@ public class OpenServlet extends CommonServlet {
 		GeneralDao<User> dao = DaoFactory.createGeneralDao(User.class);
 		UserService userSrv = new UserServiceImpl();
 		String userName=request.getParameter("userName");
+		if(!userReg.equals(userName)){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
 		User user=userSrv.findByMobile(userName);
-		
 		String newPassword = StringUtils.defaultString(
 				request.getParameter("newPassword"), "");
 		String newPassword2 = StringUtils.defaultString(
@@ -337,8 +348,11 @@ public class OpenServlet extends CommonServlet {
 					response);
 			return;
 		}
-		
-		user.saveMD5Password(newPassword);
+		if(request.getParameter("resetType")!=null){
+			user.saveMD5SecretPassword(newPassword);
+		}else{
+			user.saveMD5Password(newPassword);
+		}
 		dao.update(user);
 		ServletUtil.writeCommonReply(null, RetCode.OK, response);
 		return;
@@ -845,20 +859,85 @@ public class OpenServlet extends CommonServlet {
 		String vcode=RandomCode.random();
 		String content="欢迎使用点头财神，您的验证码是"+vcode+",有效期10分钟，大小王科技。【点头财神】";
 		content=URLEncoder.encode(content, "utf-8");
-		HttpSession session=request.getSession();
-		session.setMaxInactiveInterval(10 * 60);  
-		session.setAttribute("msgValidateCode", vcode);
 		boolean flag=SendMsg.sendMsg(mobile, content,request);
 		RetCode ret=RetCode.OK;
 		if(!flag){
 			ret=RetCode.ERROR;
+			ServletUtil.writeCommonReply(vcode, ret, response);
+			return;
 		}
+		HttpSession session=request.getSession();
+		session.setMaxInactiveInterval(10 * 60);  
+		session.setAttribute("msgValidateCode", vcode);
 		ServletUtil.writeCommonReply(vcode, ret, response);
 		return;
 	}
-	public void test(HttpServletRequest request,
+	
+	public void checkMsgValidateCode(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String absoluteUploadDir = request.getServletContext().getRealPath("");
-		ServletUtil.writeCommonReply(absoluteUploadDir, RetCode.OK, response);
+		if(request.getParameter("msgCode")==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
+		String msgCode=request.getParameter("msgCode");
+		HttpSession session=request.getSession();
+		if(session.getAttribute("msgValidateCode")==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_NOT_SEND, response);
+			return;
+		}
+		String msgValidateCode=session.getAttribute("msgValidateCode").toString();
+		if(msgValidateCode.equals(msgCode)){
+			ServletUtil.writeCommonReply(null, RetCode.OK, response);
+			return;
+		}
+		ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+	}
+	
+	public void checkMsgValidateCodeFP(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		if(request.getParameter("msgCode")==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
+		String msgCode=request.getParameter("msgCode");
+		HttpSession session=request.getSession();
+		if(session.getAttribute("msgValidateCodeFP")==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_NOT_SEND, response);
+			return;
+		}
+		
+		String msgValidateCode=session.getAttribute("msgValidateCodeFP").toString();
+		String vcodeSplit[]=msgValidateCode.split("\\#");
+		String vcode=vcodeSplit[0];
+		String userReg=vcodeSplit[1];
+		
+		String inputUserReg=request.getParameter("userReg");
+		if(!userReg.equals(inputUserReg)){
+			ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+			return;
+		}
+		
+		if(vcode.equals(msgCode)){
+			ServletUtil.writeCommonReply(null, RetCode.OK, response);
+			return;
+		}
+		ServletUtil.writeCommonReply(null, RetCode.USER_VCODE_ERROR, response);
+	}
+	/**
+	 * 找回密码接口1-根据用户名确定手机号码
+	 */
+	public void getRegMobile(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String userName=request.getParameter("regUserName");
+		UserService userServ=new UserServiceImpl();
+		User u=userServ.findByMobile(userName);
+		if(u==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_NOT_EXIST, response);
+			return;
+		}
+		if(u!=null&&(u.getMobile2()==null||u.getMobile2()=="")){
+			ServletUtil.writeCommonReply(null, RetCode.MOBILE_NOT_EXIST, response);
+			return;
+		}
+		ServletUtil.writeOkCommonReply(u.getMobile2(), response);
 	}
 }

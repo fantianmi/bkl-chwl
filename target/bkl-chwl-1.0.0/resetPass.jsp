@@ -43,6 +43,8 @@
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="修改密码";
+$("#top_qr_button").hide();
+$("#top_search_button").hide();
 </script>
 </body>
 </html>

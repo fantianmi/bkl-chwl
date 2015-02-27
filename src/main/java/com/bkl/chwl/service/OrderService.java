@@ -19,7 +19,7 @@ public interface OrderService {
 	public Map<String,Tradeorder> getMapBySeller(long seller);
 	public List<Tradeorder> getListBySeller(long seller);
 	public PageReply<Tradeorder> getListPage(long uid,int status,Page page);
-	public PageReply<Tradeorder> getListShoperPage(long seller,int status,Page page);
+	public PageReply<Tradeorder> getListShoperPage(long seller,int status,Page page,int staticsType);
 	public PageReply<Tradeorder2Shop> getTradeorder2ShopListPage(long uid,int status,Page page);
 	public Tradeorder2Shop getTradeorder2Shop(long id);
 	public Tradeorder2Shop getTradeorder2ShopOrderId(String orderId);

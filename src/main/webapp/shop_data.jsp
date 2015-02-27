@@ -1,4 +1,5 @@
  <%@page import="com.bkl.chwl.constants.Constants"%>
+ <%@page import="org.apache.commons.lang.StringUtils"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
 <%@page import="com.bkl.chwl.utils.*"%>
@@ -11,16 +12,16 @@
 <%
 ShopService shopServ=new ShopServiceImpl();
 User user = UserUtil.getCurrentUser(request);
-if(user.getLicenceFileURL()==null||user.getLicenceFileURL()==""||user.getLocal()==0||user.getLocal2()==0||user.getLicenceNumber()==null||user.getLicenceNumber()==""){
+if(user.getLocal()==0||user.getLocal2()==0||user.getLicenceNumber()==null||user.getLicenceNumber()==""){
 	response.sendRedirect("shop_data_add.jsp");
 	return;
 }
+Shop shop=shopServ.getByUid(user.getId());
 AreaService areaServ = new AreaServiceImpl();
 Map<Long,Area> areamap=areaServ.areaMap();
 Area local=areamap.get(Long.valueOf(user.getLocal()));
 Area local2=areamap.get(Long.valueOf(user.getLocal2()));
 Area local3=areamap.get(Long.valueOf(user.getLocal3()));
-String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <html>
 <head>
@@ -32,11 +33,31 @@ String ossBaseurl=MainConfig.getOssBaseurl();
 </div>
 <div class="container nomargin" style="margin: 0rem !important;">
 <div class="tableList downborder" >
+<div class="detail" style="width:100%">编号ID：<%=user.getId() %></div>
+</div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">用户名：<%=user.getMobile() %></div>
+</div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">真实姓名：<%=StringUtils.defaultIfEmpty(user.getName() , "-")%></div>
+</div>
+<div class="space"></div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">点商名称：<%=shop.getTitle() %></div>
+</div>
+<div class="tableList downborder" >
 <div class="detail" style="width:100%">执照编号：<%=user.getLicenceNumber() %></div>
 </div>
-<div class="tableList downborder" style="height:15em;">
-<div class="detail" style="height:15rem;overflow: hidden;width: 100%">营业执照：<img src="<%=ossBaseurl+user.getLicenceFileURL()%>" style="width:100%;box-shadow: 0 1px 10px rgba(0,0,0,.5);-moz-user-select: none;"></div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">企业法人：<%=StringUtils.defaultIfEmpty(user.getManager(), "-")%></div>
 </div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">营业执照注册名：<%=user.getLicenceRegName()%></div>
+</div>
+<div class="tableList downborder" >
+<div class="detail" style="width:100%">营业执照注册号：<%=user.getLicenceNumber()%></div>
+</div>
+<div class="space"></div>
 <div class="tableList downborder">
 <div class="detail" style="width:100%">地址：<%=local!=null?local.getTitle():"未知"%>-<%=local2!=null?local2.getTitle():"未知"%>-<%=local3!=null?local3.getTitle():"未知"%></div>
 </div>

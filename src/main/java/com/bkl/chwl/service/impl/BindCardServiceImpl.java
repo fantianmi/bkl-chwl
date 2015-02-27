@@ -53,8 +53,24 @@ public class BindCardServiceImpl implements BindCardService {
 	@Override
 	public User2BindCard getDefult(long uid) {
 		GeneralDao<User2BindCard> user2BindCardDao=DaoFactory.createGeneralDao(User2BindCard.class);
-		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o from userbindcard b left join user u on b.uid=u.id where b.uid="+uid+" and isdefualt="+UserBindCard.DEFAULT_TRUE;
+		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o from userbindcard b left join user u on b.uid=u.id where b.uid="+uid+" and b.isdefault="+UserBindCard.DEFAULT_TRUE;
 		return user2BindCardDao.findSql(sql, null);
+	}
+	@Override
+	public UserBindCard findByBank_account_o(long uid, String bank_account_o) {
+		Condition uidCon=DbUtil.generalEqualWhere("uid", uid);
+		Condition bank_account_oCon=DbUtil.generalEqualWhere("bank_account_o", bank_account_o);
+		return bindCardDao.find(new Condition[]{uidCon, bank_account_oCon},new String[]{});
+	}
+	@Override
+	public boolean existBank_account_o(long uid, String bank_account_o) {
+		UserBindCard bindCard=findByBank_account_o(uid,bank_account_o);
+		return bindCard!=null;
+	}
+	@Override
+	public boolean existCard(long uid) {
+		List<UserBindCard> cards=getCards(uid);
+		return cards.size()!=0;
 	}
 
 }

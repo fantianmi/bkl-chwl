@@ -33,7 +33,7 @@ Area area=areaServ.get(shop.getLocal2());
 		body, html,#allmap {width: 100%;height: 95%;margin:0;}
 		#golist {display: none;}
 		@media (max-device-width: 800px){#golist{display: block!important;}}
-		#successBtn{width: 100%;height:40px;border: 1px solid #ED6A00;background-color: #ED6A00;color:#fff;font-size: 16px;}
+		#successBtn{width: 100%;height:40px;border: 1px solid #FF3556;background-color: #FF3556;color:#fff;font-size: 16px;}
 		#successBtn:disable{width: 100%;height:40px;border: 1px solid #ccc;background-color: #ccc;color:#fff;font-size: 16px;}
 		#successBtn:hover{border: 1 solid #ca6411;background-color: #ca6411;}
 	</style>

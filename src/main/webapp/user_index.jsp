@@ -14,7 +14,7 @@
  if(user.getOpenid()==null||user.getOpenid()==""){
 	 String uri=MainConfig.getContextPath()+"/api/user/bindWeixinOpenId";
 	 uri=URLEncoder.encode(uri, "utf-8");
-	 String oath="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa2a306c8179ab786&redirect_uri="+uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+	 String oath="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+MainConfig.getWechatappid()+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 	 response.sendRedirect(oath);
 	 return;
  }
@@ -39,15 +39,19 @@
 <div class="tableList downborder" style="height:8rem !important;">
 <a href="user_detail.jsp"><div class="detail" style="padding-left: 1rem;width:80% !important;"><div class="menu_list_headicon"><img src="assets/images/headicon.png"></div><div class="menu_list_user"><%=user.getMobile() %><br>ID: <%=user.getId() %></div></div><div class="status" style="height:8rem;padding:2.5rem;width:20% !important;"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
+<div class="space"></div>
 <div class="tableList downborder">
-<a href="user_profile.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #FDB300">&#xe628;</i>&nbsp;我的金币数</div><div class="status"><span id="coin_left" style="color:#ED6A00;font-weight: 600;font-size: 18px;"></span>&nbsp;&nbsp;<i class="iconfont">&#xe6a3;</i></div></a>
+<a href="user_profile.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #FDB300">&#xe628;</i>&nbsp;我的金币数</div><div class="status"><span id="coin_left" style="color:#FF3556;font-weight: 600;font-size: 18px;"></span>&nbsp;&nbsp;<i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="tableList downborder">
-<a href="user_order.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #00AE69">&#xe662;</i>&nbsp;结账总额</div><div class="status" style="color:#ED6A00;font-weight: 600;font-size: 18px;"><%=FrontUtil.formatRmbDouble(SUMOrder) %><i class="iconfont">&#xe6a3;</i></div></a>
+<a href="user_order.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #00AE69">&#xe662;</i>&nbsp;结账总额</div><div class="status" style="color:#FF3556;font-weight: 600;font-size: 18px;"><%=FrontUtil.formatRmbDouble(SUMOrder) %><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="tableList downborder">
 <a href="user_bouns_list.jsp	"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #D39145">&#xe61a;</i>&nbsp;点头钱袋</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
+
+<div class="space"></div>
+
 <div class="tableList downborder">
 <a href="doLottery.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EA434B">&#xf0139;</i>&nbsp;我要抽奖</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
@@ -56,6 +60,9 @@
 </div>
 <div class="tableList downborder">
 <a href="user_collect.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #565455">&#xe611;</i>&nbsp;我的收藏</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
+</div>
+<div class="tableList downborder">
+<a href="bind_mobile.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #6541e2">&#xe705;</i>&nbsp;绑定手机号</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="tableList downborder">
 <a href="user_card_list.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EE8100">&#xe6b3;</i>&nbsp;我的银行卡</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>

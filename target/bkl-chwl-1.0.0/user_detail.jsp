@@ -10,7 +10,6 @@
  <%
  User u=UserUtil.getCurrentUser(request);
  String url = MainConfig.getContextPath();
- String ossBaseurl=MainConfig.getOssBaseurl();
  String recomendURL=url+"reg.jsp?r="+u.getId();
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,6 +33,9 @@
 <div class="tableList downborder">
 <a href="resetPass.jsp" ><div class="detail" style="padding-left: 1rem">密码管理</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
+<!-- <div class="tableList downborder">
+<a href="secretReset.jsp" ><div class="detail" style="padding-left: 1rem">交易密码管理</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
+</div> -->
 <div class="tableList downborder">
 <a href="user_share.jsp"><div class="detail" style="padding-left: 1rem">分享管理</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>

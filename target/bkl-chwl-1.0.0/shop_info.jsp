@@ -23,7 +23,6 @@ if(shop.getRegstatus()==shop.REGSTATUS_FALSE){
 String imageStr=shop.getImage();
 String images[] = imageStr.split("@");
 String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId();
-String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <html>
 <head>
@@ -39,8 +38,8 @@ String ossBaseurl=MainConfig.getOssBaseurl();
 			String imageURL=images[i];		
 		%>
             <li>
-            	<a class="swipebox" href="<%=ossBaseurl+imageURL%>" title="<%=shop.getTitle()%>">
-                	<img class="image-decoration" src="<%=ossBaseurl+imageURL%>" alt="<%=shop.getTitle()%>">
+            	<a class="swipebox" href="<%=FrontImage.convertOss(imageURL)%>" title="<%=shop.getTitle()%>">
+                	<img class="image-decoration" src="<%=FrontImage.convertOss(imageURL)%>" alt="<%=shop.getTitle()%>">
                 </a>
             </li>
       <%} %>
@@ -96,7 +95,7 @@ jQuery('#qrcode').qrcode("<%=payUrl%>");
 })
 </script>
 <style>
-.detail{width:100%}
+.detail{width:100% !important}
 </style>
 </body>
 </html>

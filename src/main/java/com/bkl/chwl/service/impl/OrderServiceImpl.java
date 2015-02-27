@@ -10,7 +10,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.ClientProtocolException;
 
-import com.baiyi.util.WebApi;
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Tradeorder;
 import com.bkl.chwl.entity.Tradeorder2Shop;
@@ -20,10 +19,9 @@ import com.bkl.chwl.service.BindCardService;
 import com.bkl.chwl.service.OrderService;
 import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.UserService;
-import com.bkl.chwl.servlet.OpenServlet;
 import com.bkl.chwl.utils.ApiCommon;
-import com.bkl.chwl.utils.RequestUtil;
 import com.bkl.chwl.utils.SendMsgInWeixin;
+import com.bkl.chwl.vo.WebApi;
 import com.km.common.dao.DaoFactory;
 import com.km.common.dao.GeneralDao;
 import com.km.common.utils.DbUtil;
@@ -65,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 			conditions=Arrays.copyOf(conditions, conditions.length+1);
 			conditions[conditions.length-1]=statusCon;
 		}
-		return orderDao.getPage(page, conditions, new String[]{});
+		return orderDao.getPage(page, conditions, new String[]{"id desc"});
 	}
 
 	public Tradeorder getByOrderId(String orderId) {
@@ -109,27 +107,35 @@ public class OrderServiceImpl implements OrderService {
 		OrderService orderServ = new OrderServiceImpl();
 		//找到订单，改变订单状态
 		Tradeorder o = orderServ.getByOrderId(orderId);
+		//商家清算
+		//在结账额高于13.34元时，沿用原手续费费率不变；当小于等于13.34元时，不采用手续费费率计算，而直接扣0.08元。
+		double sellerCoin=0;
+		if(o.getPrice()>13.34){
+			sellerCoin=o.getPrice()-o.getCoin()-o.getPrice()*0.006;
+		}else{
+			sellerCoin=o.getPrice()-o.getCoin()-0.08;
+		}
 		if(o.getStatus()==o.STATUS_WAIT){
 			o.setStatus(o.STATUS_SUCCESS);
 			o.setStime(TimeUtil.getUnixTime());
+			o.setSellercoin(sellerCoin);
 			orderServ.save(o);
 			//调用webapi创建订单
 			//消费者清分
 			ApiCommon.createOrder(o.getUid(), o.getSeller(), o.getCoin(), orderId, 1);
 			ShopService shopServ=new ShopServiceImpl();
 			shopServ.addSellNun(o.getSeller());
-			//商家清算
-			double sellerCoin=o.getPrice()-o.getCoin()-o.getPrice()*0.006;
 			if(MainConfig.getNeedpayOrder()==1)//需要直接到商家账户
 			{
 				BindCardService bindcardServ=new BindCardServiceImpl();
 				User2BindCard bindCard=bindcardServ.getDefult(o.getSeller());
 				if(bindCard==null)//如果为空则调用order
 				{
-					ApiCommon.createOrder(o.getSeller(), o.getSeller(), sellerCoin, orderId, 2);
+					boolean flag=ApiCommon.createOrder(o.getSeller(), o.getSeller(), sellerCoin, orderId, 2);
 				}//不为空调用payorder
 				else{
-					WebApi.payOrder((int)o.getSeller(), Integer.parseInt(orderId), 1, (float)sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number(), bindCard.getPhone_o(), "dxw_account");
+					String res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					log.info(o.getUid()+"already payorder to seller:"+o.getSeller()+",amount:"+sellerCoin+", and res="+res);
 				}
 			}//不需要到商家账户
 			else{
@@ -172,7 +178,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public PageReply<Tradeorder> getListShoperPage(long seller, int status,
-			Page page) {
+			Page page,int staticsType) {
 		Condition uidCon=DbUtil.generalEqualWhere("seller", seller);
 		Condition[] conditions={uidCon};
 		if(status!=Tradeorder.STATUS_ALL){
@@ -180,7 +186,27 @@ public class OrderServiceImpl implements OrderService {
 			conditions=Arrays.copyOf(conditions, conditions.length+1);
 			conditions[conditions.length-1]=statusCon;
 		}
-		return orderDao.getPage(page, conditions, new String[]{});
+		long now=TimeUtil.getUnixTime();
+		long day=now-(60*60*24);
+		long month=now-(60*60*24*30);
+		long month3=now-(60*60*24*90);
+		
+		if(staticsType==Tradeorder.STATICS_ALL){
+			
+		}else if(staticsType==Tradeorder.STATICS_DAY){
+			Condition timeCon=DbUtil.generalLargerWhere("ctime", day);
+			conditions=Arrays.copyOf(conditions, conditions.length+1);
+			conditions[conditions.length-1]=timeCon;
+		}else if(staticsType==Tradeorder.STATICS_MONTH){
+			Condition timeCon=DbUtil.generalLargerWhere("ctime", month);
+			conditions=Arrays.copyOf(conditions, conditions.length+1);
+			conditions[conditions.length-1]=timeCon;
+		}else if(staticsType==Tradeorder.STATICS_3MONTH){
+			Condition timeCon=DbUtil.generalLargerWhere("ctime", month3);
+			conditions=Arrays.copyOf(conditions, conditions.length+1);
+			conditions[conditions.length-1]=timeCon;
+		}
+		return orderDao.getPage(page, conditions, new String[]{"id desc"});
 	}
 
 }

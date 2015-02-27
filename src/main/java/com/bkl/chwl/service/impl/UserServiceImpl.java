@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.User;
+import com.bkl.chwl.entity.User2Shop;
 import com.bkl.chwl.service.UserService;
 import com.km.common.dao.DaoFactory;
 import com.km.common.dao.GeneralDao;
@@ -133,6 +134,13 @@ public class UserServiceImpl implements UserService {
 		return users;
 	}
 	
+	public PageReply<User2Shop> findUser2Shop(int role,Map searchMap, Page page){
+		String sql="select u.*,s.id as shop_id,s.title as shop_title from user u left join shop s on u.id=s.uid where role="+role;
+		GeneralDao<User2Shop> dao = DaoFactory.createGeneralDao(User2Shop.class);
+		PageReply<User2Shop> users = dao.getPage(sql, page, searchMap);
+		return users;
+	}
+	
 
 	public User findPin(String pin) {
 		Condition pinCon=DbUtil.generalEqualWhere("pin", pin);
@@ -168,6 +176,19 @@ public class UserServiceImpl implements UserService {
 			sql+=" and role="+role;
 		}
 		return dao.queryIngeger(sql,null);
+	}
+
+	@Override
+	public User findByIdentity_no(String identity_no) {
+		Condition identity_noCon = DbUtil.generalEqualWhere("identity_no", identity_no);
+		Condition roleCon = DbUtil.generalEqualWhere("role", User.ROLE_NORMAL);
+		return dao.find(new Condition[]{identity_noCon,roleCon}, null);
+	}
+
+	@Override
+	public boolean exisetIdentity_no(String identity_no) {
+		User user = findByIdentity_no(identity_no);
+		return user != null;
 	}
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@page import="com.bkl.chwl.constants.Constants"%>
+ <%@page import="java.net.URLEncoder"%>
 <%@page import="com.km.common.config.Config"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
@@ -13,8 +14,13 @@ if(request.getParameter("bankCardNum")==null){
 	response.sendRedirect("input_card_num.jsp");
 	return;
 }
+if(request.getParameter("cardType")==null){
+	response.sendRedirect("input_card_num.jsp");
+	return;
+}
 User u=UserUtil.getCurrentUser(request);
 String bankCardNum=request.getParameter("bankCardNum");
+int cardType=Integer.parseInt(request.getParameter("cardType"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,7 +29,8 @@ String bankCardNum=request.getParameter("bankCardNum");
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top_nobutton.jsp"/>
-<div class="content" style="margin-top:5.5rem;padding:0rem 1rem 1rem 1rem !important">
+<input type="hidden" id="bindType" value="<%=cardType%>">
+<div class="content" style="margin-top:5.8rem;padding:0rem 1rem 1rem 1rem !important">
 <input type="hidden" value="<%=bankCardNum %>" id="bank_account_o"/>
 	<% 
 		List banks = Config.getList("config.cny.withdraw.bank");
@@ -56,31 +63,44 @@ String bankCardNum=request.getParameter("bankCardNum");
       </span>
     </div>/input-group
   </div> -->
-  <div class="form-group">
-    <label for="name">姓名</label>
-    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null||!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %>>
-  </div>
-  <div class="form-group">
-    <label for="identity_type">证件类型</label><br>
-    <select <%=u.getIdentity_type()!=0?"disabled=\"disabled\"":"" %> id="identity_type">
-    <%=u.getIdentity_type()!=0?"<option value="+u.getIdentity_type()+">"+u.getIdentity_typeString()+"</option>":"" %>
-    <option value="1">身份证</option>
-    <option value="2">护照</option>
-    <option value="3">回乡证</option>
-    <option value="4">台胞证</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="identity_no">证件号</label>
-    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null||!u.getName().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %>>
-  </div>
+  <%if(cardType==1){ %>
+	  <div class="form-group">
+	    <label for="name">姓名</label>
+	    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %> onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" >
+	  </div>
+	  <div class="form-group">
+	    <label for="identity_type">证件类型</label><br>
+	    <select <%=u.getIdentity_type()!=0?"disabled=\"disabled\"":"" %> id="identity_type">
+	    <%=u.getIdentity_type()!=0?"<option value="+u.getIdentity_type()+">"+u.getIdentity_typeString()+"</option>":"" %>
+	    <option value="1">身份证</option>
+	    <option value="2">护照</option>
+	    <option value="3">回乡证</option>
+	    <option value="4">台胞证</option>
+	    </select>
+	  </div>
+	  <!--  -->
+	  <div class="form-group">
+	    <label for="identity_no">证件号</label>
+	    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %>>
+	  </div>
+	  <p class="bg-info">提醒：后续只能绑定该持卡人的银行卡</p>
+  <%}else{ %>
+	  <div class="form-group">
+	    <label for="licenceRegName">名称</label>
+	    <input type="text" class="form-control" id="licenceRegName" value="<%=u.getLicenceRegName()!=null&&!u.getLicenceRegName().equals("")?u.getLicenceRegName():"" %>" placeholder="请输入名称"  <%=u.getLicenceRegName()!=null&&!u.getLicenceRegName().equals("")?"readonly=\"readonly\"":"" %>>
+	  </div>
+	  <!--  -->
+	  <div class="form-group">
+	    <label for="licenceNumber">营业执照注册名</label>
+	    <input type="text" class="form-control" id="licenceNumber" placeholder="请输入营业执照注册名" value="<%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?u.getLicenceNumber():"" %>" <%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?"readonly=\"readonly\"":"" %>>
+	  </div>
+  <%} %>
   <div class="form-group">
     <label for="phone_o">手机号</label>
     <input type="text" class="form-control" id="phone_o" placeholder="请输入银行预留手机号">
   </div>
-  <p class="bg-info">提醒：后续只能绑定该持卡人的银行卡</p>
   <div style="height:30px;">
-      <span style="float:left"><input type="checkbox" id="agreeCheck" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showAgreement();">《用户协议》</a></span>
+      <span style="float:left"><input type="checkbox" id="agreeCheck"  checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showAgreement();">《用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付商家协议.docx") %>"  target="_blank">点头付商家协议下载</a></span>
   </div>
   <script>
   function showAgreement(){

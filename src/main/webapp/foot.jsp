@@ -11,9 +11,9 @@
     pageEncoding="UTF-8"%>
  <%
  boolean flag=UserUtil.islogin(request);
- %>
+String page_url = request.getServletPath();%>
  <a id="redirectURI" style="display: none" target="_blank"></a>
-<div class="space" id="foot_space"></div>
+<div class="space <%=page_url.indexOf("/index.jsp")!=-1?"useTemplatesSpace":"" %>" id="foot_space"></div>
 <div class="footer">
 	<%-- <%if(flag){ %><div class="divleft"><a href="javascript:loginout()" class="btn btn-danger hollow">退出登录</a></div><%} %>
 	<%if(!flag){ %><div class="divleft"><a href="login.jsp" class="btn btn-danger hollow">登录</a></div><%} %> --%>
@@ -23,10 +23,10 @@
         <a href="#" class="small-nav-icon twitter-nav"></a> -->
         <div class="clear"></div>
     </div>
-    <p class="copyright">大小王科技@版权所有 4001568848（热线）</p>
+    <p class="copyright <%=page_url.indexOf("/index.jsp")!=-1?"useTemplatesCopyright":"" %>">大小王科技@版权所有 4001568848（热线）</p>
 </div>
 <div class="searchBarArea" style="display: none" id="searchBarArea">
-	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" style="padding:.5rem;border-color: #ED6A00;background-color: #ED6A00">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" style="padding:.5rem;border-color: #FF3556;background-color: #FF3556">
 	  <div class="input-group">
 	  <span class="input-group-btn">
         <button class="btn btn-danger" type="button" onclick="searchBarHide()">关闭</button>
@@ -151,7 +151,7 @@ if(u!=null){
 <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 wx.config({
-    debug: false,
+    debug: true,
     appId: '<%=MainConfig.getWechatappid()%>', // 必填，公众号的唯一标识
     timestamp: <%=timestamp%>, // 必填，生成签名的时间戳
     nonceStr: '<%=nonceStr%>', // 必填，生成签名的随机串

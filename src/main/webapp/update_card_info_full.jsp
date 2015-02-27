@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.km.common.config.Config"%>
@@ -16,6 +17,17 @@ if(request.getParameter("id")==null){
 long id=Integer.parseInt(request.getParameter("id"));
 BindCardService bindCardServ= new BindCardServiceImpl();
 User2BindCard card=bindCardServ.getUser2Card(id);
+
+//String url=MainConfig.getContextPath();   
+//url=url.substring(0,url.length()-1);
+//url+=request.getRequestURI();    
+//if(request.getQueryString()!=null)    
+//url+="?"+request.getQueryString(); 
+//url=URLEncoder.encode(url);
+//if(request.getParameter("secretOK")==null||!request.getParameter("secretOK").equals("ok")){
+//	response.sendRedirect("inputSecretShop.jsp?subType=3&forward="+url);
+//	return;
+//}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -53,15 +65,7 @@ User2BindCard card=bindCardServ.getUser2Card(id);
     <label for="bank_deposit_o">开户行</label>
     <input type="text" class="form-control" id="bank_deposit_o" placeholder="请输入您的开户行" value="<%=card.getBank_deposit_o()%>">
   </div>
-  <div class="form-group">
-    <label for="withdrawAccountAddr_bankNumber">开户行行号</label>
-    <div class="input-group">
-      <input type="text" class="form-control" id="withdrawAccountAddr_bankNumber" value="<%=card.getBank_number_o()%>" placeholder="请输入您的开户行行号" onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')">
-      <span class="input-group-btn">
-        <a class="btn btn-danger" href="https://www.hebbank.com/corporbank/otherBankQueryWeb.do" target="_blank">行号查询</a>
-      </span>
-    </div><!-- /input-group -->
-  </div>
+  <input type="hidden" class="form-control" id="withdrawAccountAddr_bankNumber" value="<%=card.getBank_number_o()%>" placeholder="请输入您的开户行行号" onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')">
   <div class="form-group">
     <label for="phone_o">手机号</label>
     <input type="text" class="form-control" id="phone_o" placeholder="请输入银行预留手机号"  value="<%=card.getPhone_o()%>">

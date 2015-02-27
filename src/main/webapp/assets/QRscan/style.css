@@ -100,8 +100,8 @@ body{background-color: #fff;margin:0px;}
 }
 #submitBtn{
 	font-size: 14px;
-	background-color: #ED6A00;
-	border:1px solid #ED6A00;
+	background-color: #FF3556;
+	border:1px solid #FF3556;
 	width:100%;
 	height:39px;
 	color:#fff;
@@ -112,7 +112,7 @@ body{background-color: #fff;margin:0px;}
 .errormsg{
 	margin:auto;
 	background-color: #fff;
-	border:1px solid #ED6A00;
+	border:1px solid #FF3556;
 	background-color:#f47b78;
 	color:#fff;
 	height:50px;

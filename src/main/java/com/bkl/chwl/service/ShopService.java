@@ -15,6 +15,13 @@ public interface ShopService {
 	//need update
 	public List<Shop> getList(long reid);
 	public List<Shop> getList(int local,int local2,int local3,int type,int type2,int sort);
+	/**
+	 * 判断是否存在该uid
+	 * @param uid
+	 * @return
+	 */
+	public boolean existUid(long uid);
+	
 	public Shop get(long id);
 	public Shop getByUid(long uid);
 	public long delete(long id);
@@ -33,4 +40,10 @@ public interface ShopService {
 	 * @return
 	 */
 	public double getProfileTotal(long uid,int staticsType);
+	/**
+	 * 获得销售总应收额
+	 * @param uid
+	 * @return
+	 */
+	public double getSellercoinTotal(long uid,int staticsType);
 }

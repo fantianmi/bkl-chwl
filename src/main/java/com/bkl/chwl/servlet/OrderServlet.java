@@ -2,6 +2,7 @@ package com.bkl.chwl.servlet;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +19,15 @@ import com.bkl.chwl.service.impl.ShopServiceImpl;
 import com.bkl.chwl.service.impl.UserServiceImpl;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.FrontUtil;
-import com.bkl.chwl.utils.SendMsgInWeixin;
 import com.bkl.chwl.utils.StringUtil;
 import com.bkl.chwl.utils.UserUtil;
+import com.km.common.dao.DaoFactory;
+import com.km.common.dao.GeneralDao;
 import com.km.common.servlet.CommonServlet;
-import com.km.common.utils.RandomCode;
+import com.km.common.utils.DbUtil;
 import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
+import com.km.common.vo.Condition;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
 import com.km.common.vo.RetCode;
@@ -134,6 +137,17 @@ public class OrderServlet extends CommonServlet {
 			map.put("hasmore", false);
 		}
 		ServletUtil.writeOkCommonReply(map, response);
+	}
+	
+	public void caculateSellecoin(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		GeneralDao<Tradeorder> orderDao=DaoFactory.createGeneralDao(Tradeorder.class);
+		Condition statusCon=DbUtil.generalEqualWhere("status", 1);
+		List<Tradeorder> orders=orderDao.findList(new Condition[]{statusCon}, new String[]{});
+		for(Tradeorder order:orders){
+			order.setSellercoin(order.getPrice()-order.getCoin()-order.getPrice()*0.006);
+			orderDao.save(order);
+		}
+		ServletUtil.writeOkCommonReply(null, response);
 	}
 	
 }

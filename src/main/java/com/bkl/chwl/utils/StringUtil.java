@@ -15,7 +15,7 @@ public class StringUtil {
 		double temp=doubleValue*100;
 		return String.valueOf(temp)+"%";
 	}
-	//返利的特殊显示 立省=（(商家设置返利数*40)/100）%
+	//返利的特殊显示 立赚=（(商家设置返利数*40)/100）%
 	public static String payBackDoubleToRate(double doubleValue){
 		double temp=doubleValue*40/100*100;
 		return String.valueOf((int)temp)+"%";

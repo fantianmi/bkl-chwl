@@ -12,10 +12,11 @@
     pageEncoding="UTF-8"%>
  <%
  OrderService orderServ=new OrderServiceImpl();
- if(request.getParameter("orderId")==null){
+ if(request.getParameter("orderId")==null||request.getParameter("bank_account_o")==null){
 	 response.sendRedirect("index.jsp");
 	 return;
  }
+ String bank_account_o=request.getParameter("bank_account_o");
  String orderId=request.getParameter("orderId"); 
  Tradeorder2Shop order=orderServ.getTradeorder2ShopOrderId(orderId);
  %>
@@ -57,7 +58,7 @@ $("#top_search_button").hide();
 $("#top_back_button").html("");
 $("#top_logout_button").hide();
 function paySubmit(){
-	window.location.href="formSubmit.jsp?orderId=<%=orderId%>";	
+	window.location.href="formSubmit.jsp?orderId=<%=orderId%>&bank_account_o=<%=bank_account_o%>";	
 }
 
 function hideWeixinAlert(){

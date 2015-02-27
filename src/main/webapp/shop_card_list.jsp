@@ -34,7 +34,8 @@ for(User2BindCard card:cards){
 </div>
 <%} %>
 <div class="tableList downborder " style="background-color: #F0EFED">
-<a href="input_card_num.jsp" style="color:#666"><div class="detail" style="padding-left: 1rem"><i class="iconfont">&#xe64c;</i>&nbsp;&nbsp;添加银行卡</div></a>
+<!-- <a href="inputSecretShop.jsp?subType=1" style="color:#666"><div class="detail" style="padding-left: 1rem"><i class="iconfont">&#xe64c;</i>&nbsp;&nbsp;添加银行卡</div></a> -->
+<a href="input_card_num_full.jsp" style="color:#666"><div class="detail" style="padding-left: 1rem;color:#000"><div class="menu_icon"><img src="assets/images/iconfont-tianjia.png"></div>&nbsp;&nbsp;<div class="menu_title">添加银行卡</div></div></a>
 </div>
 </div>
 
@@ -68,6 +69,7 @@ function showChosenWindow(id){
 }
 function redirectUpdate(){
 	if(select_card_id==0){return}
+	//window.location.href="inputSecretShop.jsp?subType=3&forward="+encodeURI("update_card_info_full.jsp?id="+select_card_id);
 	window.location.href="update_card_info_full.jsp?id="+select_card_id;
 	$(".chosen_window").hide();
 }

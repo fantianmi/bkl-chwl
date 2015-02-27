@@ -34,8 +34,8 @@
 <div class="content" style="margin-top:5.2rem;padding:1rem !important; ">
   <p style="display: none" id="loginTips" class="bg-danger"></p>
   <div class="form-group">
-    <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;手机号/商户账号</label>
-    <input type="text" class="form-control" id="loginUserName" placeholder="手机号/商户请输入您的商户账号">
+    <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;账号</label>
+    <input type="text" class="form-control" id="loginUserName" placeholder="点粉账号/点商账号">
   </div>
   <div class="form-group">
     <label for="loginPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;密码</label>

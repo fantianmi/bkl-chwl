@@ -11,7 +11,6 @@
 User u=UserUtil.getCurrentUser(request);
 ShopService shopServ=new ShopServiceImpl();
 List<Shop2Collect> s2cs=shopServ.getCollectList(u.getId());
-String ossBaseurl=MainConfig.getOssBaseurl();
 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,11 +31,11 @@ String ossBaseurl=MainConfig.getOssBaseurl();
       %>
 		<div class="container no-bottom list_style" onclick="javascript:location.href='shop_detail.jsp?id=<%=s2c.getId()%>'">
 		    <div class="recent-post">
-		        <div class="dealcard-img"><img src="<%=ossBaseurl+images[0]%>"></div>
+		        <div class="dealcard-img"><img src="<%=FrontImage.convertOss(images[0])%>"></div>
 		        <div class="dealcard-block-right">
 		            <div class="title"><strong><%=StringUtil.subString(s2c.getTitle(),10) %></strong></div>
 		            <div class="detail">地址：<%=s2c.getShop_loc() %></div>
-		            <div class="pricepanel"><span class="strong-color">立省</span><strong><%=StringUtil.payBackDoubleToRate(s2c.getCoinRate()) %></strong></div>
+		            <div class="pricepanel"><span class="strong-color">立赚</span><strong><%=StringUtil.payBackDoubleToRate(s2c.getCoinRate()) %></strong></div>
 		        </div>
 		    </div>
 		</div>

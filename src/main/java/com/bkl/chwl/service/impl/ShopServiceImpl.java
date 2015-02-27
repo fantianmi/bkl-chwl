@@ -29,7 +29,6 @@ public class ShopServiceImpl implements ShopService {
 	public long update(Shop Shop, long id) {
 		return ShopDao.update(Shop,id);
 	}
-
 	@Override
 	public List<Shop> getList(long reid) {
 		Condition reidCon=DbUtil.generalEqualWhere("reid", reid);
@@ -125,17 +124,15 @@ public class ShopServiceImpl implements ShopService {
 			conditions=Arrays.copyOf(conditions, conditions.length+1);
 			conditions[conditions.length-1]=type2Con;
 		}
-		Condition regCon=DbUtil.generalEqualWhere("regstatus", Shop.REGSTATUS_TRUE);
-		conditions=Arrays.copyOf(conditions, conditions.length+1);
-		conditions[conditions.length-1]=regCon;
-		
 		Condition verCon=DbUtil.generalEqualWhere("vertifystatus", Shop.VERTIFYSTATUS_TRUE);
 		conditions=Arrays.copyOf(conditions, conditions.length+1);
 		conditions[conditions.length-1]=verCon;
 		
+		Condition shopStatusCon=DbUtil.generalEqualWhere("shopstatus", Shop.SHOPSTATUS_SHOW);
+		conditions=Arrays.copyOf(conditions, conditions.length+1);
+		conditions[conditions.length-1]=shopStatusCon;
 		
-		
-		String sorts="";
+		String sorts="id desc";
 		if(sort==Shop.SORT_TIME){
 			sorts="id desc";
 		}else if(sort==Shop.SORT_HOT){
@@ -240,5 +237,30 @@ public class ShopServiceImpl implements ShopService {
 			sql+=" and stime>"+month3;
 		}
 		return orderDao.queryDouble(sql, null);
+	}
+	@Override
+	public double getSellercoinTotal(long uid,int staticsType) {
+		GeneralDao<Tradeorder> orderDao=DaoFactory.createGeneralDao(Tradeorder.class);
+		String sql="select sum(sellercoin) from tradeorder where seller="+uid+" and status="+Tradeorder.STATUS_SUCCESS;
+		long now=TimeUtil.getUnixTime();
+		long day=now-(60*60*24);
+		long month=now-(60*60*24*30);
+		long month3=now-(60*60*24*90);
+		if(staticsType==Tradeorder.STATICS_ALL){
+			
+		}else if(staticsType==Tradeorder.STATICS_DAY){
+			sql+=" and stime>"+day;
+		}else if(staticsType==Tradeorder.STATICS_MONTH){
+			sql+=" and stime>"+month;
+		}else if(staticsType==Tradeorder.STATICS_3MONTH){
+			sql+=" and stime>"+month3;
+		}
+		return orderDao.queryDouble(sql, null);
+	}
+
+	@Override
+	public boolean existUid(long uid) {
+		Shop shop=getByUid(uid);
+		return shop!=null;
 	}
 }

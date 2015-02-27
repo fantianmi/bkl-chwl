@@ -1,4 +1,5 @@
  <%@page import="com.bkl.chwl.constants.Constants"%>
+ <%@page import="org.apache.commons.lang.StringUtils"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
 <%@page import="com.bkl.chwl.utils.*"%>
@@ -14,7 +15,6 @@ User user = UserUtil.getCurrentUser(request);
 
 AreaService areaServ = new AreaServiceImpl(); 
 List<Area> provinces=areaServ.getList(0);
-String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <html>
 <head>
@@ -27,8 +27,8 @@ String ossBaseurl=MainConfig.getOssBaseurl();
 <div class="container nomargin" style="margin: 0rem !important;">
 <input type="hidden" id="id" value="<%=user.getId()!=0?user.getId():0%>"/>
 <input type="hidden" id="licenceFileName" value="<%=user.getLicenceFileName()!=null?user.getLicenceFileName():""%>"/>
-<input type="hidden" id="licenceFileURL" value="<%=user.getLicenceFileURL()!=null?user.getLicenceFileURL():""%>"/>
-<div class="fullImage" <%=user.getLicenceFileURL()==null?"style=\"display:none\"":"" %> id="previewuploadImg"><img src="<%=ossBaseurl+user.getLicenceFileURL()%>"></div>
+<input type="hidden" id="licenceFileURL" value="<%=StringUtils.defaultIfEmpty(user.getLicenceFileURL(),"-")%>"/>
+<div class="fullImage" <%=user.getLicenceFileURL()==null?"style=\"display:none\"":"" %> id="previewuploadImg"><img src="<%=FrontImage.convertOss(user.getLicenceFileURL())%>"></div>
 <form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
 </form>
 <div class="form-group">

@@ -19,6 +19,14 @@
 	 response.sendRedirect("user_card_list.jsp");
 	 return;
  }
+/*  if(user.getSecret()==null){
+	response.sendRedirect("secretSet.jsp");
+	return;
+}
+if(request.getParameter("secretOK")==null||!request.getParameter("secretOK").equals("ok")){
+	response.sendRedirect("inputSecret.jsp?subType=2");
+	return;
+} */
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -70,7 +78,7 @@
 </div>
 <%for (Cash withdraw : withdraws) { %>
 <div class="tableList downborder">
-<div class="detail" style="width:80% !important"><%=withdraw.getCtimeDateString() %>提现<%=FrontUtil.formatDouble(withdraw.getAmount()) %>元</div><div class="status" style="width:20% !important">
+<div class="detail" style="width:80% !important"><span><%=withdraw.getCtimeDateString() %></span><span>提现</span><span><%=FrontUtil.formatDouble(withdraw.getAmount()) %></span><span>元</span></div><div class="status" style="width:20% !important"><span>
 <%if (withdraw.getStatus() == 0) {%>
 正在处理
 <% }%>
@@ -80,6 +88,7 @@
 <%if (withdraw.getStatus() == 2) {%>
 已拒绝
 <% }%>
+</span>
 </div>
 </div>
 <%} %>

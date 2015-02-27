@@ -236,7 +236,7 @@ public class WebApi
     String result = HttpUtil.post("/proxy/updateUser/" + uid + ".json", "local=" + local + "&local2=" + local2);
   }
 
-  public static String payOrder(long uid, int orderId, int type, Double amount, String cardId, String name, String bankName, String bankId, String phone, String sellerName)
+  public static String payOrder(long uid, String orderId, int type, Double amount, String cardId, String name, String bankName, String bankId, String phone, String sellerName)
     throws ClientProtocolException, IOException
   {
 	  String bank_name=URLEncoder.encode(bankName, "utf-8");

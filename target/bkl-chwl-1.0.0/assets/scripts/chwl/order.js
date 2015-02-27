@@ -5,6 +5,11 @@ function orderSubmit(){
 	var coin=$("#coin").val();
 	var type=$("#type").val();
 	var coinRate=$("#coinRate").val();
+	var bank_account_o=$("#bank_account_o").val();
+	if(bank_account_o==0){
+		swal("错误", "请选择支付银行卡", "error");
+		return;
+	}
 	if(!checkNotNull&&!checkNotNull(payway)&&!checkNotNull(price)){
 		swal("错误", "请确认表单是否填写完全", "error");
 		return;
@@ -32,7 +37,7 @@ function orderSubmit(){
 				
 			}else if(res.ret==714){
 				var orderId=res.data["orderId"];
-				var redirectURI="payprocess.jsp?orderId="+orderId;
+				var redirectURI="payprocess.jsp?orderId="+orderId+"&bank_account_o="+bank_account_o;
 				window.location.href=redirectURI;
 			}else if(res.ret==715){
 				swal({

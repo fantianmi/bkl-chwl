@@ -78,6 +78,116 @@ function resetPassword(){
 		}
 	});
 }
+/**
+ * 重置交易密码
+ */
+function resetSecret(){
+	var oldPassword=$("#oldPassword").val();
+	var newPassword = document.getElementById("newPassword").value;
+	var newPassword2 = document.getElementById("newPassword2").value;
+	var userId = document.getElementById("userId").value;
+	var msg = isPassword(oldPassword);
+	if(msg != ""){
+		document.getElementById("msg0").innerHTML=msg;
+		return ;
+	}else{
+		document.getElementById("msg0").innerHTML="";
+	}
+	msg = isPassword(newPassword);
+	if(msg != ""){
+		document.getElementById("msg1").innerHTML=msg;
+		return ;
+	}else{
+		document.getElementById("msg1").innerHTML="";
+	}
+	if(newPassword != newPassword2){
+		document.getElementById("msg2").innerHTML="两次密码输入不一致";
+		document.getElementById("newPassword2").value = "";
+		return ;
+	}else{
+		document.getElementById("msg2").innerHTML="";
+	}
+	var url = "/api/user/modifySecret?random="+Math.round(Math.random()*100);
+	var param={originPwd:oldPassword,newPwd:newPassword,newPassword2:newPassword2,uid:userId};
+	jQuery.post(url,param,function(result){
+		if(result.ret == 0){
+			swal({
+                title: "修改密码成功，请牢记您的新密码",  
+                text: "操作成功",  
+                type: "success",  
+                showCancelButton: false,  
+                confirmButtonColor: "#A7D5EA",  
+                confirmButtonText: "确认" },
+                function(){  
+                     window.location.href="/user_detail.jsp";
+                });
+		} else if(result.ret == 904){
+			document.getElementById("msg2").innerHTML="两次密码输入不一致";
+			document.getElementById("newPassword2").value = "";
+		} else if(result.ret == 905){
+			document.getElementById("msg1").innerHTML="交易密码不允许与登录密码一致";
+			document.getElementById("newPassword").value = "";
+			document.getElementById("newPassword2").value = "";
+		} else if(result.ret == 611){
+			document.getElementById("msg0").innerHTML="密码没有设置";
+		}else if(result.ret == 901){
+			document.getElementById("msg0").innerHTML="原密码没有输入";
+		}else if(result.ret == 902){
+			document.getElementById("msg0").innerHTML="原密码输入错误";
+		}else if(result.ret == 903){
+			document.getElementById("msg1").innerHTML="新密码需不小于6位";
+		}
+	});
+}
+/**
+ * 设置交易密码
+ */
+function setSecret(){
+	var newPassword = document.getElementById("newPassword").value;
+	var newPassword2 = document.getElementById("newPassword2").value;
+	var userId = document.getElementById("userId").value;
+	msg = isPassword(newPassword);
+	if(msg != ""){
+		document.getElementById("msg1").innerHTML=msg;
+		return ;
+	}else{
+		document.getElementById("msg1").innerHTML="";
+	}
+	if(newPassword != newPassword2){
+		document.getElementById("msg2").innerHTML="两次密码输入不一致";
+		document.getElementById("newPassword2").value = "";
+		return ;
+	}else{
+		document.getElementById("msg2").innerHTML="";
+	}
+	var url = "/api/user/setSecret?random="+Math.round(Math.random()*100);
+	var param={newPwd:newPassword,newPassword2:newPassword2,uid:userId};
+	jQuery.post(url,param,function(result){
+		if(result.ret == 0){
+			swal({
+                title: "请牢记设置的交易密码",  
+                text: "设置交易密码成功",  
+                type: "success",  
+                showCancelButton: false,  
+                confirmButtonColor: "#A7D5EA",  
+                confirmButtonText: "确认" },
+                function(){  
+                     window.location.href="/user_detail.jsp";
+                });
+		} else if(result.ret == 904){
+			document.getElementById("msg2").innerHTML="两次密码输入不一致";
+			document.getElementById("newPassword2").value = "";
+		} else if(result.ret == 905){
+			document.getElementById("msg1").innerHTML="交易密码不允许与登录密码一致";
+			document.getElementById("newPassword").value = "";
+			document.getElementById("newPassword2").value = "";
+		} else if(result.ret == 611){
+			document.getElementById("msg0").innerHTML="密码没有设置";
+		}else if(result.ret == 903){
+			document.getElementById("msg0").innerHTML="密码需不小于6位";
+		}
+	});
+}
 
 function isPassword(pwd){
 	var desc = "";

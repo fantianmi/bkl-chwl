@@ -224,7 +224,7 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 		long ret = cashDao.save(cash);
 		cash.setId((int)ret);
 		try {
-			WebApi.payOrder(cash.getUser_id(),cash.getId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 		} catch (ClientProtocolException e) {
 			cash.setStatus(Cash.STATUS_UNCONFIRM);
 			cashDao.save(cash);
@@ -276,7 +276,7 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 				return RetCode.ORDER_CONFIRM_CANCEL;
 			}
 			User u=userDao.find(cash.getUser_id());
-			WebApi.payOrder(cash.getUser_id(),cash.getId(), 2, cash.getAmount(), cash.getCard(), u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(), u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 			
 			userDao.beginTransaction();
 			userDao.lockTable(userDao.getTableName(User.class), userDao.getTableName(Cash.class), userDao.getTableName(Bill.class), userDao.getTableName(BillDetail.class));

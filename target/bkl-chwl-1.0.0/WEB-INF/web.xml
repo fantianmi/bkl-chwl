@@ -124,7 +124,7 @@
 	<!-- upload file -->
 	<servlet>
 		<servlet-name>uploadFile</servlet-name>
-		<servlet-class>com.km.common.servlet.UploadServlet</servlet-class>
+		<servlet-class>com.bkl.chwl.servlet.ChwlUploadServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>uploadFile</servlet-name>
@@ -186,7 +186,7 @@
 		</init-param>
 		<init-param>
 			<param-name>urls</param-name>
-			<param-value>/bindcardsuccess.jsp,/scanQR.jsp,/user_index.jsp,/add_shop_info.jsp,/shop_info.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/shop_info.jsp,/doLottery.jsp,/shop_data_add.jsp,/shop_index.jsp,/shop_data.jsp,/shop_deal_list.jsp,/user_card_list.jsp,/user_profile.jsp./info_update.jsp./bind_card_shop.jsp,/input_card_num.jsp,/input_card_info.jsp,/input_card_info_full.jsp</param-value>
+			<param-value>/bindcardsuccess.jsp,/scanQR.jsp,/user_index.jsp,/add_shop_info.jsp,/shop_info.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/shop_info.jsp,/doLottery.jsp,/shop_data_add.jsp,/shop_index.jsp,/shop_data.jsp,/shop_deal_list.jsp,/user_card_list.jsp,/user_profile.jsp./info_update.jsp./bind_card_shop.jsp,/input_card_num.jsp,/input_card_info.jsp,/input_card_info_full.jsp,/secretReset.jsp./secretSet.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>userUrls</param-name>
@@ -227,6 +227,53 @@
 	<servlet-mapping>
 		<servlet-name>admin</servlet-name>
 		<url-pattern>/admin_api/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- kaptcha -->
+		<servlet>
+		<servlet-name>Kaptcha</servlet-name>
+		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+		<!--
+			For a complete list of Init Parameters, please see:
+			http://code.google.com/p/kaptcha/wiki/ConfigParameters
+		-->
+		<init-param>
+			<param-name>kaptcha.border</param-name>
+			<param-value>yes</param-value>
+		</init-param>
+		
+		<init-param>     
+            <param-name>kaptcha.textproducer.char.string</param-name>     
+            <param-value>0123456789</param-value>     
+        </init-param> 
+        
+        <init-param>
+            <param-name>kaptcha.noise.impl</param-name>
+            <param-value>com.google.code.kaptcha.impl.NoNoise </param-value>
+        </init-param>
+        
+        <init-param>     
+            <param-name>kaptcha.textproducer.char.length</param-name>     
+            <param-value>4</param-value>     
+        </init-param>
+        <init-param>  
+            <param-name>kaptcha.textproducer.font.size</param-name>  
+            <param-value>40</param-value>  
+        </init-param>
+
+		<init-param>
+			<param-name>kaptcha.textproducer.font.color</param-name>
+			<param-value>black</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>kaptcha.textproducer.char.space</param-name>
+			<param-value>4</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Kaptcha</servlet-name>
+		<url-pattern>/Kaptcha.jpg</url-pattern>
 	</servlet-mapping>
 
 	<!-- <error-page> <error-code>404</error-code> <location>/404.jsp</location> 

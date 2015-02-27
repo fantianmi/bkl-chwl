@@ -92,6 +92,10 @@ public class User {
 	private int proxy2;
 	private long proxy2_cid;
 	private int vertify;
+	//公司营业执照名
+	private String licenceRegName;
+	//公司法人
+	private String manager;
 	
 	public static final int ROLE_NORMAL=1;
 	public static final int ROLE_SHOPER=2;
@@ -106,6 +110,18 @@ public class User {
 	public static final int PROXY_TYPE_ISOLATE=3;
 	
 	
+	public String getLicenceRegName() {
+		return licenceRegName;
+	}
+	public void setLicenceRegName(String licenceRegName) {
+		this.licenceRegName = licenceRegName;
+	}
+	public String getManager() {
+		return manager;
+	}
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
 	public String getLicenceNumber() {
 		return licenceNumber;
 	}

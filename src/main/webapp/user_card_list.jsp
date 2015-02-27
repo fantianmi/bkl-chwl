@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.bkl.chwl.constants.Constants"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
@@ -24,9 +25,13 @@
 </div>
 <%if(cards.size()!=0){ 
 for(User2BindCard card:cards){
+	String forward="update_card_info.jsp?id="+card.getBid();
+	//String forward="inputSecretShop.jsp?subType=3&forward="; 
+	//String uri="update_card_info.jsp?id="+card.getBid();
+	//forward+=URLEncoder.encode(uri); 
 %>
 <div class="tableList downborder card_list_div">
-<a href="update_card_info.jsp?id=<%=card.getBid() %>" class="card_list"><div class="detail" style="padding-left: 1rem;width:100% !important;"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;<%=card.getBank_o()+"&nbsp;&nbsp;&nbsp;"+FrontUtil.hiddenNum(card.getBank_account_o()) %></div></a>
+<a href="<%=forward %>" class="card_list"><div class="detail" style="padding-left: 1rem;width:100% !important;"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;<%=card.getBank_o()+"&nbsp;&nbsp;&nbsp;"+FrontUtil.hiddenNum(card.getBank_account_o()) %></div></a>
 </div>
 <%}}else{%>
 <div class="tableList downborder card_list_div">
@@ -34,7 +39,8 @@ for(User2BindCard card:cards){
 </div>
 <%} %>
 <div class="tableList downborder " style="background-color: #F0EFED">
-<a href="input_card_num.jsp" style="color:#666"><div class="detail" style="padding-left: 1rem"><i class="iconfont">&#xe64c;</i>&nbsp;&nbsp;添加银行卡</div></a>
+<!-- <a href="inputSecret.jsp?subType=1" style="color:#666"><div class="detail" style="padding-left: 1rem"><i class="iconfont">&#xe64c;</i>&nbsp;&nbsp;添加银行卡</div></a> -->
+<a href="input_card_num.jsp" style="color:#666"><div class="detail" style="padding-left: 1rem;color:#000"><div class="menu_icon"><img src="assets/images/iconfont-tianjia.png"></div>&nbsp;&nbsp;<div class="menu_title">添加银行卡</div></div></a>
 </div>
  <jsp:include page="foot.jsp"/>
 <jsp:include page="common_source_foot.jsp"/>

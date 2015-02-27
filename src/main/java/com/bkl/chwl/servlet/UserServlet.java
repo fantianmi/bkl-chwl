@@ -169,7 +169,7 @@ public class UserServlet extends CommonServlet {
 	}
 	
 	/**
-	 * 修改交易密码
+	 * 修改密码
 	 */
 	public void modifyPwd(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		UserService userServ = new UserServiceImpl();
@@ -199,6 +199,81 @@ public class UserServlet extends CommonServlet {
 		GeneralDao<User> userDao = DaoFactory.createGeneralDao(User.class);
 		userDao.update(user);
 		ServletUtil.writeCommonReply(null, RetCode.OK, response);
+	}
+	/**
+	 * 修改交易密码
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	public void modifySecret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		UserService userServ = new UserServiceImpl();
+		int uid=Integer.parseInt(request.getParameter("uid"));
+		User user = userServ.get(uid);
+		if(user.getSecret()==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_PASSWORD_NOT_SET, response);
+		}
+		String originPwd = StringUtils.trim(request.getParameter("originPwd"));
+		String newPwd = StringUtils.trim(request.getParameter("newPwd"));
+		if (!StringUtils.isEmpty(user.getSecret())) {
+			if (StringUtils.isEmpty(originPwd)) {
+				ServletUtil.writeCommonReply(null, RetCode.ORGINAL_PASSWORD_EMPTY, response);
+				return;
+			}
+			if (!user.checkSecretPassword(originPwd)) {
+				ServletUtil.writeCommonReply(null, RetCode.ORGINAL_PASSWORD_ERROR, response);
+				return;
+			}
+		}
+		if(user.checkPassword(newPwd)){
+			ServletUtil.writeCommonReply(null, RetCode.LOGIN_PASSWORD_EQUAL_TRADE_PASSWORD, response);
+			return;
+		}
+		if (newPwd.length() < 6) {
+			ServletUtil.writeCommonReply(null, RetCode.PASSWORD_ILLEGAL, response);
+			return;
+		}
+		user.saveMD5SecretPassword(newPwd);
+		GeneralDao<User> userDao = DaoFactory.createGeneralDao(User.class);
+		userDao.update(user);
+		ServletUtil.writeCommonReply(null, RetCode.OK, response);
+	}
+	
+	public void setSecret(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		UserService userServ = new UserServiceImpl();
+		int uid=Integer.parseInt(request.getParameter("uid"));
+		User user = userServ.get(uid);
+		String newPwd = StringUtils.trim(request.getParameter("newPwd"));
+		if (StringUtils.isEmpty(newPwd)) {
+			ServletUtil.writeCommonReply(null, RetCode.USER_PASSWORD_NOT_SET, response);
+			return;
+		}
+		if(user.checkPassword(newPwd)){
+			ServletUtil.writeCommonReply(null, RetCode.LOGIN_PASSWORD_EQUAL_TRADE_PASSWORD, response);
+			return;
+		}
+		if (newPwd.length() < 6) {
+			ServletUtil.writeCommonReply(null, RetCode.PASSWORD_ILLEGAL, response);
+			return;
+		}
+		user.saveMD5SecretPassword(newPwd);
+		GeneralDao<User> userDao = DaoFactory.createGeneralDao(User.class);
+		userDao.update(user);
+		ServletUtil.writeCommonReply(null, RetCode.OK, response);
+	}
+	
+	public void checkSecret(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		User u = UserUtil.getCurrentUser(request);
+		String secretInput=request.getParameter("secret");
+		if(secretInput==null){
+			ServletUtil.writeCommonReply(null, RetCode.USER_TRADE_PASSWORD_NOT_SET, response);
+			return;
+		}
+		if(!u.checkSecretPassword(secretInput)){
+			ServletUtil.writeCommonReply(null, RetCode.USER_SECRET_ERROR, response);
+			return;
+		}
+		ServletUtil.writeOkCommonReply(null, response);
 	}
 	
 	public void bindingEmail(HttpServletRequest request,HttpServletResponse response) throws IOException{

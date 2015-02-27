@@ -35,11 +35,30 @@ public class Shop {
 	private int regstatus;
 	//商户是否允许展示审核
 	private int vertifystatus;
+	//商户自己隐藏店铺
+	private int shopstatus;
+	
 	public static int REGSTATUS_TRUE=1;
 	public static int REGSTATUS_FALSE=0;
 	public static int VERTIFYSTATUS_TRUE=1;
 	public static int VERTIFYSTATUS_FALSE=0;
+	public static int SHOPSTATUS_SHOW=1;
+	public static int SHOPSTATUS_HIDE=0;
 	
+	public int getShopstatus() {
+		return shopstatus;
+	}
+	public String getShopstatusString() {
+		if(shopstatus==this.SHOPSTATUS_HIDE){
+			return "隐藏";
+		}else if(shopstatus==this.SHOPSTATUS_SHOW){
+			return "显示中";
+		}
+		return "未设置";
+	}
+	public void setShopstatus(int shopstatus) {
+		this.shopstatus = shopstatus;
+	}
 	public int getVertifystatus() {
 		return vertifystatus;
 	}

@@ -13,11 +13,12 @@
     pageEncoding="UTF-8"%>
  <%
  OrderService orderServ=new OrderServiceImpl();
- if(request.getParameter("orderId")==null){
+ if(request.getParameter("orderId")==null||request.getParameter("bank_account_o")==null){
 	 response.sendRedirect("index.jsp");
 	 return;
  }
+ String bank_account_o=request.getParameter("bank_account_o");
  String orderId=request.getParameter("orderId"); 
  Tradeorder2Shop order=orderServ.getTradeorder2ShopOrderId(orderId);
  %>
-<%=Form06_6_2_f.getForm(orderId,order.getBankprice())%>
+<%=Form06_6_2_f.getForm(orderId,order.getBankprice(),bank_account_o)%>

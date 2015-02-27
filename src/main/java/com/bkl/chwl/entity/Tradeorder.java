@@ -31,6 +31,8 @@ public class Tradeorder {
 	private double price;
 	//银联还需要支付
 	private double bankprice;
+	//商家结算金额
+	private double sellercoin;
 	//是否需要返利
 	private int type;
 	//返利金币数
@@ -45,6 +47,12 @@ public class Tradeorder {
 	public static final int TYPE_NOPAYBACK=2;
 	public static final int TYPE_PAYBACK=1;
 	
+	public double getSellercoin() {
+		return sellercoin;
+	}
+	public void setSellercoin(double sellercoin) {
+		this.sellercoin = sellercoin;
+	}
 	public String getOrderId() {
 		return orderId;
 	}

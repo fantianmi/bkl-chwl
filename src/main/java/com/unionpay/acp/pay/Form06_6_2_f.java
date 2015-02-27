@@ -29,7 +29,7 @@ public class Form06_6_2_f extends DemoBase {
 	 * @param txnAmt
 	 * @return
 	 */
-	public static Map<String, Object> setFormDate(String orderIdIn,double txnAmtIn) {
+	public static Map<String, Object> setFormDate(String orderIdIn,double txnAmtIn,String bank_account_o) {
 		
 		Map<String, Object> contentData = new HashMap<String, Object>();
 
@@ -95,7 +95,7 @@ public class Form06_6_2_f extends DemoBase {
 		contentData.put("accType", "01");// C
 
 		// 1、 后台类消费交易时上送全卡号或卡号后4位 2、 跨行收单且收单机构收集银行卡信息时上送、 3、前台类交易可通过配置后返回，卡号可选上送
-		//contentData.put("accNo", "4444");// C
+		contentData.put("accNo", bank_account_o);// C
 
 		// 交易单位为分
 		contentData.put("txnAmt", txnAmtI);// M
@@ -158,8 +158,14 @@ public class Form06_6_2_f extends DemoBase {
 		// contentData.put("orderDesc", orderDesc);//C
 		return contentData;
 	}
-
-	public static String getForm(String orderId,double amt){
+	/**
+	 * 生成银行订单
+	 * @param orderId 订单号
+	 * @param amt 订单价格
+	 * @param bank_account_o 卡号
+	 * @return
+	 */
+	public static String getForm(String orderId,double amt,String bank_account_o){
 
 	/**
 		 * 参数初始化
@@ -169,7 +175,7 @@ public class Form06_6_2_f extends DemoBase {
 		SDKConfig.getConfig().loadPropertiesFromSrc();
 		
 		String requestUrl = SDKConfig.getConfig().getFrontRequestUrl();
-		Map<String, String> submitFromData = signData(setFormDate(orderId,amt));
+		Map<String, String> submitFromData = signData(setFormDate(orderId,amt,bank_account_o));
 		/**
 		 * 创建表单
 		 */

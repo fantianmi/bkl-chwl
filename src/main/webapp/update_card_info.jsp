@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@page import="com.km.common.config.Config"%>
@@ -16,6 +17,17 @@ if(request.getParameter("id")==null){
 long id=Integer.parseInt(request.getParameter("id"));
 BindCardService bindCardServ= new BindCardServiceImpl();
 User2BindCard card=bindCardServ.getUser2Card(id);
+
+//String url=MainConfig.getContextPath();
+//url=url.substring(0,url.length()-1);
+//url+=request.getRequestURI();    
+//if(request.getQueryString()!=null)    
+//url+="?"+request.getQueryString(); 
+//url=URLEncoder.encode(url);
+//if(request.getParameter("secretOK")==null||!request.getParameter("secretOK").equals("ok")){
+//	response.sendRedirect("inputSecret.jsp?subType=3&forward="+url);
+//	return;
+//}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

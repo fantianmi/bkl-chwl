@@ -14,7 +14,6 @@
 	long id = Long.parseLong(StringUtils.defaultIfEmpty(request.getParameter("id"), "0"));
 	UserService userSrv = new UserServiceImpl();
 	User user = userSrv.get(id);
-	String ossBaseurl=MainConfig.getOssBaseurl();	
 	String statusString = request.getParameter("recordType");
 	int status = 0;
 	if (statusString != null) {
@@ -165,8 +164,8 @@
 								<div class="profile-info-name">营业执照 </div>
 								<div class="profile-info-value">
 									<span>
-									<a  id="single_image" class="grouped_elements"  href="../<%=StringUtils.defaultIfEmpty(user.getLicenceFileURL(),"-")%>">
-										<img src="../<%=StringUtils.defaultIfEmpty(user.getLicenceFileURL(),"-")%>" width=220px>
+									<a  id="single_image" class="grouped_elements"  href="../<%=FrontImage.convertOss(StringUtils.defaultIfEmpty(user.getLicenceFileURL(),""))%>">
+										<img src="../<%=FrontImage.convertOss(StringUtils.defaultIfEmpty(user.getLicenceFileURL(),""))%>" width=220px>
 									</a>
 									</span>
 								</div>
@@ -177,7 +176,7 @@
 								<div class="profile-info-name">营业执照编号 </div>
 								<div class="profile-info-value">
 									<span>
-										<%=ossBaseurl+StringUtils.defaultIfEmpty(user.getLicenceNumber(),"-")%>
+										<%=StringUtils.defaultIfEmpty(user.getLicenceNumber(),"-")%>
 									</span>
 								</div>
 							</div>
@@ -225,8 +224,8 @@
 								<div class="profile-info-name">店铺概览 </div>
 								<div class="profile-info-value">
 									<span>
-									<a  id="single_image" class="grouped_elements"  href="../<%=image[0]%>">
-										<img src="../<%=ossBaseurl+image[0]%>" width=220px>
+									<a  id="single_image" class="grouped_elements"  href="../<%=FrontImage.convertOss(image[0])%>">
+										<img src="../<%=FrontImage.convertOss(image[0])%>" width=220px>
 									</a>
 									</span>
 								</div>

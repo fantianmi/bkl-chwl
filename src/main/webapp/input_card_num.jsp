@@ -9,6 +9,19 @@
 <%@page import="java.util.*"%>
 <%
 User u=UserUtil.getCurrentUser(request);
+/* if(u.getSecret()==null){
+	response.sendRedirect("secretSet.jsp");
+	return;
+}
+if(request.getParameter("secretOK")==null||!request.getParameter("secretOK").equals("ok")){
+	if(u.getRole()==u.ROLE_NORMAL){
+		response.sendRedirect("inputSecret.jsp?subType=1");
+		return;
+	}else{
+		response.sendRedirect("inputSecretShop.jsp?subType=1");
+		return;
+	}
+} */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,8 +33,8 @@ User u=UserUtil.getCurrentUser(request);
 <div class="content" style="margin-top:5.5rem;padding:0rem 1rem 1rem 1rem !important">
 <form action="<%=u.getRole()==u.ROLE_NORMAL?"input_card_info.jsp":"input_card_info_full.jsp" %>" method="post" id="submitCardNum">
   <div class="form-group">
-    <label for="regUserName">卡号</label>
-    <input type="text" class="form-control" id="bankCardNum" name="bankCardNum"  placeholder="无需网银/免手续费"  onpaste="return false" >
+    <label for="regUserName">卡号(建议绑定信用卡)</label>
+    <input type="text" class="form-control" id="bankCardNum" name="bankCardNum"  placeholder="<%=u.getRole()==u.ROLE_SHOPER?"对公/对私账户卡号":"银行卡号" %>"  onpaste="return false" >
   </div>
   </form>
   <p style="display: none" id="regNameResult"></p>
@@ -92,14 +105,6 @@ function plusSpace(banknumber){
 		return banknumber;
 	}
 	return newbanknumber;
-}
-function submitCardNum(){
-	var cardnum=$("#bankCardNum").val();
-	if(trim(cardnum).length<16){
-		swal("错误", "请确认填入正确的卡号", "error");
-		return;
-	}
-	$("#submitCardNum").submit();
 }
 </script>
 

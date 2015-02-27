@@ -31,33 +31,59 @@ public class BindCardServlet extends CommonServlet {
 		
 		String bank_o=reqcard.getBank_o();
 		BankInfoService bankServ=new BankInfoServiceImpl();
+		
+		//查询选择银行的行号
 		BankInfo bankInfo=bankServ.getByBankName(bank_o);
 		if(bankInfo==null){
 			ServletUtil.writeCommonReply(null, RetCode.BANK_NOT_EXIST, response);
 		}
+		
 		BindCardService bindCardServ=new BindCardServiceImpl();
 		UserBindCard card=new UserBindCard();
+		//查询是否是第一张卡，如果是第一张卡则设置该卡为默认收款卡，针对商家有效
+		if(bindCardServ.existCard(u.getId())){
+			card.setIsdefault(card.DEFAULT_FALSE);
+		}else{
+			card.setIsdefault(card.DEFAULT_TRUE);
+		}
+		
+		//其他数据填写
 		boolean needUpdateUser=false;
 		card.setBank_account_o(reqcard.getBank_account_o().replaceAll(" ", ""));
 		card.setBank_deposit_o(reqcard.getBank_o());
 		card.setBank_o(reqcard.getBank_o());
-		card.setIsdefault(card.DEFAULT_FALSE);
+		
 		card.setPhone_o(reqcard.getPhone_o());
 		card.setUid(u.getId());
 		card.setBank_number_o(bankInfo.getBankNumber());
 		long id=bindCardServ.addCard(card);
+		card.setId(id);
+		int bindType=Integer.parseInt(request.getParameter("bindType"));
 		//检查是否需要更新用户表
-		if(u.getName()==null||u.getName()==""){
-			needUpdateUser=true;
-			u.setName(reqcard.getName());
-		}
-		if(u.getIdentity_no()==null||u.getIdentity_no()==""){
-			needUpdateUser=true;
-			u.setIdentity_no(reqcard.getIdentity_no());
-		}
-		if(u.getIdentity_type()==0){
-			needUpdateUser=true;
-			u.setIdentity_type(reqcard.getIdentity_type());
+		if(bindType==1){
+			if(u.getName()==null||u.getName().equals("")){
+				needUpdateUser=true;
+				u.setName(reqcard.getName());
+			}
+			if(u.getIdentity_no()==null||u.getIdentity_no().equals("")){
+				needUpdateUser=true;
+				u.setIdentity_no(reqcard.getIdentity_no());
+			}
+			if(u.getIdentity_type()==0){
+				needUpdateUser=true;
+				u.setIdentity_type(reqcard.getIdentity_type());
+			}
+		}else{
+			if(u.getLicenceNumber()==null||u.getLicenceNumber().equals("")){
+				card.setIsdefault(card.DEFAULT_TRUE);
+				bindCardServ.addCard(card);
+				needUpdateUser=true;
+				u.setLicenceNumber(reqcard.getLicenceNumber());
+			}
+			if(u.getLicenceRegName()==null||u.getLicenceRegName().equals("")){
+				needUpdateUser=true;
+				u.setLicenceRegName(reqcard.getLicenceRegName());
+			}
 		}
 		if(needUpdateUser){
 			userServ.save(u);
@@ -100,6 +126,21 @@ public class BindCardServlet extends CommonServlet {
 			userServ.save(u);
 		}
 		ServletUtil.writeOkCommonReply(bank_o, response);
+	}
+	
+	public void checkCardExist(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		User u=UserUtil.getCurrentUser(request);
+		if(request.getParameter("bankCardNum")==null){
+			ServletUtil.writeCommonReply(null, RetCode.ERROR, response);
+			return;
+		}
+		String bankCardNum=request.getParameter("bankCardNum");
+		BindCardService bindCardServ=new BindCardServiceImpl();
+		if(bindCardServ.existBank_account_o(u.getId(), bankCardNum)){
+			ServletUtil.writeCommonReply(null, RetCode.PIN_EXIST, response);
+			return;
+		}
+		ServletUtil.writeOkCommonReply(null, response);
 	}
 	
 	public void modifyCard(HttpServletRequest request,HttpServletResponse response) throws Exception{

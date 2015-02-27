@@ -13,7 +13,7 @@
 <%
 	UserService userSrv = new UserServiceImpl();
 	Page p =  ServletUtil.getPage(request);
-	PageReply<User> users = userSrv.findUser(2,ServletUtil.getSearchMap(request), p);
+	PageReply<User2Shop> users = userSrv.findUser2Shop(2,ServletUtil.getSearchMap(request), p);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +44,7 @@
 			<div class="nav-search" id="nav-search">
 				<form class="form-search">
 					<span class="input-icon">
-						<input type="text" placeholder="搜索..." class="nav-search-input" autocomplete="off" data-keys="mobile,name" value="<%=StringUtils.defaultIfEmpty(request.getParameter("searchText"),"")%>">
+						<input type="text" placeholder="搜索..." class="nav-search-input" autocomplete="off" data-keys="mobile,name,shop_id,id,shop_title" value="<%=StringUtils.defaultIfEmpty(request.getParameter("searchText"),"")%>">
 						<i class="icon-search nav-search-icon"></i>
 					</span>
 				</form>
@@ -60,6 +60,8 @@
 									<th class="center"><label>#</label></th>
 									<th class="center">姓名</th>
 									<th class="center">手机</th>
+									<th class="center">商铺id</th>
+									<th class="center">商铺名</th>
 									<th class="center">状态</th>
 									<th class="center">操作</th>
 								</tr>
@@ -76,7 +78,7 @@
 								<%} %>
 								<%
 									for (int i = 0; i < users.getPagedatas().length; i++) {
-										User u = users.getPagedatas()[i];
+										User2Shop u = users.getPagedatas()[i];
 								%>
 								<tr id="row_<%=u.getId()%>">
 									<td><%=u.getId() %></td>
@@ -91,6 +93,8 @@
 										<%}%>
 									</td>
 									<td><%=u.getMobile()%></td>
+									<td><%=u.getShop_id()%></td>
+									<td><%=u.getShop_title()%></td>
 									<td><%=u.getVertifyString()%></td>
 									<td>
 										<a href="user.jsp?id=<%=u.getId()%>">[详情]</a>

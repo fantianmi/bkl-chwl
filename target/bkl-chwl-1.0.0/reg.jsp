@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@page import="com.bkl.chwl.constants.Constants"%>
@@ -37,18 +38,20 @@ if(request.getParameter("r")!=null){
 	  	<div class="col-xs-6 nopadding"><a class="btn-menu btn-menu-right" href="javascript:void(0);" id="shoperReg" onclick="showShoperRegInfo();">点商注册</a></div>
 </div>
 <div class="content" style="padding:0rem 1rem 1rem 1rem !important">
-	<input type="hidden" name="vcode" id="vcode">
 	<input type="hidden" name="regType" value="0" id="regType">
 	<input type="hidden" name="roleType" id="roleType" value="1">
 	<input type="hidden" name="licenceFileName" id="licenceFileName">
 	<input type="hidden" name="licenceFileURL" id="licenceFileURL">
   	<script type="text/javascript">
+  	function showShopInfoArea(){
+  		$("#shopInfoArea").show();
+  	}
 	function showShoperRegInfo(){
 		/*alert("商家注册暂时关闭");
 		return;*/
-		$("#formUserNameLabel").html("商户登录名（字母和数字）");
+		$("#formUserNameLabel").html("点商账号（字母和数字）");
 		$("#formVcodeInput").hide();
-		$("#regUserName").attr('placeholder','请输入字母和数字的帐户名');
+		$("#regUserName").attr('placeholder','请输入字母和数字组合');
 		$("#userSubmitBtn").hide();
 		$("#shoperSubmitBtn").show();
 		$("#userAgreementBtn").hide();
@@ -56,9 +59,6 @@ if(request.getParameter("r")!=null){
 		
 		  $("#shoperAgreement").hide();
 		  $("#userAgreement").hide();
-		
-		$(".icheckbox_square").removeClass("checked");
-		
 		if($("#normalReg").hasClass("active")){
 		 $("#normalReg").removeClass("active");
 		}
@@ -69,9 +69,9 @@ if(request.getParameter("r")!=null){
 		$("#roleType").val("2");
 	}
 	function unShowShoperRegInfo(){
-		$("#formUserNameLabel").html("手机号");
+		$("#formUserNameLabel").html("点粉账号");
 		$("#formVcodeInput").show();
-		$("#regUserName").attr('placeholder','请输入手机号');
+		$("#regUserName").attr('placeholder','请勿输入中文或者特殊字符');
 		$("#userSubmitBtn").show();
 		$("#shoperSubmitBtn").hide();
 		$("#regUserName").val("");
@@ -80,9 +80,6 @@ if(request.getParameter("r")!=null){
 		
 		  $("#shoperAgreement").hide();
 		  $("#userAgreement").hide();
-		
-		$(".icheckbox_square").removeClass("checked");
-		
 		if(!$("#normalReg").hasClass("active")){
 		 $("#normalReg").addClass("active");
 		}
@@ -94,24 +91,21 @@ if(request.getParameter("r")!=null){
 	}
 	</script>
   <div class="form-group">
-    <label for="regUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;<span id="formUserNameLabel">手机号</span></label>
-    <input type="text" class="form-control" id="regUserName" placeholder="请输入手机号" onblur="checkUserNameExist()" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="value=value.replace(/[^\w\.\/]/ig,'')" >
+    <label for="regUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;<span id="formUserNameLabel">点粉账号</span></label>
+    <input type="text" class="form-control" id="regUserName" placeholder="请勿输入中文或者特殊字符" onblur="checkUserNameExist()" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="value=value.replace(/[^\w\.\/]/ig,'')" >
+    <p class="error_msg" id="regUserName_error"></p>
   </div>
-  <div class="input-group" id="formVcodeInput">
-     <input type="text" class="form-control" placeholder="5位验证码" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="5" size="14" id="phone_validate_code">
-     <span class="input-group-btn">
-       <button class="btn btn-danger"  id="sendMsgBtn" onclick="sendMsg(this,1);">发送验证码</button>
-     </span>
-   </div><!-- /input-group -->
   <p style="display: none" id="regNameResult"></p>
   <div class="form-group">
     <label for="regPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;密码</label>
-    <input type="password" class="form-control" id="regPassword" placeholder="不小于6位密码">
+    <input type="password" class="form-control" id="regPassword" placeholder="不小于6位密码" onblur="checkPassword()">
+    <p class="error_msg" id="regPassword_error"></p>
   </div>
   <p style="display: none" id="regPwdResult"></p>
   <div class="form-group">
     <label for="regRePassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;确认密码</label>
-    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码">
+    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码" onblur="checkRePassword()">
+    <p class="error_msg" id="regRePassword_error"></p>
   </div>
   <div class="form-group" <%=recommend==0?"style=\"display:none\"":"" %>>
     <label for="exampleInputEmail1"><i class="iconfont">&#xe62f;</i>&nbsp;&nbsp;推荐人id</label>
@@ -120,19 +114,41 @@ if(request.getParameter("r")!=null){
   <p style="display: none" id="regRePwdResult"></p>
   <div id="shoperRegInfo"  style="display: none">
 	  <div class="form-group">
-	    <label for="shopName">&nbsp;&nbsp;商户全称</label>
-	    <input type="text" class="form-control" id="shopName" placeholder="请输入实际经营商铺名，以便消费者查找">
+	    <label for="shopName">&nbsp;&nbsp;商铺店铺名</label>
+	    <input type="text" class="form-control" id="shopName" placeholder="必填，请输入实际经营商铺名，以便消费者查找">
+	    <p class="error_msg" id="shopName_error"></p>
+	  </div>
+	  <div class="row">
+	  <div class="col-xs-12"><button class="btn btn-info btn-block" id="scanLicenceQR">扫描营业执照二维码</button></div>
+	  </div>
+	  <br>
+	  <div class="row">
+	  <div class="col-xs-12"><button class="btn btn-default btn-block" id="" onclick="showShopInfoArea()">手动填写点商资料</button></div>
+	 </div>
+	 <div id="shopInfoArea">
+	  <div class="form-group">
+	    <label for="shopName">&nbsp;&nbsp;企业法人/负责人</label>
+	    <input type="text" class="form-control" id="manager" placeholder="必填，请填写法人/负责人" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" > 
+	    <p class="error_msg" id="manager_error"></p>
+	  </div>
+	  <div class="form-group">
+	    <label for="shopName">&nbsp;&nbsp;营业执照注册名</label>
+	    <input type="text" class="form-control" id="licenceRegName" placeholder="必填，请填入准确的营业执照注册名">
+	    <p class="error_msg" id="licenceRegName_error"></p>
 	  </div>
 	  <div class="form-group">
 	    <label for="oid">&nbsp;&nbsp;营业执照注册号</label>
-	    <input type="text" class="form-control" id="oid" placeholder="营业执照号码需与上传执照号码一致" onblur="chcekLicenceNumber()" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="15">
+	    <input type="text" class="form-control" id="oid" placeholder="必填，请准确填写，一经填写不能更改" onblur="chcekLicenceNumber()" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="18">
+	  	<p class="error_msg" id="oid_error"></p>
 	  </div>
-      <div class="form-group">
+	  </div>
+      <!-- <div class="form-group">
 	    <label for="exampleInputFile">&nbsp;&nbsp;营业执照照片</label>
 	    <form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
 		</form>
+		<div id="show_pic_area"></div>
 	    <p class="help-block">只限上传一张</p>
-	  </div> 
+	  </div>  -->
       <div class="form-group">
 	    <label for="exampleInputPassword1">&nbsp;&nbsp;所在地区</label><br>
 	    <select id="local" onchange="changeArea(this,this.value)">
@@ -151,25 +167,36 @@ if(request.getParameter("r")!=null){
 		  <select  id="local3">
 		  <option value="0">请选择地区</option>
 		  </select>
+		  <p class="error_msg" id="local_error"></p>
 	  </div>
 	  <div class="form-group">
 	    <label for="mobile2"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;<span id="formUserNameLabel">商户联系手机</span></label>
 	    <input type="text" class="form-control" id="mobile2" placeholder="仅限手机号" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+	    <p class="error_msg" id="mobile2_error"></p>
 	  </div>
-	  <div class="input-group" id="formVcodeInput">
-	     <input type="text" class="form-control" placeholder="5位验证码" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="5" size="14" id="phone_validate_code2">
-	     <span class="input-group-btn">
-	       <button class="btn btn-danger"  id="sendMsgBtn" onclick="sendMsg(this,1);">发送验证码</button>
-	     </span>
-	   </div><!-- /input-group -->
   </div>
+	<div class="row">
+	  <div class="col-sm-12">
+	  <label for="kaptchafield">&nbsp;&nbsp;图片验证码</label>
+	    <div class="row">
+	      <div class="col-xs-8 col-sm-6" style="padding-right: 0px;">
+	        <input type="tel" class="form-control" id="kaptchafield" placeholder="请输入图片中的数字" style="border-radius: 0px;">
+	      </div>
+	      <div class="col-xs-4 col-sm-6" style="padding-left: 0px;height:34px;">
+	        <img src="Kaptcha.jpg" height=34>
+	      </div>
+	    </div>
+	    <p class="error_msg" id="kaptchafield_error"></p>
+	  </div>
+	</div>	
   <br>
   <div style="height:30px;" id="userAgreementBtn">
-      <span style="float:left"><input type="checkbox" id="agreeCheck" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showUserAgreement();">《点头付用户协议》</a></span>
+      <span style="float:left"><input type="checkbox" id="agreeCheck"  checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showUserAgreement();">《点头付用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付用户协议.docx") %>"  target="_blank">点头付用户协议下载</a></span>
   </div>
   <div style="height:30px;display:none;" id="shoperAgreementBtn">
-      <span style="float:left"><input type="checkbox" id="agreeCheck" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showShoperAgreement();">《点头商家用户协议》</a></span>
+      <span style="float:left"><input type="checkbox" id="agreeCheck"  checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showShoperAgreement();">《点头商家用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付商家协议.docx") %>"  target="_blank">点头付商家协议下载</a></span>
   </div>
+  
   <script>
   function showUserAgreement(){
 	  $("#userAgreement").show();
@@ -204,11 +231,11 @@ if(request.getParameter("r")!=null){
 	2.13.	信息技术推广费：是指从点头消费者向点头商家支付的消费金额中提取的一定比例费用，该费用用于回馈点头用户和用于维护点头财神系统。
 	2.14.	折扣比例：是指点头商家自愿将点头消费者所支付的消费金额中的部分款项作为信息技术推广费，而该部分信息技术推广费与点头消费者在该次消费结算中使用本系统所支付的消费金额的比例的数值为折扣比例。
 	2.15.	代付款：是在指点头消费者使用本系统向某点头商家所支付的交易款项中，扣除信息技术推广费和银联收取的交易手续后的款项。
-	2.16.	立省费用：基于点头消费者通过点头财神系统所支付消费金额所产生的信息技术推广费，点头财神系统将该笔信息技术推广费中的部分费用实时转账到点头消费者账户中，该笔费用被称为立省费用。
-	2.17.	快乐钱袋：是指点头财神系统基于点头消费者的立省费用金额而赠送给该点头消费者的一种可用于装载点头金币的虚拟空间，1个快乐钱袋最多能装载20个点头金币。
+	2.16.	立赚费用：基于点头消费者通过点头财神系统所支付消费金额所产生的信息技术推广费，点头财神系统将该笔信息技术推广费中的部分费用实时转账到点头消费者账户中，该笔费用被称为立赚费用。
+	2.17.	快乐钱袋：是指点头财神系统基于点头消费者的立赚费用金额而赠送给该点头消费者的一种可用于装载点头金币的虚拟空间，1个快乐钱袋最多能装载20个点头金币。
 	2.18.	健康钱袋：是指点头财神系统基于点头消费者的快乐钱袋的数量而赠送给点头消费者的一种可用于装载点头金币的虚拟空间，1个健康钱袋最多能装载100个点头金币。
 	2.19.	幸福钱袋：是指点头财神系统基于点头消费者的健康钱袋的数量而赠送给点头消费者的一种可用于装载点头金币的虚拟空间，1个幸福钱袋最多能装载5,000个点头金币。
-	2.20.	抽奖：是指点头财神系统基于点头消费者的立省费用金额而为该点头消费者提供的、具有一定抽取点头金币概率的机会。
+	2.20.	抽奖：是指点头财神系统基于点头消费者的立赚费用金额而为该点头消费者提供的、具有一定抽取点头金币概率的机会。
 	第三条	您的注册义务
 	为了能使用本服务，你需要：
 	3.1.	您必须选择注册成为点头消费者，您可以通过某点头用户提供的链接、二维码或其他推荐方式注册点头消费者账户，您应当使用有效的手机号码作为点头消费账户的名称，一个有效的手机号码只能注册一个点头消费者账户。
@@ -288,8 +315,8 @@ if(request.getParameter("r")!=null){
 	第一条	信息技术推广费
 	1.1.	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时提取信息技术推广费。
 	1.2.	信息技术推广费的金额=点头消费者使用本系统向点头商家支付交易款项的金额×折扣比例，其中折扣比例的数值是由点头商家事先设定在其账户中的，点头商家可以按照本系统所规定要求调整折扣比例的数值。
-	第二条	立省费用
-	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时把立省费用转账至该点头消费者账户中，立省费用的金额为信息技术推广费的金额×40%，立省费用在消费者账户中以点头金币数量的形式体现。
+	第二条	立赚费用
+	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时把立赚费用转账至该点头消费者账户中，立赚费用的金额为信息技术推广费的金额×40%，立赚费用在消费者账户中以点头金币数量的形式体现。
 	第三条	粉丝交易提成费
 	粉丝交易提成费分为消费者粉丝提成费和商家粉丝提成费两种类型。
 	3.1.	消费者粉丝提成费
@@ -297,17 +324,17 @@ if(request.getParameter("r")!=null){
 	3.2.	商家粉丝提成费
 	假设A点头商家是B点头消费者的消费者粉丝，如果A点头商家使用本系统向某点头消费者收取交易款项，本系统将实时向B点头消费者的消费者账户转账商家粉丝提成费，商家粉丝提成费的金额为A点头商家使用本系统向某点头商家收取交易款项所产生的信息技术推广费的金额×5%，但是B点头消费者基于A点头商家使用本系统向某点头商家收取交易款项所获得的商家粉丝提成费累计不得高于10,000元; 商家粉丝提成费在消费者账户中以点头金币数量的形式体现。
 	第四条	抽奖
-	4.1.	如果点头消费者所获取的立省费用累计达到或超过5元的，该点头消费者将获得抽奖资格。
+	4.1.	如果点头消费者所获取的立赚费用累计达到或超过5元的，该点头消费者将获得抽奖资格。
 	4.2.	抽奖资格按照次数计算，举例来说，1次抽奖资格是指点头消费者有权按照本协议的规定抽奖1次，5次抽奖资格是指点头消费者有权按照本协议的规定抽奖5次。
 	4.3.	如果点头消费者中奖的，每次中奖的金额为1元至200元，中奖金额在消费者账户中以点头金币数量的形式体现。
 	4.4.	中奖比例根据本系统经营状况和预先确定的算法确定。
-	4.5.	点头消费者所获取的立省费用累计达到5元或5元的整数倍数时，点头消费者将获得一次抽奖机会，抽奖机会累计计算，举例来说，如果某点头消费者所获取的立省费用累计为12元时，则该某点头消费者获得2次抽奖机会；如果某点头消费者所获取的立省费用累计为20元时，则该某点头消费者获得4次抽奖机会。
+	4.5.	点头消费者所获取的立赚费用累计达到5元或5元的整数倍数时，点头消费者将获得一次抽奖机会，抽奖机会累计计算，举例来说，如果某点头消费者所获取的立赚费用累计为12元时，则该某点头消费者获得2次抽奖机会；如果某点头消费者所获取的立赚费用累计为20元时，则该某点头消费者获得4次抽奖机会。
 	第五条	点头钱袋
 	本系统为点头消费者设置了快乐钱袋、健康钱袋和幸福钱袋等三种点头钱袋。
 	5.1.	快乐钱袋
-	5.1.1.	如果点头消费者所获取的立省费用累计超过40元的，点头消费者获得快乐钱袋。
+	5.1.1.	如果点头消费者所获取的立赚费用累计超过40元的，点头消费者获得快乐钱袋。
 	5.1.2.	快乐钱袋以整数的个数计算，每个快乐钱袋最多可以装载20个点头金币；一个装载了20个点头金币的快乐钱袋被称为完整快乐钱袋，其他的快乐钱袋被称为待装快乐钱袋。
-	5.1.3.	点头消费者所获取的立省费用累计达到40元或40元的整数倍数时，点头消费者将获得一个快乐钱袋，快乐钱袋累计计算，举例来说，如果某点头消费者所获取的立省费用累计为80元时，则该某点头消费者获得2个快乐钱袋；如果某点头消费者所获取的立省费用累计为250元时，则该某点头消费者获得6个快乐钱袋。
+	5.1.3.	点头消费者所获取的立赚费用累计达到40元或40元的整数倍数时，点头消费者将获得一个快乐钱袋，快乐钱袋累计计算，举例来说，如果某点头消费者所获取的立赚费用累计为80元时，则该某点头消费者获得2个快乐钱袋；如果某点头消费者所获取的立赚费用累计为250元时，则该某点头消费者获得6个快乐钱袋。
 	5.1.4.	点头消费者获得快乐钱袋时，快乐钱袋中没有装载点头金币，本系统根据本系统的运营状况和预先设置的算法为点头消费者的快乐钱袋装载点头金币，本系统是按照快乐钱袋生成的顺序装载点头金币，在前一个快乐钱袋成为完整快乐钱袋后，再装载下一个快乐钱袋。
 	5.1.5.	点头消费者可以在其消费者账户中查询到完整快乐钱袋的数量、待装快乐钱袋的数量和快乐钱袋的总数量的信息，但是点头消费者不能查询到待装快乐钱袋中所装载点头金币的数量。
 	5.1.6.	点头消费者可以将全部或部分完整快乐钱袋中的全部点头金币转移至该消费者账户的“我的金币”项目中，但是点头消费者不能对待装快乐钱袋的点头金币转移至该消费者账户的“我的金币”项目中；如果点头消费者将全部或部分完整快乐钱袋中的全部点头金币转移至该消费者账户的“我的金币”项目中的，该部分的完整快乐钱袋将消失。
@@ -450,7 +477,216 @@ if(request.getParameter("r")!=null){
   <br>
   <button type="button" class="btn btn-danger  btn-block" onclick="javascript:location.href='login.jsp'">回到登录</button>
 </div>
- <jsp:include page="foot.jsp"/>
+<!-- foot html -->
+<a id="redirectURI" style="display: none" target="_blank"></a>
+<div class="space" id="foot_space"></div>
+<div class="footer">
+    <div class="small-navigation-icons">
+        <div class="clear"></div>
+    </div>
+    <p class="copyright">大小王科技@版权所有 4001568848（热线）</p>
+</div>
+<div class="searchBarArea" style="display: none" id="searchBarArea">
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation" style="padding:.5rem;border-color: #FF3556;background-color: #FF3556">
+	  <div class="input-group">
+	  <span class="input-group-btn">
+        <button class="btn btn-danger" type="button" onclick="searchBarHide()">关闭</button>
+      </span>
+      <input type="text" class="form-control" id="keywords" placeholder="请输入关键字....">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onclick="searchSubmit()">搜一下</button>
+      </span>
+    </div><!-- /input-group -->
+	</nav>
+	<!-- res area -->
+	<div class="container2" style="margin-top: 4rem;">
+      <div class="decoration"></div>
+	      <span id="searchShopList">
+	      </span>
+	       <button type="button" class="btn btn-lg btn-default btn-block" id="searchShowmoreBtn" onclick="searchShowMore()" style="display: none">显示更多...</button>
+	       <div class="space_noborder"></div>
+	<!-- res area -->
+	</div>
+</div>
+<style>
+.container2{width:100%;}
+</style>
+
+<script type="text/javascript">
+function searchBarShow(){
+	if($(".content")!=null){$(".content").hide();}
+	if($(".container")!=null){$(".container").hide();}
+	if($(".footer")!=null){$(".footer").hide();}
+	if($(".drawer-toggle")!=null){$(".drawer-toggle").hide();}
+	if($(".drawer-main")!=null){$(".drawer-main").hide();}
+	if($("#cate_nav_bar")!=null){$("#cate_nav_bar").hide();}
+	if($("#cate_nav_bar_foot")!=null){$("#cate_nav_bar_foot").hide();}
+	if($("#searchBarArea")!=null){$("#searchBarArea").show();}
+	var windowHeight=$(window).height();
+	$("#searchBarArea").height(windowHeight);
+}
+
+function searchBarHide(){
+	$(".content").show();
+	$(".container").show();
+	$(".footer").show();
+	$(".drawer-toggle").show();
+	$(".drawer-main").show();
+	$("#cate_nav_bar").show();
+	$("#cate_nav_bar_foot").show();
+	$("#searchBarArea").hide();
+	$("#searchShopList").html("");
+	$("#searchShowmoreBtn").hide();
+}
+
+var searchPageNow=1;
+function searchSubmit(){
+	var keywords=$("#keywords").val();
+	var url="/shop/getShopPageHTML?random="+Math.round(Math.random()*100);
+	var params={searchKey:"id,title,detail",searchText:keywords};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				if(res.data!=""&&res.data!=null){
+					$("#searchShopList").html(res.data);
+					$("#searchShowmoreBtn").show();
+				}else{
+					$("#searchShopList").html("<div class=\"tableList downborder\"><div class=\"detail\" style=\"padding-left:1rem\">-_- 没有搜索到，换个词试试~</div></div>");
+					$("#searchShowmoreBtn").html("没有更多内容了..");
+					$("#searchShowmoreBtn").attr("disabled","disabled"); 
+				}
+			}
+		}else{
+			swal("错误", "服务器连接不上，请检查您的网络", "error");
+		}
+	});
+}
+function searchShowMore(){
+	searchPageNow++;
+	var keywords=$("#keywords").val();
+	var url="/shop/getShopPageHTML?random="+Math.round(Math.random()*100);
+	var newUrl=url+"&pagesize=20&pagenum="+searchPageNow;
+	var params={searchKey:"id,title,detail",searchText:keywords};
+	$.get(newUrl,function(res){
+		if(res){
+			if(res.ret==0){
+				if(res.data!=null&&res.data!=""){
+					$("#searchShopList").append(res.data);
+				}else{
+					$("#searchShowmoreBtn").html("没有更多内容了..");
+					$("#searchShowmoreBtn").attr("disabled","disabled"); 
+				}
+			}
+		}else{
+			swal("错误", "服务器连接不上，请检查您的网络", "error");
+		}
+	});
+}
+
+</script>
+<!-- wechat -->
+<%
+String weixinurl=MainConfig.getContextPath()+request.getServletPath().substring(1, request.getServletPath().length());
+if(request.getQueryString()!=null&&!request.getQueryString().equals("")&&!request.getQueryString().equals("null")){
+	weixinurl=weixinurl+"?"+request.getQueryString();
+}
+System.out.println(weixinurl);
+Weixin weixin=WeixinApi.getWeixin();
+String timestamp="";
+String nonceStr="";
+String signatuure="";
+if(weixin!=null){
+	Map<String,String> sign=Sign.sign(weixin.getTicket(), weixinurl);
+	timestamp=sign.get("timestamp");
+	nonceStr=sign.get("nonceStr");
+	signatuure=sign.get("signature");
+}
+String recommendURL=MainConfig.getContextPath()+"reg.jsp";
+if(u!=null){
+	recommendURL+="?r="+u.getId();
+}
+
+%>
+<button style="display: none" id="scanQRCode"></button>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+wx.config({
+    debug: false,
+    appId: '<%=MainConfig.getWechatappid()%>', // 必填，公众号的唯一标识
+    timestamp: <%=timestamp%>, // 必填，生成签名的时间戳
+    nonceStr: '<%=nonceStr%>', // 必填，生成签名的随机串
+    signature: '<%=signatuure%>',// 必填，签名，见附录1
+    jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareAppMessage',
+                'scanQRCode',
+              ]
+	});
+	wx.ready(function () {
+		document.querySelector('#scanQRCode').onclick = function (){
+		    wx.scanQRCode({
+		      desc: 'scanQRCode desc',
+		      success: function () { 
+		      },
+		      cancel: function () { 
+		          window.location.href="scanQR.jsp";
+		      }
+		    });
+		 };
+		document.querySelector('#scanLicenceQR').onclick = function (){
+		    wx.scanQRCode({
+		      needResult: 1,
+		      success:function(res){ 
+		    	  var text = res.resultStr;
+		    	  text=text.replace(/……/g,"=");
+		    	  text=text.replace(/\r\n/g,"=");
+		    	  text=text.replace(/\n/g,"=");
+		    	  text=text.replace(/；/g,"=");
+		    	  text=text.replace(/ /g,"=");
+		    	  var texts = text.split("=");
+		    	  var oid="";
+		    	  var licenceRegName="";
+		    	  var manager="";
+		    	  for (x in texts)
+		    	  {
+		    	  	if(texts[x].indexOf("注册号：")!=-1){
+		    	  		oid=texts[x].substring(texts[x].indexOf("注册号：")+4);
+		    	  	}
+		    	  	if(texts[x].indexOf("名称：")!=-1){
+		    	  		licenceRegName=texts[x].substring(texts[x].indexOf("名称：")+3);
+		    	  	}
+		    	  	if(texts[x].indexOf("法定代表人：")!=-1){
+		    	  		manager=texts[x].substring(texts[x].indexOf("法定代表人：")+6);
+		    	  	}
+		    	  }
+		    	  $("#oid").val(oid);
+		    	  $("#licenceRegName").val(licenceRegName);
+		    	  $("#manager").val(manager);
+		    	  showShopInfoArea();
+		    	  swal("", "请仔细核对执照内容！", "info");
+		      },
+		      cancel: function () { 
+		      }
+		    });
+		 };
+		var shareData = {
+			    title: '点头财神',
+			    desc: '一款线下面对面消费结账APP',
+			    link: '<%=recommendURL%>',
+			    imgUrl: 'http://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRt8Qia4lv7k3M9J1SKqKCImxJCt7j9rHYicKDI45jRPBxdzdyREWnk0ia0N5TMnMfth7SdxtzMvVgXg/0'
+			  };
+			wx.onMenuShareQQ(shareData);
+			wx.onMenuShareWeibo(shareData);
+		    wx.onMenuShareAppMessage(shareData);
+		    wx.onMenuShareTimeline(shareData);
+	});
+	wx.error(function (res) {
+	});
+</script>
+<!-- foot html -->
 <jsp:include page="common_source_foot.jsp"/>
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
@@ -460,39 +696,51 @@ $("#top_back_button").html("<a class=\"react\" href=\"index.jsp\" style=\"font-s
 $(document).ready(function(){ 
 	var recommend=<%=recommend%>;
 	if(recommend==0){
-		alert("注册必须要有推荐人");
+		alert("亲，必须要有推荐人哦");
+		window.location.href="index.jsp;"
 		return;
 	}
 });
 </script>
 <!-- drop box -->
-<script type="text/javascript">
+<!-- <div class="loading_tag" id="loading_tag">
+<div class="loading_img"><img src="assets/images/loading.gif"></div>
+<div class="loading_text">图片上传中</div>
+</div> -->
+<!-- <script type="text/javascript">
 jQuery(function($){
 	try {
 	  $(".dropzone").dropzone({
 	    paramName: "file", // The name that will be used to transfer the file
 	    maxFilesize: 10, // MB
-	    acceptedFiles:"image/*",
 		addRemoveLinks : false,
 		dictMaxFilesExceeded:"请上传小于1M的图片",
 		dictInvalidFileType:"请上传格式为jpg的图片",
 		dictFileTooBig:"请上传小于1M的图片",
 		dictDefaultMessage :"<a class='btn btn-default' id='uploadBtn'>点击上传</a>",
 		dictResponseError: "<p class='bg-danger>上传失败，格式错误</p>",
-		
 		//change the previewTemplate to use Bootstrap progress bars
-		previewTemplate: "<div class=\"dz-preview dz-file-preview\" id='preview'><img data-dz-thumbnail /><span data-dz-errormessage></span></div>"
+		previewTemplate: "<div class=\"absolutePostion\"><span id='data-dz-errormessage' data-dz-errormessage>请求成功</span>&nbsp;&nbsp;&nbsp;<div class='btn btn-default btn-msg btn-xs' onclick='closeTag();'>关闭</div></div>"
 	  });
 	} catch(e) {
-	  alert('Dropzone.js does not support older browsers!');
+	  alert('浏览器版本过低，请升级浏览器或者系统版本');
 	}
-	
 });
 Dropzone.options.dropzoneForm = {
     init: function () {
+    	this.on("addedfile", function(file) { $("#loading_tag").show();
+    	var errormessage=$("#data-dz-errormessage").html();
+    	if(errormessage!=""&&errormessage!=null){
+    		$("#absolutePostion").show(); 
+    	}
+    	});
         this.on("complete", function (data) {   
-        	$("#uploadBtn").hide();
+        	$("#loading_tag").hide(); 
+            $("#data-dz-errormessage").html("上传成功");
             var res = eval('(' + data.xhr.responseText + ')');
+            if(res!=null&&res!=""){
+        		$("#uploadBtn").hide();
+            }
             var data = new Array(); 
             data=res.data;
             var requestFileName=data[0]["requestFileName"];
@@ -500,9 +748,10 @@ Dropzone.options.dropzoneForm = {
             var uploadFileName=data[0]["uploadFileName"];
             document.getElementById("licenceFileName").value=uploadFileName;
             document.getElementById("licenceFileURL").value=uploadFileURL;
+            $("#show_pic_area").html("<img class='image-decoration' src='"+uploadFileURL+"'>");
         });
     }
 };
-</script>
+</script> -->
 </body>
 </html>

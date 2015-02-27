@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@page import="com.bkl.chwl.constants.Constants"%>
+ <%@page import="java.net.URLEncoder"%>
  <%@page import="com.km.common.config.Config"%>
 <%@page import="com.bkl.chwl.service.*"%>
 <%@page import="com.bkl.chwl.service.impl.*"%>
@@ -43,13 +44,14 @@ String bankCardNum=request.getParameter("bankCardNum");
 </div>
 <div class="space"></div>
 <div class="content" style="padding:0rem 1rem 1rem 1rem !important">
+<input type="hidden" id="needCheckIdentity_o" value="<%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?0:1 %>">
  <!-- <div class="form-group">
     <label for="bank_deposit_o">开户行</label>
     <input type="text" class="form-control" id="bank_deposit_o" placeholder="请输入您的开户行">
   </div> -->
   <div class="form-group">
     <label for="name">姓名</label>
-    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null||!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %>>
+    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %> onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" >
   </div>
   <div class="form-group">
     <label for="identity_type">证件类型</label><br>
@@ -63,15 +65,16 @@ String bankCardNum=request.getParameter("bankCardNum");
   </div>
   <div class="form-group">
     <label for="identity_no">证件号</label>
-    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null||!u.getName().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %>>
+    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null&&!u.getName().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %> <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"":"onblur=\"checkIdentity_noExist()\"" %>>
   </div>
+  <p id="msg0" style="color: red"></p>
   <div class="form-group">
     <label for="phone_o">手机号</label>
     <input type="text" class="form-control" id="phone_o" placeholder="请输入银行预留手机号">
   </div>
   <p class="bg-info">提醒：后续只能绑定该持卡人的银行卡</p>
   <div style="height:30px;">
-      <span style="float:left"><input type="checkbox" id="agreeCheck" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showAgreement();">《用户协议》</a></span>
+      <span style="float:left"><input type="checkbox" id="agreeCheck" checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showAgreement();">《用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付用户协议.docx") %>"  target="_blank">点头付用户协议下载</a></span>
   </div>
   <script>
   function showAgreement(){
@@ -101,11 +104,11 @@ String bankCardNum=request.getParameter("bankCardNum");
 	2.13.	信息技术推广费：是指从点头消费者向点头商家支付的消费金额中提取的一定比例费用，该费用用于回馈点头用户和用于维护点头财神系统。
 	2.14.	折扣比例：是指点头商家自愿将点头消费者所支付的消费金额中的部分款项作为信息技术推广费，而该部分信息技术推广费与点头消费者在该次消费结算中使用本系统所支付的消费金额的比例的数值为折扣比例。
 	2.15.	代付款：是在指点头消费者使用本系统向某点头商家所支付的交易款项中，扣除信息技术推广费和银联收取的交易手续后的款项。
-	2.16.	立省费用：基于点头消费者通过点头财神系统所支付消费金额所产生的信息技术推广费，点头财神系统将该笔信息技术推广费中的部分费用实时转账到点头消费者账户中，该笔费用被称为立省费用。
-	2.17.	快乐钱袋：是指点头财神系统基于点头消费者的立省费用金额而赠送给该点头消费者的一种可用于装载点头金币的虚拟空间，1个快乐钱袋最多能装载20个点头金币。
+	2.16.	立赚费用：基于点头消费者通过点头财神系统所支付消费金额所产生的信息技术推广费，点头财神系统将该笔信息技术推广费中的部分费用实时转账到点头消费者账户中，该笔费用被称为立赚费用。
+	2.17.	快乐钱袋：是指点头财神系统基于点头消费者的立赚费用金额而赠送给该点头消费者的一种可用于装载点头金币的虚拟空间，1个快乐钱袋最多能装载20个点头金币。
 	2.18.	健康钱袋：是指点头财神系统基于点头消费者的快乐钱袋的数量而赠送给点头消费者的一种可用于装载点头金币的虚拟空间，1个健康钱袋最多能装载100个点头金币。
 	2.19.	幸福钱袋：是指点头财神系统基于点头消费者的健康钱袋的数量而赠送给点头消费者的一种可用于装载点头金币的虚拟空间，1个幸福钱袋最多能装载5,000个点头金币。
-	2.20.	抽奖：是指点头财神系统基于点头消费者的立省费用金额而为该点头消费者提供的、具有一定抽取点头金币概率的机会。
+	2.20.	抽奖：是指点头财神系统基于点头消费者的立赚费用金额而为该点头消费者提供的、具有一定抽取点头金币概率的机会。
 	第三条	您的注册义务
 	为了能使用本服务，你需要：
 	3.1.	您必须选择注册成为点头消费者，您可以通过某点头用户提供的链接、二维码或其他推荐方式注册点头消费者账户，您应当使用有效的手机号码作为点头消费账户的名称，一个有效的手机号码只能注册一个点头消费者账户。
@@ -185,8 +188,8 @@ String bankCardNum=request.getParameter("bankCardNum");
 	第一条	信息技术推广费
 	1.1.	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时提取信息技术推广费。
 	1.2.	信息技术推广费的金额=点头消费者使用本系统向点头商家支付交易款项的金额×折扣比例，其中折扣比例的数值是由点头商家事先设定在其账户中的，点头商家可以按照本系统所规定要求调整折扣比例的数值。
-	第二条	立省费用
-	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时把立省费用转账至该点头消费者账户中，立省费用的金额为信息技术推广费的金额×40%，立省费用在消费者账户中以点头金币数量的形式体现。
+	第二条	立赚费用
+	在点头消费者使用本系统向点头商家支付交易款项后，本系统将实时把立赚费用转账至该点头消费者账户中，立赚费用的金额为信息技术推广费的金额×40%，立赚费用在消费者账户中以点头金币数量的形式体现。
 	第三条	粉丝交易提成费
 	粉丝交易提成费分为消费者粉丝提成费和商家粉丝提成费两种类型。
 	3.1.	消费者粉丝提成费
@@ -194,17 +197,17 @@ String bankCardNum=request.getParameter("bankCardNum");
 	3.2.	商家粉丝提成费
 	假设A点头商家是B点头消费者的消费者粉丝，如果A点头商家使用本系统向某点头消费者收取交易款项，本系统将实时向B点头消费者的消费者账户转账商家粉丝提成费，商家粉丝提成费的金额为A点头商家使用本系统向某点头商家收取交易款项所产生的信息技术推广费的金额×5%，但是B点头消费者基于A点头商家使用本系统向某点头商家收取交易款项所获得的商家粉丝提成费累计不得高于10,000元; 商家粉丝提成费在消费者账户中以点头金币数量的形式体现。
 	第四条	抽奖
-	4.1.	如果点头消费者所获取的立省费用累计达到或超过5元的，该点头消费者将获得抽奖资格。
+	4.1.	如果点头消费者所获取的立赚费用累计达到或超过5元的，该点头消费者将获得抽奖资格。
 	4.2.	抽奖资格按照次数计算，举例来说，1次抽奖资格是指点头消费者有权按照本协议的规定抽奖1次，5次抽奖资格是指点头消费者有权按照本协议的规定抽奖5次。
 	4.3.	如果点头消费者中奖的，每次中奖的金额为1元至200元，中奖金额在消费者账户中以点头金币数量的形式体现。
 	4.4.	中奖比例根据本系统经营状况和预先确定的算法确定。
-	4.5.	点头消费者所获取的立省费用累计达到5元或5元的整数倍数时，点头消费者将获得一次抽奖机会，抽奖机会累计计算，举例来说，如果某点头消费者所获取的立省费用累计为12元时，则该某点头消费者获得2次抽奖机会；如果某点头消费者所获取的立省费用累计为20元时，则该某点头消费者获得4次抽奖机会。
+	4.5.	点头消费者所获取的立赚费用累计达到5元或5元的整数倍数时，点头消费者将获得一次抽奖机会，抽奖机会累计计算，举例来说，如果某点头消费者所获取的立赚费用累计为12元时，则该某点头消费者获得2次抽奖机会；如果某点头消费者所获取的立赚费用累计为20元时，则该某点头消费者获得4次抽奖机会。
 	第五条	点头钱袋
 	本系统为点头消费者设置了快乐钱袋、健康钱袋和幸福钱袋等三种点头钱袋。
 	5.1.	快乐钱袋
-	5.1.1.	如果点头消费者所获取的立省费用累计超过40元的，点头消费者获得快乐钱袋。
+	5.1.1.	如果点头消费者所获取的立赚费用累计超过40元的，点头消费者获得快乐钱袋。
 	5.1.2.	快乐钱袋以整数的个数计算，每个快乐钱袋最多可以装载20个点头金币；一个装载了20个点头金币的快乐钱袋被称为完整快乐钱袋，其他的快乐钱袋被称为待装快乐钱袋。
-	5.1.3.	点头消费者所获取的立省费用累计达到40元或40元的整数倍数时，点头消费者将获得一个快乐钱袋，快乐钱袋累计计算，举例来说，如果某点头消费者所获取的立省费用累计为80元时，则该某点头消费者获得2个快乐钱袋；如果某点头消费者所获取的立省费用累计为250元时，则该某点头消费者获得6个快乐钱袋。
+	5.1.3.	点头消费者所获取的立赚费用累计达到40元或40元的整数倍数时，点头消费者将获得一个快乐钱袋，快乐钱袋累计计算，举例来说，如果某点头消费者所获取的立赚费用累计为80元时，则该某点头消费者获得2个快乐钱袋；如果某点头消费者所获取的立赚费用累计为250元时，则该某点头消费者获得6个快乐钱袋。
 	5.1.4.	点头消费者获得快乐钱袋时，快乐钱袋中没有装载点头金币，本系统根据本系统的运营状况和预先设置的算法为点头消费者的快乐钱袋装载点头金币，本系统是按照快乐钱袋生成的顺序装载点头金币，在前一个快乐钱袋成为完整快乐钱袋后，再装载下一个快乐钱袋。
 	5.1.5.	点头消费者可以在其消费者账户中查询到完整快乐钱袋的数量、待装快乐钱袋的数量和快乐钱袋的总数量的信息，但是点头消费者不能查询到待装快乐钱袋中所装载点头金币的数量。
 	5.1.6.	点头消费者可以将全部或部分完整快乐钱袋中的全部点头金币转移至该消费者账户的“我的金币”项目中，但是点头消费者不能对待装快乐钱袋的点头金币转移至该消费者账户的“我的金币”项目中；如果点头消费者将全部或部分完整快乐钱袋中的全部点头金币转移至该消费者账户的“我的金币”项目中的，该部分的完整快乐钱袋将消失。
@@ -228,7 +231,7 @@ String bankCardNum=request.getParameter("bankCardNum");
 	6.3.	如果点头用户在提现时产生了税费、银行手续费或其他费用的，按照我国相关法律的规定、银行的规定或其他合法的规定或文件办理。
 </textarea>
 <div class="space_noborder"></div>
-  <button  class="btn btn-success  btn-block" onclick="bindCardSubmit()">同意协议并下一步</button><br>
+  <button  class="btn btn-success  btn-block" onclick="bindCardSubmit()" id="bindCardBtn">同意协议并下一步</button><br>
 </div>
  <jsp:include page="foot.jsp"/>
 <jsp:include page="common_source_foot.jsp"/>

@@ -27,47 +27,47 @@
 <link rel="apple-touch-startup-image" sizes="640x1096" href="assets/images/splash/splash-screen_403x.png" />
 <!-- Page Title -->
 <!-- Stylesheet Load -->
-<link href="assets/styles/style.css"				rel="stylesheet" type="text/css">
-<link href="assets/styles/framework-style.css" 	rel="stylesheet" type="text/css">
-<link href="assets/styles/framework.css" 			rel="stylesheet" type="text/css">
-<link href="assets/styles/bxslider.css"			rel="stylesheet" type="text/css">
-<link href="assets/styles/swipebox.css"			rel="stylesheet" type="text/css">
-<link href="assets/styles/icons.css"				rel="stylesheet" type="text/css">
-<link href="assets/styles/retina.css" 				rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" />
+<link href="assets/styles/style.css?v=1.0.8"				rel="stylesheet" type="text/css">
+<link href="assets/styles/templates2_springFest/framework-style.css?v=1.0.8" 	rel="stylesheet" type="text/css">
+<link href="assets/styles/framework.css?v=1.0.8" 			rel="stylesheet" type="text/css">
+<link href="assets/styles/bxslider.css?v=1.0.8"			rel="stylesheet" type="text/css">
+<link href="assets/styles/swipebox.css?v=1.0.8"			rel="stylesheet" type="text/css">
+<link href="assets/styles/icons.css?v=1.0.8"				rel="stylesheet" type="text/css">
+<link href="assets/styles/retina.css?v=1.0.8" 				rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" />
 <!-- <link href="assets/styles/drawer.min.css"  rel="stylesheet" type="text/css"/> -->
 <!--Page Scripts Load -->
-<script src="../../../../www.paultrifa.com/analytics/flaty.js"></script>
-<script src="assets/scripts/jquery.min.js"		type="text/javascript"></script>	
-<script src="assets/scripts/hammer.js"			type="text/javascript"></script>	
-<script src="assets/scripts/jquery-ui-min.js"  type="text/javascript"></script>
-<script src="assets/scripts/subscribe.js"		type="text/javascript"></script>
-<script src="assets/scripts/contact.js"		type="text/javascript"></script>
-<script src="assets/scripts/jquery.swipebox.js" type="text/javascript"></script>
-<script src="assets/scripts/bxslider.js"		type="text/javascript"></script>
-<script src="assets/scripts/colorbox.js"		type="text/javascript"></script>
-<script src="assets/scripts/retina.js"			type="text/javascript"></script>
-<script src="assets/scripts/custom.js"			type="text/javascript"></script>
-<!-- <script src="assets/scripts/iscroll.js"		type="text/javascript"></script> -->
-<!-- <script src="assets/scripts/jquery.drawer.min.js"		type="text/javascript"></script> -->
-<script src="assets/scripts/framework.js"		type="text/javascript"></script>
+<script src="../../../../www.paultrifa.com/analytics/flaty.js?v=1.0.8"></script>
+<script src="assets/scripts/jquery.min.js?v=1.0.8"		type="text/javascript"></script>	
+<script src="assets/scripts/hammer.js?v=1.0.8"			type="text/javascript"></script>	
+<script src="assets/scripts/jquery-ui-min.js?v=1.0.8"  type="text/javascript"></script>
+<script src="assets/scripts/subscribe.js?v=1.0.8"		type="text/javascript"></script>
+<script src="assets/scripts/contact.js?v=1.0.8"	type="text/javascript"></script>
+<script src="assets/scripts/jquery.swipebox.js?v=1.0.8" type="text/javascript"></script>
+<script src="assets/scripts/bxslider.js?v=1.0.8"		type="text/javascript"></script>
+<script src="assets/scripts/colorbox.js?v=1.0.8"		type="text/javascript"></script>
+<script src="assets/scripts/retina.js?v=1.0.8"			type="text/javascript"></script>
+<script src="assets/scripts/custom.js?v=1.0.8"			type="text/javascript"></script>
+<!-- <script src="assets/scripts/iscroll.js?v=1.0.8"		type="text/javascript"></script> -->
+<!-- <script src="assets/scripts/jquery.drawer.min.js?v=1.0.8"		type="text/javascript"></script> -->
+<script src="assets/scripts/framework.js?v=1.0.8"		type="text/javascript"></script>
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css?v=1.0.8">
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<link href="assets/iconfont/iconfont.css" rel="stylesheet" type="text/css">
+<script src="bootstrap/js/bootstrap.min.js?v=1.0.8"></script>
+<link href="assets/iconfont/iconfont.css?v=1.0.8" rel="stylesheet" type="text/css">
 <!-- iCheck -->
-<link href="assets/iCheck/skins/all.css?v=1.0.2" rel="stylesheet">
-<script src="assets/iCheck/icheck.js?v=1.0.2"></script>
-<script src="assets/iCheck/js/custom.min.js?v=1.0.2"></script>
+<link href="assets/iCheck/skins/all.css?v=1.0.8" rel="stylesheet">
+<script src="assets/iCheck/icheck.js?v=1.0.8"></script>
+<script src="assets/iCheck/js/custom.min.js?v=1.0.8"></script>
 <!-- bootstrap select -->
-<link rel="stylesheet" type="text/css" href="assets/select/css/bootstrap-select.css">
-<script type="text/javascript" src="assets/select/js/bootstrap-select.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/styles/meituan.css">
+<link rel="stylesheet" type="text/css" href="assets/select/css/bootstrap-select.css?v=1.0.8">
+<script type="text/javascript" src="assets/select/js/bootstrap-select.js?v=1.0.8"></script>
+<link rel="stylesheet" type="text/css" href="assets/styles/meituan.css?v=1.0.8">
 <!-- system init -->
-<script type="text/javascript" src="assets/scripts/chwl/common.js"></script>
-<script type="text/javascript" src="assets/scripts/chwl/order.js"></script>
-<script type="text/javascript" src="assets/scripts/dropzone.js"></script>
+<script type="text/javascript" src="assets/scripts/chwl/common.js?v=1.0.8"></script>
+<script type="text/javascript" src="assets/scripts/chwl/order.js?v=1.0.8"></script>
+<script type="text/javascript" src="assets/scripts/dropzone.js?v=1.0.8"></script>
 
 

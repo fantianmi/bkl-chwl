@@ -103,16 +103,16 @@ cityName=StringUtil.subString(cityName, 4);
 			  <ul class="dropdown-menu" role="menu" >
 			    <li><a href="javascript:getSortData(1,'默认')">默认</a></li>
 			    <li><a href="javascript:getSortData(1,'时间')">时间</a></li>
-			    <li><a href="javascript:getSortData(5,'立省')">立省</a></li>
+			    <li><a href="javascript:getSortData(5,'立赚')">立赚</a></li>
 			  </ul>
 			</div>
 	 </div>
  </nav>
  <!-- nav -->
 <!-- nav -->
-<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation" id="cate_nav_bar_foot" style="z-index:999 !important;background: rgba(237, 106, 0,0.8);" >
-<div class="left-area"><a href="user_detail.jsp" class="btn btn-default noradius">推广粉丝</a></div>
-<div class="right-area"><span class="btn btn-default noradius" style="background-color:#ED6A00;color:#fff"><%=cityName%></span>&nbsp;&nbsp;<a href="citySelect.jsp" class="btn btn-default bg-touming noradius">切换城市</a></div>
+<nav class="navbar navbar-fixed-bottom navbar-inverse" role="navigation" id="cate_nav_bar_foot" style="z-index:999 !important;background: rgba(255, 53, 86,0.8);" >
+<div class="left-area"><!-- <a href="user_detail.jsp" class="btn btn-default noradius">推广粉丝</a> --></div>
+<div class="right-area"><span class="btn btn-default noradius" style="background-color:#FF3556;color:#fff"><%=cityName%></span>&nbsp;&nbsp;<a href="citySelect.jsp" class="btn btn-default bg-touming noradius">切换城市</a></div>
  </nav>
  <!-- nav -->
 <div class="content" style="margin-top:9.2rem ">

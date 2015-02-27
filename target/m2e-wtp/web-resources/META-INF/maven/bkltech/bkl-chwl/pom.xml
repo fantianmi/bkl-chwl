@@ -200,6 +200,16 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+		
+		<!-- kaptcha -->
+		<dependency>  
+		    <groupId>kaptcha</groupId>  
+		    <artifactId>kaptcha</artifactId>  
+		    <version>1.0.0</version>  
+		    <scope>system</scope>  
+		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/kaptcha-2.3.2.jar</systemPath>  
+		</dependency>
+		<!-- kaptcha -->
 
 		<dependency>
 			<groupId>mysql</groupId>

@@ -3,6 +3,7 @@ package com.bkl.chwl.service;
 import java.util.Map;
 
 import com.bkl.chwl.entity.User;
+import com.bkl.chwl.entity.User2Shop;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
 import com.km.common.vo.RetCode;
@@ -54,6 +55,12 @@ public interface UserService{
      * @return
      */
     public User findByLicence(String licenceNumber);
+    /**
+     * 校验身份证是否重复，只校验普通用户
+     * @param identity_no
+     * @return
+     */
+    public User findByIdentity_no(String identity_no);
     
     /**
      * 根据比特币充值地址查找用户对象
@@ -96,6 +103,12 @@ public interface UserService{
      */
     public boolean existLicence(String licence);
     /**
+     * 验证身份证是否重复，只校验普通用户
+     * @param identity_no
+     * @return
+     */
+    public boolean exisetIdentity_no(String identity_no);
+    /**
      * 验证手机mobile2是否重复，只校验role=商铺的数据项
      * @param mobile
      * @return
@@ -113,6 +126,8 @@ public interface UserService{
     public PageReply<User> findUser(Map searchMap, Page page);
     
     public PageReply<User> findUser(int role,Map searchMap, Page page);
+    
+    public PageReply<User2Shop> findUser2Shop(int role,Map searchMap, Page page);
     
     public User findPin(String pin);
     /**

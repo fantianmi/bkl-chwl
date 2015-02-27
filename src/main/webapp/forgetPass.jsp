@@ -27,27 +27,32 @@
 <html>
 <head>
 	<jsp:include page="common_source_head.jsp"/>
+	<script src="assets/scripts/chwl/forgetPass.js"></script>
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top_nobutton.jsp"/>
-<input type="hidden" id="vcode" >
 <div class="content" style="margin-top:5.2rem;padding:1rem !important; ">
-  <div id="resetPassVcheckArea">
-  <div class="form-group">
-  <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;手机号/商户账号</label>
-  <div class="input-group" id="formVcodeInput">
-     <input type="text" class="form-control" placeholder="手机号/商户请输入您的商户账号"  size="14" id="regUserName">
-     <span class="input-group-btn">
-       <button class="btn btn-danger"  id="sendMsgBtn" onclick="sendMsg(this,2);">发送验证码</button>
-     </span>
-   </div><!-- /input-group -->
+  <div id="checkRegUserName">
+	  	<label for="regUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;找回账号</label>
+     	<input type="text" class="form-control" placeholder="请输入您的点粉账号或点商账号"  size="14" id="regUserName">
+	   <br>
+	   <button class="btn btn-success btn-block" onclick="redirectCheckBindMobile()">下一步</button>
    </div>
-   <div class="form-group">
-    <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;收到的验证码</label>
-    <input type="text" class="form-control" placeholder="5位验证码" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="5" size="14" id="phone_validate_code">
+  <div id="checkBindMobile">
+    <input type="hidden" id="regUserMobile">
+    <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;请输入绑定的手机号码</label>
+    <input type="text" class="form-control" placeholder="请输入绑定的手机号码" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="11" size="14" id="phone_number">
+   <br>
+   <button onclick="showInputVcodeNum()" class="btn btn-success  btn-block">下一步</button><br>
   </div>
-   <button onclick="showResetPassArea()" class="btn btn-success  btn-block">确认</button><br>
+  
+  <div id="inputVcodeNum">
+	    <label for="loginUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;收到的验证码</label>
+	    <input type="text" class="form-control" placeholder="5位验证码" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="5" size="14" id="phone_validate_code">
+	   <br>
+	   <button onclick="showResetPassArea()" class="btn btn-success  btn-block">下一步</button><br>
   </div>
+  
   <div id="resetPassArea" style="display:none">
    <div class="form-group">
     <label for="regPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;密码</label>
@@ -59,7 +64,6 @@
     <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码">
   </div>
   <button onclick="forgetPassSubmit()" class="btn btn-success  btn-block">重置密码</button><br>
-  <button type="button" class="btn btn-danger  btn-block" onclick="resetPassBack()">上一步</button>
   </div>
 </div>
  <jsp:include page="foot.jsp"/>
@@ -68,22 +72,12 @@
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="找回密码";
-function showResetPassArea(){
-	var vcode=$("#vcode").val();
-	var phone_validate_code=$("#phone_validate_code").val();
-	if(vcode.length<5||vcode!=phone_validate_code){
-		swal("错误", "请输入正确的验证码", "error");
-		return;
-	}
-	$("#resetPassVcheckArea").hide();
-	$("#resetPassArea").show();
-}
-function resetPassBack(){
-	$("#resetPassVcheckArea").show();
-	$("#resetPassArea").hide();
-}
+$("#checkRegUserName").show();
+$("#checkBindMobile").hide();
+$("#inputVcodeNum").hide();
+$("#resetPassArea").hide();
 function forgetPassSubmit(){
-	var vcode=$("#vcode").val();
+	var phone_validate_code=$("#phone_validate_code").val();
 	var newPassword=$("#regPassword").val();
 	var newPassword2=$("#regRePassword").val();
 	var regUserName=$("#regUserName").val();
@@ -91,7 +85,7 @@ function forgetPassSubmit(){
 		return;
 	}
 	var url="/open/doResetPassword?random="+Math.round(Math.random()*100);
-	params={newPassword:newPassword,newPassword2:newPassword2,vcode:vcode,userName:regUserName};
+	params={newPassword:newPassword,newPassword2:newPassword2,vcode:phone_validate_code,userName:regUserName};
 	$.post(url,params,function(res){
 		if(res){
 			if(res.ret==0){
@@ -121,7 +115,6 @@ function forgetPassSubmit(){
 		}
 	});
 }
-
 </script>
 <!-- page special -->
 </body>

@@ -31,7 +31,6 @@ if(shop!=null){
 if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 	zuobiao=request.getParameter("x")+","+request.getParameter("y");
 }
-String ossBaseurl=MainConfig.getOssBaseurl();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -56,7 +55,7 @@ String ossBaseurl=MainConfig.getOssBaseurl();
   </div>
 <div class="form-group">
     <label for="detail">商家介绍（200字以内） 还可以输入<span id="validNum" style="color:red">200</span>字</td></label>
-    <textarea class="form-control" rows="3" id="detail" maxlength='140' onKeyDown="checkLength()" onKeyUp="checkLength()" onPaste="checkLength()"><%=shop!=null?shop.getDetail():""%></textarea>
+    <textarea class="form-control" rows="3" id="detail" maxlength='140' onKeyDown="checkLength()" onKeyUp="checkLength()" onPaste="checkLength()" placeholder="必填"><%=shop!=null?shop.getDetail():""%></textarea>
   </div>
   <div class="form-group">
     <label for="shop_map">百度坐标 （请在商铺实际经营地点定位，以便消费者精准导航）</label><span id="map_status" style="color:red"></span><span id="reDoLBS"><button class="btn btn-danger btn-xs" onclick="doLBS()">定位</button></span>
@@ -135,7 +134,7 @@ String ossBaseurl=MainConfig.getOssBaseurl();
 				String image[]=shop.getImage().split("@");
 				for(int i=0;i<image.length;i++){
 					%>
-					<li><img class='image-decoration' src="<%=ossBaseurl+image[i]%>"></li>
+					<li><img class='image-decoration' src="<%=FrontImage.convertOss(image[i])%>"></li>
 					<%
 				}
 			}
@@ -158,6 +157,12 @@ String ossBaseurl=MainConfig.getOssBaseurl();
 <div class="space"></div>
 <button onclick="addShopSubmit()" class="btn btn-success btn-block">确认提交</button>
 <!-- form area -->
+
+<div class="loading_tag" id="loading_tag">
+<div class="loading_img"><img src="assets/images/loading.gif"></div>
+<div class="loading_text">图片上传中</div>
+</div>
+
  <jsp:include page="foot.jsp"/>
 <jsp:include page="common_source_foot.jsp"/>
 <jsp:include page="list_nav.jsp"></jsp:include>
@@ -176,7 +181,6 @@ jQuery(function($){
 	try {
 	  $(".dropzone").dropzone({
 	    paramName: "file", // The name that will be used to transfer the file
-	    acceptedFiles:"image/*",
 	    maxFilesize: 5, // MB
 		addRemoveLinks : false,
 		dictMaxFilesExceeded:"请上传小于5M的图片",
@@ -185,16 +189,24 @@ jQuery(function($){
 		dictDefaultMessage :"<a class='btn btn-danger btn-block' id='uploadBtn'>上传图片</a>'",
 		dictResponseError: "<p class='bg-danger absolutePostion'>上传失败，格式错误</p>",
 		//change the previewTemplate to use Bootstrap progress bars
-		previewTemplate: "<div class=\"bg-danger absolutePostion\"><span data-dz-errormessage></span></div>"
+		previewTemplate: "<div class=\"absolutePostion\"><span id='data-dz-errormessage' data-dz-errormessage>请求成功</span>&nbsp;&nbsp;&nbsp;<div class='btn btn-default btn-msg btn-xs' onclick='closeTag();'>关闭</div></div>"
 	  });
 	} catch(e) {
-	  alert('Dropzone.js does not support older browsers!');
+	  alert('浏览器版本过低，请升级浏览器或系统版本');
 	}
 	
 });
 Dropzone.options.dropzoneForm = {
     init: function () {
+    	this.on("addedfile", function(file) { $("#loading_tag").show();
+    	var errormessage=$("#data-dz-errormessage").html();
+    	if(errormessage!=""&&errormessage!=null){
+    		$("#absolutePostion").show(); 
+    	}
+    	});
         this.on("complete", function (data) {                
+            $("#loading_tag").hide(); 
+            $("#data-dz-errormessage").html("上传成功");
             var res = eval('(' + data.xhr.responseText + ')');
             var data = new Array();
             data=res.data;
@@ -257,6 +269,8 @@ function checkLength(){
         document.getElementById("validNum").innerHTML = 200 - value.length;
     }
 }
+
+
 </script>
 <style>
 .bg-danger{background-color: #000;color:#fff;}

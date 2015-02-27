@@ -53,6 +53,8 @@ public class RootFilter implements Filter {
 		//未登录用户禁止进入用户中心
 		if (username == null) {
 			String forwardurl = ((HttpServletRequest)request).getServletPath();
+			if(((HttpServletRequest)request).getQueryString()!=null)    
+				forwardurl+="?"+((HttpServletRequest)request).getQueryString(); 
 			res.sendRedirect("/login.jsp?forward=" + URLEncoder.encode(forwardurl));
 			return;
 		}

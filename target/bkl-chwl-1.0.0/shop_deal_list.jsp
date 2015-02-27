@@ -24,7 +24,6 @@ if(user.getVertify()==user.VERTIFY_FALSE){
 <jsp:include page="top.jsp"/>
 <div class="content nopadding" style="margin-top:5rem " id="content1">
 <span id="order_list_area">
-
 </span>
 <button type="button" class="btn btn-lg btn-default btn-block" id="showmoreBtn" onclick="showMore()">显示更多...</button>
 </div>
@@ -40,7 +39,7 @@ $("#top_search_button").hide();
 </script>
 <script type="text/javascript">
 var pageNow=1;
-var rqurl="/shop/getOrderListHTML?random="+Math.round(Math.random()*100);
+var rqurl="/shop/getOrderListHTML?<%=request.getParameter("staticsType")!=null?"staticsType="+request.getParameter("staticsType")+"&":""%>random="+Math.round(Math.random()*100);
 $.get(rqurl,function(res){
 	if(res){
 		if(res.ret==0){

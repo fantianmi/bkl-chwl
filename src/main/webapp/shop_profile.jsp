@@ -30,9 +30,11 @@
 <div class="detail" style="padding-left: 1rem">锁定粉丝收益（<span id="ruser_num"></span>）</div><div class="status"><span  style="color:#666" id="other_get"></span></div>
 </div>
 <div class="tableList downborder">
+<!-- <a href="inputSecretShop.jsp?subType=2"><div class="detail" style="padding-left: 1rem">提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a> -->
 <a href="shop_withdraw.jsp"><div class="detail" style="padding-left: 1rem">提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="space"></div>
+<!-- <a class="btn btn-success btn-block" href="inputSecretShop.jsp?subType=2">我要提现</a> -->
 <a class="btn btn-success btn-block" href="shop_withdraw.jsp">我要提现</a>
 </div>
  <jsp:include page="foot.jsp"/>

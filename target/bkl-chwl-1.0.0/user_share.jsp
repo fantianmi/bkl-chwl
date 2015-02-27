@@ -20,7 +20,7 @@
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
 <div class="content nopadding" style="margin-top:5rem" id="content1">
-	<div class="tableList downborder" style="background-color:#F0EFED;color:#ED6A00;font-weight:800;font-size:18px;border-bottom-color: #F0EFED">
+	<div class="tableList downborder" style="background-color:#F0EFED;color:#FF3556;font-weight:800;font-size:18px;border-bottom-color: #F0EFED">
 	<div class="detail" style="padding-left: 1rem;">发展粉丝</div>
 	</div>
 	<div class="tableList downborder">

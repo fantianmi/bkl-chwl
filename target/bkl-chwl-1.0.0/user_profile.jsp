@@ -28,7 +28,7 @@
 </div>
 <div class="space"></div>
 <div class="tableList downborder">
-<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #FDB300">&#xe628;</i>&nbsp;立省所得</div><div class="status"  id="discount_get"></div>
+<div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #FDB300">&#xe628;</i>&nbsp;立赚所得</div><div class="status"  id="discount_get"></div>
 </div>
 <div class="tableList downborder">
 <div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EA434B">&#xf0139;</i>&nbsp;推荐商家</div><div class="status" ><span style="color:#666" id="rshoper_get"></span></div>
@@ -52,9 +52,11 @@
 <div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #00AE69">&#xe611;</i>&nbsp;猎头所得</div><div class="status" id="proxy_get"></div>
 </div>
 <div class="tableList downborder">
+<!-- <a href="inputSecret.jsp?subType=2"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EE8100">&#xe6b3;</i>&nbsp;提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a> -->
 <a href="user_withdraw.jsp"><div class="detail" style="padding-left: 1rem"><i class="iconfont menuicon" style="color: #EE8100">&#xe6b3;</i>&nbsp;提现记录</div><div class="status"><i class="iconfont">&#xe6a3;</i></div></a>
 </div>
 <div class="space"></div>
+<!-- <a class="btn btn-success btn-block" href="inputSecret.jsp?subType=2">我要提现</a> -->
 <a class="btn btn-success btn-block" href="user_withdraw.jsp">我要提现</a>
 </div>
  <jsp:include page="foot.jsp"/>
