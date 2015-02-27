@@ -61,7 +61,7 @@
 									<th class="center">银行</th>
 									<th class="center">卡号</th>
 									<th class="center">行号</th>
-									<th class="center">充值金额</th>
+									<th class="center">提现金额</th>
 									<th class="center">扣除手续费金额</th>
 									<th class="center">手机</th>
 									<th class="center">状态</th>
