@@ -91,8 +91,8 @@ int cardType=Integer.parseInt(request.getParameter("cardType"));
 	  </div>
 	  <!--  -->
 	  <div class="form-group">
-	    <label for="licenceNumber">营业执照注册名</label>
-	    <input type="text" class="form-control" id="licenceNumber" placeholder="请输入营业执照注册名" value="<%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?u.getLicenceNumber():"" %>" <%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?"readonly=\"readonly\"":"" %>>
+	    <label for="licenceNumber">营业执照注册号</label>
+	    <input type="text" class="form-control" id="licenceNumber" placeholder="请输入营业执照注册号" value="<%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?u.getLicenceNumber():"" %>" <%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?"readonly=\"readonly\"":"" %>>
 	  </div>
   <%} %>
   <div class="form-group">

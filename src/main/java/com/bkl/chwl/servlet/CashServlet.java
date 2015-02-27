@@ -22,6 +22,7 @@ import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
+import com.km.common.vo.RetCode;
 
 public class CashServlet extends CommonServlet {
 	
@@ -60,6 +61,10 @@ public class CashServlet extends CommonServlet {
 	public void saveWithdraw(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		User user = UserUtil.getCurrentUser(request);
+		if(user.getName()==""||user.getName()==null){
+			ServletUtil.writeCommonReply(null, RetCode.REAL_NAME_NOT_SET, response);
+			return;
+		}
 		Cash withdraw = ServletUtil.readObjectServletQuery(request,Cash.class);
 		
 		long bankid=Integer.parseInt(request.getParameter("bankid"));

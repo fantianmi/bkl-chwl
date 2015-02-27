@@ -356,6 +356,8 @@ function submitWithdrawCnyForm(){
 			 swal("错误", "账户名称不能为空！", "error");
 		 }else if(data.ret == -7){
 			 swal("错误", "您的提现金额已超过今日提现限额，请重新输入", "error");
+		 }else if(data.ret==623){
+			 swal("错误", "真实姓名没有设置，请重新绑卡", "error");
 		 }else if(data.ret == 0){
 			 document.getElementById("withdrawCnyButton").disabled="true";
 			 swal({
