@@ -47,10 +47,16 @@ $.get(rqurl,function(res){
 	if(res){
 		if(res.ret==0){
 			if(res.data["result"]!=null&&res.data["result"]!=""){
-				$("#user_order_list").append(res.data["result"]);
-				if(!res.data["hasmore"]){
+				if(res.data["result"]=="no data"){
+					$("#user_order_list").append("<div class=\"alert alert-info\" role=\"alert\">没有消费记录</div>");
 					$("#showmoreBtn").html("没有更多内容了..");
 					$("#showmoreBtn").attr("disabled","true"); 
+				}else{
+					$("#user_order_list").append(res.data["result"]);
+					if(!res.data["hasmore"]){
+						$("#showmoreBtn").html("没有更多内容了..");
+						$("#showmoreBtn").attr("disabled","true"); 
+					}
 				}
 			}else{
 				$("#user_order_list").append("<div class=\"alert alert-info\" role=\"alert\">没有消费记录</div>");

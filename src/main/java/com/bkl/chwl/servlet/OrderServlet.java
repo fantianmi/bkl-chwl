@@ -123,7 +123,7 @@ public class OrderServlet extends CommonServlet {
 		}
 		String result="";
 		if(orders.getPagedatas() == null || orders.getPagedatas().length == 0) { 
-			result="<div class=\"alert alert-info\" role=\"alert\">暂无结账记录</div>";
+			result="no data";
 		}else{
 			for (int i = 0; i < orders.getPagedatas().length; i++) {
 				Tradeorder2Shop s = orders.getPagedatas()[i];

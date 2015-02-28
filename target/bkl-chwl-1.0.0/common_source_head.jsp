@@ -36,7 +36,6 @@
 <link href="assets/styles/retina.css?v=1.0.8" 				rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" />
 <!-- <link href="assets/styles/drawer.min.css"  rel="stylesheet" type="text/css"/> -->
 <!--Page Scripts Load -->
-<script src="../../../../www.paultrifa.com/analytics/flaty.js?v=1.0.8"></script>
 <script src="assets/scripts/jquery.min.js?v=1.0.8"		type="text/javascript"></script>	
 <script src="assets/scripts/hammer.js?v=1.0.8"			type="text/javascript"></script>	
 <script src="assets/scripts/jquery-ui-min.js?v=1.0.8"  type="text/javascript"></script>

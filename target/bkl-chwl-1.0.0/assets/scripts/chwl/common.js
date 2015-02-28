@@ -2679,7 +2679,7 @@ function bindCardFullSubmit(){
 			swal("错误", "请输入有效的营业执照名", "error");
 			return;
 		}
-		if(licenceNumber.length<15){
+		if(licenceNumber.length<12){
 			swal("错误", "请输入有效的营业执照编号", "error");
 			return;
 		}
