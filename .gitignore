@@ -44,6 +44,8 @@ Temporary Items
 .apdisk
 /target/
 
-target/*
+target
 src/main/webapp/uploads/*
+
+target/*
 

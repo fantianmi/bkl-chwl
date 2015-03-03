@@ -199,6 +199,59 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- wxPay  -->
+	<servlet>
+    	<servlet-name>JSAPISigner</servlet-name>
+    	<servlet-class>com.wxpay.servlet.JSAPISigner</servlet-class>
+    </servlet>
+  	<servlet-mapping>
+   	   <servlet-name>JSAPISigner</servlet-name>
+       <url-pattern>/jsapi-signer.api</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>WxpayNotifyGatewayServlet</servlet-name>
+    <servlet-class>com.wxpay.servlet.WxpayNotifyGatewayServlet</servlet-class>
+    <init-param> 
+        <description>DEBUG SWITCH: If true, content of Notify.getString() &amp; .getProperties() will be dumped to container's log/stdout.</description>
+        <param-name>com.github.cuter44.wxpay.notifygateway.dump</param-name> 
+        <param-value>true</param-value> 
+    </init-param>
+    <init-param> 
+        <description>DEBUG SWITCH: If true, gateway will run in DRY-RUN mode.(just send "success" to wxpay server but do nothing else)</description>
+        <param-name>com.github.cuter44.wxpay.notifygateway.dryrun</param-name> 
+        <param-value>true</param-value> 
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WxpayNotifyGatewayServlet</servlet-name>
+    <url-pattern>/notify.api</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetOpenId</servlet-name>
+    <servlet-class>com.wxpay.servlet.GetOpenId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetOpenId</servlet-name>
+    <url-pattern>/get-openid.api</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SnsapiBase</servlet-name>
+    <servlet-class>com.wxpay.servlet.SnsapiBase</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SnsapiBase</servlet-name>
+    <url-pattern>/snsapi-base.api</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SnsapiUserinfo</servlet-name>
+    <servlet-class>com.wxpay.servlet.SnsapiUserinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SnsapiUserinfo</servlet-name>
+    <url-pattern>/snsapi-userinfo.api</url-pattern>
+  </servlet-mapping>
+  <!-- wxpay -->
 
 	
 
