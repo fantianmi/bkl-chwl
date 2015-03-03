@@ -17,6 +17,7 @@
 	</style>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wGG6mbDmPutcOrlNIcFxNeAU"></script>
 	<title>浏览器定位</title>
+	<!--js api-->
 </head>
 <body>
 </body>
