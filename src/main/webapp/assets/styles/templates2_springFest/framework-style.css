@@ -1,3 +1,14 @@
+.select_item{width:100%;height:70px;}
+.select_item .select_button{width:25px;float:left;margin-top:20px;}
+.select_item .select_desc{width:200px;float:left}
+
+.pay_way_list{width:100%;}
+.pay_way_list .item{width:100%;height:50px;}
+.pay_way_list .item .item_icon{float:left;height:50px;width:50px}
+.pay_way_list .item .item_text{float:left;height:40px;padding:5px;font-size:16px;}
+.pay_way_list .item .item_check_icon{float:right;height:20px;padding:10px;border:1px solid #FF3556;border-radius:20px;}
+.pay_way_list .item .fill{background-color:#FF3556 }
+
 .index_headicon{width:100px;height:100px;overflow: hidden; float:left;}
 .index_headicon img{width:100%;}
 .index_user_info_panel{margin:0 auto;height:100px;width:350px;}

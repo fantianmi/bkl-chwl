@@ -73,23 +73,39 @@ if(cards.size()==0){
     <label for="price"><i class="iconfont">&#xe63a;</i>&nbsp;&nbsp;结账金额</label>
     <input type="text" class="form-control" id="price" placeholder="输入金额" onkeyup="checkNum(this)" onpaste="checkNum(this)" oncontextmenu = "checkNum(this)">
   </div>
-  <div class="input-group" >
-  <span class="input-group-addon">付款卡片</span>
-  <select id="bank_account_o" style="width:100% !important;height:3rem !important">
-    <option value="0">请选择付款的银行卡</option>
-    <%for(User2BindCard card:cards){%>
-    <option value="<%=card.getBank_account_o()%>"><%=card.getBank_o()+"  "+FrontUtil.hiddenNum(card.getBank_account_o())+" "+card.getName() %></option>
-    <%} %>
-    </select>
-</div>
-<br>
- <%--  <div class="form-group">
-    <label for="price"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;结账方式</label>
-    <button id="yinlianBtn" class="btn btn-default active btn-xs" onclick="changePayWay(1)">银联结账</button>
-    <button id="yueBtn" class="btn btn-default btn-xs" onclick="changePayWay(2)">余额结账（金币：<%=coin%>）</button>
-  </div> --%>
-  <p class="bg-danger" style="display: none" id="payNote"></p>
-  	<button onclick="orderSubmit()" class="btn btn-danger btn-block">付款</button><br>
+  <div class="pay_way_list">
+  <label for="price">&nbsp;&nbsp;选择支付方式</label>
+  	<a href="javascript:void(0);" onclick="show_pay_button(1)"><div class="item"><div class="item_icon"><img src="assets/images/wx.png"/></div><div class="item_text">微信支付</div><div class="item_check_icon" id="payway1_icon"></div></div></a>
+  	<a href="javascript:void(0);" onclick="show_pay_button(2)"><div class="item"><div class="item_icon"><img src="assets/images/yl.png"/></div><div class="item_text">银联支付</div><div class="item_check_icon" id="payway2_icon"></div></div></a>
+  </div>
+	  <div style="display: none" id="pay_way_1">
+		 <%--  <div class="form-group">
+		    <label for="price"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;结账方式</label>
+		    <button id="yinlianBtn" class="btn btn-default active btn-xs" onclick="changePayWay(1)">银联结账</button>
+		    <button id="yueBtn" class="btn btn-default btn-xs" onclick="changePayWay(2)">余额结账（金币：<%=coin%>）</button>
+		  </div> --%>
+		  <p class="bg-danger" style="display: none" id="payNote"></p>
+		  	<button onclick="wxorderSubmit()" class="btn btn-danger btn-block">微信支付</button><br>
+  		</div>
+  		<div style="display: none" id="pay_way_2">
+		  <div class="input-group" >
+		  <span class="input-group-addon">付款卡片</span>
+		  <select id="bank_account_o" style="width:100% !important;height:3rem !important">
+		    <option value="0">请选择付款的银行卡</option>
+		    <%for(User2BindCard card:cards){%>
+		    <option value="<%=card.getBank_account_o()%>"><%=card.getBank_o()+"  "+FrontUtil.hiddenNum(card.getBank_account_o())+" "+card.getName() %></option>
+		    <%} %>
+		    </select>
+		</div>
+		<br>
+		 <%--  <div class="form-group">
+		    <label for="price"><i class="iconfont">&#xe610;</i>&nbsp;&nbsp;结账方式</label>
+		    <button id="yinlianBtn" class="btn btn-default active btn-xs" onclick="changePayWay(1)">银联结账</button>
+		    <button id="yueBtn" class="btn btn-default btn-xs" onclick="changePayWay(2)">余额结账（金币：<%=coin%>）</button>
+		  </div> --%>
+		  <p class="bg-danger" style="display: none" id="payNote"></p>
+		  	<button onclick="orderSubmit()" class="btn btn-danger btn-block">银联支付</button><br>
+  		</div>
 	</div>
 </div>
 <jsp:include page="foot.jsp"/>
@@ -97,6 +113,20 @@ if(cards.size()==0){
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
 <script>
+function show_pay_button(x){
+	if(x==1){
+		$("#pay_way_1").show();
+		$("#pay_way_2").hide();
+		$("#payway1_icon").addClass("fill");
+		$("#payway2_icon").removeClass("fill");
+		
+	}else{
+		$("#pay_way_2").show();
+		$("#pay_way_1").hide();
+		$("#payway2_icon").addClass("fill");
+		$("#payway1_icon").removeClass("fill");
+	}
+}
 document.getElementById("shopName").value="<%=shopName%>";
 function changePayWay(way){
 	$("#payway").val(way);

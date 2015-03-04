@@ -1,12 +1,21 @@
 package com.wxpay.servlet;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.Properties;
 import java.util.Enumeration;
 
+import com.bkl.chwl.service.OrderService;
+import com.bkl.chwl.service.impl.OrderServiceImpl;
+import com.bkl.chwl.servlet.OpenServlet;
 import com.github.cuter44.nyafx.text.URLParser;
+
 import static com.wxpay.util.XMLParser.parseXML;
 
 import com.wxpay.resps.Notify;
@@ -15,6 +24,7 @@ import com.wxpay.WxpayNotifyListener;
 
 public class WxpayNotifyGatewayServlet extends HttpServlet
 {
+	private Log log = LogFactory.getLog(WxpayNotifyGatewayServlet.class);
     protected WxpayNotifyPublisher gateway = WxpayNotifyPublisher.getDefaultInstance();
 
     // FOR TEST ONLY
@@ -72,9 +82,10 @@ public class WxpayNotifyGatewayServlet extends HttpServlet
 
         Properties parsedProp = parseXML(reqBody);
         Notify n = new Notify(null, parsedProp);
-
-        System.out.println(parsedProp);
-
+        log.info(parsedProp.getProperty("out_trade_no"));
+        OrderService orderServ=new OrderServiceImpl();
+		orderServ.settleOrder(parsedProp.getProperty("out_trade_no"));
+        
         if (gateway.publish(n))
             out.print("<xml><return_code>SUCCESS</return_code></xml>");
         // else
@@ -86,14 +97,12 @@ public class WxpayNotifyGatewayServlet extends HttpServlet
     public void addListener(WxpayNotifyListener l)
     {
         this.gateway.addListener(l);
-
         return;
     }
 
     public void removeListener(WxpayNotifyListener l)
     {
         this.gateway.removeListener(l);
-
         return;
     }
 }

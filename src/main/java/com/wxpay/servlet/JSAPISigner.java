@@ -1,11 +1,17 @@
 package com.wxpay.servlet;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.Date;
 
 import com.github.cuter44.nyafx.servlet.*;
+
 import static com.github.cuter44.nyafx.servlet.Params.needString;
 import static com.github.cuter44.nyafx.servlet.Params.needDouble;
 
@@ -37,9 +43,11 @@ import com.wxpay.constants.*;
  */
 public class JSAPISigner extends HttpServlet
 {
+	private Log log = LogFactory.getLog(JSAPISigner.class);
     private static final String BODY        = "body";
     private static final String TOTAL_FEE   = "total_fee";
     private static final String OPENID      = "openid";
+    private static final String ORDERID="orderid";
 
     protected WxpayFactory wxpayFactory;
 
@@ -63,7 +71,7 @@ public class JSAPISigner extends HttpServlet
                 .setBody            (needString(req, BODY)                      )
                 .setTotalFee        (needDouble(req, TOTAL_FEE)                 )
                 .setOpenid          (needString(req, OPENID)                    )
-                .setOutTradeNo      ("test"+Long.toString(new Date().getTime()) )
+                .setOutTradeNo      (needString(req, ORDERID) )
                 .setSpbillCreateIp  (req.getRemoteAddr()                        )
                 .setTradeType       (TradeType.JSAPI                            )
                 .build()
@@ -78,7 +86,7 @@ public class JSAPISigner extends HttpServlet
                 .sign();
 
             String jsonGbwxpr = gbwxpr.toJSON();
-
+            log.info(jsonGbwxpr);
             resp.setContentType("application/json; charset=utf-8");
             resp.getWriter().print(jsonGbwxpr);
             return;

@@ -37,7 +37,8 @@ public class OrderServlet extends CommonServlet {
 		OrderService orderServ = new OrderServiceImpl();
 		Tradeorder order=ServletUtil.readObjectServletQuery(request, Tradeorder.class);
 		User user=UserUtil.getCurrentUser(request);
-		if(user.getId()==order.getSeller()){
+		long uid=user.getId();
+		if(uid==order.getSeller()){
 			ServletUtil.writeCommonReply(null, RetCode.SELF_TRADE_ERROR, response);
 			return;
 		}
@@ -47,33 +48,7 @@ public class OrderServlet extends CommonServlet {
 		//计算让利金币数
 		double paybackCoin=order.getPrice()*coinRate;
 		order.setCoin(paybackCoin);
-		int payway=Integer.valueOf(request.getParameter("payway"));
-		order.setUid(user.getId());
-		double userCoin=ApiCommon.getUserCoin(user.getId());
-		//如果是余额支付则先用余额支付，在提交订单到银联支付
-		/*if(payway==order.PAYWAY_YUE){
-			if(userCoin>=order.getPrice()){
-				if(!ApiCommon.translate(user.getId(), order.getSeller(), (int)order.getPrice())){
-					ServletUtil.writeCommonReply(null, RetCode.ROMOTE_ERROR, response);
-					return;
-				}
-				//订单完结
-				order.setBankprice(0);
-				order.setStatus(order.STATUS_SUCCESS);
-				order.setCtime(TimeUtil.getUnixTime());
-				order.setStime(TimeUtil.getUnixTime());
-				ApiCommon.createOrder(user.getId(), order.getSeller(), (int)paybackCoin, order.getOrderId(), order.getType());
-				orderServ.save(order);
-				ServletUtil.writeOkCommonReply(order, response);
-				return;
-			}else if(userCoin<order.getPrice()&&userCoin!=0){
-				if(!ApiCommon.translate(user.getId(), order.getSeller(), (int)userCoin)){
-					ServletUtil.writeCommonReply(null, RetCode.ROMOTE_ERROR, response);
-					return;
-				}
-				order.setBankprice(order.getPrice()-userCoin);
-			}
-		}*/
+		order.setUid(uid);
 		order.setCtime(TimeUtil.getUnixTime());
 		order.setStatus(order.STATUS_WAIT); 
 		order.setType(order.TYPE_PAYBACK);
