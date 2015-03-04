@@ -37,7 +37,7 @@ if(request.getAttribute("orderId")!=null){
 	<!-- Page Title -->
 	<!-- Stylesheet Load -->
 	<link href="/assets/styles/style.css"				rel="stylesheet" type="text/css">
-	<link href="/assets/styles/framework-style.css" 	rel="stylesheet" type="text/css">
+	<link href="assets/styles/templates2_springFest/framework-style.css?v=1.0.8" 	rel="stylesheet" type="text/css">
 	<link href="/assets/styles/framework.css" 			rel="stylesheet" type="text/css">
 	<link href="/assets/styles/bxslider.css"			rel="stylesheet" type="text/css">
 	<link href="/assets/styles/swipebox.css"			rel="stylesheet" type="text/css">
@@ -45,7 +45,6 @@ if(request.getAttribute("orderId")!=null){
 	<link href="/assets/styles/retina.css" 				rel="stylesheet" type="text/css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" />
 	<!-- <link href="assets/styles/drawer.min.css"  rel="stylesheet" type="text/css"/> -->
 	<!--Page Scripts Load -->
-	<script src="../../../../www.paultrifa.com/analytics/flaty.js"></script>
 	<script src="/assets/scripts/jquery.min.js"		type="text/javascript"></script>	
 	<script src="/assets/scripts/hammer.js"			type="text/javascript"></script>	
 	<script src="/assets/scripts/jquery-ui-min.js"  type="text/javascript"></script>

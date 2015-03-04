@@ -39,7 +39,7 @@
    <ul>
        <li>订单编号：<span id=orderid><%=order.getOrderId() %></span></li>
        <li>订单价格：<span id="total_fee"><%=order.getPrice() %></span></li>
-       <li>商家名称：<span id="body"><%=order.getSeller()+"-"+order.getShop_title()%></span></li>
+       <li>商家名称：<%=order.getSeller()+"-"+order.getShop_title()%></li>
        <li>付款用户：<%=order.getUid()%></li>
        <li>创建时间：<%=order.getCtimeString() %></li>
     </ul>
@@ -98,7 +98,7 @@ var uri='<%=uri%>';
    );
    ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    ajax.send(
-     "body="+$("#body").html()
+     "body="+document.getElementById("body").value
      +"&total_fee="+$("#total_fee").html()
      +"&openid="+document.getElementById("openid").value
      +"&orderid="+$("#orderid").html()
@@ -108,6 +108,7 @@ var uri='<%=uri%>';
      'getBrandWCPayRequest',
      gbwcpr,
      function(res){
+       alert(res.err_msg);
        if(res.err_msg == "get_brand_wcpay_request:ok" )
          {
            window.location.href="paysuccess.jsp?orderId="+$("#orderid").html();

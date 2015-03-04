@@ -71,7 +71,7 @@ if(cards.size()==0){
   </div>
   <div class="form-group">
     <label for="price"><i class="iconfont">&#xe63a;</i>&nbsp;&nbsp;结账金额</label>
-    <input type="text" class="form-control" id="price" placeholder="输入金额" onkeyup="checkNum(this)" onpaste="checkNum(this)" oncontextmenu = "checkNum(this)">
+    <input type="tel" class="form-control" id="price" placeholder="输入金额" onkeyup="checkNum(this)" onpaste="checkNum(this)" oncontextmenu = "checkNum(this)">
   </div>
   <div class="pay_way_list">
   <label for="price">&nbsp;&nbsp;选择支付方式</label>
