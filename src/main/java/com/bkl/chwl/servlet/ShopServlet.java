@@ -39,14 +39,19 @@ public class ShopServlet extends CommonServlet {
 		shop.setShop_like(0);
 		shop.setShop_collect(0);
 		shop.setShop_sellnum(0);
+		shop.setShopstatus(shop.SHOPSTATUS_SHOW);
+		shop.setRegstatus(shop.REGSTATUS_TRUE);
 		}else{
 			Shop tempShop=shopServ.get(shop.getId());
 			shop.setCtime(tempShop.getCtime());
 			shop.setShop_collect(tempShop.getShop_collect());
 			shop.setShop_sellnum(tempShop.getShop_sellnum());
+			shop.setShopstatus(tempShop.getShopstatus());
+			shop.setRegstatus(tempShop.getRegstatus());
 		}
-		shop.setRegstatus(shop.REGSTATUS_TRUE);
+		
 		shop.setVertifystatus(shop.VERTIFYSTATUS_TRUE);
+		
 		long id=shopServ.save(shop);
 		shop.setId(id);
 		ServletUtil.writeOkCommonReply(shop, response);
