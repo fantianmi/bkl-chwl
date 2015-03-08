@@ -46,6 +46,7 @@ int cardType=Integer.parseInt(request.getParameter("cardType"));
 	<option value="<%=bankName%>"><%=bankName%></option>
 	<%	} %>
     </select>
+    <p class="error_msg" id="bank_o_error"></p>
   </div>
 </div>
 <div class="space"></div>
@@ -66,7 +67,8 @@ int cardType=Integer.parseInt(request.getParameter("cardType"));
   <%if(cardType==1){ %>
 	  <div class="form-group">
 	    <label for="name">姓名</label>
-	    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %> onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" >
+	    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %>>
+	  	<p class="error_msg" id="name_error"></p>
 	  </div>
 	  <div class="form-group">
 	    <label for="identity_type">证件类型</label><br>
@@ -77,27 +79,32 @@ int cardType=Integer.parseInt(request.getParameter("cardType"));
 	    <option value="3">回乡证</option>
 	    <option value="4">台胞证</option>
 	    </select>
+	    <p class="error_msg" id="identity_type_error"></p>
 	  </div>
 	  <!--  -->
 	  <div class="form-group">
 	    <label for="identity_no">证件号</label>
 	    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %>>
+	  	<p class="error_msg" id="identity_no_error"></p>
 	  </div>
 	  <p class="bg-info">提醒：后续只能绑定该持卡人的银行卡</p>
   <%}else{ %>
 	  <div class="form-group">
 	    <label for="licenceRegName">名称</label>
 	    <input type="text" class="form-control" id="licenceRegName" value="<%=u.getLicenceRegName()!=null&&!u.getLicenceRegName().equals("")?u.getLicenceRegName():"" %>" placeholder="请输入名称"  <%=u.getLicenceRegName()!=null&&!u.getLicenceRegName().equals("")?"readonly=\"readonly\"":"" %>>
+	  	<p class="error_msg" id="licenceRegName_error"></p>
 	  </div>
 	  <!--  -->
 	  <div class="form-group">
 	    <label for="licenceNumber">营业执照注册号</label>
 	    <input type="text" class="form-control" id="licenceNumber" placeholder="请输入营业执照注册号" value="<%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?u.getLicenceNumber():"" %>" <%=u.getLicenceNumber()!=null&&!u.getLicenceNumber().equals("")?"readonly=\"readonly\"":"" %>>
+	  	<p class="error_msg" id="licenceNumber_error"></p>
 	  </div>
   <%} %>
   <div class="form-group">
     <label for="phone_o">手机号</label>
     <input type="text" class="form-control" id="phone_o" placeholder="请输入银行预留手机号">
+    <p class="error_msg" id="phone_o_error"></p>
   </div>
   <div style="height:30px;">
       <span style="float:left"><input type="checkbox" id="agreeCheck"  checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showAgreement();">《用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付商家协议.docx") %>"  target="_blank">点头付商家协议下载</a></span>

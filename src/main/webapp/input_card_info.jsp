@@ -40,6 +40,7 @@ String bankCardNum=request.getParameter("bankCardNum");
 	<option value="<%=bankName%>"><%=bankName%></option>
 	<%	} %>
     </select>
+    <p class="error_msg" id="bank_o_error"></p>
   </div>
 </div>
 <div class="space"></div>
@@ -51,7 +52,8 @@ String bankCardNum=request.getParameter("bankCardNum");
   </div> -->
   <div class="form-group">
     <label for="name">姓名</label>
-    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %> onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" >
+    <input type="text" class="form-control" id="name" value="<%=u.getName()!=null&&!u.getName().equals("")?u.getName():"" %>" placeholder="请输入持卡人姓名"  <%=u.getName()!=null&&!u.getName().equals("")?"readonly=\"readonly\"":"" %>>
+  	<p class="error_msg" id="name_error"></p>
   </div>
   <div class="form-group">
     <label for="identity_type">证件类型</label><br>
@@ -62,15 +64,18 @@ String bankCardNum=request.getParameter("bankCardNum");
     <option value="3">回乡证</option>
     <option value="4">台胞证</option>
     </select>
+    <p class="error_msg" id="identity_type_error"></p>
   </div>
   <div class="form-group">
     <label for="identity_no">证件号</label>
-    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null&&!u.getName().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %> <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"":"onblur=\"checkIdentity_noExist()\"" %>>
+    <input type="text" class="form-control" id="identity_no" placeholder="请输入证件号" value="<%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?u.getIdentity_no():"" %>" <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"readonly=\"readonly\"":"" %> <%=u.getIdentity_no()!=null&&!u.getIdentity_no().equals("")?"":"onblur=\"checkIdentity_noExist()\"" %>>
+  	<p class="error_msg" id="identity_no_error"></p>
   </div>
   <p id="msg0" style="color: red"></p>
   <div class="form-group">
     <label for="phone_o">手机号</label>
     <input type="text" class="form-control" id="phone_o" placeholder="请输入银行预留手机号">
+    <p class="error_msg" id="phone_o_error"></p>
   </div>
   <p class="bg-info">提醒：后续只能绑定该持卡人的银行卡</p>
   <div style="height:30px;">

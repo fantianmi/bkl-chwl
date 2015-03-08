@@ -43,9 +43,6 @@ if(request.getParameter("r")!=null){
 	<input type="hidden" name="licenceFileName" id="licenceFileName">
 	<input type="hidden" name="licenceFileURL" id="licenceFileURL">
   	<script type="text/javascript">
-  	function showShopInfoArea(){
-  		$("#shopInfoArea").show();
-  	}
 	function showShoperRegInfo(){
 		/*alert("商家注册暂时关闭");
 		return;*/
@@ -128,7 +125,7 @@ if(request.getParameter("r")!=null){
 	 <div id="shopInfoArea">
 	  <div class="form-group">
 	    <label for="shopName">&nbsp;&nbsp;企业法人/负责人</label>
-	    <input type="text" class="form-control" id="manager" placeholder="必填，请填写法人/负责人" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onafterpaste="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" > 
+	    <input type="text" class="form-control" id="manager" placeholder="必填，请填写法人/负责人"  > 
 	    <p class="error_msg" id="manager_error"></p>
 	  </div>
 	  <div class="form-group">
@@ -197,18 +194,6 @@ if(request.getParameter("r")!=null){
       <span style="float:left"><input type="checkbox" id="agreeCheck"  checked="checked" ></span><span style="float:left;height:25px;"><a  style="color:#000;line-height: 25px" href="javascript:void(0);" onclick="showShoperAgreement();">《点头商家用户协议》</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  style="color:#000;line-height: 25px" href="download.jsp?downloadUrl=<%=URLEncoder.encode("doc/点头付商家协议.docx") %>"  target="_blank">点头付商家协议下载</a></span>
   </div>
   
-  <script>
-  function showUserAgreement(){
-	  $("#userAgreement").show();
-	  $("#shoperAgreement").hide();
-	  return;
-  }
-  function showShoperAgreement(){
-	  $("#shoperAgreement").show();
-	  $("#userAgreement").hide();
-	  return;
-  }
-  </script>
   <textarea class="form-control" rows="20" readonly="readonly" id="userAgreement" style="display: none">点头付用户协议
 	本协议是您与点头财神系统（以下简称“本系统”）所有者——重庆市大小王科技股份有限公司（以下简称“本公司”）之间就点头财神服务（以下简称“本服务”）相关事宜所订立的契约，请您仔细阅读本注册协议，在您点击点头财神系统注册页面的同意注册按钮并完成注册程序、获得点头财神系统账号和密码时，本协议即构成对双方有约束力的法律文件。
 	第一条	承诺与声明

@@ -1210,7 +1210,6 @@ function checkPassword(){
 	}
 	if(desc!=""){
 		$("#regPassword_error").html(desc);
-		$("#regPassword").focus();
 		return false;
 	}else{
 		$("#regPassword_error").html("");
@@ -1232,7 +1231,6 @@ function checkPassword(){
 		}
 		if(desc!=""){
 			$("#regRePassword_error").html(desc);
-			$("#regRePassword").focus();
 			return false;
 		}else{
 			$("#regRePassword_error").html("");
@@ -1363,7 +1361,6 @@ function checkPassword(){
 			var regUname=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
 			if(!regUname.test(regUserName)){
 				$("#regUserName_error").html("商家用户名必须为数字和字母的组合");
-				$("#regUserName").focus();
 			   return;
 			}else{
 				$("#regUserName_error").html("");
@@ -1380,11 +1377,9 @@ function checkPassword(){
 						desc="该商户名存在，请重新输入";
 					}
 					$("#regUserName_error").html(desc);
-					$("#regUserName").focus();
 					return;
 				}else{
 					$("#regUserName_error").html("邮箱已存在");
-					$("#regUserName").focus();
 					return;
 				}
 				return ;
@@ -1403,7 +1398,6 @@ function checkPassword(){
 				var desc="该手机号已使用";
 				swal("错误", desc, "error");
 				$("#mobile2").val("");
-				 $("#mobile2").focus();
 				 mobile2Exist=true;
 			}else{
 				mobile2Exist=false;
@@ -1417,7 +1411,6 @@ function checkPassword(){
 		if(oid.length<12){
 			desc="请输入正确的营业执照注册号";
 			$("#oid_error").html(desc);
-			$("#oid").focus();
 			LicenceNumberExist=true;
 			return;
 		}
@@ -1427,7 +1420,6 @@ function checkPassword(){
 				var desc="";
 				desc="该营业执照已存在，请重新输入";
 				$("#oid_error").html(desc);
-				$("#oid").focus();
 				LicenceNumberExist=true;
 			}else{
 				$("#oid_error").html("");
@@ -1443,7 +1435,6 @@ function checkPassword(){
 			desc="请输入正确的身份证号";
 			$("#msg0").html(desc);
 			$("#identity_no").addClass("error_form");
-			$("#identity_no").focus();
 			$("#bindCardBtn").attr("disabled","disabled");
 			return;
 		}
@@ -1454,7 +1445,6 @@ function checkPassword(){
 				desc="该身份证已存在";
 				$("#msg0").html(desc);
 				$("#identity_no").addClass("error_form");
-				$("#identity_no").focus();
 				$("#bindCardBtn").attr("disabled","disabled");
 			}else{
 				$("#msg0").html("");
@@ -1486,7 +1476,6 @@ function checkPassword(){
 		var regUserName = trim(document.getElementById("regUserName").value);
 		if(regUserName==""||regUserName==null){
 			$("#regUserName_error").html("注册名不能为空");
-			$("#regUserName").focus();
 			$("#userSubmitBtn").attr("disabled",false);
 			return;
 		}
@@ -1517,12 +1506,10 @@ function checkPassword(){
 							desc="该商户名存在，请重新输入";
 						}
 						$("#regUserName_error").html(desc);
-						$("#regUserName").focus();
 						$("#userSubmitBtn").attr("disabled",false);
 						return;
 					}else{
 						$("#regUserName_error").html("邮箱已存在");
-						$("#regUserName").focus();
 						$("#userSubmitBtn").attr("disabled",false);
 						return;
 					}
@@ -1546,28 +1533,23 @@ function checkPassword(){
 										desc="该商户名存在，请重新输入";
 									}
 									$("#regUserName_error").html(desc);
-									$("#regUserName").focus();
 									$("#userSubmitBtn").attr("disabled",false);
 									return;
 								}else{
 									$("#regUserName_error").html("邮箱已存在");
-									$("#regUserName").focus();
 									$("#userSubmitBtn").attr("disabled",false);
 									return;
 								}
 							}else if(data2.ret == 612){
 								$("#regUserName_error").html("请填写真实邮箱");
-								$("#regUserName").focus();
 								$("#userSubmitBtn").attr("disabled",false);
 								return;
 							}else if(data2.ret == 618){
 								$("#regUserName_error").html("远程服务器请求失败");
-								$("#regUserName").focus();
 								$("#userSubmitBtn").attr("disabled",false);
 								return;
 							}else if(data2.ret==620){
 								$("#kaptchafield_error").html("验证码输入错误");
-								$("#kaptchafield").focus();
 								$("#userSubmitBtn").attr("disabled",false);
 								return;
 							}
@@ -1603,7 +1585,6 @@ function checkPassword(){
 		var mobile2=$("#mobile2").val();
 		if(!checkMobile(mobile2)){
 			$("#mobile2_error").html("请输入正确的手机号");
-			$("#mobile2").focus();
 			$("#shoperSubmitBtn").attr("disabled",false);
 			return;
 		}else{
@@ -1611,8 +1592,8 @@ function checkPassword(){
 		}
 		if(LicenceNumberExist){
 			$("#oid_error").html("营业执照错误");
-			$("#oid").focus();
 			$("#shoperSubmitBtn").attr("disabled",false);
+			showShopInfoArea();
 			return
 		}else{
 			$("#oid_error").html("");
@@ -1620,21 +1601,21 @@ function checkPassword(){
 		if(!$(".icheckbox_square").hasClass("checked")){
 			swal("错误", "请同意注册协议", "error");
 			$("#shoperSubmitBtn").attr("disabled",false);
+			showShopInfoArea();
 			return;
 		}
 		var regUserName = trim(document.getElementById("regUserName").value);
 		var regUname=/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i;
 		if(!regUname.test(regUserName)){
 		   $("#regUserName_error").html("商家用户名必须为数字和字母的组合");
-		   $("#regUserName").focus();
 		   $("#shoperSubmitBtn").attr("disabled",false);
+		   showShopInfoArea();
 		   return;
 		}else{
 			$("#regUserName_error").html("");
 		}
 		if(regUserName==""||regUserName==null){
 			$("#regUserName_error").html("请填写正确的用户名");
-			$("#regUserName").focus();
 			$("#shoperSubmitBtn").attr("disabled",false);
 			return;
 		}else{
@@ -1643,8 +1624,8 @@ function checkPassword(){
 		var licenceRegName=$("#licenceRegName").val();
 		if(!checkNotNull(licenceRegName)){
 			$("#licenceRegName_error").html("请填写正确的营业执照注册名");
-			$("#licenceRegName").focus();
 			$("#shoperSubmitBtn").attr("disabled",false);
+			showShopInfoArea();
 			return;
 		}else{
 			$("#licenceRegName_error").html("");
@@ -1652,8 +1633,8 @@ function checkPassword(){
 		var manager=$("#manager").val();
 		if(!checkNotNull(manager)){
 			$("#manager_error").html("请填写正确的负责人");
-			$("#manager").focus();
 			$("#shoperSubmitBtn").attr("disabled",false);
+			showShopInfoArea();
 			return;
 		}
 		if(checkPassword() && checkRePassword() ){
@@ -1670,12 +1651,10 @@ function checkPassword(){
 				if(data.ret == 606){
 					if(regType == 0){
 						$("#regUserName_error").html("用户名已存在，请重新输入");
-						$("#regUserName").focus();
 						$("#shoperSubmitBtn").attr("disabled",false);
 						return;
 					}else{
 						$("#regUserName_error").html("邮箱已存在");
-						$("#regUserName").focus();
 						$("#shoperSubmitBtn").attr("disabled",false);
 						return;
 					}
@@ -1714,8 +1693,8 @@ function checkPassword(){
 				    if(!checkNotNull(shopName)){
 				    	desc="请输入商铺名";
 				    	$("#shopName_error").html(desc);
-				    	$("#shopName").focus();
 				    	$("#shoperSubmitBtn").attr("disabled",false);
+				    	showShopInfoArea();
 				    	return;
 				    }else{
 				    	$("#shopName_error").html("");
@@ -1723,8 +1702,8 @@ function checkPassword(){
 				    if(!checkNotNull(licenceNumber)){
 				    	desc="请输入营业执照注册号";
 				    	$("#oid_error").html(desc);
-				    	$("#oid").focus();
 				    	$("#shoperSubmitBtn").attr("disabled",false);
+				    	showShopInfoArea();
 				    	return;
 				    }else{
 				    	$("#oid_error").html("");
@@ -1738,34 +1717,28 @@ function checkPassword(){
 							if(data2.ret == 606){
 								if(regType == 0){
 									$("#regUserName_error").html("您输入的账号已注册");
-									$("#regUserName").focus();
 									$("#shoperSubmitBtn").attr("disabled",false);
 									return;
 								}else{
 									$("#regUserName_error").html( "邮箱已存在");
-									$("#regUserName").focus();
 									$("#shoperSubmitBtn").attr("disabled",false);
 									return;
 								}
 							}else if(data2.ret == 612){
 								$("#regUserName_error").html( "请填写真实邮箱");
-								$("#regUserName").focus();
 								$("#shoperSubmitBtn").attr("disabled",false);
 								return;
 							}else if(data2.ret == 618){
 								$("#regUserName_error").html( "远程服务器请求失败");
-								$("#regUserName").focus();
 								$("#shoperSubmitBtn").attr("disabled",false);
 								return;
 							}else if(data2.ret==614){
 								desc="商家注册手机号已存在";
 								$("#mobile2_error").html(desc);
-								$("#mobile2").focus();
 								$("#shoperSubmitBtn").attr("disabled",false);
 								return;
 							}else if(data2.ret==620){
 								$("#kaptchafield_error").html("验证码输入错误");
-								$("#kaptchafield").focus();
 								$("#shoperSubmitBtn").attr("disabled",false);
 								return;
 							}
@@ -2586,6 +2559,12 @@ function queryUserProfile(){
  * 不包含银行行号提交的方法
  */
 function bindCardSubmit(){
+	//init()
+	$("#bank_o_error").html("");
+	$("#name_error").html("");
+	$("#identity_type_error").html("");
+	$("#phone_o_error").html("");
+	
 	if(!$(".icheckbox_square").hasClass("checked")){
 		swal("错误", "请同意用户协议", "error");
 		return;
@@ -2593,7 +2572,7 @@ function bindCardSubmit(){
 	var bank_account_o=$("#bank_account_o").val();
 	var bank_o=$("#bank_o").val();
 	if(bank_o=="0"){
-		swal("错误", "请选择银行", "error");
+		$("#bank_o_error").html("请选择银行");
 		return;
 	}
 	/*var bank_deposit_o=$("#bank_deposit_o").val();
@@ -2602,9 +2581,13 @@ function bindCardSubmit(){
 		return;
 	}*/
 	var name=$("#name").val();
+	if(name==null||name==""){
+		$("#name_error").html("请输入真实姓名");
+		return;
+	}
 	var identity_type=$("#identity_type").val();
 	if(identity_type==0){
-		swal("错误", "请选择有效证件", "error");
+		$("#identity_type_error").html("请选择有效证件");
 		return;
 	}
 	if($("#needCheckIdentity_o").val()==1){
@@ -2613,7 +2596,7 @@ function bindCardSubmit(){
 	var identity_no=$("#identity_no").val();
 	var phone_o=$("#phone_o").val();
 	if(!checkMobile(phone_o)){
-		swal("错误", "请输入正确的手机号", "error");
+		$("#phone_o_error").html("请输入正确的手机号");
 		return;
 	}
 	var url="/api/bind/addCard?random="+Math.round(Math.random()*100);
@@ -2643,6 +2626,15 @@ function bindCardSubmit(){
  * 包含开户行行号的银行卡绑定
  */
 function bindCardFullSubmit(){
+	//init()
+	$('#bank_o_error').html("");
+	$('#name_error').html("");
+	$('#identity_type_error').html("");
+	$('#identity_no_error').html("");
+	$('#licenceRegName_error').html("");
+	$('#licenceNumber_error').html("");
+	$('#phone_o_error').html("");
+	
 	var bindType=$("#bindType").val();
 	
 	if(!$(".icheckbox_square").hasClass("checked")){
@@ -2652,7 +2644,7 @@ function bindCardFullSubmit(){
 	var bank_account_o=$("#bank_account_o").val();
 	var bank_o=$("#bank_o").val();
 	if(bank_o=="0"){
-		swal("错误", "请选择银行", "error");
+		$('#bank_o_error').html("请选择银行");
 		return;
 	}
 	/*var bank_deposit_o=$("#bank_deposit_o").val();
@@ -2662,31 +2654,35 @@ function bindCardFullSubmit(){
 	}*/
 	if(bindType==1){
 		var name=$("#name").val();
+		if(name==null||name==""){
+			$('#name_error').html( "请选择有效证件");
+			return;
+		}
 		var identity_type=$("#identity_type").val();
 		if(identity_type==0){
-			swal("错误", "请选择有效证件", "error");
+			$('#identity_type_error').html( "请选择有效证件");
 			return;
 		}
 		var identity_no=$("#identity_no").val();
 		if(identity_no.length<15){
-			swal("错误", "请输入有效的身份证号", "error");
+			$('#identity_no_error').html( "请输入有效的身份证号");
 			return;
 		}
 	}else{
 		var licenceRegName=$("#licenceRegName").val();
 		var licenceNumber=$("#licenceNumber").val();
 		if(licenceRegName==""||licenceRegName==null){
-			swal("错误", "请输入有效的营业执照名", "error");
+			$('#licenceRegName_error').html( "请输入有效的营业执照名");
 			return;
 		}
 		if(licenceNumber.length<12){
-			swal("错误", "请输入有效的营业执照编号", "error");
+			$('#licenceNumber_error').html( "请输入有效的营业执照编号");
 			return;
 		}
 	}
 	var phone_o=$("#phone_o").val();
 	if(!checkMobile(phone_o)){
-		swal("错误", "请输入正确的手机号", "error");
+		$('#phone_o_error').html( "请输入正确的手机号");
 		return;
 	}
 	/*document.getElementById("withdrawAccountAddr_bankNumber").value=document.getElementById("withdrawAccountAddr_bankNumber").value.replace(/\D/g,'');
@@ -3180,4 +3176,20 @@ function shopStatusOper(status){
 			}
 		}
 	});
+}
+/**
+ * 注册阶段的协议同意以及商家手动填写部分显示功能
+ */
+function showUserAgreement(){
+	  $("#userAgreement").show();
+	  $("#shoperAgreement").hide();
+	  return;
+}
+function showShoperAgreement(){
+	  $("#shoperAgreement").show();
+	  $("#userAgreement").hide();
+	  return;
+}
+function showShopInfoArea(){
+	$("#shopInfoArea").show();
 }

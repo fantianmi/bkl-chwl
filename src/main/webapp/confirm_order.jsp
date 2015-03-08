@@ -16,7 +16,7 @@ if(user.getOpenid()==null||user.getOpenid()==""){
 	String uri=MainConfig.getContextPath()+"/api/user/bindWeixinOpenId";
 	 uri=URLEncoder.encode(uri, "utf-8");
 	 String oath="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+MainConfig.getWechatappid()+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
-	 response.sendRedirect("uri");
+	 response.sendRedirect(oath);
 	 return;
 }
 if(request.getParameter("result")==null){
@@ -46,9 +46,9 @@ double coinRate=shop.getCoinRate();
 
 BindCardService bindCardServ=new BindCardServiceImpl();
 List<User2BindCard> cards=bindCardServ.getUser2Cards(user.getId());
+int has_card=1;
 if(cards.size()==0){
-	response.sendRedirect("user_card_list.jsp");
-	return;
+	has_card=0;
 }
 %>
 
@@ -61,6 +61,7 @@ if(cards.size()==0){
 <jsp:include page="top.jsp"/>
 <div class="content nopadding" style="margin-top:5.5rem " id="content1">
 	<div class="container nomargin" style="padding: .5rem !important;">
+	<input type="hidden" name="has_card" id="has_card" value="<%=has_card%>">
 	<input type="hidden" name="payway" id="payway" value="1">
 	<input type="hidden" name="seller" id="seller" value="<%=shop.getUid()%>">
 	<input type="hidden" name="coin" id="coin" value="<%=coin%>">
@@ -119,8 +120,20 @@ function show_pay_button(x){
 		$("#pay_way_2").hide();
 		$("#payway1_icon").addClass("fill");
 		$("#payway2_icon").removeClass("fill");
-		
 	}else{
+		var has_card=$("#has_card").val();
+		if(has_card==0){
+			if(confirm("您还没有绑定银行卡，是否跳转到绑卡页面进行绑卡？")){
+				window.location.href='user_card_list.jsp';
+				return;
+			}else{
+				$("#pay_way_1").show();
+				$("#pay_way_2").hide();
+				$("#payway1_icon").addClass("fill");
+				$("#payway2_icon").removeClass("fill");
+				return;
+			}
+		}
 		$("#pay_way_2").show();
 		$("#pay_way_1").hide();
 		$("#payway2_icon").addClass("fill");
