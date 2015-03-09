@@ -25,8 +25,24 @@ function addShopSubmit(){
 		swal("非法操作", "请确认是否登录", "error");
 		window.location.href="login.jsp";
 	}
-	if(!checkNotNull(image)||!checkNotNull(detail)||!checkNotNull(title)||!checkNotNull(detail)||!checkNotNull(shop_map)||!checkNotNull(shop_loc)||!checkNotNull(shop_tel)||local==0||!checkNotNull(oprice)||!checkNotNull(price)||!checkNotNull(coinRate)){
-		swal("错误", "请确认表单是否填写完全", "error");
+	if(!checkNotNull(image)){
+		swal("错误", "请上传点商图片", "error");
+		return;
+	}
+	if(!checkNotNull(title)){
+		swal("错误", "请输入商户全称", "error");
+		return;
+	}
+	if(!checkNotNull(detail)){
+		swal("错误", "请输入商家介绍", "error");
+		return;
+	}
+	if(!checkNotNull(shop_loc)){
+		swal("错误", "请输入商家详细地址", "error");
+		return;
+	}
+	if(!checkNotNull(shop_tel)){
+		swal("错误", "请输入商家联系电话", "error");
 		return;
 	}
 	if(detail.length>400){

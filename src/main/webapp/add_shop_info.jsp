@@ -133,6 +133,9 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 			if(shop!=null){
 				String image[]=shop.getImage().split("@");
 				for(int i=0;i<image.length;i++){
+					if(FrontImage.convertOss(image[i]).contains("default.jpg")){
+						continue;
+					}
 					%>
 					<li><img class='image-decoration' src="<%=FrontImage.convertOss(image[i])%>"></li>
 					<%
@@ -150,7 +153,7 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 </form>
 </span>
 <%}else{ %>
-仅限3张（商铺门头、店内实景、主打商品）；每张不超过5M
+仅限3张图片，必须上传（商铺门头、店内实景、主打商品）；每张不超过5M
 <form action="/uploadFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
 </form>
 <%} %>

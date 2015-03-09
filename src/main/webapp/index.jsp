@@ -65,7 +65,7 @@ color: #fff !important;
   <div class="container index_bg">
     <div class="navbar-header" style="margin:0;width:100%">
     	<div class="nav-wrap-left">
-            <%=u!=null?"<a class=\"react back\" href=\"user_index.jsp\">个人中心</a>":"<a class=\"react back\" href=\"login.jsp\">登录</a>"%>
+            <%=u!=null?"<a class=\"react back\" href=\"user_index.jsp\">点粉中心</a>":"<a class=\"react back\" href=\"login.jsp\">登录</a>"%>
         </div>
         <div class="nav-wrap-left" style="float: right !important;">
             <%=u!=null?"<a class=\"react back\" href=\"javascript:loginout();\">退出</a>":"<a class=\"react back\" href=\"javascript:doNotReg();\">注册</a>"%>

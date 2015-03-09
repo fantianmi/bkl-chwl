@@ -1354,6 +1354,7 @@ function checkPassword(){
 // }
 	// ***************************************************************************************************************//
 	function checkUserNameExist(){
+		document.getElementById("regUserName").value=document.getElementById("regUserName").value.replace(/[^\w\.\/]/ig,'');
 		var regType = document.getElementById("regType").value;
 		var regUserName = trim(document.getElementById("regUserName").value);
 		var roleType=$("#roleType").val();

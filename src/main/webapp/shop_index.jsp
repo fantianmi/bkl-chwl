@@ -103,7 +103,7 @@
 .detail span{font-weight: 400;color:#DC3C00;font-size: 1.8rem}
 </style>
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="商家中心";
+document.getElementById("head_title").innerHTML="点商中心";
 $("#top_back_button").html("<a class=\"react\"  style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;width:62px\"><i class=\"iconfont\" style=\"font-size:40px\">&#xe62f;</i></a>");
 $("#top_qr_button").hide();
 $("#top_search_button").hide();

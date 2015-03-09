@@ -33,33 +33,33 @@ Area local3=areamap.get(Long.valueOf(user.getLocal3()));
 </div>
 <div class="container nomargin" style="margin: 0rem !important;">
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">编号ID：<%=user.getId() %></div>
+<div class="detail" style="width:100%">编号ID：<span><%=user.getId() %></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">用户名：<%=user.getMobile() %></div>
+<div class="detail" style="width:100%">用户名：<span><%=user.getMobile() %></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">真实姓名：<%=StringUtils.defaultIfEmpty(user.getName() , "-")%></div>
+<div class="detail" style="width:100%">真实姓名：<span><%=StringUtils.defaultIfEmpty(user.getName() , "-")%></span></div>
 </div>
 <div class="space"></div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">点商名称：<%=shop.getTitle() %></div>
+<div class="detail" style="width:100%">点商名称：<span><%=shop.getTitle() %></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">执照编号：<%=user.getLicenceNumber() %></div>
+<div class="detail" style="width:100%">执照编号：<span><%=user.getLicenceNumber() %></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">企业法人：<%=StringUtils.defaultIfEmpty(user.getManager(), "-")%></div>
+<div class="detail" style="width:100%">企业法人：<span><%=StringUtils.defaultIfEmpty(user.getManager(), "-")%></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">营业执照注册名：<%=user.getLicenceRegName()%></div>
+<div class="detail" style="width:100%">营业执照注册名：<span><%=user.getLicenceRegName()%></span></div>
 </div>
 <div class="tableList downborder" >
-<div class="detail" style="width:100%">营业执照注册号：<%=user.getLicenceNumber()%></div>
+<div class="detail" style="width:100%">营业执照注册号：<span><%=user.getLicenceNumber()%></span></div>
 </div>
 <div class="space"></div>
 <div class="tableList downborder">
-<div class="detail" style="width:100%">地址：<%=local!=null?local.getTitle():"未知"%>-<%=local2!=null?local2.getTitle():"未知"%>-<%=local3!=null?local3.getTitle():"未知"%></div>
+<div class="detail" style="width:100%">地址：<span><%=local!=null?local.getTitle():"未知"%>-<%=local2!=null?local2.getTitle():"未知"%>-<%=local3!=null?local3.getTitle():"未知"%></span></div>
 </div>
 </div>
  <jsp:include page="foot.jsp"/>

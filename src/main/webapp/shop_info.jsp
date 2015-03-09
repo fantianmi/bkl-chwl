@@ -55,19 +55,19 @@ String payUrl=MainConfig.getContextPath()+"confirm_order.jsp?result="+shop.getId
 <div class="space"></div>
 <div class="container nomargin" style="margin: 0rem !important;">
 <div class="tableList downborder">
-<div class="detail">商户全称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=StringUtil.subString(shop.getTitle(), 10) %></div>
+<div class="detail">商户全称&nbsp;-&nbsp;<span><%=StringUtil.subString(shop.getTitle(), 10) %></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=StringUtil.subString(shop.getShop_loc(), 8) %></div>
+<div class="detail">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<span><%=StringUtil.subString(shop.getShop_loc(), 8) %></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail">返利&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=StringUtil.doubleToRate(shop.getCoinRate()) %></div>
+<div class="detail">返利&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;<span><%=StringUtil.doubleToRate(shop.getCoinRate()) %></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail">联系方式&nbsp;<%=StringUtil.subString(shop.getShop_tel(), 13) %></div>
+<div class="detail">联系方式&nbsp;-&nbsp;<span><%=StringUtil.subString(shop.getShop_tel(), 13) %></span></div>
 </div>
 <div class="tableList downborder">
-<div class="detail">商家介绍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=StringUtil.subString(shop.getDetail(), 8) %></div>
+<div class="detail">商家介绍&nbsp;-&nbsp;<span><%=StringUtil.subString(shop.getDetail(), 8) +"..."%></span></div>
 </div>
 <div class="tableList downborder">
 <button onclick="location.href='add_shop_info.jsp'" class="btn btn-danger btn-block">修改店铺资料信息</button>

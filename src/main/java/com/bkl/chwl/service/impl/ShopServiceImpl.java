@@ -139,8 +139,6 @@ public class ShopServiceImpl implements ShopService {
 			sorts="shop_like desc";
 		}else if(sort==Shop.SORT_SELLNUM){
 			sorts="shop_sellnum desc";
-		}else if(sort==Shop.SORT_DEFAULT){
-			sorts=null;
 		}else if(sort==Shop.SORT_PRICE){
 			sorts="price asc";
 		}else if(sort==Shop.SORT_DISCOUNT){

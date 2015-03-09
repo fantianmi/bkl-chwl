@@ -76,7 +76,7 @@
 .detail span{font-weight: 400;color:#DC3C00;font-size: 1.8rem}
 </style>
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="我的账本";
+document.getElementById("head_title").innerHTML="点粉中心";
 $("#top_back_button").html("<a class=\"react\" href=\"index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 var url="/api/user/getUserProfile?random="+Math.round(Math.random()*100);
 $.get(url,function(res){

@@ -89,7 +89,7 @@ if(request.getParameter("r")!=null){
 	</script>
   <div class="form-group">
     <label for="regUserName"><i class="iconfont">&#xf0026;</i>&nbsp;&nbsp;<span id="formUserNameLabel">点粉账号</span></label>
-    <input type="text" class="form-control" id="regUserName" placeholder="请勿输入中文或者特殊字符" onblur="checkUserNameExist()" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="value=value.replace(/[^\w\.\/]/ig,'')" >
+    <input type="text" class="form-control" id="regUserName" placeholder="请勿输入中文或者特殊字符" onblur="checkUserNameExist()" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="value=value.replace(/[^\w\.\/]/ig,'')"  onchange="value=value.replace(/[^\w\.\/]/ig,'')">
     <p class="error_msg" id="regUserName_error"></p>
   </div>
   <p style="display: none" id="regNameResult"></p>

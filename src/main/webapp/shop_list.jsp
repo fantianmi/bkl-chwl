@@ -125,7 +125,7 @@ cityName=StringUtil.subString(cityName, 4);
 <jsp:include page="common_source_foot.jsp"/>
 <jsp:include page="list_nav.jsp"></jsp:include>
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="店铺列表";
+document.getElementById("head_title").innerHTML="点商列表";
 $("#top_back_button").html("<a class=\"react\" href=\"index.jsp\" style=\"font-size: 1.6rem;color:#fff;padding-right: 1rem !important;\"><i class=\"iconfont\">&#xf0015;</i>&nbsp;&nbsp;</a>");
 </script>
 <!-- page special -->
@@ -195,7 +195,7 @@ function loadData(url){
 				if(res.data!=""){
 					$("#shopList").html(res.data);
 				}else{
-					$("#shopList").html("<div class='alert alert-info'>暂无店铺</div>");
+					$("#shopList").html("<div class='alert alert-info'>暂无点商</div>");
 					$("#showmoreBtn").html("没有更多内容了..");
 					$("#showmoreBtn").attr("disabled","disabled"); 
 				}
