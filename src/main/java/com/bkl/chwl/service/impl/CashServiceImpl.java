@@ -13,6 +13,8 @@ import com.bkl.chwl.entity.BillDetail;
 import com.bkl.chwl.entity.Cash;
 import com.bkl.chwl.entity.Cash2User;
 import com.bkl.chwl.entity.User;
+import com.bkl.chwl.entity.UserBindCard;
+import com.bkl.chwl.service.BindCardService;
 import com.bkl.chwl.service.SystemBillService;
 import com.bkl.chwl.service.UserBillService;
 import com.bkl.chwl.task.PayRecommendTask;
@@ -224,7 +226,17 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 		long ret = cashDao.save(cash);
 		cash.setId((int)ret);
 		try {
-			WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			BindCardService bindServ=new BindCardServiceImpl();
+			UserBindCard card=bindServ.getCard((int)cash.getUser_id(), cash.getCard(), cash.getMobile());
+			if(card!=null){
+				if(card.getBindtype()==card.BINDTYPE_PUBLIC){
+					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				}else{
+					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				}
+			}else{
+				WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			}
 		} catch (ClientProtocolException e) {
 			cash.setStatus(Cash.STATUS_UNCONFIRM);
 			cashDao.save(cash);
@@ -276,8 +288,17 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 				return RetCode.ORDER_CONFIRM_CANCEL;
 			}
 			User u=userDao.find(cash.getUser_id());
-			WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(), u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
-			
+			BindCardService bindServ=new BindCardServiceImpl();
+			UserBindCard card=bindServ.getCard((int)cash.getUser_id(), cash.getCard(), cash.getMobile());
+			if(card!=null){
+				if(card.getBindtype()==card.BINDTYPE_PUBLIC){
+					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				}else{
+					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				}
+			}else{
+				WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+			}
 			userDao.beginTransaction();
 			userDao.lockTable(userDao.getTableName(User.class), userDao.getTableName(Cash.class), userDao.getTableName(Bill.class), userDao.getTableName(BillDetail.class));
 			

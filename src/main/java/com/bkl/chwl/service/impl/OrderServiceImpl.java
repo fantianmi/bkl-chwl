@@ -21,6 +21,7 @@ import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.UserService;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.SendMsgInWeixin;
+import com.bkl.chwl.vo.Report;
 import com.bkl.chwl.vo.WebApi;
 import com.km.common.dao.DaoFactory;
 import com.km.common.dao.GeneralDao;
@@ -94,8 +95,6 @@ public class OrderServiceImpl implements OrderService {
 		String sql="select t.*,s.id as shop_id,s.title as shop_title,s.detail as shop_detail,s.oprice as shop_oprice,s.price as shop_price,s.image as shop_image from tradeorder t left join shop s on t.seller=s.uid where t.orderId='"+orderId+"'";
 		return order2shopDao.findSql(sql, null);
 	}
-
-
 	@Override
 	public double getSUM(long uid) {
 		String sql="select sum(price) from tradeorder where uid=? and status=1";
@@ -129,12 +128,18 @@ public class OrderServiceImpl implements OrderService {
 			{
 				BindCardService bindcardServ=new BindCardServiceImpl();
 				User2BindCard bindCard=bindcardServ.getDefult(o.getSeller());
+				
 				if(bindCard==null)//如果为空则调用order
 				{
 					boolean flag=ApiCommon.createOrder(o.getSeller(), o.getSeller(), sellerCoin, orderId, 2);
 				}//不为空调用payorder
 				else{
-					String res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					String res="";
+					if(bindCard.getBindtpye()==bindCard.BINDTYPE_PRIVATE){
+						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					}else{
+						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getLicenceRegName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					}
 					log.info(o.getUid()+"already payorder to seller:"+o.getSeller()+",amount:"+sellerCoin+", and res="+res);
 				}
 			}//不需要到商家账户
@@ -207,6 +212,19 @@ public class OrderServiceImpl implements OrderService {
 			conditions[conditions.length-1]=timeCon;
 		}
 		return orderDao.getPage(page, conditions, new String[]{"id desc"});
+	}
+
+	@Override
+	public List<Report> getOrderStatisticGroupByDay(String start, String end, int uid) {
+		GeneralDao<Report> reportDao=DaoFactory.createGeneralDao(Report.class);
+		String sql="select sum(price) as total_price,sum(sellercoin) as total_get_price,date(FROM_UNIXTIME(ctime)) as rtime from tradeorder  where seller="+uid+" and status=1 and date(FROM_UNIXTIME(ctime))>=date('"+start+"') and date(FROM_UNIXTIME(ctime))<=date('"+end+"') group by date(FROM_UNIXTIME(ctime))";
+		return reportDao.findList(sql, null);
+	}
+
+	@Override
+	public List<Tradeorder> getOrdersByDay(String time,int uid) {
+		String sql="select * from tradeorder where date(FROM_UNIXTIME(ctime))=date('"+time+"') and status=1 and seller="+uid+" order by id desc";
+		return orderDao.findList(sql, null);
 	}
 
 }

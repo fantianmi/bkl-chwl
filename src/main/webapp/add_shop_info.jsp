@@ -106,7 +106,7 @@ if(request.getParameter("x")!=null&&request.getParameter("y")!=null){
 		  </select>
 	  </div>
 	  <div class="form-group">
-	    <label for="recommended_user_id">类别选择</label><br>
+	    <label for="recommended_user_id">类别选择（便于点粉找到你的店铺）</label><br>
 	    <select id="shop_type" onchange="changeType(this,this.value)">
 	    <%=shop.getShop_type()!=0?"<option value="+shop.getShop_type()+">默认不动</option>":"<option value=\"0\">请选择类别</option>"%>
 		    <%

@@ -23,9 +23,21 @@ public class UserBindCard {
 	private int isdefault;
 	//用户id
 	private long uid;
+	//对公/对私 绑卡类型
+	private int bindtype;
+	
+	public static final int BINDTYPE_PUBLIC=2;
+	public static final int BINDTYPE_PRIVATE=1;
 	public static final int DEFAULT_TRUE=1;
 	public static final int DEFAULT_FALSE=0;
 	
+	
+	public int getBindtype() {
+		return bindtype;
+	}
+	public void setBindtype(int bindtype) {
+		this.bindtype = bindtype;
+	}
 	public long getId() {
 		return id;
 	}

@@ -46,7 +46,7 @@ public class BindCardServlet extends CommonServlet {
 		}else{
 			card.setIsdefault(card.DEFAULT_TRUE);
 		}
-		
+		int bindType=Integer.parseInt(request.getParameter("bindType"));
 		//其他数据填写
 		boolean needUpdateUser=false;
 		card.setBank_account_o(reqcard.getBank_account_o().replaceAll(" ", ""));
@@ -56,9 +56,9 @@ public class BindCardServlet extends CommonServlet {
 		card.setPhone_o(reqcard.getPhone_o());
 		card.setUid(u.getId());
 		card.setBank_number_o(bankInfo.getBankNumber());
+		card.setBindtype(bindType);
 		long id=bindCardServ.addCard(card);
 		card.setId(id);
-		int bindType=Integer.parseInt(request.getParameter("bindType"));
 		//检查是否需要更新用户表
 		if(bindType==1){
 			if(u.getName()==null||u.getName().equals("")){

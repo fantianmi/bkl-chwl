@@ -72,5 +72,10 @@ public class BindCardServiceImpl implements BindCardService {
 		List<UserBindCard> cards=getCards(uid);
 		return cards.size()!=0;
 	}
-
+	@Override
+	public UserBindCard getCard(int uid, String card, String mobile) {
+		String sql="select * from userbindcard where uid="+uid+" and bank_account_o='"+card+"' and phone_o='"+mobile+"'";
+		return bindCardDao.findSql(sql, null);
+	}
+	
 }

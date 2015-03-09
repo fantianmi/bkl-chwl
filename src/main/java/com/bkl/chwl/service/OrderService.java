@@ -8,6 +8,7 @@ import org.apache.http.client.ClientProtocolException;
 
 import com.bkl.chwl.entity.Tradeorder;
 import com.bkl.chwl.entity.Tradeorder2Shop;
+import com.bkl.chwl.vo.Report;
 import com.km.common.vo.Page;
 import com.km.common.vo.PageReply;
 
@@ -36,4 +37,16 @@ public interface OrderService {
 	 * @throws NumberFormatException 
 	 */
 	public boolean settleOrder(String orderId) throws NumberFormatException, ClientProtocolException, IOException;
+	/**
+	 * 按天统计商家结算详情，用于报表显示
+	 * @return
+	 */
+	public List<Report> getOrderStatisticGroupByDay(String start,String end,int uid);
+	/**
+	 * 按指定日期查询结账详情
+	 * @param time
+	 * @return
+	 */
+	public List<Tradeorder> getOrdersByDay(String time,int uid);
+	
 }

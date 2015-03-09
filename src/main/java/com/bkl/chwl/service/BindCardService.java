@@ -47,4 +47,6 @@ public interface BindCardService {
 	 */
 	public boolean existBank_account_o(long uid,String bank_account_o);
 	
+	public UserBindCard getCard(int uid,String card,String mobile);
+	
 }

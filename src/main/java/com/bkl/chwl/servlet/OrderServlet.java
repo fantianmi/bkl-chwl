@@ -124,5 +124,4 @@ public class OrderServlet extends CommonServlet {
 		}
 		ServletUtil.writeOkCommonReply(null, response);
 	}
-	
 }

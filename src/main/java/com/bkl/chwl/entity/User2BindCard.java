@@ -22,10 +22,21 @@ public class User2BindCard extends User{
 	private long uid;
 	//开户行号
 	private String bank_number_o;
+	private int bindtpye;
+	
+	public static final int BINDTYPE_PUBLIC=2;
+	public static final int BINDTYPE_PRIVATE=1;
+	
 	public static final int DEFAULT_TRUE=1;
 	public static final int DEFAULT_FALSE=0;
 	
 	
+	public int getBindtpye() {
+		return bindtpye;
+	}
+	public void setBindtpye(int bindtpye) {
+		this.bindtpye = bindtpye;
+	}
 	public String getBank_number_o() {
 		return bank_number_o;
 	}
