@@ -186,11 +186,11 @@
 		</init-param>
 		<init-param>
 			<param-name>urls</param-name>
-			<param-value>/bindcardsuccess.jsp,/scanQR.jsp,/user_index.jsp,/add_shop_info.jsp,/shop_info.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/shop_info.jsp,/doLottery.jsp,/shop_data_add.jsp,/shop_index.jsp,/shop_data.jsp,/shop_deal_list.jsp,/user_card_list.jsp,/user_profile.jsp./info_update.jsp./bind_card_shop.jsp,/input_card_num.jsp,/input_card_info.jsp,/input_card_info_full.jsp,/secretReset.jsp,/secretSet.jsp,/payprocess_wx.jsp</param-value>
+			<param-value>/bindcardsuccess.jsp,/scanQR.jsp,/user_index.jsp,/add_shop_info.jsp,/shop_info.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/shop_info.jsp,/doLottery.jsp,/shop_data_add.jsp,/shop_index.jsp,/shop_data.jsp,/shop_deal_list.jsp,/user_card_list.jsp,/user_profile.jsp./info_update.jsp./bind_card_shop.jsp,/input_card_num.jsp,/input_card_info.jsp,/input_card_info_full.jsp,/secretReset.jsp,/secretSet.jsp,/payprocess_wx.jsp,/shop_tradeorder_info.jsp,/open_big_bouns.jsp</param-value>
 		</init-param>
 		<init-param>
 			<param-name>userUrls</param-name>
-			<param-value>/scanQR.jsp,/user_index.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/doLottery.jsp,/user_profile.jsp./info_update.jsp,/payprocess_wx.jsp</param-value>
+			<param-value>/scanQR.jsp,/user_index.jsp,/confirm_order.jsp,/user_index.jsp,/user_bouns_list.jsp,/user_detail.jsp,/bind_card.jsp,/user_collect.jsp,/doLottery.jsp,/user_profile.jsp./info_update.jsp,/payprocess_wx.jsp,/open_big_bouns.jsp</param-value>
 		</init-param>
 	</filter>
 	

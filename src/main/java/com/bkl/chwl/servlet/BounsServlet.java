@@ -20,6 +20,7 @@ import com.bkl.chwl.utils.UserUtil;
 import com.km.common.servlet.CommonServlet;
 import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
+import com.km.common.vo.RetCode;
 
 public class BounsServlet extends CommonServlet {
 	public void getBounsListHTML(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -41,7 +42,7 @@ public class BounsServlet extends CommonServlet {
 			mbounHTML+="<div class='container no-bottom list_style_bouns'><div class='recent-post'><div class='dealcard-img-bouns'><i class='iconfont bouns '>&#xe6ec;</i></div><div class='dealcard-block-right-bouns'><div class='title'><strong></strong></div><div class='detail'><strong>"+mboun.getCoin()+"</strong>"+Bouns.convertStatusHTML(mboun.getStatus(), mboun.getId(), 2)+"<br>预计可提取时间："+TimeUtil.fromUnixTime(mboun.getBaseDate())+"<br></div></div></div></div><br><div class='decoration'></div>";
 		}
 		for(BigBouns bboun:bbouns){
-			bbounHTML+="<div class='container no-bottom list_style_bouns'><div class='recent-post'><div class='dealcard-img-bouns'><i class='iconfont bouns '>&#xe6ec;</i></div><div class='dealcard-block-right-bouns'><div class='title'><strong></strong></div><div class='detail'><strong>"+bboun.getCoin()+"</strong><button onclick='openbouns(this,"+bboun.getId()+",3)' class='btn btn-danger btn-xs'>领取</button></div></div></div></div><br><div class='decoration'></div>";
+			bbounHTML+="<div class='container no-bottom list_style_bouns'><div class='recent-post'><div class='dealcard-img-bouns'><i class='iconfont bouns '>&#xe6ec;</i></div><div class='dealcard-block-right-bouns'><div class='title'><strong></strong></div><div class='detail'><strong>"+bboun.getCoin()+"</strong><button onclick='openBigBouns(this,"+bboun.getId()+",3)' class='btn btn-danger btn-xs'>领取</button></div></div></div></div><br><div class='decoration'></div>";
 		}
 		
 		bounsMap.put("mbounHTML", mbounHTML);
@@ -50,6 +51,30 @@ public class BounsServlet extends CommonServlet {
 		ServletUtil.writeOkCommonReply(bounsMap, response);
 	}
 	public void openBouns(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		int type=Integer.parseInt(request.getParameter("type"));
+		int id=Integer.parseInt(request.getParameter("id"));
+		//不处理大红包 新需求，大红包处理交给openBigBouns
+		if(type==3){
+			return;
+		}
+		BounsEntity be=ApiCommon.openBouns(type, id);
+		int bb=0;
+		int mb=0;
+		if(null==be.getBigBouns()) bb=0;
+		if(null==be.getMiddleBouns()) mb=0;
+		String res="本次开钱袋获得金币"+be.getCoin()+"，获得幸福钱袋"+bb+"个，获得的健康钱袋"+mb+"个";
+		ServletUtil.writeOkCommonReply(res, response);
+	}
+	
+	public void openBigBouns(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		User u=UserUtil.getCurrentUser(request);
+		
+		String password=request.getParameter("password");
+		if(!u.checkPassword(password)){
+			ServletUtil.writeCommonReply(null, RetCode.PASSWORD_ILLEGAL, response);
+			return;
+		}
+		
 		int type=Integer.parseInt(request.getParameter("type"));
 		int id=Integer.parseInt(request.getParameter("id"));
 		BounsEntity be=ApiCommon.openBouns(type, id);

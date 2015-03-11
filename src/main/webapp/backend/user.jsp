@@ -118,6 +118,31 @@
 							<div class="widget-header widget-header-small">
 								<h4 class="blue smaller">
 									<i class="icon-rss orange"></i>
+									详细资料
+								</h4>
+							</div>
+						</div>
+						<input type="hidden" name="user_id" id="user_id" value="<%=user.getId()%>" >
+						<div class="profile-user-info profile-user-info-striped">
+							<div class="profile-info-row">
+								<div class="profile-info-name">真实姓名 </div>
+								<div class="profile-info-value">
+									<span><input name="user_name" id="user_name" value="<%=StringUtils.defaultIfEmpty(user.getName(),"") %>" ></span>
+								</div>
+							</div>
+							<div class="profile-info-row">
+								<div class="profile-info-name">昵称 </div>
+								<div class="profile-info-value">
+									<span><input name="user_nickname" id="user_nickname" value="<%=StringUtils.defaultIfEmpty(user.getNick_name(),"") %>" ></span>
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-alert" onclick="modify_user_name()">修改用户姓名及昵称</button>
+						
+						<div class="widget-box transparent">
+							<div class="widget-header widget-header-small">
+								<h4 class="blue smaller">
+									<i class="icon-rss orange"></i>
 									帐户资产信息
 								</h4>
 							</div>
@@ -131,23 +156,6 @@
 							</div>	
 						</div>
 						
-						<!-- 实名认证信息  -->
-						<div class="widget-box transparent">
-							<div class="widget-header widget-header-small">
-								<h4 class="blue smaller">
-									<i class="icon-rss orange"></i>
-									实名认证信息
-								</h4>
-							</div>
-						</div>
-						<div class="profile-user-info profile-user-info-striped">
-							<div class="profile-info-row">
-								<div class="profile-info-name">姓名 </div>
-								<div class="profile-info-value">
-									<span><%=StringUtils.defaultIfEmpty(user.getName(),"-") %></span>
-								</div>
-							</div>
-						</div>
 						
 						<p/>
 						<%if(isShop){ %>
@@ -248,11 +256,27 @@
 							    <%} %>
 							</div>
 							<p />
-				</div>
+						</div>
 				</div>
 			</div>
 </div>
 <!-- content -->
+<script type="text/javascript">
+function modify_user_name(){
+	var user_name=$("#user_name").val();
+	var user_nickname=$("#user_nickname").val();
+	var user_id=$("#user_id").val();
+	var url="/admin_api/modifyUserName?random="+Math.round(Math.random()*100);
+	var params={user_id:user_id,user_name:user_name,user_nickname:user_nickname};
+	$.post(url,params,function(res){
+		if(res){
+			if(res.ret==0){
+				alert("修改成功！");
+			}
+		}
+	});
+}
+</script>
 <jsp:include page="htmlfoot.jsp"></jsp:include>
 <script type="text/javascript" src="common/js/user.js"></script>
 <!-- page special -->

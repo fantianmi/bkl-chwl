@@ -95,6 +95,9 @@ function openbouns(self,id,type){
 		}
 	});
 }
+function openBigBouns(self,id,type){
+	window.location.href="/open_big_bouns.jsp?id="+id+"&type="+type;	
+}
 </script>
 </body>
 </html>

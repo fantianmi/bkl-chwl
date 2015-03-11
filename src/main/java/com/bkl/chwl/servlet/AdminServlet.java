@@ -168,4 +168,19 @@ public class AdminServlet extends CommonServlet {
 		PageReply<User> users = userSrv.findUser(searchMap, page);
 		ServletUtil.writeOkCommonReply(users, response);
 	}	
+	public void modifyUserName(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if(request.getParameter("user_id")==null){
+			return;
+		}
+		int id=Integer.parseInt(request.getParameter("user_id"));
+		String name=request.getParameter("user_name");
+		String nickname=request.getParameter("user_nickname");
+		
+		UserService userServ=new UserServiceImpl();
+		User user=userServ.get(id);
+		user.setName(name);
+		user.setNick_name(nickname);
+		userServ.save(user);
+		ServletUtil.writeOkCommonReply(null, response);
+	}	
 }
