@@ -13,8 +13,8 @@
  <%
  OrderService orderServ=new OrderServiceImpl();
  if(request.getParameter("orderId")==null){
-	 response.sendRedirect("index.jsp");
-	 return;
+   response.sendRedirect("index.jsp");
+   return;
  }
  String orderId=request.getParameter("orderId"); 
  Tradeorder2Shop order=orderServ.getTradeorder2ShopOrderId(orderId);
@@ -22,13 +22,17 @@
  User u=UserUtil.getCurrentUser(request);
  String openid="";
  if(u.getOpenid()!=null&&u.getOpenid()!=""){
-	 openid=u.getOpenid();
+   openid=u.getOpenid();
  }
+String weixinurl=MainConfig.getContextPath()+request.getServletPath().substring(1, request.getServletPath().length());
+if(request.getQueryString()!=null&&!request.getQueryString().equals("")&&!request.getQueryString().equals("null")){
+  weixinurl=weixinurl+"?"+request.getQueryString();
+}
  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<jsp:include page="common_source_head.jsp"/>
+  <jsp:include page="common_source_head.jsp"/>
 </head>
 <body class="drawer drawer-right">
 <jsp:include page="top.jsp"/>
@@ -79,7 +83,7 @@ var uri='<%=uri%>';
  void(function getOpenId(){
    if (!getParamValue("openid"))
    {
-     var thisUrl = location.href;
+     var thisUrl = "<%=weixinurl%>";
      location.href=uri+"get-openid.api?redir="+encodeURIComponent(thisUrl);
    }
    else
@@ -108,6 +112,7 @@ var uri='<%=uri%>';
      'getBrandWCPayRequest',
      gbwcpr,
      function(res){
+       alert(res.err_msg);
        if(res.err_msg == "get_brand_wcpay_request:ok" )
          {
            window.location.href="paysuccess.jsp?orderId="+$("#orderid").html();

@@ -1,15 +1,19 @@
 package com.wxpay.servlet;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.util.Properties;
+
 
 //import org.apache.http.client.*;
 import org.apache.http.client.fluent.*;
-import com.alibaba.fastjson.*;
-import com.github.cuter44.nyafx.text.*;
 
+import com.alibaba.fastjson.*;
+import com.bkl.chwl.MainConfig;
+import com.github.cuter44.nyafx.text.*;
 import com.wxpay.*;
 import com.wxpay.reqs.*;
 import com.wxpay.resps.*;
@@ -143,10 +147,10 @@ public class SnsapiBase extends HttpServlet
 
         if (code == null)
         {
-            String thisUrl = req.getRequestURL()
-                .append('?')
-                .append(req.getQueryString()!=null?req.getQueryString():"")
-                .toString();
+        	String thisUrl = req.getRequestURL()
+                    .append('?')
+                    .append(req.getQueryString()!=null?req.getQueryString():"")
+                    .toString();
 
             String url = new URLBuilder()
                 .appendPath("https://open.weixin.qq.com/connect/oauth2/authorize")
