@@ -219,31 +219,36 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 		if(!ApiCommon.withDraw(user.getId(), cash.getAmount())){
 			Config.setRetCode(RetCode.ROMOTE_ERROR);
 		}
-		cash.setCtime(TimeUtil.getUnixTime());
-		cash.setStatus(Cash.STATUS_CONFIRM);
-		cash.setType(Cash.TYPE_RMB_WITHDRAW);
-//		userDao.save(user);
-		long ret = cashDao.save(cash);
-		cash.setId((int)ret);
 		try {
 			BindCardService bindServ=new BindCardServiceImpl();
 			UserBindCard card=bindServ.getCard((int)cash.getUser_id(), cash.getCard(), cash.getMobile());
+			String res="";
 			if(card!=null){
 				if(card.getBindtype()==card.BINDTYPE_PUBLIC){
-					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+					res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 				}else{
-					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+					res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(), user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 				}
 			}else{
-				WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  user.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 			}
+			if(res.equals("1")){
+				cash.setStatus(Cash.STATUS_CONFIRM);
+			}else{
+				cash.setStatus(Cash.STATUS_CANCEL);
+			}
+			cash.setCtime(TimeUtil.getUnixTime());
+			cash.setType(Cash.TYPE_RMB_WITHDRAW);
+//			userDao.save(user);
+			
+			
 		} catch (ClientProtocolException e) {
-			cash.setStatus(Cash.STATUS_UNCONFIRM);
-			cashDao.save(cash);
+			cash.setStatus(Cash.STATUS_CANCEL);
 		} catch (IOException e) {
-			cash.setStatus(Cash.STATUS_UNCONFIRM);
-			cashDao.save(cash);
+			cash.setStatus(Cash.STATUS_CANCEL);
 		}
+		long ret = cashDao.save(cash);
+		cash.setId((int)ret);
 //		systemBillServ.saveWithdraw(cash, user);
 //		userDao.unLockTable();
 //		userDao.commit();
@@ -290,14 +295,15 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 			User u=userDao.find(cash.getUser_id());
 			BindCardService bindServ=new BindCardServiceImpl();
 			UserBindCard card=bindServ.getCard((int)cash.getUser_id(), cash.getCard(), cash.getMobile());
+			String res="";
 			if(card!=null){
 				if(card.getBindtype()==card.BINDTYPE_PUBLIC){
-					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+					res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getLicenceRegName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 				}else{
-					WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+					res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(), u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 				}
 			}else{
-				WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
+				res=WebApi.payOrder(cash.getUser_id(),cash.getOrderId(), 2, cash.getAmount(), cash.getCard(),  u.getName(), cash.getBank(), cash.getBank_number(), cash.getMobile(), "大小王");
 			}
 			userDao.beginTransaction();
 			userDao.lockTable(userDao.getTableName(User.class), userDao.getTableName(Cash.class), userDao.getTableName(Bill.class), userDao.getTableName(BillDetail.class));
@@ -314,7 +320,11 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 //			user.setRmb_frozen(newUserFrozenAmout);
 			
 //			long ret = userDao.save(user);
-			cash.setStatus(Cash.STATUS_CONFIRM);
+			if(res.equals("1")){
+				cash.setStatus(Cash.STATUS_CONFIRM);
+			}else{
+				cash.setStatus(Cash.STATUS_CANCEL);
+			}
 			cash.setAdmin_id(adminId);
 			long ret = cashDao.save(cash);
 //			userBillServ.doWithdraw(cash,user);

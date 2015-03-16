@@ -135,10 +135,10 @@ public class OrderServiceImpl implements OrderService {
 				}//不为空调用payorder
 				else{
 					String res="";
-					if(bindCard.getBindtpye()==bindCard.BINDTYPE_PRIVATE){
-						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
-					}else{
+					if(bindCard.getBindtpye()==bindCard.BINDTYPE_PUBLIC){
 						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getLicenceRegName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					}else{
+						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
 					}
 					log.info(o.getUid()+"already payorder to seller:"+o.getSeller()+",amount:"+sellerCoin+", and res="+res);
 				}
