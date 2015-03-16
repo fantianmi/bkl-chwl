@@ -57,8 +57,15 @@ if(request.getParameter("secretOK")==null||!request.getParameter("secretOK").equ
   <span class="input-group-addon">提现卡片</span>
   <select id="bankid" style="width:100% !important;height:3rem !important">
     <option value="0">请选择提现的银行卡</option>
-    <%for(User2BindCard card:cards){%>
-    <option value="<%=card.getBid()%>"><%=card.getBank_o()+"  "+FrontUtil.hiddenNum(card.getBank_account_o())+" "+card.getName() %></option>
+    <%for(User2BindCard card:cards){
+    	String cardname="";
+	    if(card.getBindtpye()==card.BINDTYPE_PUBLIC){
+	    	cardname=card.getLicenceRegName();
+	    }else{
+	    	cardname=card.getName();
+	    }
+    %>
+    <option value="<%=card.getBid()%>"><%=card.getBank_o()+"  "+FrontUtil.hiddenNum(card.getBank_account_o())+" "+cardname %></option>
     <%} %>
     </select>
 </div>
