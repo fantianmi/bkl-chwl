@@ -328,6 +328,10 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 				cash.setStatus(Cash.STATUS_CONFIRM);
 			}else{
 				cash.setStatus(Cash.STATUS_CANCEL);
+				//保存错误订单信息
+				ErrorOrderService errorOrderServ=new ErrorOrderServiceImpl();
+				ErrorOrder e=new ErrorOrder(cash,user,card);
+				errorOrderServ.saveErrorOrder(e);
 			}
 			cash.setAdmin_id(adminId);
 			long ret = cashDao.save(cash);
