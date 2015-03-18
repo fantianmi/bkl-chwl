@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.ClientProtocolException;
+import org.junit.Test;
 
 import com.bkl.chwl.MainConfig;
 import com.bkl.chwl.entity.Tradeorder;
@@ -100,7 +101,21 @@ public class OrderServiceImpl implements OrderService {
 		String sql="select sum(price) from tradeorder where uid=? and status=1";
 		return orderDao.queryDouble(sql, new Long[]{uid});
 	}
-
+	@Test
+	public void settleOrderTEST(){
+		try {
+			this.settleOrder("20150317185740");
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public boolean settleOrder(String orderId) throws NumberFormatException, ClientProtocolException, IOException {
 		OrderService orderServ = new OrderServiceImpl();
@@ -135,7 +150,7 @@ public class OrderServiceImpl implements OrderService {
 				}//不为空调用payorder
 				else{
 					String res="";
-					if(bindCard.getBindtpye()==bindCard.BINDTYPE_PUBLIC){
+					if(bindCard.getBindtype()==bindCard.BINDTYPE_PUBLIC){
 						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getLicenceRegName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
 					}else{
 						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");

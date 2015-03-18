@@ -33,13 +33,13 @@ public class BindCardServiceImpl implements BindCardService {
 	
 	public List<User2BindCard> getUser2Cards(long uid) {
 		GeneralDao<User2BindCard> user2BindCardDao=DaoFactory.createGeneralDao(User2BindCard.class);
-		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o from userbindcard b left join user u on b.uid=u.id where b.uid="+uid;
+		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o,b.bindtype from userbindcard b left join user u on b.uid=u.id where b.uid="+uid;
 		return user2BindCardDao.findList(sql, null);
 	}
 	
 	public User2BindCard getUser2Card(long id) {
 		GeneralDao<User2BindCard> user2BindCardDao=DaoFactory.createGeneralDao(User2BindCard.class);
-		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o from userbindcard b left join user u on b.uid=u.id where b.id="+id;
+		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o,b.bindtype from userbindcard b left join user u on b.uid=u.id where b.id="+id;
 		return user2BindCardDao.findSql(sql, null);
 	}
 	@Override
@@ -53,7 +53,7 @@ public class BindCardServiceImpl implements BindCardService {
 	@Override
 	public User2BindCard getDefult(long uid) {
 		GeneralDao<User2BindCard> user2BindCardDao=DaoFactory.createGeneralDao(User2BindCard.class);
-		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o from userbindcard b left join user u on b.uid=u.id where b.uid="+uid+" and b.isdefault="+UserBindCard.DEFAULT_TRUE;
+		String sql="select u.*,b.id as bid,b.bank_o,b.bank_account_o,b.bank_deposit_o,b.phone_o,b.isdefault,b.uid,b.bank_number_o,b.bindtype from userbindcard b left join user u on b.uid=u.id where b.uid="+uid+" and b.isdefault="+UserBindCard.DEFAULT_TRUE;
 		return user2BindCardDao.findSql(sql, null);
 	}
 	@Override
