@@ -11,6 +11,8 @@ boolean users=false;
 boolean proxy_city=false;
 boolean proxy_area=false;
 boolean rmb_withdraw=false;
+boolean error_order=false;
+
 if (page_url.indexOf("/index.jsp") != -1) {
 	home = true;
 } else if (page_url.indexOf("/area.jsp") != -1){
@@ -29,6 +31,8 @@ if (page_url.indexOf("/index.jsp") != -1) {
 	proxy_city=true;
 }else if(page_url.indexOf("/rmb_withdraw.jsp")!=-1){
 	rmb_withdraw=true;
+}else if(page_url.indexOf("/error_order.jsp")!=-1){
+	error_order=true;
 }
 %>
 <div class="sidebar" id="sidebar">
@@ -64,6 +68,7 @@ if (page_url.indexOf("/index.jsp") != -1) {
 			</ul>
 		</li>
 		<li class="<%=rmb_withdraw?"active":""%>"><a href="rmb_withdraw.jsp"><i class="icon-barcode"></i><span class="menu-text">提现订单</span></a></li>
+		<li class="<%=error_order?"active":""%>"><a href="error_order.jsp"><i class="icon-barcode"></i><span class="menu-text">问题订单</span></a></li>
 		<!-- <li class="<%=version?"active":""%>"><a href="version.jsp"><i class="icon-cloud-download"></i><span class="menu-text"> 版本管理 </span></a></li> -->
 	</ul>
 	<div class="sidebar-collapse" id="sidebar-collapse">

@@ -18,6 +18,7 @@ import com.bkl.chwl.utils.UserUtil;
 import com.km.common.config.Config;
 import com.km.common.servlet.CommonServlet;
 import com.km.common.utils.MD5Util;
+import com.km.common.utils.RandomCode;
 import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
 import com.km.common.vo.Page;
@@ -84,7 +85,9 @@ public class CashServlet extends CommonServlet {
 		if (StringUtils.isBlank(withdraw.getMobile())) {
 			withdraw.setMobile(card.getPhone_o());
 		}
-		withdraw.setOrderId(TimeUtil.getNowDateTime4NotSplit());
+		//2015-3-18订单号由 采用:年月日时分秒毫秒再加四位随机数
+		String orderid=TimeUtil.getNowDateTime4NotSplit()+RandomCode.random();
+		withdraw.setOrderId(orderid);
 		CashService cashSer = new CashServiceImpl();
 		withdraw.setUser_id(user.getId());
 		long retid = cashSer.saveWithdraw(withdraw);

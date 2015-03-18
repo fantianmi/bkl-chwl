@@ -1,12 +1,15 @@
 package com.bkl.chwl.servlet;
 
 
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.junit.Test;
 
 import com.bkl.chwl.entity.Tradeorder;
 import com.bkl.chwl.entity.Tradeorder2Shop;
@@ -21,10 +24,12 @@ import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.FrontUtil;
 import com.bkl.chwl.utils.StringUtil;
 import com.bkl.chwl.utils.UserUtil;
+import com.bkl.chwl.vo.WebApi;
 import com.km.common.dao.DaoFactory;
 import com.km.common.dao.GeneralDao;
 import com.km.common.servlet.CommonServlet;
 import com.km.common.utils.DbUtil;
+import com.km.common.utils.RandomCode;
 import com.km.common.utils.ServletUtil;
 import com.km.common.utils.TimeUtil;
 import com.km.common.vo.Condition;
@@ -43,7 +48,9 @@ public class OrderServlet extends CommonServlet {
 			return;
 		}
 		order.setBankprice(order.getPrice());
-		order.setOrderId(TimeUtil.getNowDateTime4NotSplit());
+		//2015-3-18订单号由 采用:年月日时分秒毫秒再加四位随机数
+		String orderid=TimeUtil.getNowDateTime4NotSplit()+RandomCode.random();
+		order.setOrderId(orderid);
 		double coinRate=Double.valueOf(request.getParameter("coinRate"));
 		//计算让利金币数
 		double paybackCoin=order.getPrice()*coinRate;
@@ -123,5 +130,14 @@ public class OrderServlet extends CommonServlet {
 			orderDao.save(order);
 		}
 		ServletUtil.writeOkCommonReply(null, response);
+	}
+	public void payordertest(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String res=WebApi.payOrder((int)1000, "12345678", 1, 1.0, "6222023100088650852", "张得帅", "中国农业银行", "103100000026", "15320499318", "dxw_account");
+		ServletUtil.writeOkCommonReply(res, response);
+	}
+	@Test
+	public void test(){
+		String s=URLDecoder.decode("http%3a%2f%2f127.0.0.1%3a9000%2fget-openid.api%3fredir%3dhttp%253A%252F%252Fwww.diantou.mobi%252Fpayprocess_wx.jsp%253ForderId%253D20150312012359");
+		System.out.println(s);
 	}
 }

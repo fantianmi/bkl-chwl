@@ -12,13 +12,13 @@ import com.bkl.chwl.entity.Bill;
 import com.bkl.chwl.entity.BillDetail;
 import com.bkl.chwl.entity.Cash;
 import com.bkl.chwl.entity.Cash2User;
+import com.bkl.chwl.entity.ErrorOrder;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.entity.UserBindCard;
 import com.bkl.chwl.service.BindCardService;
+import com.bkl.chwl.service.ErrorOrderService;
 import com.bkl.chwl.service.SystemBillService;
 import com.bkl.chwl.service.UserBillService;
-import com.bkl.chwl.task.PayRecommendTask;
-import com.bkl.chwl.task.SystemTaskPool;
 import com.bkl.chwl.utils.ApiCommon;
 import com.bkl.chwl.utils.DoubleUtil;
 import com.bkl.chwl.vo.WebApi;
@@ -236,6 +236,10 @@ public class CashServiceImpl implements com.bkl.chwl.service.CashService {
 				cash.setStatus(Cash.STATUS_CONFIRM);
 			}else{
 				cash.setStatus(Cash.STATUS_CANCEL);
+				//保存错误订单信息
+				ErrorOrderService errorOrderServ=new ErrorOrderServiceImpl();
+				ErrorOrder e=new ErrorOrder(cash,user,card);
+				errorOrderServ.saveErrorOrder(e);
 			}
 			cash.setCtime(TimeUtil.getUnixTime());
 			cash.setType(Cash.TYPE_RMB_WITHDRAW);

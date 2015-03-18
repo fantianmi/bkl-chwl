@@ -12,11 +12,13 @@ import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import com.bkl.chwl.MainConfig;
+import com.bkl.chwl.entity.ErrorOrder;
 import com.bkl.chwl.entity.Tradeorder;
 import com.bkl.chwl.entity.Tradeorder2Shop;
 import com.bkl.chwl.entity.User;
 import com.bkl.chwl.entity.User2BindCard;
 import com.bkl.chwl.service.BindCardService;
+import com.bkl.chwl.service.ErrorOrderService;
 import com.bkl.chwl.service.OrderService;
 import com.bkl.chwl.service.ShopService;
 import com.bkl.chwl.service.UserService;
@@ -154,6 +156,22 @@ public class OrderServiceImpl implements OrderService {
 						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getLicenceRegName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
 					}else{
 						res=WebApi.payOrder((int)o.getSeller(), orderId, 1, sellerCoin, bindCard.getBank_account_o(), bindCard.getName(), bindCard.getBank_deposit_o(), bindCard.getBank_number_o(), bindCard.getPhone_o(), "dxw_account");
+					}
+					//记录错误订单信息
+					if(!res.equals("1")){
+						ErrorOrder errorOrder=new ErrorOrder();
+						errorOrder.setUid(o.getSeller());
+						errorOrder.setOrderid(orderId);
+						errorOrder.setOrdertype(ErrorOrder.ORDERTYPE_TRADE);
+						errorOrder.setBankaccount(bindCard.getBank_account_o());
+						errorOrder.setBankdeposit(bindCard.getBank_deposit_o());
+						errorOrder.setPhone(bindCard.getPhone_o());
+						errorOrder.setCoin(sellerCoin);
+						errorOrder.setStatus(ErrorOrder.STATUS_UNCONFIREM);
+						errorOrder.convertOrdertype(errorOrder, bindCard);
+						errorOrder.setCtime(TimeUtil.getUnixTime());
+						ErrorOrderService errorOrderServ=new ErrorOrderServiceImpl();
+						errorOrderServ.saveErrorOrder(errorOrder);
 					}
 					log.info(o.getUid()+"already payorder to seller:"+o.getSeller()+",amount:"+sellerCoin+", and res="+res);
 				}
