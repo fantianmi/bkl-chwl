@@ -70,7 +70,7 @@ $("#top_logout_button").hide();
 </script>
 <script>
 var uri='<%=uri%>';
- function getParamValue(name)
+ /*function getParamValue(name)
  {
    try {
      return(
@@ -90,7 +90,7 @@ var uri='<%=uri%>';
    {
      document.getElementById("openid").value = getParamValue("openid");  
    }
- })();
+ })();*/
 
  function buybuybuy()
  {
@@ -108,14 +108,17 @@ var uri='<%=uri%>';
      +"&orderid="+$("#orderid").html()
    );
    var gbwcpr = JSON.parse(ajax.responseText);
+   alert(ajax.responseText["package "]);
    WeixinJSBridge.invoke(
      'getBrandWCPayRequest',
      gbwcpr,
      function(res){
-       alert(res.err_msg);
+       //alert(res.err_msg);
        if(res.err_msg == "get_brand_wcpay_request:ok" )
          {
            window.location.href="paysuccess.jsp?orderId="+$("#orderid").html();
+         }else{
+           window.location.href=window.location.href;
          }
        // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg 将在用户支付成功后返回 ok，但幵丌保证它绝对可靠。
      }

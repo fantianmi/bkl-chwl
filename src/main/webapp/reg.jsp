@@ -130,7 +130,7 @@ if(request.getParameter("r")!=null){
 	  </div>
 	  <div class="form-group">
 	    <label for="shopName">&nbsp;&nbsp;营业执照注册名</label>
-	    <input type="text" class="form-control" id="licenceRegName" placeholder="必填，请填入准确的营业执照注册名">
+	    <input type="text" class="form-control" id="licenceRegName" placeholder="必填，请填入准确的营业执照注册名" onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" onblur="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')">
 	    <p class="error_msg" id="licenceRegName_error"></p>
 	  </div>
 	  <div class="form-group">

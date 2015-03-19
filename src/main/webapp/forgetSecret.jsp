@@ -50,12 +50,14 @@
   <div id="resetPassArea" style="display:none">
    <div class="form-group">
     <label for="regPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;密码</label>
-    <input type="password" class="form-control" id="regPassword" placeholder="大于6位密码">
+    <input type="password" class="form-control" id="regPassword" placeholder="大于6位密码" onblur="checkPassword()">
+    <p id="regPassword_error"></p>
   </div>
   <p style="display: none" id="regPwdResult"></p>
   <div class="form-group">
     <label for="regRePassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;确认密码</label>
-    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码">
+    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码" onblur="checkRePassword()">
+    <p id="regRePassword_error"></p>
   </div>
   <button onclick="forgetPassSubmit()" class="btn btn-success  btn-block">重置密码</button><br>
   <button type="button" class="btn btn-danger  btn-block" onclick="resetPassBack()">上一步</button>
@@ -67,6 +69,47 @@
 <!-- page special -->
 <script type="text/javascript">
 document.getElementById("head_title").innerHTML="找回密码";
+function checkPassword(){
+	var pwd = trim(document.getElementById("regPassword").value);
+	var desc='';
+	var c = new RegExp();   
+	c = /^[A-Za-z0-9_-]+$/;  
+	if(pwd == ""){
+		desc="请输入密码！";
+	}else if(pwd.length <6){
+		desc="密码长度不能小于6！";
+	}else if(pwd.length>16){
+		desc="密码长度不能大于16！";
+	}
+	if(desc!=""){
+		$("#regPassword_error").html(desc);
+		return false;
+	}else{
+		$("#regPassword_error").html("");
+	}
+	return true;
+}
+	function checkRePassword(){
+		var pwd = trim(document.getElementById("regPassword").value);
+		var rePwd = trim(document.getElementById("regRePassword").value);
+		var desc='';
+		if(rePwd == ""){
+			desc="再输入一遍新密码！";
+		}else if(rePwd.length <6){
+			desc="密码长度不能小于6！";
+		}else if(pwd.length>16){
+			desc="密码长度不能大于16！";
+		}else if(pwd != rePwd){
+			desc="输入的密码不一致！";
+		}
+		if(desc!=""){
+			$("#regRePassword_error").html(desc);
+			return false;
+		}else{
+			$("#regRePassword_error").html("");
+		}
+		return true;
+	}
 function showResetPassArea(){
 	var phone_validate_code=$("#phone_validate_code").val();
 	if(phone_validate_code.length<5){

@@ -56,12 +56,14 @@
   <div id="resetPassArea" style="display:none">
    <div class="form-group">
     <label for="regPassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;密码</label>
-    <input type="password" class="form-control" id="regPassword" placeholder="大于6位密码">
+    <input type="password" class="form-control" id="regPassword" placeholder="大于6位密码" onblur="checkPassword()">
+    <p id="regPassword_error" class="error_msg"></p>
   </div>
   <p style="display: none" id="regPwdResult"></p>
   <div class="form-group">
     <label for="regRePassword"><i class="iconfont">&#xe607;</i>&nbsp;&nbsp;确认密码</label>
-    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码">
+    <input type="password" class="form-control" id="regRePassword" placeholder="请再次输入密码" onblur="checkRePassword()">
+    <p id="regRePassword_error" class="error_msg"></p>
   </div>
   <button onclick="forgetPassSubmit()" class="btn btn-success  btn-block">重置密码</button><br>
   </div>
