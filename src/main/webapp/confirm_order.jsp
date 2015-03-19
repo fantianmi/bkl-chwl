@@ -72,7 +72,7 @@ if(cards.size()==0){
   </div>
   <div class="form-group">
     <label for="price"><i class="iconfont">&#xe63a;</i>&nbsp;&nbsp;结账金额</label>
-    <input type="text" class="form-control" id="price" placeholder="输入金额" onkeyup="checkNum(this)" onpaste="checkNum(this)" oncontextmenu = "checkNum(this)">
+    <input type="text" class="form-control" id="price" placeholder="输入金额" onkeyup="checkNum(this)" onpaste="checkNum(this)" oncontextmenu = "checkNum(this)" onblur="checkNum(this)">
   </div>
   <div class="pay_way_list">
   <label for="price">&nbsp;&nbsp;选择支付方式</label>
@@ -115,6 +115,11 @@ if(cards.size()==0){
 <!-- page special -->
 <script>
 function show_pay_button(x){
+	var coin=$("#price").val();
+	if(coin<1){
+		alert("支付金额必须大于1块");
+		return;
+	}
 	if(x==1){
 		$("#pay_way_1").show();
 		$("#pay_way_2").hide();

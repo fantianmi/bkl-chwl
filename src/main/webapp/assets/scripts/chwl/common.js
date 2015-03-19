@@ -2820,7 +2820,14 @@ function bindCardFullUpdateSubmit(){
 	});
 }
 function cardDelete(role){
-	if(!confirm("真的删除?")){return}
+	var isdefault=$("#isdefault").val();
+	if(isdefault==1){
+		if(!confirm("这是一张默认收款卡，如果删除需要重新设置，确认删除？")){
+			return;
+		}
+	}else{
+		if(!confirm("真的删除?")){return}
+	}
 	var uid=$("#uid").val();
 	var bid=$("#bid").val();
 	var url="/api/bind/removeCard?random="+Math.round(Math.random()*100);

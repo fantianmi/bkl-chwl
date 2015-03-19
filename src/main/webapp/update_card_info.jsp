@@ -55,6 +55,7 @@ User2BindCard card=bindCardServ.getUser2Card(id);
 </div>
 <div class="space"></div>
 <div class="content" style="padding:0rem 1rem 1rem 1rem !important">
+  <input type="hidden" id="isdefault" value="<%=card.getIsdefault()%>">
   <input type="hidden" class="form-control" id="bid" value="<%=card.getBid()%>" >
   <input type="hidden" class="form-control" id="uid" value="<%=card.getId()%>" >
  <div class="form-group">

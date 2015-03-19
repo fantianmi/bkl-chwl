@@ -55,6 +55,7 @@ User2BindCard card=bindCardServ.getUser2Card(id);
 </div>
 <div class="space"></div>
 <div class="content" style="padding:0rem 1rem 1rem 1rem !important">
+  <input type="hidden" id="isdefault" value="<%=card.getIsdefault()%>">
   <input type="hidden" class="form-control" id="bid" value="<%=card.getBid()%>" >
   <input type="hidden" class="form-control" id="uid" value="<%=card.getId()%>" >
  <div class="form-group">
@@ -79,7 +80,7 @@ User2BindCard card=bindCardServ.getUser2Card(id);
 <jsp:include page="list_nav.jsp"></jsp:include>
 <!-- page special -->
 <script type="text/javascript">
-document.getElementById("head_title").innerHTML="银行卡信息";
+	document.getElementById("head_title").innerHTML="银行卡信息";
 </script>
 <!-- drop box -->
 <style>
