@@ -1553,6 +1553,9 @@ function checkPassword(){
 								$("#kaptchafield_error").html("验证码输入错误");
 								$("#userSubmitBtn").attr("disabled",false);
 								return;
+							}else if(data2.ret==640){
+								alert("必须要有推荐人");
+								return;
 							}
 						}
 						else{
@@ -1741,6 +1744,9 @@ function checkPassword(){
 							}else if(data2.ret==620){
 								$("#kaptchafield_error").html("验证码输入错误");
 								$("#shoperSubmitBtn").attr("disabled",false);
+								return;
+							}else if(data2.ret==640){
+								alert("必须要有推荐人");
 								return;
 							}
 						}else{
@@ -2503,6 +2509,10 @@ function isSpider(){
 	return result;
 }
 function changeArea(self,reid){
+	if(reid==0){
+		alert("请确认选择上级城市");
+		return;
+	}
 	var url="/area/getAreaHTMLOption?reid="+reid+"&random="+Math.round(Math.random()*100);
 	jQuery.get(url,function(res){
 		if(res){
